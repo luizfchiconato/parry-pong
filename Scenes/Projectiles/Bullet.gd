@@ -36,6 +36,7 @@ func _physics_process(delta):
 	if converted and !previousConverted:
 		previousConverted = true
 		$CPUParticles2D.set_color("#4ed4c2")
+		$CPUParticles2D.amount = $CPUParticles2D.amount * 4
 		$Sprite2D.texture = load("res://Art/Sprites/ball_converted.png")
 
 func _on_body_entered(body):

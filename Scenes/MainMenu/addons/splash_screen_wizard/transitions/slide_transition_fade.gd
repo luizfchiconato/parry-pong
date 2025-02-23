@@ -1,4 +1,4 @@
-@icon("res://Scenes/SplashScreen/addons/splash_screen_wizard/icons/SlideTransitionFade.svg")
+@icon("res://Scenes/MainMenu/addons/splash_screen_wizard/icons/SlideTransitionFade.svg")
 class_name SlideTransitionFade extends SlideTransition
 ## Transition that fades in or out a [SplashScreenSlide].
 

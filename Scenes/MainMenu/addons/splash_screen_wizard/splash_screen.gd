@@ -1,4 +1,4 @@
-@icon("res://Scenes/SplashScreen/addons/splash_screen_wizard/icons/SplashScreen.svg")
+@icon("res://Scenes/MainMenu/addons/splash_screen_wizard/icons/SplashScreen.svg")
 class_name SplashScreen extends Control
 ## A splash screen, which can be used to display several [SplashScreenSlide]s in a sequence.
 ##

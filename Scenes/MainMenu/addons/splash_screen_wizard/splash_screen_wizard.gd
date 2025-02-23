@@ -2,7 +2,7 @@
 extends EditorPlugin
 
 
-var EditorUI = preload("res://Scenes/SplashScreen/addons/splash_screen_wizard/editor_ui.gd")
+var EditorUI = preload("res://Scenes/MainMenu/addons/splash_screen_wizard/editor_ui.gd")
 
 
 var _inspector_plugin_editor_ui

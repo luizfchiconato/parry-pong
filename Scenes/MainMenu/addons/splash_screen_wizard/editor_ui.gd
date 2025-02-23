@@ -1,7 +1,7 @@
 extends EditorInspectorPlugin
 
 
-var icon_add_slide = load("res://Scenes/SplashScreen/addons/splash_screen_wizard/icons/IconAddSlide.svg")
+var icon_add_slide = load("res://Scenes/MainMenu/addons/splash_screen_wizard/icons/IconAddSlide.svg")
 
 
 func _can_handle(object):

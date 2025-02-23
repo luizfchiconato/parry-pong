@@ -106,7 +106,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_3fuda"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o3xnk"]
-radius = 27.0
+radius = 32.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_rk0r4"]
 
@@ -292,7 +292,6 @@ disabled = true
 position = Vector2(3.00001, 3.00004)
 scale = Vector2(1.65625, 1.65625)
 sprite_frames = SubResource("SpriteFrames_sbtgc")
-animation = &"exploding"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ExplosionRadius"]
 libraries = {
@@ -302,8 +301,7 @@ libraries = {
 [node name="InternalMesh" type="MeshInstance2D" parent="ExplosionRadius"]
 modulate = Color(0, 0.729412, 0.729412, 0.247059)
 z_index = -2
-position = Vector2(1.90735e-06, 3.8147e-06)
-scale = Vector2(159.388, 159.388)
+scale = Vector2(141.764, 141.764)
 mesh = SubResource("SphereMesh_pk1d4")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

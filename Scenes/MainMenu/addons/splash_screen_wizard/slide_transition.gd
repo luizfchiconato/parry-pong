@@ -1,4 +1,4 @@
-@icon("res://Scenes/SplashScreen/addons/splash_screen_wizard/icons/SlideTransition.svg")
+@icon("res://Scenes/MainMenu/addons/splash_screen_wizard/icons/SlideTransition.svg")
 class_name SlideTransition extends Resource
 ## Base class for all transitions used by [SplashScreenSlide]s.
 ##

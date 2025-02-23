@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		hitboxShape.disabled = true
 	elif (attacking):
 		attackFrame += 1
-	elif (Input.is_action_just_pressed("Punch")  or Input.is_action_just_pressed("Kick")) and canAttack:
+	elif (Input.is_action_just_pressed("Punch") or Input.is_action_just_pressed("Kick")) and (canAttack or hitInAttack):
 		attack()
 	
 	if attacking == true:
@@ -83,29 +83,34 @@ func _on_hitbox_body_entered(body):
 		return
 
 	if body is Bullet:
+		#$Camera2D.set_trauma(0.2)
 		hitInAttack = true
 		reflectBullet(body)
 	
 	if body is BowlingBall:
+		#$Camera2D.set_trauma(0.3)
 		hitInAttack = true
 		reflectBowlingBall(body)
 
+func set_trauma(amount):
+	$Camera2D.set_trauma(amount)
+
 func reflectBullet(body):
 	if (!body.converted):
-		body.velocity = -body.velocity * 1.5
+		body.velocity = -body.velocity * 2.5
 		body.converted = true
-		frameFeeze(0.05, 0.5)
+		#frameFeeze(0.05, 0.5)
 		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.7)
 
 func reflectBowlingBall(body):
 	if (!body.converted and body.can_deflect):
 		body.converted = true
-		frameFeeze(0.05, 0.5)
+		#frameFeeze(0.05, 0.5)
 		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.4)
 
 	#if body.is_in_group("Enemy"):
 	#	#frameFeeze(0.05, 0.9)
-	#	deal_damage(body)
+	#	deal_damage(body)a
 	#	print("blaa")
 		
 

@@ -6,9 +6,19 @@ class_name enemy_chase_state
 
 @export var animator : AnimationPlayer
 @onready var body = $"../.."
+@onready var enemy = $"../.."
+@onready var sprite = $"../../AnimatedSprite2D"
+const TYPE_NORMAL = 0
+const TYPE_BOWLING = 1
 
 func Enter():
-	animator.play("Chasing")
+	#animator.play("Chasing")
+	print("WALK")
+	if enemy.enemy_type == TYPE_BOWLING:
+		print('aaa')
+		sprite.play("WalkBowling")
+	else:
+		sprite.play("Walk")
 
 func Update(_delta):
 	var player = get_tree().get_nodes_in_group("Player")[0]  as CharacterBody2D

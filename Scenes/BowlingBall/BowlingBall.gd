@@ -48,7 +48,7 @@ const DAMAGE_BOWLING = 2
 func _ready():
 	anim_sprite.play("default")
 	anim_sprite_2.play("default")
-	bomb_animator.play("default")
+	#bomb_animator.play("default")
 	
 	var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 	
@@ -98,7 +98,7 @@ func convert_ball(delta):
 		var y_entropy = RandomNumberGenerator.new().randf_range(-30, 30)
 		
 		var end_position = Vector2(target_pos.x + x_entropy, target_pos.y + y_entropy)
-		velocity = self.global_position.direction_to(end_position)
+		velocity = self.global_position.direction_to(end_position) * 2
 	else:
 		queue_free()
 
@@ -120,10 +120,11 @@ func check_y_level():
 		can_deflect = false
 		clearRadius()
 		#AudioManager.play_sound(AudioManager.BOWLING_FALL, 0, 0)
+		#AudioManager.play_sound(AudioManager.SMALL_EXPLOSION, 0, -5, 0.4)
 		bomb_animator.play("exploding")
 		await bomb_animator.animation_finished
 		queue_free()
-	elif (self.global_position.y - 50 < arch_body.global_position.y and self.global_position.distance_to(end_position) < 80):
+	elif (self.global_position.y - 70 < arch_body.global_position.y and self.global_position.distance_to(end_position) < 90):
 		can_deflect = true
 		$ExplosionRadius/InternalMesh.modulate = Color("00baba3f")
 	else:

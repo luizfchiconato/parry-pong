@@ -37,22 +37,30 @@ func finished_attacking():
 func _on_detection_area_body_entered(body):
 	if (!isAvailable()):
 		return
-
+	
+	print("entrou")
 	if body.is_in_group("Player"):
 		player_in_range = true
+		print(is_instance_valid(fsm), is_instance_valid(chase_node))
+		
 		#We don't want this to happen from the death state, only from idle
-		if fsm.current_state.name == "enemy_idle_state": 
-			fsm.force_change_state("enemy_chase_state")
+		#if fsm.current_state.name == "enemy_idle_state": 
+		print("entrando chase")
+			
+		fsm.force_change_state("enemy_chase_state")
 
 #Return to idle when player leaves our proximity
 func _on_detection_area_body_exited(body):
 	if (!isAvailable()):
 		return
-
+	
+	print("saiu")	
 	if body.is_in_group("Player"):
 		player_in_range = false
+		print(is_instance_valid(fsm), is_instance_valid(chase_node))
 		if (is_instance_valid(fsm) and is_instance_valid(chase_node)):
-			fsm.change_state(chase_node, "enemy_idle_state")
+			print("entrando idle")
+			fsm.force_change_state("enemy_idle_state")
 		
 
 func increment_death_number():
@@ -61,8 +69,11 @@ func increment_death_number():
 		activateEnemy()
 
 func activateEnemy():
-	$AnimatedSprite2D.play("Idle")
-	animator.play("Idle")
+	if enemy_type == TYPE_BOWLING:
+		$AnimatedSprite2D.play("IdleBowling")
+	else:
+		$AnimatedSprite2D.play("Idle")
+	#animator.play("Idle")
 	$AnimatedSprite2D.modulate.a = 1
 	$AnimatedSprite2D.scale.x = 1
 	$AnimatedSprite2D.scale.y = 1
@@ -88,6 +99,9 @@ func _take_damage(amount):
 	
 	$HealthBar.removeHealth(amount)
 	
+	var player = get_tree().get_first_node_in_group("Player") as PlayerMain
+	player.set_trauma(amount * 0.12)
+	
 	if(health <= 0):
 		_die()
 	
@@ -98,7 +112,7 @@ func _ready():
 
 func deactivateEnemy():
 	$AnimatedSprite2D.play("Hidden")
-	animator.play("Hidden")
+	#animator.play("Hidden")
 	$AnimatedSprite2D.modulate.a = 0.7
 	$AnimatedSprite2D.scale.x = 0.7
 	$AnimatedSprite2D.scale.y = 0.7
@@ -139,13 +153,13 @@ func createBowlingBall():
 	bullet.vertical_velocity = 10
 	bullet.set_as_top_level(true)
 	bullet.parent_enemy = self
-	get_tree().root.add_child(bullet)
+	self.add_child(bullet)
 	
 func createDefaultBall():
 	var bullet := Bullet.instantiate() as Bullet
 	bullet.global_position = global_position
 	bullet.set_as_top_level(true)
-	get_tree().root.add_child(bullet)
+	self.add_child(bullet)
 
 func isAvailable():
 	return parent_death_number >= wait_for_deaths

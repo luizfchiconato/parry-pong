@@ -7,9 +7,10 @@ class_name enemy_attack_state
 @export var animator : AnimationPlayer
 
 func Enter():
-	animator.play(attack.anim)
-	await animator.animation_finished
-	enemy.finished_attacking()
+	#animator.play(attack.anim)
+	#await animator.animation_finished
+	#enemy.finished_attacking()
+	pass
 	
 #During attack animation, Hitbox is activated and tries to find the player
 func _on_hit_box_body_entered(body):

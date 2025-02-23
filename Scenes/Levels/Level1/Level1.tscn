@@ -172,6 +172,7 @@ label_settings = ExtResource("6_041yp")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_moeye")
 volume_db = -12.0
+autoplay = true
 
 [connection signal="died" from="Enemies/Enemy7" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy6" to="." method="_on_enemy_died"]

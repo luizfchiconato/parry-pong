@@ -24,7 +24,8 @@ func _on_enemy_died():
 	for child in get_children():
 		for grandson in child.get_children():
 			if grandson is EnemyMain:
-				allDied = false
+				if (grandson.health > 0):
+					allDied = false
 	
 	if (allDied == true):
 		GameManager.load_next_level(next_scene)
