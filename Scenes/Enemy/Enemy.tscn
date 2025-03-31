@@ -319,6 +319,7 @@ shape = SubResource("CapsuleShape2D_4mbmt")
 
 [node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_imcar")
+debug_color = Color(0, 0.6, 0.701961, 0.0745098)
 
 [node name="FSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("21_mb2dn")

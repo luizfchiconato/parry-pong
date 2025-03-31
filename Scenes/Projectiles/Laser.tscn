@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://1e80xgndimdn"]
+
+[ext_resource type="Script" path="res://Scenes/Projectiles/Laser.gd" id="1_cjcoo"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tlbva"]
+b = Vector2(77, 0)
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_cjcoo")
+
+[node name="Reference" type="Sprite2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(107, 0)
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(1.08434, 0)
+scale = Vector2(1.36145, 1)
+points = PackedVector2Array(0, 0, 77, 0)
+width = 3.0
+default_color = Color(0.972549, 0.164706, 0.164706, 1)
+
+[node name="DamageArea" type="Area2D" parent="Line2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/DamageArea"]
+shape = SubResource("SegmentShape2D_tlbva")

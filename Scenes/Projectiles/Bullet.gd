@@ -1,14 +1,18 @@
 class_name Bullet extends Area2D
 
-@export var speed = 150
+@export var speed = 180
 var velocity = Vector2.ZERO
 var target_pos = Vector2.ZERO
 
 var converted = false
 var previousConverted = false
 var explodable = true
+var angle = 0
+var medium = false
 
 var explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(8, 16)
+
+@export_enum("Normal:0", "None:1", "Intermediary:2", "Extreme:3") var entropy: int
 
 var Bullet = load("res://Scenes/Projectiles/Bullet.tscn")
 var Player = load("res://Scenes/Player/Player.tscn")
@@ -24,11 +28,24 @@ func _ready():
 		var target_pos = player.global_position
 		self.rotation = target_pos.angle()
 		
-		var x_entropy = RandomNumberGenerator.new().randf_range(-15, 15)
-		var y_entropy = RandomNumberGenerator.new().randf_range(-15, 15)
+		var x_entropy = 0
+		var y_entropy = 0
+		
+		if (entropy == 0):
+			x_entropy = RandomNumberGenerator.new().randf_range(-15, 15)
+			y_entropy = RandomNumberGenerator.new().randf_range(-15, 15)
+			
+		if (entropy == 2):
+			x_entropy = RandomNumberGenerator.new().randf_range(-50, 50)
+			y_entropy = RandomNumberGenerator.new().randf_range(-50, 50)
+			
+		if (entropy == 3):
+			x_entropy = RandomNumberGenerator.new().randf_range(-75, 75)
+			y_entropy = RandomNumberGenerator.new().randf_range(-75, 75)
 		
 		var end_position = Vector2(target_pos.x + x_entropy, target_pos.y + y_entropy)
 		velocity = self.global_position.direction_to(end_position)
+		velocity = velocity.rotated(angle)
 
 func _physics_process(delta):
 	self.global_position += velocity * speed * delta

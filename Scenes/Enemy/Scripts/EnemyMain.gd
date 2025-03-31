@@ -14,7 +14,11 @@ var rng = RandomNumberGenerator.new()
 
 @onready var animator = $AnimationPlayer
 
-@export_enum("Normal:0", "Bowling:1") var enemy_type: int
+@export_enum("Normal:0", "Bowling:1", "Volley:2") var enemy_type: int
+@export_enum("Normal:0", "None:1", "Intermediary:2", "Extreme:3") var entropy: int
+
+@export_enum("1", "3", "5") var min_balls_per_shot: int
+@export_enum("1", "3", "5") var max_balls_per_shot: int
 
 var parent_death_number: int = 0
 
@@ -22,9 +26,11 @@ signal died
 
 const TYPE_NORMAL = 0
 const TYPE_BOWLING = 1
+const TYPE_VOLLEY = 2
 
 var Bullet = load("res://Scenes/Projectiles/Bullet.tscn")
 var BowlingBall = load("res://Scenes/BowlingBall/BowlingBall.tscn")
+var Laser = load("res://Scenes/Projectiles/Laser.tscn")
 
 #After finishing an attack, we return here to determine our next action based on the players proximity
 func finished_attacking():
@@ -143,9 +149,15 @@ func createBullet():
 	
 	if (enemy_type == TYPE_BOWLING):
 		createBowlingBall()
+	elif (enemy_type == TYPE_VOLLEY):
+		createLaser()
 	else:
 		createDefaultBall()
-	
+
+func createLaser():
+	var laser := Laser.instantiate() as Laser
+	self.add_child(laser)
+
 func createBowlingBall():
 	var bullet := BowlingBall.instantiate() as BowlingBall
 	bullet.global_position = global_position
@@ -159,6 +171,29 @@ func createDefaultBall():
 	var bullet := Bullet.instantiate() as Bullet
 	bullet.global_position = global_position
 	bullet.set_as_top_level(true)
+	bullet.entropy = entropy
+	self.add_child(bullet)
+	
+	print(min_balls_per_shot)
+	
+	if (min_balls_per_shot == 1):
+		createAngleBullet(0.5)
+		createAngleBullet(-0.5)
+		
+	if (min_balls_per_shot == 2):
+		createAngleBullet(0.5)
+		createAngleBullet(-0.5)
+		createAngleBullet(1)
+		createAngleBullet(-1)
+
+func createAngleBullet(angle: float):
+	var bullet := Bullet.instantiate() as Bullet
+	bullet.global_position = global_position
+	bullet.set_as_top_level(true)
+	bullet.angle = angle
+	bullet.explodingBulletsQuantity = 3
+	bullet.scale.x = 0.3
+	bullet.scale.y = 0.3
 	self.add_child(bullet)
 
 func isAvailable():

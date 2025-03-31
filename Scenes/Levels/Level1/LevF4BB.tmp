@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dei3j88yw6omf"]
+[gd_scene load_steps=16 format=3 uid="uid://0mod4ybbrgo1"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_d2pes"]
 [ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="2_an4gn"]
+[ext_resource type="PackedScene" uid="uid://boa85milwpgfh" path="res://Scenes/Levels/Level2/Level2.tscn" id="2_jh3cy"]
 [ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="3_yt8fk"]
 [ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="4_gpubm"]
 [ext_resource type="PackedScene" uid="uid://ckp2r52hlcfxn" path="res://Scenes/Npc_OfficeWorker/npc_officeworker_scene.tscn" id="5_upks2"]
@@ -21,6 +22,7 @@ size = Vector2(25, 30)
 texture_filter = 1
 scale = Vector2(2, 2)
 script = ExtResource("1_d2pes")
+next_scene = ExtResource("2_jh3cy")
 
 [node name="Player" parent="." instance=ExtResource("2_an4gn")]
 z_index = 100
@@ -33,27 +35,27 @@ health = 6
 position = Vector2(145, -77)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
-bullet_interval = 1.0
+bullet_interval = 1.5
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
 
 [node name="Enemy6" parent="Enemies" instance=ExtResource("3_yt8fk")]
 position = Vector2(106, 177)
-bullet_interval = 1.0
-entropy = 1
+bullet_interval = 1.5
+wait_for_deaths = 1
 
 [node name="Enemy10" parent="Enemies" instance=ExtResource("3_yt8fk")]
 position = Vector2(-240, -41)
-bullet_interval = 1.0
-entropy = 2
+bullet_interval = 1.5
+wait_for_deaths = 1
 
 [node name="Enemy11" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("3_yt8fk")]
-position = Vector2(-257, 125)
+position = Vector2(-139, -12)
 attack_node = NodePath("../Enemy10/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy10/FSM/enemy_chase_state")
-bullet_interval = 1.0
-entropy = 3
+bullet_interval = 1.5
+wait_for_deaths = 3
 sprite = NodePath("../Enemy10/AnimatedSprite2D")
 healthbar = NodePath("../Enemy10/ProgressBar")
 hit_particles = NodePath("../Enemy10/HitParticles")
@@ -62,8 +64,8 @@ hit_particles = NodePath("../Enemy10/HitParticles")
 position = Vector2(-43, 148)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
-bullet_interval = 1.0
-wait_for_deaths = 2
+bullet_interval = 1.5
+wait_for_deaths = 3
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
@@ -73,8 +75,7 @@ position = Vector2(25, -53)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 2
-enemy_type = 1
+wait_for_deaths = 3
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
@@ -83,7 +84,7 @@ hit_particles = NodePath("../Enemy6/HitParticles")
 position = Vector2(-207, 177)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
-bullet_interval = 0.5
+bullet_interval = 1.5
 wait_for_deaths = 3
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
@@ -99,10 +100,10 @@ position = Vector2(-242, -43)
 
 [node name="Welcome Label" type="Label" parent="Scene"]
 texture_filter = 1
-offset_left = -341.0
-offset_top = -104.0
-offset_right = -73.0
-offset_bottom = -11.0
+offset_left = 304.0
+offset_top = 26.0
+offset_right = 572.0
+offset_bottom = 119.0
 text = "Welcome to the top-down project!
 WASD - Move
 SPACE - Dash

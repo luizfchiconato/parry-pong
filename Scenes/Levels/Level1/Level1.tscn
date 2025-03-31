@@ -35,7 +35,9 @@ health = 6
 position = Vector2(145, -77)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
-bullet_interval = 1.5
+bullet_interval = 0.5
+enemy_type = 2
+entropy = 3
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
@@ -100,10 +102,10 @@ position = Vector2(-242, -43)
 
 [node name="Welcome Label" type="Label" parent="Scene"]
 texture_filter = 1
-offset_left = -341.0
-offset_top = -104.0
-offset_right = -73.0
-offset_bottom = -11.0
+offset_left = 304.0
+offset_top = 26.0
+offset_right = 572.0
+offset_bottom = 119.0
 text = "Welcome to the top-down project!
 WASD - Move
 SPACE - Dash
