@@ -83,6 +83,8 @@ func _on_hitbox_body_entered(body):
 		return
 
 	if body is Bullet:
+		if (!body.parryable):
+			return
 		#$Camera2D.set_trauma(0.2)
 		hitInAttack = true
 		reflectBullet(body)

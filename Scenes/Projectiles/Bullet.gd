@@ -9,6 +9,7 @@ var previousConverted = false
 var explodable = true
 var angle = 0
 var medium = false
+var parryable = true
 
 var explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(8, 16)
 
@@ -23,6 +24,11 @@ const DAMAGE_SMALL_BULLET = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
+	
+	if (!parryable):
+		#$CPUParticles2D.set_color("#000000")
+		$Sprite2D.texture = load("res://Art/Sprites/ball_black.png")
+		explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(3, 8)
 	
 	if (velocity == Vector2.ZERO):
 		var target_pos = player.global_position
@@ -61,17 +67,16 @@ func _on_body_entered(body):
 		var player = get_tree().get_first_node_in_group("Player") as PlayerMain
 		if player.is_dashing():
 			return
-		deal_damage_to_player(body)
+		deal_damage_to_player(body, !parryable)
 		queue_free()		
 	if body.is_in_group("Enemy") and converted:
 		deal_damage_to_enemy(body)
 		queue_free()
 
 #Connect and deal damage to the player
-func deal_damage_to_player(player : PlayerMain):
-	if !player.attacking:
+func deal_damage_to_player(player : PlayerMain, forceDamage : bool = false):
+	if (!player.attacking or forceDamage):
 		var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
-		print("damage", damage)
 		player._take_damage(damage)
 
 func deal_damage_to_enemy(enemy : EnemyMain):
@@ -95,6 +100,7 @@ func createBullet(angle: float):
 	bullet.explodable = false
 	bullet.scale.x = 0.2
 	bullet.scale.y = 0.2
+	bullet.parryable = parryable
 	get_tree().root.add_child(bullet)
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
@@ -103,4 +109,7 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 
 	if (explodable and !converted):
 		createBullets()
+	queue_free()
+	
+func destroy():
 	queue_free()

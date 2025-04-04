@@ -460,7 +460,7 @@ occluder = SubResource("OccluderPolygon2D_uky13")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vax36")
-animation = &"Idle"
+animation = &"Attack"
 
 [node name="HitParticlesCopy" parent="AnimatedSprite2D" instance=ExtResource("21_gooki")]
 position = Vector2(30, 10)

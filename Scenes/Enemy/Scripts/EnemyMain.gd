@@ -11,6 +11,7 @@ var rng = RandomNumberGenerator.new()
 @export var bullet_interval: float = 2
 
 @export var wait_for_deaths: int = 0
+@export var unparriableChance: int = 0
 
 @onready var animator = $AnimationPlayer
 
@@ -130,15 +131,16 @@ func _on_bullet_timer_timeout():
 		return
 
 	createBullet()
-	var my_random_number
+	
 
 	#if (enemy_type == TYPE_BOWLING):
 	#	my_random_number = rng.randf_range(1.5, 2.75)
 	#else:
 	#	my_random_number = rng.randf_range(1.5, 2)
-		
-	my_random_number = rng.randf_range(bullet_interval - bullet_interval * 0.2, bullet_interval + bullet_interval * 0.2)
 
+func restartBulletTimer():
+	var my_random_number
+	my_random_number = rng.randf_range(bullet_interval - bullet_interval * 0.2, bullet_interval + bullet_interval * 0.2)
 	$BulletTimer.wait_time = my_random_number
 	$BulletTimer.start()
 	return true
@@ -149,10 +151,12 @@ func createBullet():
 	
 	if (enemy_type == TYPE_BOWLING):
 		createBowlingBall()
+		restartBulletTimer()
 	elif (enemy_type == TYPE_VOLLEY):
 		createLaser()
 	else:
 		createDefaultBall()
+		restartBulletTimer()
 
 func createLaser():
 	var laser := Laser.instantiate() as Laser
@@ -169,6 +173,7 @@ func createBowlingBall():
 	
 func createDefaultBall():
 	var bullet := Bullet.instantiate() as Bullet
+	bullet.parryable = rng.randf_range(1,100) > unparriableChance
 	bullet.global_position = global_position
 	bullet.set_as_top_level(true)
 	bullet.entropy = entropy

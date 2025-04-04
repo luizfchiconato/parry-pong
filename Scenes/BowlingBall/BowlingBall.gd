@@ -8,6 +8,7 @@ var converted = false
 var previousConverted = false
 var explodable = true
 var can_deflect = false
+var parryable = true
 
 var explodingBowlingBallsQuantity = 10
 

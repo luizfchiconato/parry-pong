@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_d2pes"]
 [ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="2_an4gn"]
-[ext_resource type="PackedScene" uid="uid://boa85milwpgfh" path="res://Scenes/Levels/Level2/Level2.tscn" id="2_jh3cy"]
+[ext_resource type="PackedScene" uid="uid://boa85milwpgfh" path="res://Scenes/Levels/Level2/Level2.tscn" id="2_pi7pi"]
 [ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="3_yt8fk"]
 [ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="4_gpubm"]
 [ext_resource type="PackedScene" uid="uid://ckp2r52hlcfxn" path="res://Scenes/Npc_OfficeWorker/npc_officeworker_scene.tscn" id="5_upks2"]
@@ -22,7 +22,7 @@ size = Vector2(25, 30)
 texture_filter = 1
 scale = Vector2(2, 2)
 script = ExtResource("1_d2pes")
-next_scene = ExtResource("2_jh3cy")
+next_scene = ExtResource("2_pi7pi")
 
 [node name="Player" parent="." instance=ExtResource("2_an4gn")]
 z_index = 100
@@ -36,7 +36,6 @@ position = Vector2(145, -77)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
 bullet_interval = 0.5
-enemy_type = 2
 entropy = 3
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
@@ -174,7 +173,6 @@ label_settings = ExtResource("6_041yp")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_moeye")
 volume_db = -12.0
-autoplay = true
 
 [connection signal="died" from="Enemies/Enemy7" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy6" to="." method="_on_enemy_died"]

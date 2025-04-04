@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqgrnkaou84c7"]
+
+[ext_resource type="Script" path="res://Scenes/Projectiles/PaintSlime.gd" id="1_uechy"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_p2kqp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57v1y"]
+
+[node name="PaintSlimeCircle" type="Node2D"]
+script = ExtResource("1_uechy")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.972549, 0.164706, 0.164706, 1)
+position = Vector2(0.143793, 0.0224431)
+scale = Vector2(21.2524, 21.0029)
+mesh = SubResource("SphereMesh_p2kqp")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(0.972549, 0.164706, 0.164706, 1)
+position = Vector2(0.143793, 0.0224431)
+scale = Vector2(21.2524, 21.0029)
+amount = 100
+emission_shape = 1
+emission_sphere_radius = 0.7
+gravity = Vector2(0, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_57v1y")
+
+[node name="HitTimeout" type="Timer" parent="."]
+wait_time = 0.7
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="HitTimeout" to="." method="_on_hit_timeout_timeout"]

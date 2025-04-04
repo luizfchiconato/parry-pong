@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt50eqfhbqt1w"]
+[gd_scene load_steps=12 format=3 uid="uid://bt50eqfhbqt1w"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/InitialMenu/MainMenu.gd" id="1_a3j34"]
 [ext_resource type="PackedScene" uid="uid://dei3j88yw6omf" path="res://Scenes/Levels/Level3/Level3.tscn" id="2_nf3li"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelector/LevelSelect.gd" id="5_r7bmv"]
 [ext_resource type="PackedScene" uid="uid://boa85milwpgfh" path="res://Scenes/Levels/Level2/Level2.tscn" id="6_iwtm2"]
 [ext_resource type="PackedScene" uid="uid://dfaavise1pv5r" path="res://Scenes/Levels/Level4/Level4.tscn" id="7_2lqjv"]
+[ext_resource type="PackedScene" uid="uid://cwf71ikjswioq" path="res://Scenes/Levels/Level5/Level5.tscn" id="8_6w35q"]
+[ext_resource type="PackedScene" uid="uid://c8i3b05o1r0fk" path="res://Scenes/Levels/Level6/Level6.tscn" id="9_tvnee"]
+[ext_resource type="PackedScene" uid="uid://cqkeswm8ml2vs" path="res://Scenes/Levels/Level7/Level7.tscn" id="10_yjykx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8xhda"]
 font_size = 56
@@ -79,6 +82,24 @@ text = "Nível 4"
 script = ExtResource("5_r7bmv")
 level_scene = ExtResource("7_2lqjv")
 
+[node name="Level5" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Nível 5"
+script = ExtResource("5_r7bmv")
+level_scene = ExtResource("8_6w35q")
+
+[node name="Level6" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Nível 6"
+script = ExtResource("5_r7bmv")
+level_scene = ExtResource("9_tvnee")
+
+[node name="Level7" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Nível 7"
+script = ExtResource("5_r7bmv")
+level_scene = ExtResource("10_yjykx")
+
 [node name="Voltar" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -89,4 +110,7 @@ script = ExtResource("5_r7bmv")
 [connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level2" to="MainMenu/CenterContainer/VBoxContainer/Level2" method="_on_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level3" to="MainMenu/CenterContainer/VBoxContainer/Level3" method="_on_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level4" to="MainMenu/CenterContainer/VBoxContainer/Level4" method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level5" to="MainMenu/CenterContainer/VBoxContainer/Level5" method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level6" to="MainMenu/CenterContainer/VBoxContainer/Level6" method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level7" to="MainMenu/CenterContainer/VBoxContainer/Level7" method="_on_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Voltar" to="MainMenu/CenterContainer/VBoxContainer/Voltar" method="_on_button_pressed"]

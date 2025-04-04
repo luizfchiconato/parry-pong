@@ -1,0 +1,262 @@
+
+13/02
+- Refatoração MVRP - 4h
+- Daily - 30m
+- Call NexCore - 40m
+- Call Natália - 40m
+- Modelagem Camunda - 2h40m
+
+
+14/02
+- Refatoração MVRP - 4h
+- Daily - 30m
+- Call eipservicos - 30m
+- Daily Design - 30m
+- Modelagem Camunda - 2h30m
+
+
+17/02
+- Organização - Semanal - 1h30m
+- Fluxograma NexCore - 30m
+- Semanal - 1h
+- Daily - 30m
+- Primeira Daily Ulisses - 20m
+- Refatoração MVRP - 2h
+- Montagem Apresentação Camunda - 1h
+
+18/02
+- Montagem apresentação Camunda - 2h30m
+- Montagem Cumbuca - 1h
+- Cumbuca - 30m
+- Daily + Daily Ulisses - 40m
+- Call eipservicos - 20m
+- Daily design - 30m
+- Refatoração MVRP - 2h30m
+
+19/02
+- Montagem apresentação Camunda - 50m
+- Resolução erros MVRP - 12h
+
+20/02
+- Resolução erros MVRP - 3h30m
+- Finalização apresentação Camunda - 1h
+- Dailies + conversas subsequentes - 1h
+- Call BHIP - 1h
+- Call Camunda - 40m
+- Verificações Jefferson Circuitos + Joaquim MVRP - 30m
+
+21/02
+- Call João Camunda - 1h
+- Dailies - 1h
+- call eipservicos - 45m
+- Documentação liberação Chatbot EMDUR - 1h
+- Refatoração MVRP - 4h15m
+
+24/02
+- Organização semanal - 1h
+- Semanal - 40m
+- Dailies- 40m
+- Reunião novo estagiário - 20m
+- Subir novo número Chatbot - 20m
+- Revisões merges - 30m
+- Refatoração MVRP - 4h
+
+
+25/02
+- Call Jefferson agrupamento ponto serviço - 20m
+- Dailies + Cumbuca + Pós daily - 1h
+- Refatoração MVRP - 7h
+
+26/02
+- Dailies + conversas pós daily - 50m
+- Verificação erro MVRP - 1h
+- Verificação parada São Luís no Chatbot - 1h
+- Refatoração MVRP - 5h30m
+
+
+27/02
+- Daily + conversas pós daily - 50m
+- Call iluminaicara + suporte - 30m
+- Revisões merges - 30m
+- Refatoração MVRP: Refatoração de equipes para JSON encerrada em código, com modelagem final no Miro desenhada - 6h
+
+
+28/02
+- Revisões merges - 30m
+- Call implantação EMDUR - 40m
+- Dailies - 50m
+- Call Joao Laskoski - 30m
+- Exportação notas fiscais - 20m
+- Call eipservicos - 1h20m
+- Refatoração MVRP: Desenvolvendo refatoração da persistência de ocorrências. Refatoração quase encerrada.   - 5h
+
+
+03/03
+- Organização semana - 1h40m
+- Verificação migração chatbot + resolução de erros no banco - 1h
+- Criação de atividades - 40m
+
+04/03 
+- Daily - 40m
+- Revisões merges - 30m
+
+05/03
+- Daily - 30m
+- Conversa Natália - 20m
+- Aplicação Chatbot homol - 30m
+- Refatoração MVRP: Testes sendo realizados e erros sendo corrigidos. - 4h
+
+06/03
+- Call implantação EMDUR - 50m
+- Revisões merges - 30m
+- Dailies - 40m
+- Daily Design - 30m
+
+07/03
+- Dailies - 40m
+- Conversas pós-daily - 50m
+- Documentação API NexCore - 40m
+- Reunião NexCore - 30m
+- Reunião Eipservicos - 30m
+- Implantação número EMDUR - 30m
+
+09/03
+- Refatoração MVRP - 6h
+- Revisão apresentação UFPR - 30m
+- Montagem planilha clientes - 40m
+
+10/03
+- Revisão semana - 50m
+- Semanal - 40m
+- Dailies - 30m
+- Feedback João Buss - 1h10m
+- Organização apresentação PET - 2h
+
+11/03
+- Organização apresentação PET - 4h
+- Correção Chatbot EMDUR - 1h
+- Dailies - 30m
+- Cumbuca - 40m
+- Deslocamento + Aguardo apresentação PET (atraso por parte do PET) - 50m
+- Apresentação PET - 50m
+
+
+12/03
+- Dailies - 50m
+- Verificação problema showstopper - 30m
+- Revisões merges - 30m
+- Preparação + Reunião BHIP - 1h40m
+
+13/03
+- Dailies - 40m
+- Revisões merges - 30m
+- Feedbacks - 2h
+- Aprovação números chatbot - 1h
+- Organização planilha números chatbot - 30m
+- Refatoração MVRP - 2h
+- Build chatbot homol + testes - 30m
+
+14/03
+- Testes chatbot homol - 40m
+- Revisão documento Tecnoparque - 40m
+- Dailies - 50m
+- Call eipservicos - 30m
+- Reunião Tecnoparque - 40m
+- Feedback - 30m
+
+16/03
+- Refatoração MVRP - 2h
+
+17/03
+- Semanal - 30m
+- Dailies - 40m
+- Feedbacks - 2h
+- 
+
+18/03
+- Dailies - 40m
+- Conversas devs - 30m
+- Revisões merges - 1h
+- Documentação TecnoParque - 2h
+- Implantação números Chatbot - 2h
+
+20/03
+- Dailies: 40m
+- 
+
+21/03
+- Weekly: 1h
+
+24/03
+- Organização semanal - 45m
+- Implantações números - 1h
+- Dailies + conversas pós-daily - 50m
+- Definições de atividades - 50m
+- Reunião NexCore - 1h
+
+25/03
+- Revisão atividades - 20m
+- Build chatbot - 30m
+- Implantações Chatbot Meta - 30m
+- Call João Buss - 1h
+- Call Marcus - 1h
+- 
+
+26/03
+- Call alinhamento BHIP - 30m
+- Call Processos - 30m
+- Call Café com cultura - 40m
+- Dailies - 40m
+
+27/03
+- Implantação builds chatbot - 1h
+- Correções chatbot homologação - 6h
+- Implantação números chatbot - 1h
+- Dailies - 40m
+- Verificação erro implantação chatbot Ribeirão Preto- 30m
+
+28/03 
+- Correção erro chatbot Ribeirão Preto - 30m
+- Call Natália - 30m
+
+
+31/03
+- Preparação semanal - 1h
+- Semanal - 45m
+- Dailies - 40m
+- Apresentação Oracle - 40m
+- 
+
+
+- Obrigar geolocalização 
+- Notificação
+- Roteirização automática de ocorrências sem lat/lng
+- Reclamação de geolocalização imprecisa
+
+
+- Camunda se tornar o método para Hub 156
+
+
+Número do protocolo na mensagem
+
+- Assunto-
+- Corpo
+- Nome da tela
+- Props da tela
+- Descrição da notificação
+
+
+
+
+
+- Passar acesso ao time de inovação
+- Passar senha
+
+
+
+- Verificar mobile Lucas Castro
+- Verificar atv Gabriel Passos
+- Passar tester para Laskoski
+- Falar com Thierry
+
+
