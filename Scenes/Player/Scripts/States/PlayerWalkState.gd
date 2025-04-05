@@ -2,7 +2,8 @@ extends State
 class_name PlayerWalking
 
 @onready var dashParticles = $DashParticles as CPUParticles2D
-@onready var sprite = $Player/AnimatedSprite2D as AnimatedSprite2D
+@export var sprite : AnimatedSprite2D
+#@onready var sprite = $Player/AnimatedSprite2D as AnimatedSprite2D
 
 @export var movespeed := int(350)
 @export var dash_max := int(400)
@@ -13,6 +14,7 @@ var is_dashing = false
 
 var player : CharacterBody2D
 @export var animator : AnimationPlayer
+var modulate
 
 
 func Enter():
@@ -24,15 +26,14 @@ func Update(delta : float):
 
 	Move(input_dir)
 	#LessenDash(delta)
-	
 
 	if(Input.is_action_just_pressed("Dash") && can_dash):
 		start_dash(input_dir)
 		AudioManager.play_sound(AudioManager.DASH, 0, -20)
-		
+
 	#if Input.is_action_just_pressed("Punch") or Input.is_action_just_pressed("Kick"):
 	#	Transition("Attacking")
-	
+
 func Move(input_dir):
 	#Suddenly turning mid dash
 	#if(dash_direction != Vector2.ZERO and dash_direction != input_dir):
@@ -72,6 +73,9 @@ func endDash():
 	dashParticles.emitting = false
 	is_dashing = false
 	$DashTimeout.start()
+	modulate = sprite.modulate
+	sprite.set_modulate(Color(0, 0, 0, 0.2))
+	
 	dash_direction = Vector2.ZERO
 	
 	if(animator.current_animation == "Dash"):
@@ -81,4 +85,5 @@ func endDash():
 
 func _on_dash_timeout_timeout():
 	$DashTimeout.stop()
+	sprite.set_modulate(modulate)
 	can_dash = true

@@ -73,6 +73,7 @@ attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
 bullet_interval = 1.0
 wait_for_deaths = 2
+unparriableChance = 50
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")

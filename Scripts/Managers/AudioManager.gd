@@ -16,6 +16,9 @@ const ENEMY_HIT_BOWLING = preload("res://Art/Audio/Effects/EnemyHitBowling.ogg")
 const PLAYER_HURT = preload("res://Art/Audio/Effects/PlayerHurt.ogg")
 const DASH = preload("res://Art/Audio/Effects/Dash.ogg")
 const SMALL_EXPLOSION = preload("res://Art/Audio/Effects/SmallExplosion.ogg")
+const ENEMY_SPUN = preload("res://Art/Audio/Effects/EnemySpun.ogg")
+const WALL_SMASH_1 = preload("res://Art/Audio/Effects/Smash1.ogg")
+const WALL_SMASH_2 = preload("res://Art/Audio/Effects/Smash2.ogg")
 
 #endregion
 var audio_player : AudioStreamPlayer 

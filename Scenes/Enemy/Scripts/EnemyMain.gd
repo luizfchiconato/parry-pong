@@ -13,7 +13,7 @@ var rng = RandomNumberGenerator.new()
 @export var wait_for_deaths: int = 0
 @export var unparriableChance: int = 0
 
-@onready var animator = $AnimationPlayer
+#@onready var animator = $AnimationPlayer
 
 @export_enum("Normal:0", "Bowling:1", "Volley:2") var enemy_type: int
 @export_enum("Normal:0", "None:1", "Intermediary:2", "Extreme:3") var entropy: int
@@ -22,16 +22,24 @@ var rng = RandomNumberGenerator.new()
 @export_enum("1", "3", "5") var max_balls_per_shot: int
 
 var parent_death_number: int = 0
+var dying = false
 
 signal died
 
 const TYPE_NORMAL = 0
 const TYPE_BOWLING = 1
 const TYPE_VOLLEY = 2
+const speed = 200
+var death_velocity : Vector2
 
 var Bullet = load("res://Scenes/Projectiles/Bullet.tscn")
 var BowlingBall = load("res://Scenes/BowlingBall/BowlingBall.tscn")
 var Laser = load("res://Scenes/Projectiles/Laser.tscn")
+
+#func _physics_process(_delta):
+	#if (dying):
+	#	print("AAAAAAA")
+		#self.global_position += velocity * speed * _delta
 
 #After finishing an attack, we return here to determine our next action based on the players proximity
 func finished_attacking():
@@ -51,10 +59,8 @@ func _on_detection_area_body_entered(body):
 		print(is_instance_valid(fsm), is_instance_valid(chase_node))
 		
 		#We don't want this to happen from the death state, only from idle
-		#if fsm.current_state.name == "enemy_idle_state": 
-		print("entrando chase")
-			
-		fsm.force_change_state("enemy_chase_state")
+		if fsm.current_state.name == "enemy_idle_state": 
+			fsm.force_change_state("enemy_chase_state")
 
 #Return to idle when player leaves our proximity
 func _on_detection_area_body_exited(body):
@@ -65,7 +71,7 @@ func _on_detection_area_body_exited(body):
 	if body.is_in_group("Player"):
 		player_in_range = false
 		print(is_instance_valid(fsm), is_instance_valid(chase_node))
-		if (is_instance_valid(fsm) and is_instance_valid(chase_node)):
+		if (is_instance_valid(fsm) and is_instance_valid(chase_node) and fsm.current_state.name != "enemy_death_state"):
 			print("entrando idle")
 			fsm.force_change_state("enemy_idle_state")
 		
@@ -87,15 +93,31 @@ func activateEnemy():
 	$HealthBar.visible = true
 	$BodyCollider.set_deferred("disabled", false)
 
-func _die():
-	super() #calls _die() on base-class CharacterBase
+func die(newVelocity):
+	AudioManager.play_sound(AudioManager.ENEMY_SPUN, 0, -5)
 	fsm.force_change_state("enemy_death_state")
-	emit_signal("died")
+	death_velocity = newVelocity
+	#super()
+	#dying = true
+	#self.velocity = velocity
 
-func _take_damage(amount):
+func kill():
+	emit_signal("died")
+	queue_free()
+
+#func _die():
+	#dying = true
+	#self.velocity = velocity
+	#super()
+	#super() #calls _die() on base-class CharacterBase
+	#fsm.force_change_state("enemy_death_state")
+	#emit_signal("died")
+#	pass
+
+func _take_damage(amount, deathVelocity : Vector2):
 	if (!isAvailable()):
 		return
-
+		
 	if(invincible == true || is_dead == true):
 		return
 		
@@ -110,7 +132,7 @@ func _take_damage(amount):
 	player.set_trauma(amount * 0.12)
 	
 	if(health <= 0):
-		_die()
+		die(deathVelocity)
 	
 func _ready():
 	if wait_for_deaths > 0:

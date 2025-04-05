@@ -25,7 +25,7 @@ var Player = load("res://Scenes/Player/Player.tscn")
 @onready var radius_bomb_internal = $ExplosionRadius/InternalMesh
 @export var bomb_animator : AnimationPlayer
 
-@export var fake_gravity = 10
+var fake_gravity = 10
 @export var ground_velocity : Vector2
 @export var vertical_velocity : float
 
@@ -153,7 +153,7 @@ func deal_damage_to_player(player : PlayerMain):
 
 func deal_damage_to_enemy(enemy : EnemyMain):
 	AudioManager.play_sound(AudioManager.ENEMY_HIT_BOWLING, 0, -15)
-	enemy._take_damage(DAMAGE_BOWLING)
+	enemy._take_damage(DAMAGE_BOWLING, velocity)
 
 func createBowlingBalls():
 	for i in range(explodingBowlingBallsQuantity):

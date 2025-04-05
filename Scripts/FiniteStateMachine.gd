@@ -21,7 +21,7 @@ func _ready():
 
 #Call the current states update function continuosly
 func _process(delta):
-	if current_state:
+	if current_state and is_instance_valid(current_state):
 		current_state.Update(delta)
 
 #region State Management

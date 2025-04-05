@@ -99,10 +99,12 @@ func set_trauma(amount):
 
 func reflectBullet(body):
 	if (!body.converted):
-		body.velocity = -body.velocity * 2.5
+		var mouseVelocity = body.global_position.direction_to(get_global_mouse_position())
+		body.velocity = mouseVelocity + (-body.velocity) * 2.5
 		body.converted = true
 		#frameFeeze(0.05, 0.5)
 		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.7)
+
 
 func reflectBowlingBall(body):
 	if (!body.converted and body.can_deflect):
@@ -136,7 +138,7 @@ func is_dashing():
 
 func deal_damage(enemy : EnemyMain):
 	hit_particles.emitting = true
-	enemy._take_damage(50)
+	# enemy._take_damage(50)
 
 func _die():
 	super() #calls _die() on base-class CharacterBase

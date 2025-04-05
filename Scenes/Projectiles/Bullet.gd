@@ -82,7 +82,7 @@ func deal_damage_to_player(player : PlayerMain, forceDamage : bool = false):
 func deal_damage_to_enemy(enemy : EnemyMain):
 	AudioManager.play_sound(AudioManager.ENEMY_HIT_DEFAULT, 0, 0)
 	var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
-	enemy._take_damage(damage)
+	enemy._take_damage(damage, velocity)
 
 func createBullets():
 	for i in range(explodingBulletsQuantity):

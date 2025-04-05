@@ -162,8 +162,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51img"]
-radius = 34.5032
-height = 104.833
+radius = 39.5106
+height = 137.304
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_va11c"]
 animations = [{
@@ -545,8 +545,9 @@ script = ExtResource("28_wb7jg")
 anim = "MoonKick"
 damage = 25
 
-[node name="Moving" type="Node" parent="FSM" node_paths=PackedStringArray("animator")]
+[node name="Moving" type="Node" parent="FSM" node_paths=PackedStringArray("sprite", "animator")]
 script = ExtResource("29_bdbrv")
+sprite = NodePath("../../AnimatedSprite2D")
 movespeed = 140
 dash_max = 220
 animator = NodePath("../../AnimationPlayer")
