@@ -43,6 +43,7 @@ func Move(input_dir):
 	player.velocity = input_dir * movespeed + dash_direction * dashspeed 
 	player.move_and_slide()
 	dashParticles.global_position = player.global_position
+	dashParticles.global_position.y = dashParticles.global_position.y + 20
 
 	if(input_dir.length() <= 0):
 		Transition("Idle")
@@ -55,6 +56,8 @@ func start_dash(input_dir):
 	is_dashing = true
 	dashParticles.emitting = true
 	$DashTimer.start()
+	animator.play("DashEnter")
+	player.z_index = 0
 	#sprite.set_self_modulate(Color.DARK_BLUE)
 
 #We cannot allow a transition before the dash is complete and the animation has stopped playing
@@ -74,11 +77,15 @@ func endDash():
 	is_dashing = false
 	$DashTimeout.start()
 	modulate = sprite.modulate
-	sprite.set_modulate(Color(0, 0, 0, 0.2))
+	#sprite.set_modulate(Color(0, 0, 0, 0.2))
 	
 	dash_direction = Vector2.ZERO
 	
-	if(animator.current_animation == "Dash"):
+	#animator.play("DashFinish")
+	animator.play("Walk")
+	player.z_index = 10
+	
+	if(animator.current_animation == "DashFinish"):
 		await animator.animation_finished
 		animator.play("Walk")
 

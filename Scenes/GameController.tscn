@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxmnx81vrl5v4"]
+
+[ext_resource type="Script" path="res://Scenes/GameController.gd" id="1_excvq"]
+[ext_resource type="PackedScene" uid="uid://bo22hma5o31ig" path="res://Scenes/MainMenu/InitialMenu/MainMenu.tscn" id="2_otqvo"]
+
+[node name="GameController" type="Node2D" node_paths=PackedStringArray("world_2d", "gui")]
+position = Vector2(0, 1)
+script = ExtResource("1_excvq")
+world_2d = NodePath("World2D")
+gui = NodePath("GUI")
+first_gui_scene = ExtResource("2_otqvo")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1157.0
+offset_bottom = 642.0
+
+[node name="World2D" type="Node2D" parent="."]

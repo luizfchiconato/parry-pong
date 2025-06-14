@@ -28,5 +28,5 @@ func _on_enemy_died():
 					allDied = false
 	
 	if (allDied == true):
-		GameManager.load_next_level(next_scene)
+		Global.game_controller.change_2d_scene(next_scene)
 		

@@ -8,7 +8,7 @@ func _ready():
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("Enter") and label.visible == true):
-		GameManager.load_next_level(basement_scene)
+		Global.game_controller.change_2d_scene(basement_scene)
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):

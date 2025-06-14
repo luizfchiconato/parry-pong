@@ -1,5 +1,7 @@
 extends Button
+
 @export var level_scene : PackedScene
+@export var reload_scene = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,4 +13,7 @@ func _process(delta):
 	pass
 
 func _on_button_pressed():
-	GameManager.load_next_level(level_scene)
+	if (reload_scene):
+		Global.game_controller.reload_current_2d_scene()
+	else:
+		Global.game_controller.change_2d_scene(level_scene)

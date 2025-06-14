@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cqkeswm8ml2vs"]
+[gd_scene load_steps=16 format=3 uid="uid://cqkeswm8ml2vs"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_8oidk"]
 [ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="2_g2ljq"]
@@ -8,12 +8,11 @@
 [ext_resource type="LabelSettings" uid="uid://da8inon5cmt2r" path="res://Art/Fonts/pixelized_label.tres" id="6_wrrrk"]
 [ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="7_vu3cm"]
 [ext_resource type="Script" path="res://Scenes/Levels/TileMapScript.gd" id="8_7uhhj"]
-[ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/light.png" id="9_lvo7j"]
+[ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/Light.png" id="9_lvo7j"]
 [ext_resource type="Script" path="res://Scenes/Levels/AreaExit.gd" id="10_703hv"]
 [ext_resource type="PackedScene" uid="uid://bt5yicfpmnlwk" path="res://Scenes/Levels/Basement01.tscn" id="11_33nlk"]
 [ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="12_xrkwk"]
 [ext_resource type="AudioStream" uid="uid://duk65jhplli8h" path="res://Art/Audio/Music/TetrisNivel1.mp3" id="13_4kfrk"]
-[ext_resource type="PackedScene" uid="uid://dqgrnkaou84c7" path="res://Scenes/Projectiles/PaintSlimeCircle.tscn" id="14_2v2xk"]
 [ext_resource type="PackedScene" uid="uid://bvqlxbgu68i5p" path="res://Scenes/Projectiles/PaintSlimeRectangle.tscn" id="15_offgu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtoj4"]
@@ -174,29 +173,13 @@ label_settings = ExtResource("6_wrrrk")
 stream = ExtResource("13_4kfrk")
 volume_db = -12.0
 
-[node name="PaintSlime" parent="." instance=ExtResource("14_2v2xk")]
-position = Vector2(132.5, -55.5)
-scale = Vector2(4, 4)
-
-[node name="PaintSlime2" parent="." instance=ExtResource("14_2v2xk")]
-position = Vector2(137.5, 136)
-scale = Vector2(4, 4)
-
-[node name="PaintSlime5" parent="." instance=ExtResource("14_2v2xk")]
-position = Vector2(-170, 126.5)
-scale = Vector2(4, 4)
-
-[node name="PaintSlime4" parent="." instance=ExtResource("14_2v2xk")]
-position = Vector2(-158.5, -51)
-scale = Vector2(4, 4)
-
 [node name="PaintSlimeCircle" parent="." instance=ExtResource("15_offgu")]
-position = Vector2(-71.5, 36.5)
-scale = Vector2(2, 10)
+position = Vector2(-111.5, 36.5)
+scale = Vector2(6, 10)
 
 [node name="PaintSlimeCircle2" parent="." instance=ExtResource("15_offgu")]
-position = Vector2(35.5, 37)
-scale = Vector2(2, 10)
+position = Vector2(78, 37)
+scale = Vector2(6, 10)
 
 [connection signal="died" from="Enemies/Enemy7" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy6" to="." method="_on_enemy_died"]

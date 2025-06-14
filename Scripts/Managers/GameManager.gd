@@ -15,4 +15,4 @@ func load_next_level(next_scene : PackedScene):
 	get_tree().change_scene_to_packed(next_scene)
 
 func load_same_level():
-	get_tree().reload_current_scene()
+	Global.game_manager.reload_current_2d_scene()

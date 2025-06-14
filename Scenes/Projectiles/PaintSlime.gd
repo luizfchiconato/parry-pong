@@ -1,4 +1,4 @@
-extends Node2D
+class_name PaintSlime extends Node2D
 
 var DAMAGE_PAINT = 2
 var tween : Tween

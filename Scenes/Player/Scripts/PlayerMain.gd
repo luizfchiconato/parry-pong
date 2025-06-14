@@ -6,12 +6,12 @@ class_name PlayerMain
 @onready var animatedSprite = $AnimatedSprite2D as AnimatedSprite2D
 @onready var racketPivot = $AnimatedSprite2D/RacketPivot as Node2D
 @onready var trail = $AnimatedSprite2D/RacketPivot/Racket/Marker2D/Trail2D as Line2D
-@onready var racketParticles = $AnimatedSprite2D/RacketPivot/Racket/Particles as CPUParticles2D
+#@onready var racketParticles = $AnimatedSprite2D/RacketPivot/Racket/Particles as CPUParticles2D
 @onready var hitbox = $AnimatedSprite2D/Hitboxes/Racket_Hitbox as Node2D
 @onready var hitboxShape = $AnimatedSprite2D/Hitboxes/Racket_Hitbox/hitboxShape as CollisionShape2D
 @onready var racketAnimator = $AnimatedSprite2D/RacketPivot/Racket/Animation as AnimatedSprite2D
 
-const DEATH_SCREEN = preload("res://Scenes/DeathScreen.tscn")
+const DEATH_SCREEN = preload("res://Scenes/UI/LevelFail.tscn")
 
 var attacking = false
 var attackFrame = 0
@@ -35,16 +35,16 @@ func _physics_process(delta: float) -> void:
 	if attacking == true:
 		racketPivot.rotation += 20 * delta
 		#trail.visible = true
-		if racketParticles.amount != 1200:
-			racketParticles.amount = 1200
-			racketParticles.spread = 50
+		#if racketParticles.amount != 1200:
+		#	racketParticles.amount = 1200
+		#	racketParticles.spread = 50
 	else:
 		hitbox.rotation = getRacketAngle() - 90
 		racketPivot.rotation = getRacketAngle()
 		#trail.visible = false
-		if racketParticles.amount != 30:
-			racketParticles.amount = 30
-			racketParticles.spread = 23
+		#if racketParticles.amount != 30:
+		#	racketParticles.amount = 30
+		#	racketParticles.spread = 23
 
 func turn():
 	#var direction = -1 if flipped_horizontal == true else 1
@@ -100,7 +100,7 @@ func set_trauma(amount):
 func reflectBullet(body):
 	if (!body.converted):
 		var mouseVelocity = body.global_position.direction_to(get_global_mouse_position())
-		body.velocity = mouseVelocity + (-body.velocity) * 2.5
+		body.velocity = (3 * mouseVelocity + (-body.velocity))
 		body.converted = true
 		#frameFeeze(0.05, 0.5)
 		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.7)
@@ -146,6 +146,8 @@ func _die():
 	fsm.force_change_state("Die")
 	var death_scene = DEATH_SCREEN.instantiate()
 	add_child(death_scene)
+	
+	#Global.game_controller.change_gui_scene(DEATH_SCREEN)
 
 func frameFeeze(timeScale, duration):
 	Engine.time_scale = timeScale
@@ -154,7 +156,7 @@ func frameFeeze(timeScale, duration):
 
 func activateAttack():
 	canAttack = true
-	racketParticles.visible = true
+	#racketParticles.visible = true
 	trail.visible = true
 	racketAnimator.play("Default")
 	
@@ -163,7 +165,7 @@ func deactivateAttack():
 	if (!hitInAttack):
 		canAttack = false
 		$AttackTimeout.start()
-		racketParticles.visible = false
+		#racketParticles.visible = false
 		racketAnimator.play("Deactivated")
 		trail.visible = false
 	hitInAttack = false

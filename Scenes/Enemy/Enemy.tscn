@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bvt7e871e6jeg"]
+[gd_scene load_steps=57 format=3 uid="uid://bvt7e871e6jeg"]
 
 [ext_resource type="Texture2D" uid="uid://d3u5e5gpffpwe" path="res://Scenes/Enemy/Sprites/Enemy09.png" id="1_chwbu"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_db41y"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cx5lg2vttffr7" path="res://Art/Sprites/BaseEnemy.png" id="15_4ab4f"]
 [ext_resource type="Texture2D" uid="uid://dtn4kbck3b1t3" path="res://Art/Sprites/BaseEnemyHidden.png" id="15_yjq43"]
 [ext_resource type="Texture2D" uid="uid://bip728l7as8vo" path="res://Art/Sprites/BowlingEnemy.png" id="17_mt6gk"]
+[ext_resource type="Texture2D" uid="uid://baeqv8h7bgrbx" path="res://Art/Sprites/BaseEnemyThrown.png" id="18_q8u5o"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_d5isq"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_mb2dn"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyIdleState.gd" id="21_mks5l"]
@@ -57,6 +58,10 @@ region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnpes"]
 atlas = ExtResource("17_mt6gk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awmsj"]
+atlas = ExtResource("18_q8u5o")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nkj10"]
@@ -201,6 +206,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_awmsj")
+}],
+"loop": true,
+"name": &"Thrown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_nkj10")
 }, {
 "duration": 1.0,
@@ -243,7 +256,7 @@ radius = 18.0
 height = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_imcar"]
-radius = 172.142
+radius = 130.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6b3o"]
 bg_color = Color(0.0352941, 0.0156863, 0.00784314, 0.427451)
@@ -279,6 +292,9 @@ _data = {
 "frame": SubResource("Animation_c62rr")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qenxl"]
+size = Vector2(21, 53)
+
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") groups=["Enemy"]]
 texture_filter = 1
 script = ExtResource("1_db41y")
@@ -292,7 +308,7 @@ hit_particles = NodePath("HitParticles")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_toimg")
-animation = &"Death"
+animation = &"Thrown"
 autoplay = "Idle"
 
 [node name="HitParticles" parent="AnimatedSprite2D" instance=ExtResource("21_d5isq")]
@@ -381,6 +397,13 @@ libraries = {
 position = Vector2(-15, -41)
 scale = Vector2(0.6, 0.6)
 
+[node name="WallHitDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHitDetector"]
+position = Vector2(-2.5, 2.5)
+shape = SubResource("RectangleShape2D_qenxl")
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="body_entered" from="WallHitDetector" to="FSM/enemy_death_state" method="_on_wall_hit_detector_body_entered"]

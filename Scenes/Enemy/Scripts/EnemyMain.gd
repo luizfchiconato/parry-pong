@@ -21,6 +21,8 @@ var rng = RandomNumberGenerator.new()
 @export_enum("1", "3", "5") var min_balls_per_shot: int
 @export_enum("1", "3", "5") var max_balls_per_shot: int
 
+@export var throw_balloon: bool = false
+
 var parent_death_number: int = 0
 var dying = false
 
@@ -97,6 +99,8 @@ func die(newVelocity):
 	AudioManager.play_sound(AudioManager.ENEMY_SPUN, 0, -5)
 	fsm.force_change_state("enemy_death_state")
 	death_velocity = newVelocity
+	$BodyCollider.set_deferred("disabled", true)
+	$AnimatedSprite2D.play("Thrown")
 	#super()
 	#dying = true
 	#self.velocity = velocity
@@ -182,16 +186,18 @@ func createBullet():
 
 func createLaser():
 	var laser := Laser.instantiate() as Laser
-	self.add_child(laser)
+	Global.game_controller.add_2d_scene_child(laser)
 
 func createBowlingBall():
 	var bullet := BowlingBall.instantiate() as BowlingBall
+	if (throw_balloon == true):
+		bullet.type = 1
 	bullet.global_position = global_position
 	# bullet.ground_velocity = Vector2(100, 120)
 	bullet.vertical_velocity = 10
 	bullet.set_as_top_level(true)
 	bullet.parent_enemy = self
-	self.add_child(bullet)
+	Global.game_controller.add_2d_scene_child(bullet)
 	
 func createDefaultBall():
 	var bullet := Bullet.instantiate() as Bullet
@@ -199,7 +205,7 @@ func createDefaultBall():
 	bullet.global_position = global_position
 	bullet.set_as_top_level(true)
 	bullet.entropy = entropy
-	self.add_child(bullet)
+	Global.game_controller.add_2d_scene_child(bullet)
 	
 	print(min_balls_per_shot)
 	
@@ -221,7 +227,7 @@ func createAngleBullet(angle: float):
 	bullet.explodingBulletsQuantity = 3
 	bullet.scale.x = 0.3
 	bullet.scale.y = 0.3
-	self.add_child(bullet)
+	Global.game_controller.add_2d_scene_child(bullet)
 
 func isAvailable():
 	return parent_death_number >= wait_for_deaths

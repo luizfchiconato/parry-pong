@@ -18,16 +18,17 @@ func Update(_delta):
 	body.velocity = body.death_velocity * move_speed * _delta
 	body.move_and_slide()
 	
-	if (body.is_on_wall()):
-		smashing = true
-		die()
+	#if (body.is_on_wall()):
+	#	smashing = true
+	#	die()
 	#particles.amount += 10
 	#pass
 
-#func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-#	if !(body is TileMap):
-#		return
-#	die()
+func _on_wall_hit_detector_body_entered(body):
+	if !(body is TileMap):
+		return
+	smashing = true
+	die()
 
 func die():
 	body.velocity = Vector2.ZERO

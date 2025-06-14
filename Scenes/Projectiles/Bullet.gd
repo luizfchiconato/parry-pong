@@ -101,7 +101,7 @@ func createBullet(angle: float):
 	bullet.scale.x = 0.2
 	bullet.scale.y = 0.2
 	bullet.parryable = parryable
-	get_tree().root.add_child(bullet)
+	Global.game_controller.add_2d_scene_child(bullet)
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if !(body is TileMap):

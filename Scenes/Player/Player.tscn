@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene load_steps=66 format=3 uid="uid://bvg5dny32iw0x"]
 
 [ext_resource type="Texture2D" uid="uid://cgwb0bq0pw036" path="res://Scenes/Player/Sprite/Player_attack1.png" id="1_8w3ed"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
@@ -7,10 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cvenyq15dbqse" path="res://Scenes/Player/Sprite/Player_attack4.png" id="4_uudrv"]
 [ext_resource type="Texture2D" uid="uid://dyc433uhiyw8p" path="res://Scenes/Player/Sprite/Player_attack5.png" id="5_bups0"]
 [ext_resource type="Texture2D" uid="uid://bldncoskm2cbq" path="res://Scenes/Player/Sprite/Player_attack6.png" id="6_raqqn"]
-[ext_resource type="Texture2D" uid="uid://dqnsr6dy1gkqa" path="res://Scenes/Player/Sprite/Player_Dash1.png" id="7_mf1tp"]
-[ext_resource type="Texture2D" uid="uid://bpfg5t7wxluk8" path="res://Scenes/Player/Sprite/Player_Dash2.png" id="8_sf8vv"]
-[ext_resource type="Texture2D" uid="uid://c4en5s4gxspvf" path="res://Scenes/Player/Sprite/Player_Dash3.png" id="9_av65h"]
-[ext_resource type="Texture2D" uid="uid://ceypvgyam4lqc" path="res://Scenes/Player/Sprite/Player_Dash4.png" id="10_cdaiw"]
+[ext_resource type="Texture2D" uid="uid://xjktqacl78fv" path="res://Art/Sprites/CharacterSlide.png" id="8_dcwka"]
 [ext_resource type="Texture2D" uid="uid://ypfqnkd3bveh" path="res://Scenes/Player/Sprite/Player_Death1.png" id="11_es3h3"]
 [ext_resource type="Texture2D" uid="uid://csfbbp0qhifhd" path="res://Scenes/Player/Sprite/Player_Death2.png" id="12_6533w"]
 [ext_resource type="Texture2D" uid="uid://1kv3u1upp4p6" path="res://Scenes/Player/Sprite/Player_Death3.png" id="13_5tvst"]
@@ -41,6 +38,26 @@
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uky13"]
 polygon = PackedVector2Array(-2, -13, -8, -13, -10, -11, -10, -2, -4, 2, -4, 10, 5, 10, 5, 2, 10, -1, 10, -10, 8, -13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn237"]
+atlas = ExtResource("8_dcwka")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sfb1"]
+atlas = ExtResource("8_dcwka")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h71a"]
+atlas = ExtResource("8_dcwka")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5adci"]
+atlas = ExtResource("8_dcwka")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q4y0"]
+atlas = ExtResource("8_dcwka")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8aa33"]
 atlas = ExtResource("16_kpof4")
@@ -88,20 +105,33 @@ animations = [{
 "speed": 8.0
 }, {
 "frames": [{
-"duration": 0.25,
-"texture": ExtResource("7_mf1tp")
-}, {
 "duration": 1.0,
-"texture": ExtResource("8_sf8vv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_av65h")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_cdaiw")
+"texture": SubResource("AtlasTexture_bn237")
 }],
 "loop": false,
 "name": &"Dash",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sfb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h71a")
+}],
+"loop": false,
+"name": &"DashEnter",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5adci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q4y0")
+}],
+"loop": true,
+"name": &"DashFinish",
 "speed": 8.0
 }, {
 "frames": [{
@@ -201,9 +231,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Curve" id="Curve_ibt3y"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, -0.0497133, 0, 1, Vector2(0.442105, 0.978022), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.75306, 0.0, 1, 0]
-point_count = 4
+[sub_resource type="Curve" id="Curve_3n23s"]
+_data = [Vector2(0, 0.993708), 0.0, 1.4, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7m131"]
 radius = 8.06226
@@ -302,6 +332,60 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_6toxp"]
+resource_name = "DashEnter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"DashEnter"]
+}
+
+[sub_resource type="Animation" id="Animation_3ytlc"]
+resource_name = "DashFinish"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"DashEnter"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
 }
 
 [sub_resource type="Animation" id="Animation_fkgk5"]
@@ -422,6 +506,8 @@ tracks/1/keys = {
 _data = {
 "Attack": SubResource("Animation_jtcnw"),
 "Dash": SubResource("Animation_a1dma"),
+"DashEnter": SubResource("Animation_6toxp"),
+"DashFinish": SubResource("Animation_3ytlc"),
 "Death": SubResource("Animation_fkgk5"),
 "Idle": SubResource("Animation_1i780"),
 "MoonKick": SubResource("Animation_7c1ec"),
@@ -460,7 +546,7 @@ occluder = SubResource("OccluderPolygon2D_uky13")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vax36")
-animation = &"Attack"
+animation = &"Idle"
 
 [node name="HitParticlesCopy" parent="AnimatedSprite2D" instance=ExtResource("21_gooki")]
 position = Vector2(30, 10)
@@ -489,17 +575,6 @@ position = Vector2(-0.953426, -18.6665)
 scale = Vector2(1.25, 1.25)
 script = ExtResource("25_3uwa4")
 
-[node name="Particles" type="CPUParticles2D" parent="AnimatedSprite2D/RacketPivot/Racket"]
-position = Vector2(0.666667, -9.66667)
-amount = 70
-emission_shape = 1
-emission_sphere_radius = 10.05
-spread = 23.2
-gravity = Vector2(0, 0)
-initial_velocity_max = 10.1
-scale_amount_max = 2.0
-color = Color(0.305882, 0.831373, 0.760784, 1)
-
 [node name="Animation" type="AnimatedSprite2D" parent="AnimatedSprite2D/RacketPivot/Racket"]
 z_index = 100
 position = Vector2(0.0279465, -3.9999)
@@ -514,9 +589,11 @@ position = Vector2(0.333333, -9.66667)
 unique_name_in_owner = true
 z_index = 10
 points = PackedVector2Array(229, 23)
-width_curve = SubResource("Curve_ibt3y")
+width = 5.0
+width_curve = SubResource("Curve_3n23s")
 default_color = Color(0.305882, 0.831373, 0.760784, 1)
 script = ExtResource("29_lse7d")
+length = 15
 
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
@@ -553,10 +630,13 @@ dash_max = 220
 animator = NodePath("../../AnimationPlayer")
 
 [node name="DashParticles" type="CPUParticles2D" parent="FSM/Moving"]
+z_index = -1
+z_as_relative = false
+position = Vector2(0, 19)
 emitting = false
-amount = 3000
+amount = 1500
 emission_shape = 1
-emission_sphere_radius = 9.74
+emission_sphere_radius = 5.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 4.57
 initial_velocity_max = 13.7

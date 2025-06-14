@@ -30,6 +30,7 @@ var fake_gravity = 10
 @export var vertical_velocity : float
 
 @export var parent_enemy : EnemyMain
+@export_enum("Bowling:0", "Balloon:1") var type: int = 0
 
 var arcHeight = RandomNumberGenerator.new().randf_range(225, 225)
 var duration = RandomNumberGenerator.new().randf_range(1.00, 1.5)
@@ -43,12 +44,21 @@ var end_position
 
 const DAMAGE_BOWLING = 2
 
+var PaintSlime = load("res://Scenes/Projectiles/PaintSlimeCircle.tscn")
+var instantiated_paint
+
 #@export var animator : AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	anim_sprite.play("default")
-	anim_sprite_2.play("default")
+	if (type == 0):
+		anim_sprite_2.play("default")
+	else:
+		anim_sprite_2.play("balloon")
+		anim_sprite_2.scale = Vector2(0.85, 0.85)
+		radius_bomb.visible = false
+		radius_bomb_internal.visible = false
 	#bomb_animator.play("default")
 	
 	var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
@@ -118,21 +128,35 @@ func arch_movement(delta):
 
 func check_y_level():
 	if (self.global_position.y < arch_body.global_position.y):
-		can_deflect = false
-		clearRadius()
-		#AudioManager.play_sound(AudioManager.BOWLING_FALL, 0, 0)
-		#AudioManager.play_sound(AudioManager.SMALL_EXPLOSION, 0, -5, 0.4)
-		bomb_animator.play("exploding")
-		await bomb_animator.animation_finished
-		queue_free()
+		if (type == 0):
+			explode()
+		else:
+			explode_paint()
 	elif (self.global_position.y - 70 < arch_body.global_position.y and self.global_position.distance_to(end_position) < 90):
 		can_deflect = true
 		$ExplosionRadius/InternalMesh.modulate = Color("00baba3f")
 	else:
 		can_deflect = false
 		$ExplosionRadius/InternalMesh.modulate = Color("f82a2a11")
-	
-	
+
+func explode_paint():
+	can_deflect = false
+	instantiated_paint = PaintSlime.instantiate() as PaintSlime
+	instantiated_paint.global_position = anim_sprite.global_position
+	instantiated_paint.scale = Vector2(4, 4)
+	var player = get_tree().get_first_node_in_group("Player") as PlayerMain
+	#velocity = Vector2.ZERO
+	Global.game_controller.add_2d_scene_child(instantiated_paint)
+	queue_free()
+
+func explode():
+	can_deflect = false
+	clearRadius()
+	#AudioManager.play_sound(AudioManager.BOWLING_FALL, 0, 0)
+	#AudioManager.play_sound(AudioManager.SMALL_EXPLOSION, 0, -5, 0.4)
+	bomb_animator.play("exploding")
+	await bomb_animator.animation_finished
+	queue_free()
 
 func clearRadius():
 	radius_bomb.visible = false
@@ -153,7 +177,7 @@ func deal_damage_to_player(player : PlayerMain):
 
 func deal_damage_to_enemy(enemy : EnemyMain):
 	AudioManager.play_sound(AudioManager.ENEMY_HIT_BOWLING, 0, -15)
-	enemy._take_damage(DAMAGE_BOWLING, velocity)
+	enemy._take_damage(DAMAGE_BOWLING, velocity * 2)
 
 func createBowlingBalls():
 	for i in range(explodingBowlingBallsQuantity):
@@ -171,7 +195,7 @@ func createBowlingBall(angle: float):
 	bowlingBall.explodable = false
 	bowlingBall.scale.x = 0.2
 	bowlingBall.scale.y = 0.2
-	get_tree().root.add_child(bowlingBall)
+	Global.game_controller.add_2d_scene_child(bowlingBall)
 
 #func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 #	if !(body is TileMap):

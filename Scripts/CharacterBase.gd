@@ -49,14 +49,25 @@ func damage_effects():
 
 #After we are done flashing red, we can take damage again
 func after_damage_iframes():
-	invincible = true
+	
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color.DARK_RED, 0.1)
-	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-	tween.tween_property(self, "modulate", Color.RED, 0.1)
-	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-	await tween.finished
-	invincible = false
+	if is_instance_valid(self) and not is_in_group("Player"):
+		tween.tween_property(self, "modulate", Color.DARK_RED, 0.1)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+		tween.tween_property(self, "modulate", Color.RED, 0.1)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+	elif is_instance_valid(self):
+		invincible = true
+		tween.tween_property(self, "modulate", Color.DARK_RED, 0.1)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+		tween.tween_property(self, "modulate", Color.RED, 0.1)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+		tween.tween_property(self, "modulate", Color.DARK_RED, 0.1)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+		tween.tween_property(self, "modulate", Color.RED, 0.1)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+		await tween.finished
+		invincible = false
 	
 #func _take_damage(amount):
 	#if(invincible == true || is_dead == true):

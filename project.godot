@@ -11,16 +11,16 @@ config_version=5
 [application]
 
 config/name="Parry Pong"
-config/description="This 2D Pixelart, TopDown action Starter Project include all the basics you need to get started creating a game."
+config/description="Hora da raquete"
 config/version="1.4"
 config/tags=PackedStringArray("starterkit")
-run/main_scene="res://Scenes/MainMenu/InitialMenu/MainMenu.tscn"
+run/main_scene="res://Scenes/GameController.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/image="res://Art/Icons/icon.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://Art/Icons/icon.png"
+config/icon="res://Racket3.png"
 
 [audio]
 
@@ -30,11 +30,11 @@ buses/default_bus_layout=""
 
 GameManager="*res://Scripts/Managers/GameManager.gd"
 AudioManager="*res://Scripts/Managers/AudioManager.gd"
+Global="*res://Global.gd"
 
 [display]
 
-window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
+window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
 [dotnet]
@@ -47,6 +47,12 @@ folder_colors={
 "res://Art/": "red",
 "res://Scenes/": "green",
 "res://Scripts/": "yellow"
+}
+
+[importer_defaults]
+
+animation_library={
+"animation/fps": 60.0
 }
 
 [input]
