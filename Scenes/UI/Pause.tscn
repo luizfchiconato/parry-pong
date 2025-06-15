@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgyvdrfkrid5y"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Pause.gd" id="1_sybit"]
+[ext_resource type="Texture2D" uid="uid://d4h48w4kryvt6" path="res://Art/Sprites/Tempo.png" id="2_h8pcx"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelector/LevelSelect.gd" id="3_5thel"]
+[ext_resource type="PackedScene" uid="uid://bo22hma5o31ig" path="res://Scenes/MainMenu/InitialMenu/MainMenu.tscn" id="4_2hlm5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_swudq"]
+font_size = 50
+
+[node name="Control" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sybit")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 341.0
+offset_top = 175.0
+offset_right = 866.0
+offset_bottom = 460.0
+color = Color(0.121569, 0.121569, 0.121569, 0.67451)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+offset_left = 63.0
+offset_top = 32.0
+offset_right = 465.0
+offset_bottom = 256.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/ColorRect/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_h8pcx")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "TEMPO"
+label_settings = SubResource("LabelSettings_swudq")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_h8pcx")
+expand_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Resumir" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[ENTER] Resumir"
+script = ExtResource("3_5thel")
+level_scene = ExtResource("4_2hlm5")
+
+[node name="Resumir2" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Opções"
+script = ExtResource("3_5thel")
+level_scene = ExtResource("4_2hlm5")
+
+[node name="Tentar novamente" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Menu inicial"
+script = ExtResource("3_5thel")
+reload_scene = true

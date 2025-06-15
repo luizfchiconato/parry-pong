@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bo22hma5o31ig" path="res://Scenes/MainMenu/InitialMenu/MainMenu.tscn" id="2_otqvo"]
 
 [node name="GameController" type="Node2D" node_paths=PackedStringArray("world_2d", "gui")]
+process_mode = 1
 position = Vector2(0, 1)
 script = ExtResource("1_excvq")
 world_2d = NodePath("World2D")

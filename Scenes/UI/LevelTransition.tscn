@@ -1,0 +1,127 @@
+[gd_scene load_steps=13 format=3 uid="uid://cn5umyyfvveya"]
+
+[ext_resource type="Texture2D" uid="uid://bnjlqjgbi68la" path="res://Art/Sprites/TreinadorIcon.png" id="1_nvmdw"]
+[ext_resource type="Script" path="res://Scenes/UI/LevelFail.gd" id="1_un4q4"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelector/LevelSelect.gd" id="2_vwqfb"]
+[ext_resource type="PackedScene" uid="uid://bo22hma5o31ig" path="res://Scenes/MainMenu/InitialMenu/MainMenu.tscn" id="3_nojkw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyekg"]
+atlas = ExtResource("1_nvmdw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgqk8"]
+atlas = ExtResource("1_nvmdw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58w4w"]
+atlas = ExtResource("1_nvmdw")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq6he"]
+atlas = ExtResource("1_nvmdw")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paobp"]
+atlas = ExtResource("1_nvmdw")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hci0"]
+atlas = ExtResource("1_nvmdw")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ig2bg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyekg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgqk8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58w4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aq6he")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paobp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hci0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="SystemFont" id="SystemFont_d68fq"]
+font_names = PackedStringArray("Unispace")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_un4q4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 81.0
+offset_top = 60.0
+offset_right = 1071.0
+offset_bottom = 597.0
+color = Color(0.121569, 0.121569, 0.121569, 0.67451)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(190, 196)
+scale = Vector2(2.28125, 2.28125)
+sprite_frames = SubResource("SpriteFrames_ig2bg")
+autoplay = "default"
+frame_progress = 0.647921
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 283.0
+offset_top = 124.0
+offset_right = 1030.0
+offset_bottom = 466.0
+theme_override_fonts/normal_font = SubResource("SystemFont_d68fq")
+bbcode_enabled = true
+text = "[font_size=25
+]só regresso irmão, muitos vao te derrubar mas, aconteça oq acontecer, não levante. te admiro pois vc começou do zero e continuou la, te criticar é facil, difícil é elogiar. tudo deles nada nosso 👊🏻🔥[/font_size]"
+tab_size = 6
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 444.0
+offset_top = 632.0
+offset_right = 725.0
+offset_bottom = 632.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 450.0
+offset_top = 477.0
+offset_right = 797.0
+offset_bottom = 508.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Menu principal" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "[ESC] Menu principal"
+script = ExtResource("2_vwqfb")
+level_scene = ExtResource("3_nojkw")
+
+[node name="Tentar novamente" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "[R] Tentar novamente"
+script = ExtResource("2_vwqfb")
+reload_scene = true

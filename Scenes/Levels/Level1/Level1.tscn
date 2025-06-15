@@ -19,6 +19,7 @@
 size = Vector2(25, 30)
 
 [node name="Scene_Root" type="Node2D"]
+process_mode = 1
 texture_filter = 1
 position = Vector2(623, 261)
 scale = Vector2(2, 2)

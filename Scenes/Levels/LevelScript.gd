@@ -11,7 +11,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if (Input.is_action_just_pressed("Esc")):
+		if (!Global.game_controller.isPaused()):
+			Global.game_controller.pause()
 
 
 func _on_enemy_died():

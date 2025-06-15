@@ -4,6 +4,8 @@ class_name GameController extends Node2D
 @export var gui : Control
 @export var first_gui_scene : PackedScene
 
+const PAUSE_SCREEN = preload("res://Scenes/UI/Pause.tscn")
+
 var current_gui_scene : Node
 var current_2d_scene : Node
 var current_2d_packed_scene
@@ -27,6 +29,7 @@ func change_gui_scene(new_scene: PackedScene, delete: bool = true, keep_running:
 
 func deload_current_gui_scene():
 	if (current_gui_scene != null):
+		print("limpou")
 		current_gui_scene.queue_free()
 	current_gui_scene = null
 
@@ -49,3 +52,17 @@ func reload_current_2d_scene():
 
 func add_2d_scene_child(node):
 	current_2d_scene.add_child(node)
+	
+func pause():
+	# get_tree().paused = true
+	change_gui_scene(PAUSE_SCREEN)
+
+func unpause():
+	print("nnn")
+	# get_tree().paused = false
+	print("ccc")
+	deload_current_gui_scene()
+	print("ggg")
+
+func isPaused() -> bool:
+	return get_tree().paused
