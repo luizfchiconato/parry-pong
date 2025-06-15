@@ -69,12 +69,9 @@ func _on_detection_area_body_exited(body):
 	if (!isAvailable()):
 		return
 	
-	print("saiu")	
 	if body.is_in_group("Player"):
 		player_in_range = false
-		print(is_instance_valid(fsm), is_instance_valid(chase_node))
 		if (is_instance_valid(fsm) and is_instance_valid(chase_node) and fsm.current_state.name != "enemy_death_state"):
-			print("entrando idle")
 			fsm.force_change_state("enemy_idle_state")
 		
 
@@ -155,14 +152,7 @@ func deactivateEnemy():
 func _on_bullet_timer_timeout():
 	if (!isAvailable()):
 		return
-
 	createBullet()
-	
-
-	#if (enemy_type == TYPE_BOWLING):
-	#	my_random_number = rng.randf_range(1.5, 2.75)
-	#else:
-	#	my_random_number = rng.randf_range(1.5, 2)
 
 func restartBulletTimer():
 	var my_random_number

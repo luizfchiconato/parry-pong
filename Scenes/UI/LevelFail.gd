@@ -117,7 +117,7 @@ func _process(delta):
 	visible_characters += ceil(SPEED * delta)
 	if (visible_characters > chosen_text.length()):
 		visible_characters = chosen_text.length()
-	$CanvasLayer/RichTextLabel.text = "[font_size=25]" + chosen_text.substr(0, visible_characters) + "[/font_size]"
+	$CanvasLayer/RichTextLabel.text = "[font_size=25]" + shanub.substr(0, visible_characters) + "[/font_size]"
 	
 	if(Input.is_action_just_pressed("Enter") or Input.is_action_just_pressed("Esc")):
 		Global.game_controller.reload_current_2d_scene()

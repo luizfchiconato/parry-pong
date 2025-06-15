@@ -1,7 +1,7 @@
 [gd_scene load_steps=66 format=3 uid="uid://bo22hma5o31ig"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/InitialMenu/MainMenu.gd" id="1_a3j34"]
-[ext_resource type="PackedScene" uid="uid://0mod4ybbrgo1" path="res://Scenes/Levels/Level1/Level1.tscn" id="3_5f50f"]
+[ext_resource type="PackedScene" uid="uid://0mod4ybbrgo1" path="res://Scenes/Levels/LevelList/Tutorial.tscn" id="2_u7umv"]
 [ext_resource type="PackedScene" uid="uid://bt50eqfhbqt1w" path="res://Scenes/MainMenu/LevelSelector/LevelSelector.tscn" id="3_drlva"]
 [ext_resource type="AudioStream" uid="uid://l4ps16jwyewh" path="res://Art/Audio/Music/TetrisTitle.mp3" id="3_jvsig"]
 [ext_resource type="Texture2D" uid="uid://bbesu3dytgmpi" path="res://Art/Sprites/MainMenu.png" id="4_5q51a"]
@@ -404,7 +404,7 @@ offset_top = 49.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a3j34")
-first_scene = ExtResource("3_5f50f")
+first_scene = ExtResource("2_u7umv")
 selector_scene = ExtResource("3_drlva")
 
 [node name="MusicTitleScreen" type="AudioStreamPlayer" parent="MainMenu"]

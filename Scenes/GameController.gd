@@ -54,15 +54,10 @@ func add_2d_scene_child(node):
 	current_2d_scene.add_child(node)
 	
 func pause():
-	# get_tree().paused = true
 	change_gui_scene(PAUSE_SCREEN)
 
 func unpause():
-	print("nnn")
-	# get_tree().paused = false
-	print("ccc")
 	deload_current_gui_scene()
-	print("ggg")
 
 func isPaused() -> bool:
 	return get_tree().paused

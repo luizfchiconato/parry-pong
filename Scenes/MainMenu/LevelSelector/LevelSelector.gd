@@ -1,0 +1,25 @@
+extends Control
+
+var LevelSelect = load("res://Scenes/MainMenu/LevelSelector/LevelSelect.tscn")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	load_level_buttons()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func load_level_buttons():
+	var levels : Array = LevelManager.GINASIOS
+	print(levels)
+	for i in range(levels.size()):
+		add_level_button(levels[i], i + 1)
+
+func add_level_button(level : PackedScene, level_number: int):
+	var button = LevelSelect.instantiate() as LevelSelect
+	button.text = str("Ginásio ", level_number)
+	button.level_scene = level
+	button.custom_minimum_size.y = 40
+	$CenterContainer/VBoxContainer.add_child(button)

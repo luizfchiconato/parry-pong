@@ -32,6 +32,7 @@ offset_bottom = 460.0
 color = Color(0.121569, 0.121569, 0.121569, 0.67451)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 0
 offset_left = 63.0
 offset_top = 32.0
 offset_right = 465.0
@@ -67,18 +68,15 @@ layout_mode = 2
 
 [node name="Resumir" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
-text = "[ENTER] Resumir"
 script = ExtResource("3_5thel")
 level_scene = ExtResource("4_2hlm5")
 
 [node name="Resumir2" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
-text = "Opções"
 script = ExtResource("3_5thel")
 level_scene = ExtResource("4_2hlm5")
 
 [node name="Tentar novamente" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
-text = "Menu inicial"
 script = ExtResource("3_5thel")
 reload_scene = true

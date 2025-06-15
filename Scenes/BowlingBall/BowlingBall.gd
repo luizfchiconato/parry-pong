@@ -142,11 +142,12 @@ func check_y_level():
 func explode_paint():
 	can_deflect = false
 	instantiated_paint = PaintSlime.instantiate() as PaintSlime
-	instantiated_paint.global_position = anim_sprite.global_position
+
 	instantiated_paint.scale = Vector2(4, 4)
 	var player = get_tree().get_first_node_in_group("Player") as PlayerMain
-	#velocity = Vector2.ZERO
+
 	Global.game_controller.add_2d_scene_child(instantiated_paint)
+	instantiated_paint.global_position = anim_sprite.global_position
 	queue_free()
 
 func explode():

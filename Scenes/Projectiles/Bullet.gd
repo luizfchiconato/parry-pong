@@ -91,7 +91,6 @@ func createBullets():
 
 func createBullet(angle: float):
 	angle = deg_to_rad(angle)
-	
 	var bullet: Bullet = duplicate()
 	bullet.global_position = global_position
 	bullet.velocity = -self.velocity

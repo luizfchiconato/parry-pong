@@ -1,15 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bt50eqfhbqt1w"]
+[gd_scene load_steps=4 format=3 uid="uid://bt50eqfhbqt1w"]
 
-[ext_resource type="Script" path="res://Scenes/MainMenu/InitialMenu/MainMenu.gd" id="1_a3j34"]
-[ext_resource type="PackedScene" uid="uid://dei3j88yw6omf" path="res://Scenes/Levels/Level3/Level3.tscn" id="2_nf3li"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelector/LevelSelector.gd" id="1_wgdx7"]
 [ext_resource type="AudioStream" uid="uid://l4ps16jwyewh" path="res://Art/Audio/Music/TetrisTitle.mp3" id="3_jvsig"]
-[ext_resource type="PackedScene" uid="uid://0mod4ybbrgo1" path="res://Scenes/Levels/Level1/Level1.tscn" id="5_qi2cb"]
-[ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelector/LevelSelect.gd" id="5_r7bmv"]
-[ext_resource type="PackedScene" uid="uid://boa85milwpgfh" path="res://Scenes/Levels/Level2/Level2.tscn" id="6_iwtm2"]
-[ext_resource type="PackedScene" uid="uid://dfaavise1pv5r" path="res://Scenes/Levels/Level4/Level4.tscn" id="7_2lqjv"]
-[ext_resource type="PackedScene" uid="uid://cwf71ikjswioq" path="res://Scenes/Levels/Level5/Level5.tscn" id="8_6w35q"]
-[ext_resource type="PackedScene" uid="uid://c8i3b05o1r0fk" path="res://Scenes/Levels/Level6/Level6.tscn" id="9_tvnee"]
-[ext_resource type="PackedScene" uid="uid://cqkeswm8ml2vs" path="res://Scenes/Levels/Level7/Level7.tscn" id="10_yjykx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8xhda"]
 font_size = 56
@@ -21,96 +13,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wgdx7")
 
-[node name="MainMenu" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 49.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_a3j34")
-first_scene = ExtResource("2_nf3li")
-
-[node name="MusicTitleScreen" type="AudioStreamPlayer" parent="MainMenu"]
+[node name="MusicTitleScreen" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_jvsig")
 volume_db = -20.0
 
-[node name="CenterContainer" type="BoxContainer" parent="MainMenu"]
+[node name="CenterContainer" type="BoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 74.0
+offset_top = 49.0
 offset_right = -64.0
+offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenu/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 text = "Seletor de níveis"
 label_settings = SubResource("LabelSettings_8xhda")
 horizontal_alignment = 1
 autowrap_mode = 2
-
-[node name="Level1" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Nível 1"
-script = ExtResource("5_r7bmv")
-level_scene = ExtResource("5_qi2cb")
-
-[node name="Level2" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Nível 2"
-script = ExtResource("5_r7bmv")
-level_scene = ExtResource("6_iwtm2")
-
-[node name="Level3" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Nível 3"
-script = ExtResource("5_r7bmv")
-level_scene = ExtResource("2_nf3li")
-
-[node name="Level4" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Nível 4"
-script = ExtResource("5_r7bmv")
-level_scene = ExtResource("7_2lqjv")
-
-[node name="Level5" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Nível 5"
-script = ExtResource("5_r7bmv")
-level_scene = ExtResource("8_6w35q")
-
-[node name="Level6" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Nível 6"
-script = ExtResource("5_r7bmv")
-level_scene = ExtResource("9_tvnee")
-
-[node name="Level7" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Nível 7"
-script = ExtResource("5_r7bmv")
-level_scene = ExtResource("10_yjykx")
-
-[node name="Voltar" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Voltar"
-script = ExtResource("5_r7bmv")
-
-[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level1" to="MainMenu/CenterContainer/VBoxContainer/Level1" method="_on_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level2" to="MainMenu/CenterContainer/VBoxContainer/Level2" method="_on_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level3" to="MainMenu/CenterContainer/VBoxContainer/Level3" method="_on_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level4" to="MainMenu/CenterContainer/VBoxContainer/Level4" method="_on_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level5" to="MainMenu/CenterContainer/VBoxContainer/Level5" method="_on_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level6" to="MainMenu/CenterContainer/VBoxContainer/Level6" method="_on_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Level7" to="MainMenu/CenterContainer/VBoxContainer/Level7" method="_on_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Voltar" to="MainMenu/CenterContainer/VBoxContainer/Voltar" method="_on_button_pressed"]
