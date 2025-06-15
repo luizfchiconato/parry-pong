@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cu0akwf23bu3m"]
+[gd_scene load_steps=13 format=3 uid="uid://cu0akwf23bu3m"]
 
 [ext_resource type="Script" path="res://Scenes/UI/LevelFail.gd" id="1_wuh2o"]
 [ext_resource type="Texture2D" uid="uid://bnjlqjgbi68la" path="res://Art/Sprites/TreinadorIcon.png" id="2_3q0m3"]
@@ -55,6 +55,9 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="SystemFont" id="SystemFont_d68fq"]
+font_names = PackedStringArray("Unispace")
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -88,7 +91,8 @@ frame_progress = 0.647921
 offset_left = 283.0
 offset_top = 124.0
 offset_right = 1030.0
-offset_bottom = 267.0
+offset_bottom = 466.0
+theme_override_fonts/normal_font = SubResource("SystemFont_d68fq")
 bbcode_enabled = true
 text = "[font_size=25
 ]só regresso irmão, muitos vao te derrubar mas, aconteça oq acontecer, não levante. te admiro pois vc começou do zero e continuou la, te criticar é facil, difícil é elogiar. tudo deles nada nosso 👊🏻🔥[/font_size]"
