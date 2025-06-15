@@ -14,16 +14,13 @@ func _process(delta):
 
 
 func _on_new_game_pressed():
-	#Global.game_controller.deload_current_gui_scene()
-	Global.game_controller.change_2d_scene(first_scene)
+	LevelManager.load_first_level()
 	#Global.game_controller.change_2d_scene(first_scene)
-	pass # Replace with function body.
 
 
 func _on_load_game_pressed():
 	#Global.game_controller.deload_current_gui_scene()
 	Global.game_controller.change_gui_scene(selector_scene)
-	pass # Replace with function body.
 
 
 func _on_quit_pressed():

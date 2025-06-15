@@ -1,6 +1,7 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://da8inon5cmt2r"]
 
-[ext_resource type="FontFile" uid="uid://ci60w53hdbiqe" path="res://Art/Fonts/m3x6.ttf" id="1_bikjy"]
+[sub_resource type="SystemFont" id="SystemFont_n8gqt"]
 
 [resource]
-font = ExtResource("1_bikjy")
+font = SubResource("SystemFont_n8gqt")
+font_color = Color(0.860235, 0.673472, 0.593733, 1)

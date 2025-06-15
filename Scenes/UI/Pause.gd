@@ -5,7 +5,7 @@ extends Control
 func _ready():
 	print("uuuuu")
 	get_tree().paused = true
-
+ 
 
 func _process(delta):
 	print("fffff")

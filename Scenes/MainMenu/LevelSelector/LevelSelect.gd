@@ -1,6 +1,6 @@
 class_name LevelSelect extends Control
 
-@export var level_scene : PackedScene
+@export var level_index : int
 @export var reload_scene = false
 @export var text : String = "teste"
 
@@ -14,6 +14,8 @@ func _process(delta):
 
 func _on_button_pressed():
 	if (reload_scene):
-		Global.game_controller.reload_current_2d_scene()
+		LevelManager.reload_current_level()
+		# Global.game_controller.reload_current_2d_scene()
 	else:
-		Global.game_controller.change_2d_scene(level_scene)
+		LevelManager.load_level_by_index(level_index)
+		#Global.game_controller.change_2d_scene(level_scene)

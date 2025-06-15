@@ -4,7 +4,8 @@ extends Area2D
 @export var basement_scene : PackedScene
 
 func _ready():
-	label.visible = false
+	#label.visible = false
+	pass
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("Enter") and label.visible == true):

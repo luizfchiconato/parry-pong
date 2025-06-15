@@ -1,5 +1,6 @@
 extends Node2D
 
+const TUTORIAL_MAIOR = preload("res://Scenes/Levels/LevelList/TutorialMaior.tscn")
 const TUTORIAL = preload("res://Scenes/Levels/LevelList/Tutorial.tscn")
 const APRESENTACAO_BOLICHE = preload("res://Scenes/Levels/LevelList/ApresentacaoBoliche.tscn")
 const TRES_BOLAS = preload("res://Scenes/Levels/LevelList/TresBolas.tscn")
@@ -9,6 +10,7 @@ const CHUMBO_MENOR = preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn")
 const BANDEIRA_TINTA = preload("res://Scenes/Levels/LevelList/BandeiraTinta.tscn")
 
 const GINASIOS: Array = [
+	TUTORIAL_MAIOR,
 	TUTORIAL,
 	APRESENTACAO_BOLICHE,
 	TRES_BOLAS,
@@ -18,6 +20,8 @@ const GINASIOS: Array = [
 	BANDEIRA_TINTA,
 ]
 
+var current_level_index : int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -26,3 +30,22 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func load_first_level():
+	current_level_index = 0
+	load_level()
+
+func load_level_by_index(index : int):
+	current_level_index = index
+	load_level()
+
+func load_next_level():
+	if current_level_index < GINASIOS.size():
+		current_level_index = current_level_index + 1
+	load_level()
+	
+func load_level():
+	Global.game_controller.change_2d_scene(GINASIOS[current_level_index])
+	
+func reload_level():
+	Global.game_controller.reload_current_2d_scene()

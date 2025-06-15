@@ -15,11 +15,11 @@ func load_level_buttons():
 	var levels : Array = LevelManager.GINASIOS
 	print(levels)
 	for i in range(levels.size()):
-		add_level_button(levels[i], i + 1)
+		add_level_button(levels[i], i)
 
-func add_level_button(level : PackedScene, level_number: int):
+func add_level_button(level : PackedScene, level_index: int):
 	var button = LevelSelect.instantiate() as LevelSelect
-	button.text = str("Ginásio ", level_number)
-	button.level_scene = level
+	button.text = str("Ginásio ", level_index + 1)
+	button.level_index = level_index
 	button.custom_minimum_size.y = 40
 	$CenterContainer/VBoxContainer.add_child(button)
