@@ -736,8 +736,8 @@ uppercase = true
 wait_time = 0.8
 
 [node name="HealthBar" parent="." instance=ExtResource("37_c8lyp")]
-position = Vector2(-546.667, 285)
-scale = Vector2(2, 2)
+position = Vector2(-486.667, 298.333)
+scale = Vector2(2.5, 2.5)
 
 [connection signal="area_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="." method="_on_hitbox_body_entered"]

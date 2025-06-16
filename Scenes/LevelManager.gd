@@ -6,8 +6,10 @@ const APRESENTACAO_BOLICHE = preload("res://Scenes/Levels/LevelList/Apresentacao
 const RODADA_SIMULTANEA = preload("res://Scenes/Levels/LevelList/RodadaSimultanea.tscn")
 const TRES_BOLAS = preload("res://Scenes/Levels/LevelList/TresBolas.tscn")
 const TRES_BOLAS_PILAR = preload("res://Scenes/Levels/LevelList/TresBolasPilar.tscn")
+const TRES_BOLAS_PILARES = preload("res://Scenes/Levels/LevelList/TresBolasPilares.tscn")
 const APRESENTACAO_CHUMBO = preload("res://Scenes/Levels/LevelList/ApresentacaoChumbo.tscn")
 const RODADA_SIMULTANEA_MENOR = preload("res://Scenes/Levels/LevelList/RodadaSimultaneaMenor.tscn")
+const TIMING = preload("res://Scenes/Levels/LevelList/Timing.tscn")
 const CHUMBO_MENOR = preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn")
 const BANDEIRA_TINTA = preload("res://Scenes/Levels/LevelList/BandeiraTinta.tscn")
 
@@ -18,8 +20,10 @@ const GINASIOS: Array = [
 	RODADA_SIMULTANEA,
 	TRES_BOLAS,
 	TRES_BOLAS_PILAR,
+	TRES_BOLAS_PILARES,
 	APRESENTACAO_CHUMBO,
 	RODADA_SIMULTANEA_MENOR,
+	TIMING,
 	CHUMBO_MENOR,
 	BANDEIRA_TINTA,
 ]

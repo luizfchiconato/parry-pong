@@ -5,10 +5,15 @@
 [node name="HealthBar" type="Node2D"]
 script = ExtResource("1_8dpov")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-offset_right = 84.0
-use_top_left = true
+[node name="BoxContainer" type="BoxContainer" parent="."]
+offset_left = -41.0
+offset_top = -20.0
+offset_right = 43.0
+offset_bottom = 20.0
+pivot_offset = Vector2(41, 20)
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 28
+alignment = 1

@@ -20,6 +20,9 @@ const attackFrames = 10
 var hitInAttack = false
 var canAttack = true
 
+func _ready():
+	$HealthBar.setHealthBar()
+
 func _physics_process(delta: float) -> void:
 	turn()
 

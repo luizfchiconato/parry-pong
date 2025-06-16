@@ -1,4 +1,4 @@
-class_name HeartRacket extends Node2D
+class_name HeartRacket extends Control
 
 @onready var anim_sprite = $AnimatedSprite2D
 

@@ -42,7 +42,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="HeartRacket" type="Node2D"]
+[node name="HeartRacket" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_rqcnd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

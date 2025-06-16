@@ -9,6 +9,11 @@ var heartsArray = Array()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+	
+func setHealthBar():
+	print("max_health")
+	print(max_health)
 	var hearts_number = ceil(max_health / 2)
 	health = clamp(health, 0, max_health)
 	
@@ -16,8 +21,8 @@ func _ready():
 		var heart := HeartRacket.instantiate() as HeartRacket
 		#heart.global_position.x = self.global_position.x + 30 * x
 		#heart.global_position.y = self.global_position.y
-		heart.position.x = heart.position.x + 30 * x
-		add_child(heart)
+		#heart.position.x = heart.position.x + 30 * x
+		$CenterContainer/HBoxContainer.add_child(heart)
 		heartsArray.push_back(heart)
 	
 	updateHearts()

@@ -8,8 +8,9 @@ func _ready():
 	pass
 
 func _process(_delta):
-	if(Input.is_action_just_pressed("Enter") and label.visible == true):
-		Global.game_controller.change_2d_scene(basement_scene)
+	#if(Input.is_action_just_pressed("Enter") and label.visible == true):
+	#	Global.game_controller.change_2d_scene(basement_scene)
+	pass
 
 func _on_body_entered(body):
 	pass

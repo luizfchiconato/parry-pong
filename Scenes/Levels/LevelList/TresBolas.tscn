@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfaavise1pv5r"]
+[gd_scene load_steps=12 format=3 uid="uid://dfaavise1pv5r"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_diq16"]
 [ext_resource type="PackedScene" uid="uid://cwf71ikjswioq" path="res://Scenes/Levels/LevelList/TresBolasPilar.tscn" id="2_kuy1i"]
@@ -6,17 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="4_30nno"]
 [ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="5_66g2h"]
 [ext_resource type="PackedScene" uid="uid://ckp2r52hlcfxn" path="res://Scenes/Npc_OfficeWorker/npc_officeworker_scene.tscn" id="6_fw6y3"]
-[ext_resource type="LabelSettings" uid="uid://da8inon5cmt2r" path="res://Art/Fonts/pixelized_label.tres" id="7_s0358"]
 [ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="8_ji0jg"]
 [ext_resource type="Script" path="res://Scenes/Levels/TileMapScript.gd" id="9_sl5ac"]
 [ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/Light.png" id="10_lwtm1"]
-[ext_resource type="Script" path="res://Scenes/Levels/AreaExit.gd" id="11_ya10n"]
-[ext_resource type="PackedScene" uid="uid://bt5yicfpmnlwk" path="res://Scenes/Levels/Basement01.tscn" id="12_a1knk"]
 [ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="13_7jxc8"]
 [ext_resource type="AudioStream" uid="uid://duk65jhplli8h" path="res://Art/Audio/Music/TetrisNivel1.mp3" id="14_b45mi"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtoj4"]
-size = Vector2(25, 30)
 
 [node name="Scene_Root" type="Node2D"]
 texture_filter = 1
@@ -101,20 +95,6 @@ hit_particles = NodePath("../Enemy6/HitParticles")
 visible = false
 position = Vector2(-242, -43)
 
-[node name="Welcome Label" type="Label" parent="Scene"]
-texture_filter = 1
-offset_left = -540.0
-offset_top = -298.0
-offset_right = -272.0
-offset_bottom = -205.0
-text = "Welcome to the top-down project!
-WASD - Move
-SPACE - Dash
-
-LMB - Punch
-RMB - Spinning kick"
-label_settings = ExtResource("7_s0358")
-
 [node name="TileMap" type="TileMap" parent="Scene"]
 z_index = -2
 texture_filter = 1
@@ -153,23 +133,6 @@ energy = 0.8
 shadow_enabled = true
 texture = ExtResource("10_lwtm1")
 
-[node name="AreaExit" type="Area2D" parent="Scene"]
-position = Vector2(-49, -135)
-script = ExtResource("11_ya10n")
-basement_scene = ExtResource("12_a1knk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/AreaExit"]
-position = Vector2(-0.5, 5)
-shape = SubResource("RectangleShape2D_gtoj4")
-
-[node name="Label" type="Label" parent="Scene/AreaExit"]
-offset_left = -16.0
-offset_top = -25.0
-offset_right = 96.0
-offset_bottom = 1.0
-text = "Press 'E' To Enter"
-label_settings = ExtResource("7_s0358")
-
 [node name="Score_UI" parent="." instance=ExtResource("13_7jxc8")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -183,5 +146,3 @@ volume_db = -12.0
 [connection signal="died" from="Enemies/Enemy9" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy12" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy8" to="." method="_on_enemy_died"]
-[connection signal="body_entered" from="Scene/AreaExit" to="Scene/AreaExit" method="_on_body_entered"]
-[connection signal="body_exited" from="Scene/AreaExit" to="Scene/AreaExit" method="_on_body_exited"]

@@ -394,7 +394,7 @@ libraries = {
 }
 
 [node name="HealthBar" parent="." instance=ExtResource("24_kud8h")]
-position = Vector2(-15, -41)
+position = Vector2(0, -41)
 scale = Vector2(0.6, 0.6)
 
 [node name="WallHitDetector" type="Area2D" parent="."]

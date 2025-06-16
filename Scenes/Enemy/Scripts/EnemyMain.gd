@@ -12,6 +12,8 @@ var rng = RandomNumberGenerator.new()
 
 @export var wait_for_deaths: int = 0
 @export var unparriableChance: int = 0
+@export var max_health: int = 6
+@export var stationary: bool = false
 
 #@onready var animator = $AnimationPlayer
 
@@ -45,7 +47,7 @@ var Laser = load("res://Scenes/Projectiles/Laser.tscn")
 
 #After finishing an attack, we return here to determine our next action based on the players proximity
 func finished_attacking():
-	if(player_in_range == true):
+	if(player_in_range == true and !stationary):
 		fsm.change_state(attack_node, "enemy_chase_state")
 	else:
 		fsm.change_state(attack_node, "enemy_idle_state")
@@ -61,7 +63,7 @@ func _on_detection_area_body_entered(body):
 		print(is_instance_valid(fsm), is_instance_valid(chase_node))
 		
 		#We don't want this to happen from the death state, only from idle
-		if fsm.current_state.name == "enemy_idle_state": 
+		if fsm.current_state.name == "enemy_idle_state" and !stationary: 
 			fsm.force_change_state("enemy_chase_state")
 
 #Return to idle when player leaves our proximity
@@ -136,6 +138,11 @@ func _take_damage(amount, deathVelocity : Vector2):
 		die(deathVelocity)
 	
 func _ready():
+	$HealthBar.max_health = max_health
+	$HealthBar.health = max_health
+	$HealthBar.setHealthBar()
+	health = max_health
+
 	if wait_for_deaths > 0:
 		deactivateEnemy()
 	$BulletTimer.wait_time = bullet_interval
