@@ -3,8 +3,10 @@ extends Node2D
 const TUTORIAL_MAIOR = preload("res://Scenes/Levels/LevelList/TutorialMaior.tscn")
 const TUTORIAL = preload("res://Scenes/Levels/LevelList/Tutorial.tscn")
 const APRESENTACAO_BOLICHE = preload("res://Scenes/Levels/LevelList/ApresentacaoBoliche.tscn")
+const RODADA_SIMULTANEA = preload("res://Scenes/Levels/LevelList/RodadaSimultanea.tscn")
 const TRES_BOLAS = preload("res://Scenes/Levels/LevelList/TresBolas.tscn")
 const TRES_BOLAS_PILAR = preload("res://Scenes/Levels/LevelList/TresBolasPilar.tscn")
+const APRESENTACAO_CHUMBO = preload("res://Scenes/Levels/LevelList/ApresentacaoChumbo.tscn")
 const RODADA_SIMULTANEA_MENOR = preload("res://Scenes/Levels/LevelList/RodadaSimultaneaMenor.tscn")
 const CHUMBO_MENOR = preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn")
 const BANDEIRA_TINTA = preload("res://Scenes/Levels/LevelList/BandeiraTinta.tscn")
@@ -13,8 +15,10 @@ const GINASIOS: Array = [
 	TUTORIAL_MAIOR,
 	TUTORIAL,
 	APRESENTACAO_BOLICHE,
+	RODADA_SIMULTANEA,
 	TRES_BOLAS,
 	TRES_BOLAS_PILAR,
+	APRESENTACAO_CHUMBO,
 	RODADA_SIMULTANEA_MENOR,
 	CHUMBO_MENOR,
 	BANDEIRA_TINTA,

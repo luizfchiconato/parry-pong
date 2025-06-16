@@ -12,9 +12,11 @@ func _process(_delta):
 		Global.game_controller.change_2d_scene(basement_scene)
 
 func _on_body_entered(body):
-	if body.is_in_group("Player"):
-		label.visible = true
+	pass
+	#if body.is_in_group("Player"):
+		#label.visible = true
 
 func _on_body_exited(body):
-	if body.is_in_group("Player"):
-		label.visible = false
+	pass
+	#if body.is_in_group("Player"):
+	#	label.visible = false
