@@ -53,42 +53,47 @@ func _physics_process(delta: float) -> void:
 
 func turn():
 	#var direction = -1 if flipped_horizontal == true else 1
-	if(isToLeft()):
+	if(getAngleDegrees() > -90 and getAngleDegrees() < 90):
 		sprite.scale.x = 1
 	else:
 		sprite.scale.x = -1
 
 func getAngle():
 	var player_pos = self.global_position
-	var mouse_pos = get_global_mouse_position()
+	var mouse_pos = getMousePos()
 	var angle = player_pos.angle_to_point(mouse_pos)
 	return angle
 
 func isToLeft():
 	var angleLeft = getAngleDegrees() > -90 and getAngleDegrees() < 90
-	return angleLeft if !attackingReverted() else !angleLeft
+	return angleLeft
+
+func getMousePos():
+	var player_pos = self.global_position
+	var mouse_pos = get_global_mouse_position()
+	if (attackingReverted()):
+		mouse_pos = Vector2(player_pos.x - (mouse_pos.x - player_pos.x), player_pos.y - (mouse_pos.y - player_pos.y))
+	return mouse_pos
 
 func attackingReverted():
-	return reverted_attack and attacking
+	return reverted_attack
 
 func getAngleDegrees():
 	return rad_to_deg(getAngle())
 
 func getRacketAngle():
-	if (getAngleDegrees() > -90 and getAngleDegrees() < 90):
+	if (isToLeft()):
 		return getAngle() + 90
 	return -(getAngle() + 90)
 
 func attack():
-	attacking = true
+	#var rotation_subtract = 270 if reverted_attack else 90
+	racketPivot.rotation = getRacketAngle() - 90
 	
-	var rotation_subtract = 270 if attackingReverted else 90
-	#var rotation_subtract = 90
-	racketPivot.rotation = getRacketAngle() - rotation_subtract
-	
-	hitbox.rotation = getRacketAngle() - rotation_subtract
+	hitbox.rotation = getRacketAngle() - 90
 	hitboxShape.disabled = false
-
+	
+	attacking = true
 	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, 1)
 	
 func _on_hitbox_body_entered(body):
@@ -112,7 +117,7 @@ func set_trauma(amount):
 
 func reflectBullet(body):
 	if (!body.converted):
-		var mouseVelocity = body.global_position.direction_to(get_global_mouse_position())
+		var mouseVelocity = body.global_position.direction_to(getMousePos())
 		body.velocity = (3 * mouseVelocity + (-body.velocity))
 		body.converted = true
 		#frameFeeze(0.05, 0.5)
@@ -174,6 +179,7 @@ func activateAttack():
 	racketAnimator.play("Default")
 	
 func deactivateAttack():
+	reverted_attack = false
 	attacking = false
 	if (!hitInAttack):
 		canAttack = false

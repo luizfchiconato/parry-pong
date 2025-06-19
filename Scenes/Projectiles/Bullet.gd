@@ -75,9 +75,9 @@ func _on_body_entered(body):
 
 #Connect and deal damage to the player
 func deal_damage_to_player(player : PlayerMain, forceDamage : bool = false):
-	if (!player.attacking or forceDamage):
-		var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
-		player._take_damage(damage)
+	#if (!player.attacking or forceDamage):
+	var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
+	player._take_damage(damage)
 
 func deal_damage_to_enemy(enemy : EnemyMain):
 	AudioManager.play_sound(AudioManager.ENEMY_HIT_DEFAULT, 0, 0)

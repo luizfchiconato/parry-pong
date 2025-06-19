@@ -106,6 +106,7 @@ WASD - Andar
 Espaço - Dash
 Mouse - Mirar raquete
 Botão esquerdo do mouse - Raquetar
+Botão direito do mouse - Raquetar para trás
 ESC - Pause"
 label_settings = ExtResource("7_muo0c")
 horizontal_alignment = 1
