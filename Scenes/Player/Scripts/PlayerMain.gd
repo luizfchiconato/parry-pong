@@ -19,6 +19,7 @@ const attackFrames = 10
 
 var hitInAttack = false
 var canAttack = true
+var reverted_attack = false
 
 func _ready():
 	$HealthBar.setHealthBar()
@@ -32,7 +33,8 @@ func _physics_process(delta: float) -> void:
 		hitboxShape.disabled = true
 	elif (attacking):
 		attackFrame += 1
-	elif (Input.is_action_just_pressed("Punch") or Input.is_action_just_pressed("Kick")) and (canAttack or hitInAttack):
+	elif (Input.is_action_just_pressed("MouseLeft") or Input.is_action_just_pressed("MouseRight")) and (canAttack or hitInAttack):
+		reverted_attack = Input.is_action_just_pressed("MouseRight")
 		attack()
 	
 	if attacking == true:
@@ -51,7 +53,7 @@ func _physics_process(delta: float) -> void:
 
 func turn():
 	#var direction = -1 if flipped_horizontal == true else 1
-	if(getAngleDegrees() > -90 and getAngleDegrees() < 90):
+	if(isToLeft()):
 		sprite.scale.x = 1
 	else:
 		sprite.scale.x = -1
@@ -63,22 +65,30 @@ func getAngle():
 	return angle
 
 func isToLeft():
-	return getAngleDegrees() > -90 and getAngleDegrees() < 90
+	var angleLeft = getAngleDegrees() > -90 and getAngleDegrees() < 90
+	return angleLeft if !attackingReverted() else !angleLeft
+
+func attackingReverted():
+	return reverted_attack and attacking
 
 func getAngleDegrees():
 	return rad_to_deg(getAngle())
 
 func getRacketAngle():
-	if (isToLeft()):
+	if (getAngleDegrees() > -90 and getAngleDegrees() < 90):
 		return getAngle() + 90
 	return -(getAngle() + 90)
 
 func attack():
-	racketPivot.rotation = getRacketAngle() - 90
-	hitbox.rotation = getRacketAngle() - 90
-	hitboxShape.disabled = false
-	
 	attacking = true
+	
+	var rotation_subtract = 270 if attackingReverted else 90
+	#var rotation_subtract = 90
+	racketPivot.rotation = getRacketAngle() - rotation_subtract
+	
+	hitbox.rotation = getRacketAngle() - rotation_subtract
+	hitboxShape.disabled = false
+
 	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, 1)
 	
 func _on_hitbox_body_entered(body):
