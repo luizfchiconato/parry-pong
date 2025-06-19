@@ -8,8 +8,12 @@ func _ready():
  
 
 func _process(delta):
-	print("fffff")
 	if(Input.is_action_just_pressed("Enter")):
-		print("sadgsadghashasdgsapgnbsadgisadubhgnasd")
-		get_tree().paused = false
-		Global.game_controller.unpause()
+		unpause()
+
+func unpause():
+	get_tree().paused = false
+	Global.game_controller.unpause()
+
+func _load_main_menu():
+	Global.game_controller.load_main_menu()

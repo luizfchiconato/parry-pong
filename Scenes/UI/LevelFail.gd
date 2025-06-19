@@ -97,7 +97,7 @@ const MENSAGENS_BOLICHE: Array = [
 const MENSAGENS_TINTA: Array = [
 	"fdsifuhsrBGDASUIGHADSGA ESCORREGOU QUE NEM UM MERDA",
 	"Pqp caiu de novo",
-	"É difícil mesmo manter o equilíbrio com essa cabeça de playmobil"
+	"É difícil mesmo manter o equilíbrio com essa cabeça de playamobil"
 ]
 
 const SPEED = 12
@@ -120,7 +120,13 @@ func _process(delta):
 	$CanvasLayer/RichTextLabel.text = "[font_size=25]" + chosen_text.substr(0, visible_characters) + "[/font_size]"
 	
 	if(Input.is_action_just_pressed("Enter") or Input.is_action_just_pressed("Esc")):
-		Global.game_controller.reload_current_2d_scene()
+		reload_level()
 		
 	if Input.is_action_just_pressed("Restart"):
-		Global.game_controller.reload_current_2d_scene()
+		reload_level()
+
+func reload_level():
+	Global.game_controller.reload_current_2d_scene()
+
+func _load_main_menu():
+	Global.game_manager.load_main_menu()

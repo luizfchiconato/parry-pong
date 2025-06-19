@@ -5,6 +5,7 @@ class_name GameController extends Node2D
 @export var first_gui_scene : PackedScene
 
 const PAUSE_SCREEN = preload("res://Scenes/UI/Pause.tscn")
+const MAIN_MENU = preload("res://Scenes/MainMenu/InitialMenu/MainMenu.tscn")
 
 var current_gui_scene : Node
 var current_2d_scene : Node
@@ -61,3 +62,6 @@ func unpause():
 
 func isPaused() -> bool:
 	return get_tree().paused
+	
+func load_main_menu():
+	change_2d_scene(MAIN_MENU)
