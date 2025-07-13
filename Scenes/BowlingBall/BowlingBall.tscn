@@ -1,13 +1,18 @@
-[gd_scene load_steps=37 format=3 uid="uid://d2nthv7le704p"]
+[gd_scene load_steps=39 format=3 uid="uid://d2nthv7le704p"]
 
 [ext_resource type="Texture2D" uid="uid://vdxgbskmudf6" path="res://Art/Sprites/BowlingBall.png" id="1_10r8i"]
 [ext_resource type="Script" path="res://Scenes/BowlingBall/BowlingBall.gd" id="1_73p8w"]
 [ext_resource type="Texture2D" uid="uid://iaqjd2o08qvv" path="res://Art/Sprites/BowlingBallConverted.png" id="2_7mqe4"]
 [ext_resource type="Texture2D" uid="uid://be6ukmkfrh34h" path="res://Art/Sprites/balloon.png" id="2_8s006"]
+[ext_resource type="Texture2D" uid="uid://683s0e63atrp" path="res://Art/Sprites/balloon_converted.png" id="3_7nwr1"]
 [ext_resource type="Texture2D" uid="uid://dco05senpw6wm" path="res://Art/Sprites/Explosion.png" id="3_m01tq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t64h2"]
 atlas = ExtResource("2_8s006")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw34n"]
+atlas = ExtResource("3_7nwr1")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_36h1x"]
@@ -68,6 +73,14 @@ animations = [{
 "loop": true,
 "name": &"balloon",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw34n")
+}],
+"loop": true,
+"name": &"balloon_converted",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -267,7 +280,6 @@ frame_progress = 0.860568
 [node name="BallSprite" type="AnimatedSprite2D" parent="Body"]
 scale = Vector2(1.94643, 1.94643)
 sprite_frames = SubResource("SpriteFrames_phncl")
-animation = &"balloon"
 
 [node name="BodyCollision" type="CollisionShape2D" parent="Body"]
 shape = SubResource("CircleShape2D_3fuda")

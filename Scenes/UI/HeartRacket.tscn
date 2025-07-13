@@ -49,4 +49,4 @@ script = ExtResource("1_rqcnd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mg7dw")
-animation = &"half"
+animation = &"empty"

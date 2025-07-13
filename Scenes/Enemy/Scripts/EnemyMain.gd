@@ -177,19 +177,33 @@ func createBullet():
 		return
 	
 	if (enemy_type == TYPE_BOWLING):
-		createBowlingBall()
+		generateBowlingBall()
 		restartBulletTimer()
 	elif (enemy_type == TYPE_VOLLEY):
 		createLaser()
 	else:
-		createDefaultBall()
+		generateDefaultBall()
 		restartBulletTimer()
 
 func createLaser():
 	var laser := Laser.instantiate() as Laser
 	Global.game_controller.add_2d_scene_child(laser)
 
-func createBowlingBall():
+func generateBowlingBall():
+	var bullet = createBowlingBall()
+	Global.game_controller.add_2d_scene_child(bullet)
+	
+	if (min_balls_per_shot == 1):
+		createAngleBowling(0, 1)
+		createAngleBowling(1, 1)
+		
+	if (min_balls_per_shot == 2):
+		createAngleBowling(0, 0)
+		createAngleBowling(1, 0)
+		createAngleBowling(0, 1)
+		createAngleBowling(1, 1)
+
+func createBowlingBall() -> BowlingBall:
 	var bullet := BowlingBall.instantiate() as BowlingBall
 	if (throw_balloon == true):
 		bullet.type = 1
@@ -198,17 +212,19 @@ func createBowlingBall():
 	bullet.vertical_velocity = 10
 	bullet.set_as_top_level(true)
 	bullet.parent_enemy = self
+	return bullet
+
+func createAngleBowling(left : int, up: int):
+	var bullet = createBowlingBall()
+	bullet.left = left
+	bullet.up = up
+	bullet.offset_from_player = true
 	Global.game_controller.add_2d_scene_child(bullet)
-	
-func createDefaultBall():
-	var bullet := Bullet.instantiate() as Bullet
-	bullet.parryable = rng.randf_range(1,100) > unparriableChance
-	bullet.global_position = global_position
-	bullet.set_as_top_level(true)
+
+func generateDefaultBall():
+	var bullet = createBall()
 	bullet.entropy = entropy
 	Global.game_controller.add_2d_scene_child(bullet)
-	
-	print(min_balls_per_shot)
 	
 	if (min_balls_per_shot == 1):
 		createAngleBullet(0.5)
@@ -220,10 +236,15 @@ func createDefaultBall():
 		createAngleBullet(1)
 		createAngleBullet(-1)
 
-func createAngleBullet(angle: float):
+func createBall() -> Bullet:
 	var bullet := Bullet.instantiate() as Bullet
+	bullet.parryable = rng.randf_range(1,100) > unparriableChance
 	bullet.global_position = global_position
 	bullet.set_as_top_level(true)
+	return bullet
+
+func createAngleBullet(angle: float):
+	var bullet = createBall()
 	bullet.angle = angle
 	bullet.explodingBulletsQuantity = 3
 	bullet.scale.x = 0.3

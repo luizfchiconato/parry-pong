@@ -44,6 +44,10 @@ var end_position
 
 const DAMAGE_BOWLING = 2
 
+var offset_from_player = false
+var left = 0
+var up = 0
+
 var PaintSlime = load("res://Scenes/Projectiles/PaintSlimeCircle.tscn")
 var instantiated_paint
 
@@ -58,14 +62,25 @@ func _ready():
 		anim_sprite_2.play("balloon")
 		anim_sprite_2.scale = Vector2(0.85, 0.85)
 		radius_bomb.visible = false
-		radius_bomb_internal.visible = false
+		#radius_bomb_internal.visible = false
 	#bomb_animator.play("default")
 	
 	var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 	
 	
 	if (velocity == Vector2.ZERO):
-		var target_pos = player.global_position
+		var target_pos
+		if (!offset_from_player):
+			target_pos = player.global_position
+		else:
+			if (left == 1 and up == 1):
+				target_pos = Vector2(player.global_position.x - 70, player.global_position.y - 70)
+			elif (left == 1 and up == 0):
+				target_pos = Vector2(player.global_position.x - 70, player.global_position.y + 70)
+			elif (left == 0 and up == 1):
+				target_pos = Vector2(player.global_position.x + 70, player.global_position.y - 70)
+			else:
+				target_pos = Vector2(player.global_position.x + 70, player.global_position.y + 70)
 		self.rotation = target_pos.angle()
 		
 		var x_entropy = RandomNumberGenerator.new().randf_range(-50, 50)
@@ -99,7 +114,10 @@ func convert_ball(delta):
 
 	previousConverted = true
 	$Body/CPUParticles2D.set_color("#4ed4c2")
-	anim_sprite_2.play("converted")
+	if (type != 1):
+		anim_sprite_2.play("converted")
+	else:
+		anim_sprite_2.play("balloon_converted")
 	#$Sprite2D.texture = load("res://Art/Sprites/ball_converted.png")
 	if (is_instance_valid(parent_enemy)):
 		var target_pos = parent_enemy.global_position
