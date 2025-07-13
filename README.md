@@ -1,5 +1,5 @@
-# Dodgepong
-Top-down bullet-hell game, implemented in Godot, where you play as a tennis table player trying to escape a mortal game of dodgeball created by your abusive coach.
+# Parry Pong
+Jogo top-down de bullet hell, implementado em Godot, em que você é um aluno baixinho com uma raquete de tênis de mesa tentando escapar de um jogo mortal de bola queimada criado pelo seu treinador abusivo.
 
-This project uses the [Top-down Starter Project By ForlornU](https://github.com/ForlornU/TopdownStarter) as the initial template.
+Esse projeto utiliza o [Top-down Starter Project By ForlornU](https://github.com/ForlornU/TopdownStarter) como o template inicial.
 
