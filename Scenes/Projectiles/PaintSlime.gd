@@ -17,27 +17,41 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body is PlayerMain:
-		original_modulate = body.modulate
-		startHitTimeout(body)
+		body.entered_paint(self)
 
-func startHitTimeout(body):
-	$HitTimeout.start()
-	tween = create_tween()
-	tween.tween_property(body, "modulate", Color.RED, $HitTimeout.wait_time)
+#func startHitTimeout(body):
+	#$HitTimeout.start()
+	#tween = create_tween()
+	#tween.tween_property(body, "modulate", Color.RED, $HitTimeout.wait_time)
 
 func _on_area_2d_body_exited(body):
-	stopHitTimeout(body)
+	if body is PlayerMain:
+		body.exited_paint(self)
+	#stopHitTimeout(body)
 		
 
-func stopHitTimeout(body):
-	if body is PlayerMain:
-		body.modulate = original_modulate
-		$HitTimeout.stop()
-		if (tween != null):
-			tween.stop()
+#func stopHitTimeout(body):
+#	if body is PlayerMain:
+#		body.modulate = original_modulate
+#		$HitTimeout.stop()
+#		if (tween != null):
+#			tween.stop()
 
-func _on_hit_timeout_timeout():
-	var player = get_tree().get_first_node_in_group("Player") as PlayerMain
-	player._take_damage(DAMAGE_PAINT)
-	stopHitTimeout(player)
-	startHitTimeout(player)
+#func _on_hit_timeout_timeout():
+#	var player = get_tree().get_first_node_in_group("Player") as PlayerMain
+#	player._take_damage(DAMAGE_PAINT)
+#	stopHitTimeout(player)
+#	startHitTimeout(player)
+
+func start_timer():
+	#print("asxcfvgbhnjmk,l")
+	$ClearTimer.start(1)
+	#print($ClearTimer.is_stopped())
+
+func _on_clear_timer_timeout():
+	#print("hasdfg,l")
+	destroy()
+
+func destroy():
+	#print("jjjjjj")
+	queue_free()

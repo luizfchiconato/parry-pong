@@ -142,6 +142,7 @@ func check_y_level():
 func explode_paint():
 	can_deflect = false
 	instantiated_paint = PaintSlime.instantiate() as PaintSlime
+	instantiated_paint.start_timer()
 
 	instantiated_paint.scale = Vector2(4, 4)
 	var player = get_tree().get_first_node_in_group("Player") as PlayerMain

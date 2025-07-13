@@ -739,9 +739,13 @@ wait_time = 0.8
 position = Vector2(-486.667, 298.333)
 scale = Vector2(2.5, 2.5)
 
+[node name="PaintHitTimer" type="Timer" parent="."]
+wait_time = 0.7
+
 [connection signal="area_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="FSM/Idle" method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="FSM/Moving/DashTimeout" to="FSM/Moving" method="_on_dash_timeout_timeout"]
 [connection signal="timeout" from="FSM/Moving/DashTimer" to="FSM/Moving" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="AttackTimeout" to="." method="_on_attack_timeout_timeout"]
+[connection signal="timeout" from="PaintHitTimer" to="." method="_on_hit_timeout_timeout"]

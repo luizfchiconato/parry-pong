@@ -370,7 +370,7 @@ hit_particles = NodePath("HitParticles")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_toimg")
-animation = &"BossTest"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="HitParticles" parent="AnimatedSprite2D" instance=ExtResource("21_d5isq")]

@@ -22,4 +22,7 @@ func add_level_button(level : PackedScene, level_index: int):
 	button.text = str("Ginásio ", level_index + 1)
 	button.level_index = level_index
 	button.custom_minimum_size.y = 40
-	$CenterContainer/VBoxContainer.add_child(button)
+	if (level_index <= 9):
+		$CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer1.add_child(button)
+	else:
+		$CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2.add_child(button)		

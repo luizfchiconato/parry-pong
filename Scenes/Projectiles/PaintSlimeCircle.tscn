@@ -32,6 +32,11 @@ shape = SubResource("CircleShape2D_57v1y")
 [node name="HitTimeout" type="Timer" parent="."]
 wait_time = 0.7
 
+[node name="ClearTimer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="HitTimeout" to="." method="_on_hit_timeout_timeout"]
+[connection signal="timeout" from="ClearTimer" to="." method="_on_clear_timer_timeout"]

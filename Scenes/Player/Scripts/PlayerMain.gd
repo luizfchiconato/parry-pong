@@ -21,6 +21,11 @@ var hitInAttack = false
 var canAttack = true
 var reverted_attack = false
 
+var original_modulate
+var paint_tween
+
+var DAMAGE_PAINT = 2
+
 func _ready():
 	$HealthBar.setHealthBar()
 
@@ -191,3 +196,33 @@ func deactivateAttack():
 
 func _on_attack_timeout_timeout():
 	activateAttack()
+
+var active_paint_instances_number = 0
+
+func entered_paint(paint_instance : PaintSlime):
+	active_paint_instances_number = active_paint_instances_number + 1
+	if (active_paint_instances_number == 1):
+		startHitTimeout()
+
+func startHitTimeout():
+	original_modulate = self.modulate
+	$PaintHitTimer.start()
+	print($PaintHitTimer.is_stopped())
+	paint_tween = create_tween()
+	paint_tween.tween_property(self, "modulate", Color.RED, $PaintHitTimer.wait_time)
+
+func exited_paint(paint_instance):
+	active_paint_instances_number = active_paint_instances_number - 1
+	if (active_paint_instances_number == 0):
+		stopHitTimeout()
+
+func stopHitTimeout():
+	self.modulate = original_modulate
+	$PaintHitTimer.stop()
+	if (paint_tween != null):
+		paint_tween.stop()
+
+func _on_hit_timeout_timeout():
+	_take_damage(DAMAGE_PAINT)
+	stopHitTimeout()
+	startHitTimeout()
