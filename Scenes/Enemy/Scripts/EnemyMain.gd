@@ -88,6 +88,7 @@ func activateEnemy():
 	else:
 		$AnimatedSprite2D.play("Idle")
 	#animator.play("Idle")
+	self.z_index = 5
 	$AnimatedSprite2D.modulate.a = 1
 	$AnimatedSprite2D.scale.x = 1
 	$AnimatedSprite2D.scale.y = 1
@@ -144,7 +145,10 @@ func _ready():
 	health = max_health
 
 	if wait_for_deaths > 0:
+		self.z_index = 0
 		deactivateEnemy()
+	else:
+		self.z_index = 5
 	$BulletTimer.wait_time = bullet_interval
 
 func deactivateEnemy():

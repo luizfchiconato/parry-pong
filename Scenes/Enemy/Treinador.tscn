@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://68asdmjpuyue"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/Treinador.gd" id="1_7hw4v"]
+[ext_resource type="Texture2D" uid="uid://b3j6dtdy0fpwv" path="res://Art/Sprites/TreinadorFullPlus.png" id="1_oyq62"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b5m5"]
+atlas = ExtResource("1_oyq62")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qptvr"]
+atlas = ExtResource("1_oyq62")
+region = Rect2(300, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yogb4"]
+atlas = ExtResource("1_oyq62")
+region = Rect2(600, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv6qs"]
+atlas = ExtResource("1_oyq62")
+region = Rect2(900, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc4me"]
+atlas = ExtResource("1_oyq62")
+region = Rect2(1200, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad73m"]
+atlas = ExtResource("1_oyq62")
+region = Rect2(1500, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2eb1u"]
+atlas = ExtResource("1_oyq62")
+region = Rect2(1800, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar6lg"]
+atlas = ExtResource("1_oyq62")
+region = Rect2(2100, 0, 300, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qwhbv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b5m5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qptvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yogb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uv6qs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc4me")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad73m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2eb1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar6lg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Treinador" type="Node2D"]
+script = ExtResource("1_7hw4v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_qwhbv")
+frame_progress = 0.464805

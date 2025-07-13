@@ -124,9 +124,12 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("Restart"):
 		reload_level()
+		
+	if(Input.is_action_just_pressed("Q")):
+		_load_main_menu()
 
 func reload_level():
 	Global.game_controller.reload_current_2d_scene()
 
 func _load_main_menu():
-	Global.game_manager.load_main_menu()
+	Global.game_controller.load_main_menu()

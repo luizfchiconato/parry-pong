@@ -1,5 +1,6 @@
 extends Node2D
 
+const BOSS = preload("res://Scenes/Levels/LevelList/Boss.tscn")
 const TUTORIAL_MAIOR = preload("res://Scenes/Levels/LevelList/TutorialMaior.tscn")
 const TUTORIAL = preload("res://Scenes/Levels/LevelList/Tutorial.tscn")
 const APRESENTACAO_BOLICHE = preload("res://Scenes/Levels/LevelList/ApresentacaoBoliche.tscn")
@@ -14,6 +15,7 @@ const CHUMBO_MENOR = preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn")
 const BANDEIRA_TINTA = preload("res://Scenes/Levels/LevelList/BandeiraTinta.tscn")
 
 const GINASIOS: Array = [
+	BOSS,
 	TUTORIAL_MAIOR,
 	TUTORIAL,
 	APRESENTACAO_BOLICHE,

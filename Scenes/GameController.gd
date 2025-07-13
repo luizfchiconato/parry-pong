@@ -30,9 +30,13 @@ func change_gui_scene(new_scene: PackedScene, delete: bool = true, keep_running:
 
 func deload_current_gui_scene():
 	if (current_gui_scene != null):
-		print("limpou")
 		current_gui_scene.queue_free()
 	current_gui_scene = null
+	
+func deload_current_2d_scene():
+	if (current_2d_scene != null):
+		current_2d_scene.queue_free()
+	current_2d_scene = null
 
 func change_2d_scene(new_scene: PackedScene, delete: bool = true, keep_running: bool = false):
 	deload_current_gui_scene()
@@ -64,4 +68,5 @@ func isPaused() -> bool:
 	return get_tree().paused
 	
 func load_main_menu():
-	change_2d_scene(MAIN_MENU)
+	deload_current_2d_scene()
+	change_gui_scene(MAIN_MENU)

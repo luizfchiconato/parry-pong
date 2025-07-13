@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bvt7e871e6jeg"]
+[gd_scene load_steps=66 format=3 uid="uid://bvt7e871e6jeg"]
 
 [ext_resource type="Texture2D" uid="uid://d3u5e5gpffpwe" path="res://Scenes/Enemy/Sprites/Enemy09.png" id="1_chwbu"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_db41y"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ckummm8onyj8r" path="res://Scenes/Enemy/Sprites/Enemy16.png" id="8_2dwqk"]
 [ext_resource type="Texture2D" uid="uid://bhsy76jkaqk1j" path="res://Scenes/Enemy/Sprites/Enemy18.png" id="9_yb6v3"]
 [ext_resource type="Texture2D" uid="uid://d2vyrm5lwyocn" path="res://Scenes/Enemy/Sprites/Enemy19.png" id="10_3xcdn"]
+[ext_resource type="Texture2D" uid="uid://b3j6dtdy0fpwv" path="res://Art/Sprites/TreinadorFullPlus.png" id="10_4hvp5"]
 [ext_resource type="Texture2D" uid="uid://cih5p1npr3l12" path="res://Scenes/Enemy/Sprites/Enemy20.png" id="11_4tadt"]
 [ext_resource type="Texture2D" uid="uid://bciwyh2xk1t0w" path="res://Scenes/Enemy/Sprites/Enemy21.png" id="12_kwtv6"]
 [ext_resource type="Texture2D" uid="uid://plb1yuj4g11y" path="res://Scenes/Enemy/Sprites/Enemy22.png" id="13_hsklp"]
@@ -27,6 +28,38 @@
 [ext_resource type="Script" path="res://Scripts/AttackData.gd" id="26_b28qd"]
 [ext_resource type="Texture2D" uid="uid://bw36ig60cpuaq" path="res://Art/Sprites/Square.png" id="27_0oljh"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyDeathState.gd" id="27_m2jmx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpqm3"]
+atlas = ExtResource("10_4hvp5")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_673c3"]
+atlas = ExtResource("10_4hvp5")
+region = Rect2(300, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1qtf"]
+atlas = ExtResource("10_4hvp5")
+region = Rect2(600, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qws5a"]
+atlas = ExtResource("10_4hvp5")
+region = Rect2(900, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io482"]
+atlas = ExtResource("10_4hvp5")
+region = Rect2(1200, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb3h1"]
+atlas = ExtResource("10_4hvp5")
+region = Rect2(1500, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aohhr"]
+atlas = ExtResource("10_4hvp5")
+region = Rect2(1800, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lynix"]
+atlas = ExtResource("10_4hvp5")
+region = Rect2(2100, 0, 300, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jyenf"]
 atlas = ExtResource("15_yjq43")
@@ -126,6 +159,35 @@ animations = [{
 "loop": false,
 "name": &"Attack",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpqm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_673c3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1qtf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qws5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io482")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb3h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aohhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lynix")
+}],
+"loop": true,
+"name": &"BossTest",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -308,7 +370,7 @@ hit_particles = NodePath("HitParticles")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_toimg")
-animation = &"Thrown"
+animation = &"BossTest"
 autoplay = "Idle"
 
 [node name="HitParticles" parent="AnimatedSprite2D" instance=ExtResource("21_d5isq")]

@@ -10,6 +10,10 @@ func _ready():
 func _process(delta):
 	if(Input.is_action_just_pressed("Enter")):
 		unpause()
+		
+	if(Input.is_action_just_pressed("Q")):
+		unpause()
+		_load_main_menu()
 
 func unpause():
 	get_tree().paused = false

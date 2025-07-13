@@ -71,7 +71,7 @@ layout_mode = 2
 [node name="Voltar ao jogo" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
-text = "Voltar ao jogo"
+text = "[ENTER] Voltar ao jogo"
 
 [node name="Opções" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
 process_mode = 3
@@ -81,7 +81,7 @@ text = "Opções"
 [node name="Menu principal" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
-text = "Menu principal"
+text = "[Q] Menu principal"
 
 [connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer/Voltar ao jogo" to="." method="unpause"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer/Menu principal" to="." method="_load_main_menu"]

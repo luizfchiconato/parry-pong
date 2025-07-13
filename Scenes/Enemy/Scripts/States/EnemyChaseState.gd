@@ -15,10 +15,11 @@ func Enter():
 	#sanimator.play("Chasing")
 	print("WALK")
 	if enemy.enemy_type == TYPE_BOWLING:
-		print('aaa')
 		sprite.play("WalkBowling")
+		#sprite.play("BossTest")
 	else:
 		sprite.play("Walk")
+		#sprite.play("BossTest")
 
 func Update(_delta):
 	var player = get_tree().get_nodes_in_group("Player")[0]  as CharacterBody2D

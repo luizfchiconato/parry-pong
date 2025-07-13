@@ -119,7 +119,7 @@ text = "[R] Tentar novamente"
 
 [node name="Menu principal" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Menu principal"
+text = "[Q] Menu principal"
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/Tentar novamente2" to="." method="reload_level"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/Menu principal" to="." method="_load_main_menu"]
