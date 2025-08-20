@@ -105,7 +105,7 @@ func _on_hitbox_body_entered(body):
 	if (!attacking):
 		return
 
-	if body is Bullet:
+	if body is HockeyDisc or body is Bullet:
 		if (!body.parryable):
 			return
 		#$Camera2D.set_trauma(0.2)

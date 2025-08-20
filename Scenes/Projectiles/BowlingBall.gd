@@ -12,7 +12,7 @@ var parryable = true
 
 var explodingBowlingBallsQuantity = 10
 
-var BowlingBall = load("res://Scenes/BowlingBall/BowlingBall.tscn")
+var BowlingBall = load("res://Scenes/Projectiles/BowlingBall.tscn")
 var Player = load("res://Scenes/Player/Player.tscn")
 @onready var arch_body = $Body
 

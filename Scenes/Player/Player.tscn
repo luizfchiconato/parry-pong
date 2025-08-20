@@ -524,7 +524,7 @@ floor_block_on_wall = false
 script = ExtResource("1_y5oq4")
 sprite = NodePath("AnimatedSprite2D")
 healthbar = NodePath("Camera2D/ProgressBar")
-health = 10
+health = 8
 hit_particles = NodePath("hit_particle_blood")
 block_turn = true
 
@@ -654,7 +654,7 @@ animator = NodePath("../../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(2, 2)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.4, 1.4)
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 script = ExtResource("33_d26hy")
@@ -736,8 +736,10 @@ uppercase = true
 wait_time = 0.8
 
 [node name="HealthBar" parent="." instance=ExtResource("37_c8lyp")]
-position = Vector2(-486.667, 298.333)
+position = Vector2(-453.333, 298.333)
 scale = Vector2(2.5, 2.5)
+max_health = 8
+health = 8
 
 [node name="PaintHitTimer" type="Timer" parent="."]
 wait_time = 0.7

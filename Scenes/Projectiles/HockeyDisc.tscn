@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://db7fo0h12g8cd"]
+
+[ext_resource type="Script" path="res://Scenes/Projectiles/HockeyDisc.gd" id="1_r02bm"]
+[ext_resource type="Texture2D" uid="uid://o3e1ap6w7ujp" path="res://Art/Sprites/HockeyDisc.png" id="3_mthp2"]
+[ext_resource type="Texture2D" uid="uid://dualwutj51ik4" path="res://Art/Sprites/Lightttt.png" id="3_skuh0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1ylk"]
+size = Vector2(23, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kvyd"]
+atlas = ExtResource("3_mthp2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js3j5"]
+atlas = ExtResource("3_mthp2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eyg2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kvyd")
+}],
+"loop": true,
+"name": &"converted",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js3j5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HockeyDisc" type="Area2D"]
+z_index = 20
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_r02bm")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 20
+emission_shape = 1
+emission_sphere_radius = 19.3
+gravity = Vector2(0, 0)
+initial_velocity_min = 27.4
+initial_velocity_max = 59.36
+angular_velocity_min = 4.75
+angular_velocity_max = 444.72
+scale_amount_max = 2.0
+color = Color(0.972549, 0.164706, 0.164706, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_n1ylk")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1.90735e-06, -4.76837e-07)
+color = Color(0.972549, 0.164706, 0.164706, 1)
+energy = 0.37
+texture = ExtResource("3_skuh0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eyg2t")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

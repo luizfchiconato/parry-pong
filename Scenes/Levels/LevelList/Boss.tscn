@@ -21,7 +21,6 @@ next_scene = ExtResource("2_ny1lj")
 [node name="Player" parent="." instance=ExtResource("3_vvgue")]
 z_index = 100
 position = Vector2(-9, 196)
-health = 6
 
 [node name="Enemies" type="Node" parent="."]
 

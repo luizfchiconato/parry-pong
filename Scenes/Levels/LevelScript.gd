@@ -4,7 +4,7 @@ extends Node2D
 
 var death_number = 0
 
-# Called when the node enters the scene tree for the first time.
+# Called whensss the node enters the scene tree for the first time.
 func _ready():
 	Input.set_default_cursor_shape(Input.CURSOR_CROSS)
 

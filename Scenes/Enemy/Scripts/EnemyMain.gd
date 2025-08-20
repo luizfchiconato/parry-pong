@@ -17,7 +17,7 @@ var rng = RandomNumberGenerator.new()
 
 #@onready var animator = $AnimationPlayer
 
-@export_enum("Normal:0", "Bowling:1", "Volley:2") var enemy_type: int
+@export_enum("Normal:0", "Bowling:1", "Volley:2", "Hockey:3") var enemy_type: int
 @export_enum("Normal:0", "None:1", "Intermediary:2", "Extreme:3") var entropy: int
 
 @export_enum("1", "3", "5") var min_balls_per_shot: int
@@ -33,11 +33,13 @@ signal died
 const TYPE_NORMAL = 0
 const TYPE_BOWLING = 1
 const TYPE_VOLLEY = 2
+const TYPE_HOCKEY = 3
 const speed = 200
 var death_velocity : Vector2
 
-var Bullet = load("res://Scenes/Projectiles/Bullet.tscn")
-var BowlingBall = load("res://Scenes/BowlingBall/BowlingBall.tscn")
+var BulletScene = load("res://Scenes/Projectiles/Bullet.tscn")
+var HockeyDiscScene = load("res://Scenes/Projectiles/HockeyDisc.tscn")
+var BowlingBall = load("res://Scenes/Projectiles/BowlingBall.tscn")
 var Laser = load("res://Scenes/Projectiles/Laser.tscn")
 
 #func _physics_process(_delta):
@@ -179,6 +181,8 @@ func createBullet():
 	if (enemy_type == TYPE_BOWLING):
 		generateBowlingBall()
 		restartBulletTimer()
+	elif (enemy_type == TYPE_HOCKEY):
+		generateDisc()
 	elif (enemy_type == TYPE_VOLLEY):
 		createLaser()
 	else:
@@ -204,22 +208,22 @@ func generateBowlingBall():
 		createAngleBowling(1, 1)
 
 func createBowlingBall() -> BowlingBall:
-	var bullet := BowlingBall.instantiate() as BowlingBall
+	var bowlingBall := BowlingBall.instantiate() as BowlingBall
 	if (throw_balloon == true):
-		bullet.type = 1
-	bullet.global_position = global_position
-	# bullet.ground_velocity = Vector2(100, 120)
-	bullet.vertical_velocity = 10
-	bullet.set_as_top_level(true)
-	bullet.parent_enemy = self
-	return bullet
+		bowlingBall.type = 1
+	bowlingBall.global_position = global_position
+	# bowlingBall.ground_velocity = Vector2(100, 120)
+	bowlingBall.vertical_velocity = 10
+	bowlingBall.set_as_top_level(true)
+	bowlingBall.parent_enemy = self
+	return bowlingBall
 
 func createAngleBowling(left : int, up: int):
-	var bullet = createBowlingBall()
-	bullet.left = left
-	bullet.up = up
-	bullet.offset_from_player = true
-	Global.game_controller.add_2d_scene_child(bullet)
+	var bowlingBall = createBowlingBall()
+	bowlingBall.left = left
+	bowlingBall.up = up
+	bowlingBall.offset_from_player = true
+	Global.game_controller.add_2d_scene_child(bowlingBall)
 
 func generateDefaultBall():
 	var bullet = createBall()
@@ -235,13 +239,30 @@ func generateDefaultBall():
 		createAngleBullet(-0.5)
 		createAngleBullet(1)
 		createAngleBullet(-1)
+		
+func generateDisc():
+	var disc = createDisc()
+	disc.entropy = entropy
+	Global.game_controller.add_2d_scene_child(disc)
 
 func createBall() -> Bullet:
-	var bullet := Bullet.instantiate() as Bullet
+	var bullet := BulletScene.instantiate() as Bullet
 	bullet.parryable = rng.randf_range(1,100) > unparriableChance
 	bullet.global_position = global_position
 	bullet.set_as_top_level(true)
 	return bullet
+
+func createDefaultDisc():
+	var disc = createBall()
+	disc.entropy = entropy
+	Global.game_controller.add_2d_scene_child(disc)
+
+func createDisc() -> HockeyDisc:
+	var hockeyDisc := HockeyDiscScene.instantiate() as HockeyDisc
+	hockeyDisc.parryable = rng.randf_range(1,100) > unparriableChance
+	hockeyDisc.global_position = global_position
+	hockeyDisc.set_as_top_level(true)
+	return hockeyDisc
 
 func createAngleBullet(angle: float):
 	var bullet = createBall()

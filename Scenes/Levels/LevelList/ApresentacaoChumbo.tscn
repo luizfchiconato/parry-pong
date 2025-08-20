@@ -21,7 +21,6 @@ next_scene = ExtResource("2_46qdt")
 [node name="Player" parent="." instance=ExtResource("3_yiyci")]
 z_index = 100
 position = Vector2(-15, 189)
-health = 6
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -30,22 +29,47 @@ position = Vector2(-15, -76)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
 bullet_interval = 0.5
+wait_for_deaths = 0
 unparriableChance = 70
+max_health = 6
+stationary = false
+enemy_type = 0
+entropy = 0
+min_balls_per_shot = 0
+max_balls_per_shot = 0
+throw_balloon = false
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
+block_turn = false
 
 [node name="Enemy6" parent="Enemies" instance=ExtResource("4_watu6")]
 position = Vector2(-248, -73)
 bullet_interval = 1.0
 wait_for_deaths = 1
 unparriableChance = 20
+max_health = 6
+stationary = false
+enemy_type = 0
+entropy = 0
+min_balls_per_shot = 0
+max_balls_per_shot = 0
+throw_balloon = false
+block_turn = false
 
 [node name="Enemy10" parent="Enemies" instance=ExtResource("4_watu6")]
 position = Vector2(205, -59)
 bullet_interval = 1.0
 wait_for_deaths = 1
 unparriableChance = 20
+max_health = 6
+stationary = false
+enemy_type = 0
+entropy = 0
+min_balls_per_shot = 0
+max_balls_per_shot = 0
+throw_balloon = false
+block_turn = false
 
 [node name="Enemy11" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_watu6")]
 position = Vector2(-295, -75)
@@ -53,12 +77,18 @@ attack_node = NodePath("../Enemy10/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy10/FSM/enemy_chase_state")
 bullet_interval = 1.5
 wait_for_deaths = 3
+unparriableChance = 0
+max_health = 6
+stationary = false
 enemy_type = 1
-min_balls_per_shot = 1
-max_balls_per_shot = 1
+entropy = 0
+min_balls_per_shot = 0
+max_balls_per_shot = 0
+throw_balloon = false
 sprite = NodePath("../Enemy10/AnimatedSprite2D")
 healthbar = NodePath("../Enemy10/ProgressBar")
 hit_particles = NodePath("../Enemy10/HitParticles")
+block_turn = false
 
 [node name="Enemy9" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_watu6")]
 position = Vector2(237, 204)
@@ -66,9 +96,18 @@ attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
 bullet_interval = 1.0
 wait_for_deaths = 3
+unparriableChance = 0
+max_health = 6
+stationary = false
+enemy_type = 0
+entropy = 0
+min_balls_per_shot = 0
+max_balls_per_shot = 0
+throw_balloon = false
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
+block_turn = false
 
 [node name="Enemy12" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_watu6")]
 position = Vector2(228, -44)
@@ -77,9 +116,17 @@ chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
 bullet_interval = 1.0
 wait_for_deaths = 3
 unparriableChance = 20
+max_health = 6
+stationary = false
+enemy_type = 0
+entropy = 0
+min_balls_per_shot = 0
+max_balls_per_shot = 0
+throw_balloon = false
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
+block_turn = false
 
 [node name="Enemy8" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_watu6")]
 position = Vector2(-267, 162)
@@ -88,9 +135,17 @@ chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
 bullet_interval = 1.0
 wait_for_deaths = 3
 unparriableChance = 20
+max_health = 6
+stationary = false
+enemy_type = 0
+entropy = 0
+min_balls_per_shot = 0
+max_balls_per_shot = 0
+throw_balloon = false
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
+block_turn = false
 
 [node name="SceneSettings" parent="." instance=ExtResource("5_vrveq")]
 

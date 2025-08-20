@@ -1,4 +1,4 @@
-class_name Bullet extends Area2D
+class_name HockeyDisc extends Area2D
 
 @export var speed = 180
 var velocity = Vector2.ZERO
@@ -15,7 +15,6 @@ var explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(10, 14)
 
 @export_enum("Normal:0", "None:1", "Intermediary:2", "Extreme:3") var entropy: int
 
-var BulletScene = load("res://Scenes/Projectiles/Bullet.tscn")
 var Player = load("res://Scenes/Player/Player.tscn")
 
 const DAMAGE_LARGE_BULLET = 2
@@ -24,10 +23,9 @@ const DAMAGE_SMALL_BULLET = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
-	
+	$AnimatedSprite2D.play("default")
 	if (!parryable):
 		#$CPUParticles2D.set_color("#000000")
-		$Sprite2D.texture = load("res://Art/Sprites/ball_black.png")
 		explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(3, 8)
 	
 	if (velocity == Vector2.ZERO):
@@ -60,7 +58,7 @@ func _physics_process(delta):
 		previousConverted = true
 		$CPUParticles2D.set_color("#4ed4c2")
 		$CPUParticles2D.amount = $CPUParticles2D.amount * 4
-		$Sprite2D.texture = load("res://Art/Sprites/ball_converted.png")
+		$AnimatedSprite2D.play("converted")
 
 func _on_body_entered(body):
 	if body.is_in_group("Player") and !converted:
@@ -91,7 +89,7 @@ func createBullets():
 
 func createBullet(angle: float):
 	angle = deg_to_rad(angle)
-	var bullet: Bullet = duplicate()
+	var bullet: HockeyDisc = duplicate()
 	bullet.global_position = global_position
 	bullet.velocity = -self.velocity
 	bullet.velocity = bullet.velocity.rotated(angle)
