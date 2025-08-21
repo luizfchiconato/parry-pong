@@ -1,7 +1,7 @@
-class_name HockeyDisc extends Area2D
+class_name HockeyDisc extends CharacterBody2D
 
-@export var speed = 180
-var velocity = Vector2.ZERO
+@export var speed = 250
+# var velocity = Vector2.ZERO
 var target_pos = Vector2.ZERO
 
 var converted = false
@@ -30,7 +30,7 @@ func _ready():
 	
 	if (velocity == Vector2.ZERO):
 		var target_pos = player.global_position
-		self.rotation = target_pos.angle()
+		#self.rotation = target_pos.angle()
 		
 		var x_entropy = 0
 		var y_entropy = 0
@@ -52,24 +52,76 @@ func _ready():
 		velocity = velocity.rotated(angle)
 
 func _physics_process(delta):
-	self.global_position += velocity * speed * delta
+	# self.global_position += velocity * speed * delta
+	
+	var collision : KinematicCollision2D = move_and_collide(velocity * speed * delta)
+	if collision:
+		var collider = collision.get_collider()
+		if (collider is PlayerMain and !converted):
+			print(velocity.length())
+			collider._take_damage(DAMAGE_LARGE_BULLET)
+			velocity = velocity.bounce(collision.get_normal())
+			velocity = velocity * 0.9
+			
+		elif (collider is EnemyMain and converted):
+			var hit_chance
+			var speed = velocity.length()
+			hit_chance = 83 * speed - 116
+			if (speed > 3):
+				hit_chance = 100
+			elif (speed < 1.4):
+				hit_chance = 0
+			
+			var rng = RandomNumberGenerator.new()
+			var hit_enemy = rng.randf_range(1,100) < hit_chance
+			
+			if(hit_enemy):
+				AudioManager.play_sound(AudioManager.ENEMY_HIT_DEFAULT, 0, 0)
+				collider._take_damage(DAMAGE_LARGE_BULLET, velocity)
+				velocity = velocity.bounce(collision.get_normal())
+				velocity = velocity * 0.9
+				print("hit")
+				print(speed)
+			else:
+				AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.5)
+				converted = false
+				var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
+				velocity = self.global_position.direction_to(player.global_position)
+				velocity = velocity * speed * 1.2
+				print("deflect")
+				print(speed)
+				#velocity = velocity.bounce(collision.get_normal())
+				#velocity = velocity * 1.5
+			
+			
+		else:
+			velocity = velocity.bounce(collision.get_normal())
+			velocity = velocity * 0.9
+		
+		
 	
 	if converted and !previousConverted:
 		previousConverted = true
 		$CPUParticles2D.set_color("#4ed4c2")
-		$CPUParticles2D.amount = $CPUParticles2D.amount * 4
+		#$CPUParticles2D.amount = $CPUParticles2D.amount * 4
 		$AnimatedSprite2D.play("converted")
+		
+	if !converted and previousConverted:
+		previousConverted = false
+		$CPUParticles2D.set_color("#f82a2a")
+		#$CPUParticles2D.amount = $CPUParticles2D.amount * 4
+		$AnimatedSprite2D.play("default")
 
-func _on_body_entered(body):
-	if body.is_in_group("Player") and !converted:
-		var player = get_tree().get_first_node_in_group("Player") as PlayerMain
-		if player.is_dashing():
-			return
-		deal_damage_to_player(body, !parryable)
-		queue_free()		
-	if body.is_in_group("Enemy") and converted:
-		deal_damage_to_enemy(body)
-		queue_free()
+#func _on_body_entered(body):
+#	if body.is_in_group("Player") and !converted:
+#		var player = get_tree().get_first_node_in_group("Player") as PlayerMain
+#		if player.is_dashing():
+#			return
+#		deal_damage_to_player(body, !parryable)
+#		queue_free()		
+#	if body.is_in_group("Enemy") and converted:
+#		deal_damage_to_enemy(body)
+#		queue_free()
 
 #Connect and deal damage to the player
 func deal_damage_to_player(player : PlayerMain, forceDamage : bool = false):
@@ -100,13 +152,13 @@ func createBullet(angle: float):
 	bullet.parryable = parryable
 	Global.game_controller.add_2d_scene_child(bullet)
 
-func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	if !(body is TileMap):
-		return
+#func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+#	if !(body is TileMap):
+#		return
 
-	if (explodable and !converted):
-		createBullets()
-	queue_free()
+#	if (explodable and !converted):
+#		velocity.bounce(body)
+#	queue_free()
 	
 func destroy():
 	queue_free()

@@ -27,6 +27,7 @@ var rng = RandomNumberGenerator.new()
 
 var parent_death_number: int = 0
 var dying = false
+var disc_active = true
 
 signal died
 
@@ -241,9 +242,11 @@ func generateDefaultBall():
 		createAngleBullet(-1)
 		
 func generateDisc():
-	var disc = createDisc()
-	disc.entropy = entropy
-	Global.game_controller.add_2d_scene_child(disc)
+	if (disc_active):
+		disc_active = false
+		var disc = createDisc()
+		disc.entropy = entropy
+		Global.game_controller.add_2d_scene_child(disc)
 
 func createBall() -> Bullet:
 	var bullet := BulletScene.instantiate() as Bullet

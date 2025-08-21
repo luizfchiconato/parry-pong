@@ -105,7 +105,11 @@ func _on_hitbox_body_entered(body):
 	if (!attacking):
 		return
 
-	if body is HockeyDisc or body is Bullet:
+	if body is HockeyDisc:
+		hitInAttack = true
+		reflectDisk(body)
+	
+	if body is Bullet:
 		if (!body.parryable):
 			return
 		#$Camera2D.set_trauma(0.2)
@@ -128,6 +132,12 @@ func reflectBullet(body):
 		#frameFeeze(0.05, 0.5)
 		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.7)
 
+func reflectDisk(body):
+	var mouseVelocity = body.global_position.direction_to(getMousePos())
+	body.velocity = (1.5 * mouseVelocity + (-1 * 0.6 * body.velocity))
+	body.converted = true
+	#frameFeeze(0.05, 0.5)
+	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.7)
 
 func reflectBowlingBall(body):
 	if (!body.converted and body.can_deflect):

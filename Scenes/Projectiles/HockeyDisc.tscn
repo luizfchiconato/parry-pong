@@ -34,9 +34,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="HockeyDisc" type="Area2D"]
+[node name="HockeyDisc" type="CharacterBody2D"]
 z_index = 20
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.3, 1.3)
 script = ExtResource("1_r02bm")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -64,7 +64,3 @@ texture = ExtResource("3_skuh0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_eyg2t")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
