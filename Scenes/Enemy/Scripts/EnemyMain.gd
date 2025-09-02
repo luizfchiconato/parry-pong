@@ -27,7 +27,7 @@ var rng = RandomNumberGenerator.new()
 
 var parent_death_number: int = 0
 var dying = false
-var disc_active = true
+
 
 signal died
 
@@ -38,6 +38,9 @@ const TYPE_HOCKEY = 3
 const speed = 200
 var death_velocity : Vector2
 
+var disc_active = true
+var active_disc : HockeyDisc
+
 var BulletScene = load("res://Scenes/Projectiles/Bullet.tscn")
 var HockeyDiscScene = load("res://Scenes/Projectiles/HockeyDisc.tscn")
 var BowlingBall = load("res://Scenes/Projectiles/BowlingBall.tscn")
@@ -47,6 +50,7 @@ var Laser = load("res://Scenes/Projectiles/Laser.tscn")
 	#if (dying):
 	#	print("AAAAAAA")
 		#self.global_position += velocity * speed * _delta
+
 
 #After finishing an attack, we return here to determine our next action based on the players proximity
 func finished_attacking():
@@ -104,12 +108,20 @@ func die(newVelocity):
 	death_velocity = newVelocity
 	$BodyCollider.set_deferred("disabled", true)
 	$AnimatedSprite2D.play("Thrown")
+	
+	if (active_disc != null):
+		active_disc.destroy()
+		active_disc = null
+	
+	if (!dying):
+		emit_signal("died")
+	dying = true
+	
 	#super()
 	#dying = true
 	#self.velocity = velocity
 
 func kill():
-	emit_signal("died")
 	queue_free()
 
 #func _die():
@@ -247,6 +259,7 @@ func generateDisc():
 		var disc = createDisc()
 		disc.entropy = entropy
 		Global.game_controller.add_2d_scene_child(disc)
+		active_disc = disc
 
 func createBall() -> Bullet:
 	var bullet := BulletScene.instantiate() as Bullet

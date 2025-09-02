@@ -37,10 +37,17 @@ LevelManager="*res://Scenes/LevelManager.gd"
 
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+mouse_cursor/custom_image="res://Art/Sprites/Cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(16, 16)
+mouse_cursor/tooltip_position_offset=Vector2(16, 16)
 
 [dotnet]
 
 project/assembly_name="Topdown Starter"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/donut_collision_polygon2D/plugin.cfg")
 
 [file_customization]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://68asdmjpuyue"]
+[gd_scene load_steps=13 format=3 uid="uid://68asdmjpuyue"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Treinador.gd" id="1_7hw4v"]
 [ext_resource type="Texture2D" uid="uid://b3j6dtdy0fpwv" path="res://Art/Sprites/TreinadorFullPlus.png" id="1_oyq62"]
@@ -67,10 +67,26 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Treinador" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o034"]
+size = Vector2(52, 161)
+
+[node name="Treinador" type="CharacterBody2D"]
 script = ExtResource("1_7hw4v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_qwhbv")
 frame_progress = 0.464805
+
+[node name="ShockwaveTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_5o034")
+
+[node name="ShockwaveLocation" type="Node2D" parent="."]
+position = Vector2(15, 87)
+
+[connection signal="timeout" from="ShockwaveTimer" to="." method="_on_shockwave_timer_timeout"]

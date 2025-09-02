@@ -362,11 +362,22 @@ texture_filter = 1
 script = ExtResource("1_db41y")
 attack_node = NodePath("FSM/enemy_attack_state")
 chase_node = NodePath("FSM/enemy_chase_state")
+bullet_interval = null
+wait_for_deaths = null
+unparriableChance = null
+stationary = null
+enemy_type = null
+entropy = null
+min_balls_per_shot = null
+max_balls_per_shot = null
+throw_balloon = null
 sprite = NodePath("AnimatedSprite2D")
 healthbar = NodePath("ProgressBar")
 health = 6
+max_health = null
 flipped_horizontal = true
 hit_particles = NodePath("HitParticles")
+block_turn = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_toimg")

@@ -10,6 +10,7 @@ class_name PlayerMain
 @onready var hitbox = $AnimatedSprite2D/Hitboxes/Racket_Hitbox as Node2D
 @onready var hitboxShape = $AnimatedSprite2D/Hitboxes/Racket_Hitbox/hitboxShape as CollisionShape2D
 @onready var racketAnimator = $AnimatedSprite2D/RacketPivot/Racket/Animation as AnimatedSprite2D
+@export var max_health : int = 8
 
 const DEATH_SCREEN = preload("res://Scenes/UI/LevelFail.tscn")
 
@@ -128,13 +129,15 @@ func reflectBullet(body):
 	if (!body.converted):
 		var mouseVelocity = body.global_position.direction_to(getMousePos())
 		body.velocity = (3 * mouseVelocity + (-body.velocity))
+		#body.velocity = (4 * mouseVelocity)
 		body.converted = true
 		#frameFeeze(0.05, 0.5)
 		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.7)
 
 func reflectDisk(body):
 	var mouseVelocity = body.global_position.direction_to(getMousePos())
-	body.velocity = (1.5 * mouseVelocity + (-1 * 0.6 * body.velocity))
+	body.velocity = (1.7 * mouseVelocity + (-1 * 0.4 * body.velocity))
+	#body.velocity = 2 * mouseVelocity	
 	body.converted = true
 	#frameFeeze(0.05, 0.5)
 	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.7)
@@ -150,6 +153,20 @@ func reflectBowlingBall(body):
 	#	deal_damage(body)a
 	#	print("blaa")
 		
+
+func _regenerate(amount):
+	health += amount
+	if (health > max_health):
+		health = max_health
+	healthbar.value = health;
+	#damage_effects()
+	
+	$HealthBar.addHealth(amount)
+	
+	#AudioManager.play_sound(AudioManager.PLAYER_HURT, 0, 0)
+	
+	#if(health <= 0):
+	#	_die()
 
 func _take_damage(amount):
 	if(is_dashing() || invincible == true || is_dead == true):

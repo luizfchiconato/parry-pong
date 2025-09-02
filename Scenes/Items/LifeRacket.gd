@@ -1,4 +1,4 @@
-extends Sprite2D
+class_name LifeRacket extends Sprite2D
 
 @export var value = 5
 
@@ -22,8 +22,9 @@ func body_hover(delta):
 
 #Get picked up by our player
 func _on_area_2d_body_entered(body):
-	print("a")
 	if body.is_in_group("Player"):
-		GameManager.add_money(value)
-		AudioManager.play_sound(AudioManager.COIN_PICK, 0, -10)
-		queue_free()
+		if body.health < body.max_health:
+			body._regenerate(2)
+			AudioManager.play_sound(AudioManager.COIN_PICK, 0, -10)
+			queue_free()
+
