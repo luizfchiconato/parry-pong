@@ -16,6 +16,7 @@ const BOLICHE_MULTIPLO = preload("res://Scenes/Levels/LevelList/BolicheMultiplo.
 const TIMING = preload("res://Scenes/Levels/LevelList/Timing.tscn")
 const CHUMBO_MENOR = preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn")
 const BANDEIRA_TINTA = preload("res://Scenes/Levels/LevelList/BandeiraTinta.tscn")
+const MARATONA = preload("res://Scenes/Levels/LevelList/Maratona.tscn")
 const BOSS = preload("res://Scenes/Levels/LevelList/Boss.tscn")
 
 const GINASIOS: Array = [
@@ -33,6 +34,7 @@ const GINASIOS: Array = [
 	TIMING,
 	CHUMBO_MENOR,
 	BANDEIRA_TINTA,
+	MARATONA,
 	BOSS
 ]
 

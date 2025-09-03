@@ -19,9 +19,10 @@ func _process(delta):
 func _on_enemy_died():
 	for child in get_children():
 		for grandson in child.get_children():
-			if grandson is EnemyMain:
+			# feio, eu sei
+			if grandson is EnemyMain or grandson is LifeRacket:
 				grandson.increment_death_number()
-	
+
 	var allDied = true
 	for child in get_children():
 		for grandson in child.get_children():

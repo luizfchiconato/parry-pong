@@ -1,0 +1,658 @@
+[gd_scene load_steps=13 format=3 uid="uid://crjml7iwm2326"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_l81do"]
+[ext_resource type="PackedScene" uid="uid://cwf71ikjswioq" path="res://Scenes/Levels/LevelList/TresBolasPilar.tscn" id="2_qydxa"]
+[ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="3_xq206"]
+[ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="4_optxt"]
+[ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="5_7ii72"]
+[ext_resource type="PackedScene" uid="uid://ckp2r52hlcfxn" path="res://Scenes/Npc_OfficeWorker/npc_officeworker_scene.tscn" id="6_bdf5w"]
+[ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="8_4kysy"]
+[ext_resource type="Script" path="res://Scenes/Levels/TileMapScript.gd" id="9_leepb"]
+[ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/Light.png" id="10_qg2is"]
+[ext_resource type="PackedScene" uid="uid://bjfli5f0rssv4" path="res://Scenes/Items/LifeRacket.tscn" id="11_b2tm5"]
+[ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="12_shwtd"]
+[ext_resource type="AudioStream" uid="uid://duk65jhplli8h" path="res://Art/Audio/Music/TetrisNivel1.mp3" id="13_55grw"]
+
+[node name="Scene_Root" type="Node2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+script = ExtResource("1_l81do")
+next_scene = ExtResource("2_qydxa")
+
+[node name="Player" parent="." instance=ExtResource("3_xq206")]
+z_index = 100
+position = Vector2(-5, 70)
+
+[node name="Fase1" type="Node" parent="."]
+
+[node name="Enemy11" parent="Fase1" instance=ExtResource("4_optxt")]
+position = Vector2(-6, -122)
+bullet_interval = 1.5
+max_health = 4
+
+[node name="Enemy13" parent="Fase1" instance=ExtResource("4_optxt")]
+position = Vector2(-320, 240)
+bullet_interval = 1.5
+max_health = 4
+
+[node name="Enemy14" parent="Fase1" instance=ExtResource("4_optxt")]
+position = Vector2(2, 269)
+bullet_interval = 1.5
+max_health = 4
+
+[node name="Enemy9" parent="Fase1" instance=ExtResource("4_optxt")]
+position = Vector2(279, 254)
+bullet_interval = 1.5
+max_health = 4
+
+[node name="Enemy12" parent="Fase1" instance=ExtResource("4_optxt")]
+position = Vector2(272, -114)
+bullet_interval = 1.5
+max_health = 4
+
+[node name="Enemy8" parent="Fase1" instance=ExtResource("4_optxt")]
+position = Vector2(-318, -123)
+bullet_interval = 1.5
+max_health = 4
+
+[node name="Fase2" type="Node" parent="."]
+
+[node name="LifeRacket" parent="Fase2" instance=ExtResource("11_b2tm5")]
+position = Vector2(-68, 1)
+wait_for_deaths = 6
+
+[node name="Enemy12" parent="Fase2" instance=ExtResource("4_optxt")]
+position = Vector2(-306, -84)
+bullet_interval = 1.5
+wait_for_deaths = 6
+max_health = 4
+
+[node name="Enemy13" parent="Fase2" instance=ExtResource("4_optxt")]
+position = Vector2(269, -105)
+bullet_interval = 1.5
+wait_for_deaths = 6
+max_health = 4
+
+[node name="Enemy11" parent="Fase2" instance=ExtResource("4_optxt")]
+position = Vector2(-6, -122)
+bullet_interval = 1.5
+wait_for_deaths = 6
+max_health = 4
+enemy_type = 1
+
+[node name="Enemy14" parent="Fase2" instance=ExtResource("4_optxt")]
+position = Vector2(-306, 221)
+wait_for_deaths = 6
+max_health = 4
+min_balls_per_shot = 1
+max_balls_per_shot = 1
+
+[node name="Enemy15" parent="Fase2" instance=ExtResource("4_optxt")]
+position = Vector2(274, 245)
+bullet_interval = 1.5
+wait_for_deaths = 6
+max_health = 4
+enemy_type = 1
+throw_balloon = true
+
+[node name="Fase3" type="Node" parent="."]
+
+[node name="LifeRacket" parent="Fase3" instance=ExtResource("11_b2tm5")]
+position = Vector2(-13, 0)
+wait_for_deaths = 11
+
+[node name="Enemy12" parent="Fase3" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(267, -111)
+attack_node = NodePath("../Enemy11/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy11/FSM/enemy_chase_state")
+wait_for_deaths = 11
+max_health = 4
+min_balls_per_shot = 1
+max_balls_per_shot = 1
+sprite = NodePath("../Enemy11/AnimatedSprite2D")
+healthbar = NodePath("../Enemy11/ProgressBar")
+hit_particles = NodePath("../Enemy11/HitParticles")
+
+[node name="Enemy11" parent="Fase3" instance=ExtResource("4_optxt")]
+position = Vector2(-318, -118)
+wait_for_deaths = 11
+max_health = 4
+min_balls_per_shot = 1
+max_balls_per_shot = 1
+
+[node name="Enemy13" parent="Fase3" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-318, 248)
+attack_node = NodePath("../Enemy11/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy11/FSM/enemy_chase_state")
+wait_for_deaths = 11
+max_health = 4
+min_balls_per_shot = 1
+max_balls_per_shot = 1
+sprite = NodePath("../Enemy11/AnimatedSprite2D")
+healthbar = NodePath("../Enemy11/ProgressBar")
+hit_particles = NodePath("../Enemy11/HitParticles")
+
+[node name="Enemy14" parent="Fase3" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(274, 251)
+attack_node = NodePath("../Enemy11/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy11/FSM/enemy_chase_state")
+wait_for_deaths = 11
+max_health = 4
+min_balls_per_shot = 1
+max_balls_per_shot = 1
+sprite = NodePath("../Enemy11/AnimatedSprite2D")
+healthbar = NodePath("../Enemy11/ProgressBar")
+hit_particles = NodePath("../Enemy11/HitParticles")
+
+[node name="Enemy8" parent="Fase3" instance=ExtResource("4_optxt")]
+position = Vector2(-3, -123)
+bullet_interval = 1.5
+wait_for_deaths = 11
+max_health = 4
+enemy_type = 1
+throw_balloon = true
+
+[node name="Fase4" type="Node" parent="."]
+
+[node name="LifeRacket" parent="Fase4" instance=ExtResource("11_b2tm5")]
+position = Vector2(44, 1)
+wait_for_deaths = 16
+
+[node name="Enemy11" parent="Fase4" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-6, -122)
+attack_node = NodePath("../../Fase1/Enemy11/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy11/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 16
+unparriableChance = 50
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy11/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy11/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy11/HitParticles")
+
+[node name="Enemy13" parent="Fase4" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-320, 240)
+attack_node = NodePath("../../Fase1/Enemy13/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy13/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 16
+unparriableChance = 50
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy13/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy13/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy13/HitParticles")
+
+[node name="Enemy9" parent="Fase4" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(279, 254)
+attack_node = NodePath("../../Fase1/Enemy9/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy9/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 16
+unparriableChance = 50
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy9/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy9/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy9/HitParticles")
+
+[node name="Enemy12" parent="Fase4" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(272, -114)
+attack_node = NodePath("../../Fase1/Enemy12/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy12/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 16
+unparriableChance = 50
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy12/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy12/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy12/HitParticles")
+
+[node name="Enemy8" parent="Fase4" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-318, -123)
+attack_node = NodePath("../../Fase1/Enemy8/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy8/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 16
+unparriableChance = 50
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy8/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy8/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy8/HitParticles")
+
+[node name="Enemy10" parent="Fase4" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-1, 273)
+attack_node = NodePath("../../Fase1/Enemy8/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy8/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 16
+unparriableChance = 50
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy8/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy8/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy8/HitParticles")
+
+[node name="Fase5" type="Node" parent="."]
+
+[node name="LifeRacket" parent="Fase5" instance=ExtResource("11_b2tm5")]
+position = Vector2(-68, 57)
+wait_for_deaths = 22
+
+[node name="Enemy13" parent="Fase5" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-320, 240)
+attack_node = NodePath("../../Fase1/Enemy13/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy13/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 22
+unparriableChance = 25
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy13/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy13/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy13/HitParticles")
+
+[node name="Enemy9" parent="Fase5" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(279, 254)
+attack_node = NodePath("../../Fase1/Enemy9/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy9/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 22
+unparriableChance = 25
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy9/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy9/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy9/HitParticles")
+
+[node name="Enemy12" parent="Fase5" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(272, -114)
+attack_node = NodePath("../../Fase1/Enemy12/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy12/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 22
+unparriableChance = 25
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy12/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy12/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy12/HitParticles")
+
+[node name="Enemy8" parent="Fase5" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-318, -123)
+attack_node = NodePath("../../Fase1/Enemy8/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy8/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 22
+unparriableChance = 25
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy8/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy8/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy8/HitParticles")
+
+[node name="Enemy" parent="Fase5" instance=ExtResource("4_optxt")]
+position = Vector2(-321, 66)
+wait_for_deaths = 22
+max_health = 4
+enemy_type = 3
+
+[node name="Enemy2" parent="Fase5" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(268, 50)
+attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
+wait_for_deaths = 22
+max_health = 4
+enemy_type = 3
+sprite = NodePath("../Enemy/AnimatedSprite2D")
+healthbar = NodePath("../Enemy/ProgressBar")
+hit_particles = NodePath("../Enemy/HitParticles")
+
+[node name="Fase6" type="Node" parent="."]
+
+[node name="LifeRacket" parent="Fase6" instance=ExtResource("11_b2tm5")]
+position = Vector2(-12, 57)
+wait_for_deaths = 28
+
+[node name="Enemy14" parent="Fase6" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-320, 240)
+attack_node = NodePath("../../Fase1/Enemy13/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy13/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 28
+unparriableChance = 25
+max_health = 4
+min_balls_per_shot = 1
+max_balls_per_shot = 1
+sprite = NodePath("../../Fase1/Enemy13/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy13/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy13/HitParticles")
+
+[node name="Enemy10" parent="Fase6" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(279, 254)
+attack_node = NodePath("../../Fase1/Enemy9/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy9/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 28
+unparriableChance = 25
+max_health = 4
+min_balls_per_shot = 1
+max_balls_per_shot = 1
+sprite = NodePath("../../Fase1/Enemy9/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy9/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy9/HitParticles")
+
+[node name="Enemy15" parent="Fase6" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-314, -111)
+attack_node = NodePath("../../Fase1/Enemy12/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy12/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 28
+unparriableChance = 25
+max_health = 4
+min_balls_per_shot = 1
+max_balls_per_shot = 1
+sprite = NodePath("../../Fase1/Enemy12/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy12/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy12/HitParticles")
+
+[node name="Enemy3" parent="Fase6" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-321, 66)
+attack_node = NodePath("../../Fase5/Enemy/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase5/Enemy/FSM/enemy_chase_state")
+wait_for_deaths = 28
+max_health = 4
+enemy_type = 3
+sprite = NodePath("../../Fase5/Enemy/AnimatedSprite2D")
+healthbar = NodePath("../../Fase5/Enemy/ProgressBar")
+hit_particles = NodePath("../../Fase5/Enemy/HitParticles")
+
+[node name="Enemy4" parent="Fase6" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(268, 50)
+attack_node = NodePath("../../Fase5/Enemy/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase5/Enemy/FSM/enemy_chase_state")
+wait_for_deaths = 28
+max_health = 4
+enemy_type = 3
+sprite = NodePath("../../Fase5/Enemy/AnimatedSprite2D")
+healthbar = NodePath("../../Fase5/Enemy/ProgressBar")
+hit_particles = NodePath("../../Fase5/Enemy/HitParticles")
+
+[node name="Enemy" parent="Fase6" instance=ExtResource("4_optxt")]
+position = Vector2(271, -113)
+wait_for_deaths = 28
+max_health = 4
+enemy_type = 1
+
+[node name="Fase7" type="Node" parent="."]
+
+[node name="LifeRacket" parent="Fase7" instance=ExtResource("11_b2tm5")]
+position = Vector2(44, 57)
+wait_for_deaths = 28
+
+[node name="Enemy11" parent="Fase7" instance=ExtResource("4_optxt")]
+position = Vector2(-6, -122)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy13" parent="Fase7" instance=ExtResource("4_optxt")]
+position = Vector2(-320, 240)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy14" parent="Fase7" instance=ExtResource("4_optxt")]
+position = Vector2(2, 269)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy9" parent="Fase7" instance=ExtResource("4_optxt")]
+position = Vector2(279, 254)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy12" parent="Fase7" instance=ExtResource("4_optxt")]
+position = Vector2(272, -114)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy8" parent="Fase7" instance=ExtResource("4_optxt")]
+position = Vector2(-318, -123)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Fase8" type="Node" parent="."]
+
+[node name="LifeRacket" parent="Fase8" instance=ExtResource("11_b2tm5")]
+position = Vector2(-68, 113)
+wait_for_deaths = 28
+
+[node name="Enemy11" parent="Fase8" instance=ExtResource("4_optxt")]
+position = Vector2(-6, -122)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy13" parent="Fase8" instance=ExtResource("4_optxt")]
+position = Vector2(-320, 240)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy14" parent="Fase8" instance=ExtResource("4_optxt")]
+position = Vector2(2, 269)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy9" parent="Fase8" instance=ExtResource("4_optxt")]
+position = Vector2(279, 254)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy12" parent="Fase8" instance=ExtResource("4_optxt")]
+position = Vector2(272, -114)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy8" parent="Fase8" instance=ExtResource("4_optxt")]
+position = Vector2(-318, -123)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Fase9" type="Node" parent="."]
+
+[node name="LifeRacket" parent="Fase9" instance=ExtResource("11_b2tm5")]
+position = Vector2(-12, 113)
+wait_for_deaths = 28
+
+[node name="Enemy11" parent="Fase9" instance=ExtResource("4_optxt")]
+position = Vector2(-6, -122)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy13" parent="Fase9" instance=ExtResource("4_optxt")]
+position = Vector2(-320, 240)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy14" parent="Fase9" instance=ExtResource("4_optxt")]
+position = Vector2(2, 269)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy9" parent="Fase9" instance=ExtResource("4_optxt")]
+position = Vector2(279, 254)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy12" parent="Fase9" instance=ExtResource("4_optxt")]
+position = Vector2(272, -114)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Enemy8" parent="Fase9" instance=ExtResource("4_optxt")]
+position = Vector2(-318, -123)
+bullet_interval = 1.5
+wait_for_deaths = 1000
+
+[node name="Fase10" type="Node" parent="."]
+
+[node name="LifeRacket" parent="Fase10" instance=ExtResource("11_b2tm5")]
+position = Vector2(44, 113)
+wait_for_deaths = 28
+
+[node name="Enemy11" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-6, -122)
+attack_node = NodePath("../../Fase9/Enemy11/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase9/Enemy11/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 1000
+sprite = NodePath("../../Fase9/Enemy11/AnimatedSprite2D")
+healthbar = NodePath("../../Fase9/Enemy11/ProgressBar")
+hit_particles = NodePath("../../Fase9/Enemy11/HitParticles")
+
+[node name="Enemy13" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-320, 240)
+attack_node = NodePath("../../Fase9/Enemy13/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase9/Enemy13/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 1000
+sprite = NodePath("../../Fase9/Enemy13/AnimatedSprite2D")
+healthbar = NodePath("../../Fase9/Enemy13/ProgressBar")
+hit_particles = NodePath("../../Fase9/Enemy13/HitParticles")
+
+[node name="Enemy14" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(2, 269)
+attack_node = NodePath("../../Fase9/Enemy14/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase9/Enemy14/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 1000
+sprite = NodePath("../../Fase9/Enemy14/AnimatedSprite2D")
+healthbar = NodePath("../../Fase9/Enemy14/ProgressBar")
+hit_particles = NodePath("../../Fase9/Enemy14/HitParticles")
+
+[node name="Enemy9" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(279, 254)
+attack_node = NodePath("../../Fase9/Enemy9/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase9/Enemy9/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 1000
+sprite = NodePath("../../Fase9/Enemy9/AnimatedSprite2D")
+healthbar = NodePath("../../Fase9/Enemy9/ProgressBar")
+hit_particles = NodePath("../../Fase9/Enemy9/HitParticles")
+
+[node name="Enemy12" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(272, -114)
+attack_node = NodePath("../../Fase9/Enemy12/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase9/Enemy12/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 1000
+sprite = NodePath("../../Fase9/Enemy12/AnimatedSprite2D")
+healthbar = NodePath("../../Fase9/Enemy12/ProgressBar")
+hit_particles = NodePath("../../Fase9/Enemy12/HitParticles")
+
+[node name="Enemy8" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-318, -123)
+attack_node = NodePath("../../Fase9/Enemy8/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase9/Enemy8/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 1000
+sprite = NodePath("../../Fase9/Enemy8/AnimatedSprite2D")
+healthbar = NodePath("../../Fase9/Enemy8/ProgressBar")
+hit_particles = NodePath("../../Fase9/Enemy8/HitParticles")
+
+[node name="SceneSettings" parent="." instance=ExtResource("5_7ii72")]
+
+[node name="Scene" type="Node" parent="."]
+
+[node name="NPC" parent="Scene" instance=ExtResource("6_bdf5w")]
+visible = false
+position = Vector2(-242, -43)
+
+[node name="TileMap" type="TileMap" parent="Scene"]
+z_index = -2
+texture_filter = 1
+tile_set = ExtResource("8_4kysy")
+format = 2
+layer_0/tile_data = PackedInt32Array(262143, 65536, 1, 131065, 65536, 1, 196601, 65536, 1, 65529, 65536, 1, 65530, 65536, 1, 65531, 65536, 1, 65532, 65536, 1, 65533, 65536, 1, 0, 65536, 1, 131066, 65536, 1, 131067, 65536, 1, 131068, 65536, 1, 131069, 65536, 1, 196602, 65536, 1, 196603, 65536, 1, 196604, 65536, 1, 196605, 65536, 1, 196606, 65536, 1, 196607, 65536, 1, 262137, 65536, 1, 262138, 65536, 1, 262140, 65536, 1, 262141, 65536, 1, 262142, 65536, 1, 131072, 65536, 1, 196608, 65536, 1, 65536, 65536, 1, 196609, 65536, 1, 131073, 65536, 1, 65537, 65536, 1, 2, 65536, 1, 65538, 65536, 1, 131074, 65536, 1, 196610, 65536, 1, 1, 65536, 1, 65534, 65536, 1, 131070, 65536, 1, 65535, 65536, 1, 131071, 65536, 1, 458753, 65536, 1, 458754, 65536, 1, 262145, 65536, 1, 327681, 65536, 1, 327682, 65536, 1, 327680, 65536, 1, 393217, 65536, 1, 393216, 65536, 1, 393218, 65536, 1, 458752, 65536, 1, 196611, 65536, 1, 196612, 65536, 1, 131075, 65536, 1, 65539, 65536, 1, 3, 65536, 1, 4, 65536, 1, 5, 65536, 1, 65541, 65536, 1, 6, 65536, 1, 65542, 65536, 1, 131078, 65536, 1, 196614, 65536, 1, 196613, 65536, 1, 65540, 65536, 1, 131076, 65536, 1, 131077, 65536, 1, 262139, 65536, 1, 327675, 65536, 1, 393211, 65536, 1, 393208, 65536, 1, 393209, 65536, 1, 393210, 65536, 1, 393206, 65536, 1, 458742, 65536, 1, 524278, 65536, 1, 393207, 65536, 1, 458743, 65536, 1, 524279, 65536, 1, 458744, 65536, 1, 524280, 65536, 1, 458745, 65536, 1, 524281, 65536, 1, 458746, 65536, 1, 524282, 65536, 1, 458747, 65536, 1, 524283, 65536, 1, 458748, 65536, 1, 524284, 65536, 1, 458751, 65536, 1, 458750, 65536, 1, 458749, 65536, 1, 524287, 65536, 1, 524286, 65536, 1, 524285, 65536, 1, 393214, 65536, 1, 393215, 65536, 1, 393212, 65536, 1, 393213, 65536, 1, 262149, 65536, 1, 327685, 65536, 1, 458757, 65536, 1, 458758, 65536, 1, 327686, 65536, 1, 393222, 65536, 1, 393219, 65536, 1, 393220, 65536, 1, 393221, 65536, 1, 458755, 65536, 1, 458756, 65536, 1, 327683, 65536, 1, 327684, 65536, 1, -262151, 65536, 1, -196615, 65536, 1, -131079, 65536, 1, -65543, 65536, 1, -262150, 65536, 1, -196614, 65536, 1, -131078, 65536, 1, -65542, 65536, 1, -262149, 65536, 1, -196613, 65536, 1, -131077, 65536, 1, -65541, 65536, 1, -5, 65536, 1, -262148, 65536, 1, -196612, 65536, 1, -131076, 65536, 1, -65540, 65536, 1, -262147, 65536, 1, -196611, 65536, 1, -131075, 65536, 1, -65539, 65536, 1, 327676, 65536, 1, 327677, 65536, 1, 327678, 65536, 1, 327679, 65536, 1, 262144, 65536, 1, 262146, 65536, 1, 262147, 65536, 1, 262148, 65536, 1, 262150, 65536, 1, 327673, 65536, 1, 327674, 65536, 1, 327672, 65536, 1, 262136, 65536, 1, 262135, 65536, 1, 327671, 65536, 1, 327670, 65536, 1, 262134, 65536, 1, 196598, 65536, 1, 196599, 65536, 1, 196600, 65536, 1, 131064, 65536, 1, 131063, 65536, 1, 131062, 65536, 1, 65526, 65536, 1, -10, 65536, 1, -9, 65536, 1, 65527, 65536, 1, 65528, 65536, 1, -8, 65536, 1, -7, 65536, 1, -6, 65536, 1, -65544, 65536, 1, -196616, 65536, 1, -196617, 65536, 1, -196618, 65536, 1, -131082, 65536, 1, -65546, 65536, 1, -65545, 65536, 1, -131080, 65536, 1, -131081, 65536, 1, -196610, 65536, 1, -196609, 65536, 1, -262144, 65536, 1, -262143, 65536, 1, -262142, 65536, 1, -262141, 65536, 1, -262140, 65536, 1, -262139, 65536, 1, -262138, 65536, 1, -196602, 65536, 1, -131066, 65536, 1, -65530, 65536, 1, -65531, 65536, 1, -131067, 65536, 1, -196603, 65536, 1, -196604, 65536, 1, -196605, 65536, 1, -196606, 65536, 1, -196607, 65536, 1, -196608, 65536, 1, -131073, 65536, 1, -131074, 65536, 1, -65536, 65536, 1, -65535, 65536, 1, -1, 65536, 1, -2, 65536, 1, -3, 65536, 1, -4, 65536, 1, -65537, 65536, 1, -131072, 65536, 1, -65534, 65536, 1, -65533, 65536, 1, -65532, 65536, 1, -131068, 65536, 1, -131069, 65536, 1, -131070, 65536, 1, -131071, 65536, 1, -65538, 65536, 1, -262146, 65536, 1, -262145, 65536, 1, -327680, 65536, 1, -327679, 65536, 1, -327678, 65536, 1, -327677, 65536, 1, -327676, 65536, 1, -327675, 65536, 1, -327674, 65536, 1, -262154, 65536, 1, -262153, 65536, 1, -262152, 65536, 1, -458766, 0, 0, -393230, 458752, 2, -327694, 458752, 2, -262158, 458752, 2, -196622, 458752, 2, -131086, 458752, 2, -65550, 458752, 2, -14, 458752, 2, 65522, 458752, 2, 131058, 458752, 2, 196594, 458752, 2, 262130, 458752, 2, 327666, 458752, 2, 393202, 458752, 2, 458738, 458752, 2, 524274, 458752, 2, 589810, 458752, 2, 655346, 458752, 2, 720882, 458752, 2, 786418, 0, 2, 786419, 327680, 2, 786420, 327680, 2, 786421, 327680, 2, 786422, 327680, 2, 786423, 327680, 2, 786424, 327680, 2, 786425, 327680, 2, 786426, 327680, 2, 786427, 327680, 2, 786428, 327680, 2, 786429, 327680, 2, 786430, 327680, 2, 786431, 327680, 2, 720896, 327680, 2, 720897, 327680, 2, 720898, 327680, 2, 720899, 327680, 2, 720900, 327680, 2, 720901, 327680, 2, 720902, 327680, 2, 720903, 327680, 2, 720904, 327680, 2, 720905, 327680, 2, 720906, 327680, 2, 720907, 196608, 2, 655371, 196608, 1, 589835, 196608, 1, 524299, 196608, 1, 458763, 196608, 1, 393227, 196608, 1, 327691, 196608, 1, 262155, 196608, 1, 196619, 196608, 1, 131083, 196608, 1, 65547, 196608, 1, 11, 196608, 1, -65525, 196608, 1, -131061, 196608, 1, -196597, 196608, 1, -262133, 196608, 1, -327669, 196608, 1, -393205, 196608, 1, -458741, 196608, 1, -524277, 196608, 0, -458765, 65536, 0, -458764, 65536, 0, -458763, 65536, 0, -458762, 65536, 0, -458761, 65536, 0, -458760, 65536, 0, -458759, 65536, 0, -458758, 65536, 0, -458757, 65536, 0, -458756, 65536, 0, -458755, 65536, 0, -458754, 65536, 0, -458753, 65536, 0, -524288, 65536, 0, -524287, 65536, 0, -524286, 65536, 0, -524285, 65536, 0, -524284, 65536, 0, -524283, 65536, 0, -524282, 65536, 0, -524281, 65536, 0, -524280, 65536, 0, -524279, 65536, 0, -524278, 65536, 0, -327673, 65536, 1, -393229, 65536, 1, -393228, 65536, 1, -393227, 65536, 1, -393226, 65536, 1, -393225, 65536, 1, -393224, 65536, 1, -393223, 65536, 1, -393222, 65536, 1, -393221, 65536, 1, -393220, 65536, 1, -393219, 65536, 1, -393218, 65536, 1, -393217, 65536, 1, -458752, 65536, 1, -458751, 65536, 1, -458750, 65536, 1, -458749, 65536, 1, -458748, 65536, 1, -458747, 65536, 1, -458746, 65536, 1, -458745, 65536, 1, -458744, 65536, 1, -458743, 65536, 1, -458742, 65536, 1, 655370, 65536, 1, 589834, 65536, 1, 524298, 65536, 1, 458762, 65536, 1, 393226, 65536, 1, 327690, 65536, 1, 262154, 65536, 1, 196618, 65536, 1, 131082, 65536, 1, 65546, 65536, 1, 10, 65536, 1, -65526, 65536, 1, -131062, 65536, 1, -196598, 65536, 1, -262134, 65536, 1, -327670, 65536, 1, -393206, 65536, 1, -327693, 65536, 1, -327692, 0, 0, -327691, 65536, 0, -327690, 65536, 0, -327689, 65536, 0, -327688, 65536, 0, -327687, 65536, 0, -327686, 65536, 0, -327685, 65536, 0, -327684, 65536, 0, -327683, 65536, 0, -327682, 65536, 0, -327681, 65536, 0, -393216, 65536, 0, -393215, 65536, 0, -393214, 65536, 0, -393213, 65536, 0, -393212, 65536, 0, -393211, 65536, 0, -393210, 65536, 0, -393209, 65536, 0, -393208, 196608, 0, -393207, 196608, 0, -262157, 65536, 1, -262156, 0, 1, -262155, 65536, 1, -327672, 65536, 1, -327671, 196608, 1, -262135, 196608, 1, -196599, 196608, 1, -262136, 65536, 1, -196600, 65536, 1, -196601, 65536, 1, -131065, 65536, 1, -262137, 65536, 1, -65529, 65536, 1, 262151, 65536, 1, 196615, 65536, 1, 131079, 65536, 1, 524294, 65536, 1, 524293, 65536, 1, 524291, 65536, 1, 524290, 65536, 1, 524289, 65536, 1, 589823, 65536, 1, 589822, 65536, 1, 589821, 65536, 1, 589817, 65536, 1, 589816, 65536, 1, 589815, 65536, 1, 589814, 65536, 1, 589813, 65536, 1, 655349, 65536, 2, 655348, 0, 2, 655347, 65536, 1, 720883, 65536, 1, 720884, 65536, 1, 655350, 65536, 2, 720887, 65536, 1, 720888, 65536, 1, 720889, 65536, 1, 720886, 65536, 1, 720885, 65536, 1, 655351, 65536, 2, 655352, 65536, 2, 655353, 65536, 2, 655354, 65536, 2, 655355, 65536, 2, 720890, 65536, 1, 720891, 65536, 1, 720892, 65536, 1, 720893, 65536, 1, 655357, 65536, 2, 655356, 65536, 2, 589819, 65536, 1, 589818, 65536, 1, 589820, 65536, 1, 655358, 65536, 2, 655359, 65536, 2, 720895, 65536, 1, 720894, 65536, 1, 655360, 65536, 1, 655361, 65536, 1, 589825, 65536, 2, 589826, 65536, 2, 524288, 65536, 1, 589824, 65536, 2, 655362, 65536, 1, 589827, 65536, 2, 655363, 65536, 1, 655364, 65536, 1, 589828, 65536, 2, 524292, 65536, 1, 655365, 65536, 1, 655366, 65536, 1, 589830, 65536, 2, 589829, 65536, 2, 589831, 65536, 2, 589832, 65536, 2, 655367, 65536, 1, 655368, 65536, 1, 655369, 65536, 1, 589833, 196608, 2, 524297, 196608, 1, 524296, 65536, 1, 458760, 65536, 1, 458759, 65536, 1, 393224, 65536, 1, 393223, 65536, 1, 524295, 65536, 1, 327687, 65536, 1, 196616, 65536, 1, 262152, 65536, 1, 327688, 65536, 1, 458761, 196608, 1, 393225, 196608, 1, 327689, 196608, 1, 262153, 196608, 1, 196617, 196608, 1, 131080, 65536, 1, 65544, 65536, 1, 8, 65536, 1, -65528, 65536, 1, 9, 196608, 1, -65527, 196608, 1, -131063, 196608, 1, -131064, 65536, 1, 65545, 196608, 1, 131081, 196608, 1, 7, 65536, 1, 65543, 65536, 1, -196621, 65536, 1, -131085, 65536, 1, -65549, 65536, 1, -13, 65536, 1, 65523, 65536, 1, 131059, 65536, 1, 196595, 65536, 1, 262131, 65536, 1, 327667, 65536, 1, 393203, 65536, 1, 458739, 65536, 1, 524275, 65536, 1, 589811, 65536, 1, 524276, 0, 1, 458740, 0, 1, 393204, 0, 1, 327668, 0, 1, 262132, 0, 1, 196596, 0, 1, 131060, 0, 1, 65524, 0, 1, -12, 0, 1, -131084, 0, 1, -196620, 0, 1, -65548, 0, 1, 589812, 0, 1, 524277, 65536, 1, 458741, 65536, 1, 393205, 65536, 1, 327669, 65536, 1, 262133, 65536, 1, 196597, 65536, 1, 131061, 65536, 1, 65525, 65536, 1, -11, 65536, 1, -65547, 65536, 1, -131083, 65536, 1, -196619, 65536, 1)
+script = ExtResource("9_leepb")
+
+[node name="WindowLights2" type="Node" parent="Scene"]
+
+[node name="PointLight2D" type="PointLight2D" parent="Scene/WindowLights2"]
+visible = false
+position = Vector2(-176, 8)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("10_qg2is")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Scene/WindowLights2"]
+visible = false
+position = Vector2(-16, 8)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("10_qg2is")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Scene/WindowLights2"]
+visible = false
+position = Vector2(49, 9)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("10_qg2is")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Scene/WindowLights2"]
+visible = false
+position = Vector2(176, 10)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("10_qg2is")
+
+[node name="Score_UI" parent="." instance=ExtResource("12_shwtd")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_55grw")
+volume_db = -12.0
+
+[connection signal="died" from="Fase1/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase1/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase1/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase1/Enemy9" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase1/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase1/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase2/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase2/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase2/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase2/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase2/Enemy15" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase3/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase3/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase3/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase3/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase3/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase4/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase4/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase4/Enemy9" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase4/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase4/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase4/Enemy10" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase5/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase5/Enemy9" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase5/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase5/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase6/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase6/Enemy10" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase6/Enemy15" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase7/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase7/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase7/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase7/Enemy9" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase7/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase7/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase8/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase8/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase8/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase8/Enemy9" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase8/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase8/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase9/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase9/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase9/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase9/Enemy9" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase9/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase9/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy9" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy8" to="." method="_on_enemy_died"]
