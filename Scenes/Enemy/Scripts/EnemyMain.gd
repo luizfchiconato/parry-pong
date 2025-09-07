@@ -48,7 +48,6 @@ var Laser = load("res://Scenes/Projectiles/Laser.tscn")
 
 #func _physics_process(_delta):
 	#if (dying):
-	#	print("AAAAAAA")
 		#self.global_position += velocity * speed * _delta
 
 
@@ -56,7 +55,7 @@ var Laser = load("res://Scenes/Projectiles/Laser.tscn")
 func finished_attacking():
 	if(player_in_range == true and !stationary):
 		fsm.change_state(attack_node, "enemy_chase_state")
-	else:
+	else: 
 		fsm.change_state(attack_node, "enemy_idle_state")
 
 #Register player proximity, start chasing if we are idling when the player gets close
@@ -64,7 +63,6 @@ func _on_detection_area_body_entered(body):
 	if (!isAvailable()):
 		return
 	
-	print("entrou")
 	if body.is_in_group("Player"):
 		player_in_range = true
 		print(is_instance_valid(fsm), is_instance_valid(chase_node))
@@ -85,6 +83,7 @@ func _on_detection_area_body_exited(body):
 		
 
 func increment_death_number():
+	print(parent_death_number)
 	parent_death_number = parent_death_number + 1
 	if (isAvailable()):
 		activateEnemy()
@@ -103,6 +102,7 @@ func activateEnemy():
 	$BodyCollider.set_deferred("disabled", false)
 
 func die(newVelocity):
+	print("die")
 	AudioManager.play_sound(AudioManager.ENEMY_SPUN, 0, -5)
 	fsm.force_change_state("enemy_death_state")
 	death_velocity = newVelocity
@@ -113,7 +113,9 @@ func die(newVelocity):
 		active_disc.destroy()
 		active_disc = null
 	
+	print("dying", dying)
 	if (!dying):
+		print("signal")
 		emit_signal("died")
 	dying = true
 	

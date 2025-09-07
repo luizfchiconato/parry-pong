@@ -234,7 +234,6 @@ func entered_paint(paint_instance : PaintSlime):
 func startHitTimeout():
 	original_modulate = self.modulate
 	$PaintHitTimer.start()
-	print($PaintHitTimer.is_stopped())
 	paint_tween = create_tween()
 	paint_tween.tween_property(self, "modulate", Color.RED, $PaintHitTimer.wait_time)
 

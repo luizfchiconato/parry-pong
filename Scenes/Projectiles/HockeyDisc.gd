@@ -63,7 +63,7 @@ func _physics_process(delta):
 			velocity = velocity.bounce(collision.get_normal())
 			velocity = velocity * 0.9
 			
-		elif (collider is EnemyMain and converted):
+		elif (collider is EnemyMain):
 			var hit_chance
 			var speed = velocity.length()
 			hit_chance = 83 * speed - 116
@@ -75,7 +75,7 @@ func _physics_process(delta):
 			var rng = RandomNumberGenerator.new()
 			var hit_enemy = rng.randf_range(1,100) < hit_chance
 			
-			if(hit_enemy):
+			if(hit_enemy and converted):
 				AudioManager.play_sound(AudioManager.ENEMY_HIT_DEFAULT, 0, 0)
 				collider._take_damage(DAMAGE_LARGE_BULLET, velocity)
 				velocity = velocity.bounce(collision.get_normal())

@@ -19,8 +19,8 @@ func _process(delta):
 func _on_enemy_died():
 	for child in get_children():
 		for grandson in child.get_children():
-			# feio, eu sei
-			if grandson is EnemyMain or grandson is LifeRacket:
+			# feio, eu sei. lógica criada antes do GameManager e preguiça de resolver
+			if grandson is EnemyMain or grandson is LifeRacket or grandson is PaintSlime:
 				grandson.increment_death_number()
 
 	var allDied = true

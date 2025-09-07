@@ -9,9 +9,7 @@ const TYPE_NORMAL = 0
 const TYPE_BOWLING = 1
 
 func Enter():
-	print('entrou idle')
 	if enemy.enemy_type == TYPE_BOWLING:
-		print('aaa')
 		sprite.play("IdleBowling")
 	else:
 		sprite.play("Idle")

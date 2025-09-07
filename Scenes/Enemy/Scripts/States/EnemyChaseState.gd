@@ -13,7 +13,6 @@ const TYPE_BOWLING = 1
 
 func Enter():
 	#sanimator.play("Chasing")
-	print("WALK")
 	if enemy.enemy_type == TYPE_BOWLING:
 		sprite.play("WalkBowling")
 		#sprite.play("BossTest")

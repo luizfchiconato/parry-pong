@@ -13,7 +13,6 @@ func _process(delta):
 
 func load_level_buttons():
 	var levels : Array = LevelManager.GINASIOS
-	print(levels)
 	for i in range(levels.size()):
 		add_level_button(levels[i], i)
 

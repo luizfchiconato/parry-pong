@@ -31,7 +31,6 @@ func _process(delta):
 		queue_free()
 
 func _on_body_entered(body):
-	print("entrouuuuuuuu")
 	if body.is_in_group("Player"):
 		var player = get_tree().get_first_node_in_group("Player") as PlayerMain
 		if player.is_dashing():
@@ -44,6 +43,3 @@ func deal_damage_to_player(player : PlayerMain):
 	#var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
 	player._take_damage(2)
 
-
-func _on_mouse_entered():
-	print("entrouuuuuuuu")

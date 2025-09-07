@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://crjml7iwm2326"]
+[gd_scene load_steps=14 format=3 uid="uid://crjml7iwm2326"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_l81do"]
 [ext_resource type="PackedScene" uid="uid://cwf71ikjswioq" path="res://Scenes/Levels/LevelList/TresBolasPilar.tscn" id="2_qydxa"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="4_optxt"]
 [ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="5_7ii72"]
 [ext_resource type="PackedScene" uid="uid://ckp2r52hlcfxn" path="res://Scenes/Npc_OfficeWorker/npc_officeworker_scene.tscn" id="6_bdf5w"]
+[ext_resource type="PackedScene" uid="uid://bvqlxbgu68i5p" path="res://Scenes/Projectiles/PaintSlimeRectangle.tscn" id="6_hm8up"]
 [ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="8_4kysy"]
 [ext_resource type="Script" path="res://Scenes/Levels/TileMapScript.gd" id="9_leepb"]
 [ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/Light.png" id="10_qg2is"]
@@ -28,69 +29,75 @@ position = Vector2(-5, 70)
 [node name="Enemy11" parent="Fase1" instance=ExtResource("4_optxt")]
 position = Vector2(-6, -122)
 bullet_interval = 1.5
+wait_for_deaths = 1000
 max_health = 4
 
 [node name="Enemy13" parent="Fase1" instance=ExtResource("4_optxt")]
 position = Vector2(-320, 240)
 bullet_interval = 1.5
+wait_for_deaths = 1000
 max_health = 4
 
 [node name="Enemy14" parent="Fase1" instance=ExtResource("4_optxt")]
 position = Vector2(2, 269)
 bullet_interval = 1.5
+wait_for_deaths = 1000
 max_health = 4
 
 [node name="Enemy9" parent="Fase1" instance=ExtResource("4_optxt")]
 position = Vector2(279, 254)
 bullet_interval = 1.5
+wait_for_deaths = 1000
 max_health = 4
 
 [node name="Enemy12" parent="Fase1" instance=ExtResource("4_optxt")]
 position = Vector2(272, -114)
 bullet_interval = 1.5
+wait_for_deaths = 1000
 max_health = 4
 
 [node name="Enemy8" parent="Fase1" instance=ExtResource("4_optxt")]
 position = Vector2(-318, -123)
 bullet_interval = 1.5
+wait_for_deaths = 1000
 max_health = 4
 
-[node name="Fase2" type="Node" parent="."]
+[node name="Fase2 [6]" type="Node" parent="."]
 
-[node name="LifeRacket" parent="Fase2" instance=ExtResource("11_b2tm5")]
-position = Vector2(-68, 1)
+[node name="LifeRacket" parent="Fase2 [6]" instance=ExtResource("11_b2tm5")]
+position = Vector2(-88, 1)
 wait_for_deaths = 6
 
-[node name="Enemy12" parent="Fase2" instance=ExtResource("4_optxt")]
+[node name="Enemy12" parent="Fase2 [6]" instance=ExtResource("4_optxt")]
 position = Vector2(-306, -84)
 bullet_interval = 1.5
-wait_for_deaths = 6
+wait_for_deaths = 1000
 max_health = 4
 
-[node name="Enemy13" parent="Fase2" instance=ExtResource("4_optxt")]
+[node name="Enemy13" parent="Fase2 [6]" instance=ExtResource("4_optxt")]
 position = Vector2(269, -105)
 bullet_interval = 1.5
-wait_for_deaths = 6
+wait_for_deaths = 1000
 max_health = 4
 
-[node name="Enemy11" parent="Fase2" instance=ExtResource("4_optxt")]
+[node name="Enemy11" parent="Fase2 [6]" instance=ExtResource("4_optxt")]
 position = Vector2(-6, -122)
 bullet_interval = 1.5
-wait_for_deaths = 6
+wait_for_deaths = 1000
 max_health = 4
 enemy_type = 1
 
-[node name="Enemy14" parent="Fase2" instance=ExtResource("4_optxt")]
+[node name="Enemy14" parent="Fase2 [6]" instance=ExtResource("4_optxt")]
 position = Vector2(-306, 221)
-wait_for_deaths = 6
+wait_for_deaths = 1000
 max_health = 4
 min_balls_per_shot = 1
 max_balls_per_shot = 1
 
-[node name="Enemy15" parent="Fase2" instance=ExtResource("4_optxt")]
+[node name="Enemy15" parent="Fase2 [6]" instance=ExtResource("4_optxt")]
 position = Vector2(274, 245)
 bullet_interval = 1.5
-wait_for_deaths = 6
+wait_for_deaths = 1000
 max_health = 4
 enemy_type = 1
 throw_balloon = true
@@ -98,7 +105,7 @@ throw_balloon = true
 [node name="Fase3" type="Node" parent="."]
 
 [node name="LifeRacket" parent="Fase3" instance=ExtResource("11_b2tm5")]
-position = Vector2(-13, 0)
+position = Vector2(-33, 0)
 wait_for_deaths = 11
 
 [node name="Enemy12" parent="Fase3" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
@@ -155,7 +162,7 @@ throw_balloon = true
 [node name="Fase4" type="Node" parent="."]
 
 [node name="LifeRacket" parent="Fase4" instance=ExtResource("11_b2tm5")]
-position = Vector2(44, 1)
+position = Vector2(24, 1)
 wait_for_deaths = 16
 
 [node name="Enemy11" parent="Fase4" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
@@ -230,81 +237,84 @@ sprite = NodePath("../../Fase1/Enemy8/AnimatedSprite2D")
 healthbar = NodePath("../../Fase1/Enemy8/ProgressBar")
 hit_particles = NodePath("../../Fase1/Enemy8/HitParticles")
 
-[node name="Fase5" type="Node" parent="."]
+[node name="Fase5 [22]" type="Node" parent="."]
 
-[node name="LifeRacket" parent="Fase5" instance=ExtResource("11_b2tm5")]
-position = Vector2(-68, 57)
+[node name="LifeRacket" parent="Fase5 [22]" instance=ExtResource("11_b2tm5")]
+position = Vector2(-88, 57)
 wait_for_deaths = 22
 
-[node name="Enemy13" parent="Fase5" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+[node name="Enemy13" parent="Fase5 [22]" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
 position = Vector2(-320, 240)
 attack_node = NodePath("../../Fase1/Enemy13/FSM/enemy_attack_state")
 chase_node = NodePath("../../Fase1/Enemy13/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 22
 unparriableChance = 25
 max_health = 4
 sprite = NodePath("../../Fase1/Enemy13/AnimatedSprite2D")
 healthbar = NodePath("../../Fase1/Enemy13/ProgressBar")
 hit_particles = NodePath("../../Fase1/Enemy13/HitParticles")
 
-[node name="Enemy9" parent="Fase5" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+[node name="Enemy9" parent="Fase5 [22]" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
 position = Vector2(279, 254)
 attack_node = NodePath("../../Fase1/Enemy9/FSM/enemy_attack_state")
 chase_node = NodePath("../../Fase1/Enemy9/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 22
 unparriableChance = 25
 max_health = 4
 sprite = NodePath("../../Fase1/Enemy9/AnimatedSprite2D")
 healthbar = NodePath("../../Fase1/Enemy9/ProgressBar")
 hit_particles = NodePath("../../Fase1/Enemy9/HitParticles")
 
-[node name="Enemy12" parent="Fase5" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+[node name="Enemy12" parent="Fase5 [22]" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
 position = Vector2(272, -114)
 attack_node = NodePath("../../Fase1/Enemy12/FSM/enemy_attack_state")
 chase_node = NodePath("../../Fase1/Enemy12/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 22
 unparriableChance = 25
 max_health = 4
 sprite = NodePath("../../Fase1/Enemy12/AnimatedSprite2D")
 healthbar = NodePath("../../Fase1/Enemy12/ProgressBar")
 hit_particles = NodePath("../../Fase1/Enemy12/HitParticles")
 
-[node name="Enemy8" parent="Fase5" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+[node name="Enemy8" parent="Fase5 [22]" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
 position = Vector2(-318, -123)
 attack_node = NodePath("../../Fase1/Enemy8/FSM/enemy_attack_state")
 chase_node = NodePath("../../Fase1/Enemy8/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 22
 unparriableChance = 25
 max_health = 4
 sprite = NodePath("../../Fase1/Enemy8/AnimatedSprite2D")
 healthbar = NodePath("../../Fase1/Enemy8/ProgressBar")
 hit_particles = NodePath("../../Fase1/Enemy8/HitParticles")
 
-[node name="Enemy" parent="Fase5" instance=ExtResource("4_optxt")]
-position = Vector2(-321, 66)
-wait_for_deaths = 22
+[node name="Enemy10" parent="Fase5 [22]" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-336, 48)
+attack_node = NodePath("../../Fase1/Enemy8/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy8/FSM/enemy_chase_state")
+bullet_interval = 1.5
+unparriableChance = 25
 max_health = 4
 enemy_type = 3
+sprite = NodePath("../../Fase1/Enemy8/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy8/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy8/HitParticles")
 
-[node name="Enemy2" parent="Fase5" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
-position = Vector2(268, 50)
-attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
-chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
-wait_for_deaths = 22
+[node name="Enemy11" parent="Fase5 [22]" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(280, 56)
+attack_node = NodePath("../../Fase1/Enemy8/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy8/FSM/enemy_chase_state")
+bullet_interval = 1.5
+unparriableChance = 25
 max_health = 4
 enemy_type = 3
-sprite = NodePath("../Enemy/AnimatedSprite2D")
-healthbar = NodePath("../Enemy/ProgressBar")
-hit_particles = NodePath("../Enemy/HitParticles")
+sprite = NodePath("../../Fase1/Enemy8/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy8/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy8/HitParticles")
 
 [node name="Fase6" type="Node" parent="."]
 
 [node name="LifeRacket" parent="Fase6" instance=ExtResource("11_b2tm5")]
-position = Vector2(-12, 57)
+position = Vector2(-32, 57)
 wait_for_deaths = 28
 
 [node name="Enemy14" parent="Fase6" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
@@ -351,25 +361,25 @@ hit_particles = NodePath("../../Fase1/Enemy12/HitParticles")
 
 [node name="Enemy3" parent="Fase6" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
 position = Vector2(-321, 66)
-attack_node = NodePath("../../Fase5/Enemy/FSM/enemy_attack_state")
-chase_node = NodePath("../../Fase5/Enemy/FSM/enemy_chase_state")
+attack_node = NodePath("")
+chase_node = NodePath("")
 wait_for_deaths = 28
 max_health = 4
 enemy_type = 3
-sprite = NodePath("../../Fase5/Enemy/AnimatedSprite2D")
-healthbar = NodePath("../../Fase5/Enemy/ProgressBar")
-hit_particles = NodePath("../../Fase5/Enemy/HitParticles")
+sprite = NodePath("")
+healthbar = NodePath("")
+hit_particles = NodePath("")
 
 [node name="Enemy4" parent="Fase6" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
 position = Vector2(268, 50)
-attack_node = NodePath("../../Fase5/Enemy/FSM/enemy_attack_state")
-chase_node = NodePath("../../Fase5/Enemy/FSM/enemy_chase_state")
+attack_node = NodePath("")
+chase_node = NodePath("")
 wait_for_deaths = 28
 max_health = 4
 enemy_type = 3
-sprite = NodePath("../../Fase5/Enemy/AnimatedSprite2D")
-healthbar = NodePath("../../Fase5/Enemy/ProgressBar")
-hit_particles = NodePath("../../Fase5/Enemy/HitParticles")
+sprite = NodePath("")
+healthbar = NodePath("")
+hit_particles = NodePath("")
 
 [node name="Enemy" parent="Fase6" instance=ExtResource("4_optxt")]
 position = Vector2(271, -113)
@@ -377,179 +387,255 @@ wait_for_deaths = 28
 max_health = 4
 enemy_type = 1
 
-[node name="Fase7" type="Node" parent="."]
+[node name="Fase7 [34]" type="Node" parent="."]
 
-[node name="LifeRacket" parent="Fase7" instance=ExtResource("11_b2tm5")]
-position = Vector2(44, 57)
-wait_for_deaths = 28
+[node name="LifeRacket" parent="Fase7 [34]" instance=ExtResource("11_b2tm5")]
+position = Vector2(24, 57)
+wait_for_deaths = 34
 
-[node name="Enemy11" parent="Fase7" instance=ExtResource("4_optxt")]
-position = Vector2(-6, -122)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="Enemy12" parent="Fase7 [34]" instance=ExtResource("4_optxt")]
+position = Vector2(-32, -128)
+bullet_interval = 0.5
+wait_for_deaths = 34
+max_health = 20
+stationary = true
+entropy = 2
 
-[node name="Enemy13" parent="Fase7" instance=ExtResource("4_optxt")]
-position = Vector2(-320, 240)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="Enemy8" parent="Fase7 [34]" instance=ExtResource("4_optxt")]
+position = Vector2(-16, 264)
+bullet_interval = 0.5
+wait_for_deaths = 34
+max_health = 20
+stationary = true
+entropy = 2
 
-[node name="Enemy14" parent="Fase7" instance=ExtResource("4_optxt")]
-position = Vector2(2, 269)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="PaintSlimeCircle" parent="Fase7 [34]" instance=ExtResource("6_hm8up")]
+position = Vector2(-248, -64)
+scale = Vector2(12.2973, 17.6971)
+wait_for_deaths = 34
+disappear_after_deaths = true
+number_of_deaths_to_disappear = 43
 
-[node name="Enemy9" parent="Fase7" instance=ExtResource("4_optxt")]
-position = Vector2(279, 254)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="PaintSlimeCircle2" parent="Fase7 [34]" instance=ExtResource("6_hm8up")]
+position = Vector2(-248, 216)
+scale = Vector2(12.2973, 9.11435)
+wait_for_deaths = 34
+disappear_after_deaths = true
+number_of_deaths_to_disappear = 43
 
-[node name="Enemy12" parent="Fase7" instance=ExtResource("4_optxt")]
-position = Vector2(272, -114)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="PaintSlimeCircle3" parent="Fase7 [34]" instance=ExtResource("6_hm8up")]
+position = Vector2(184, 216)
+scale = Vector2(12.2973, 9.11435)
+wait_for_deaths = 34
+disappear_after_deaths = true
+number_of_deaths_to_disappear = 43
 
-[node name="Enemy8" parent="Fase7" instance=ExtResource("4_optxt")]
-position = Vector2(-318, -123)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="PaintSlimeCircle4" parent="Fase7 [34]" instance=ExtResource("6_hm8up")]
+position = Vector2(184, -64)
+scale = Vector2(12.2973, 17.777)
+wait_for_deaths = 34
+disappear_after_deaths = true
+number_of_deaths_to_disappear = 43
 
 [node name="Fase8" type="Node" parent="."]
 
 [node name="LifeRacket" parent="Fase8" instance=ExtResource("11_b2tm5")]
-position = Vector2(-68, 113)
-wait_for_deaths = 28
+position = Vector2(-88, 113)
+wait_for_deaths = 2
 
-[node name="Enemy11" parent="Fase8" instance=ExtResource("4_optxt")]
-position = Vector2(-6, -122)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="Enemy13" parent="Fase8" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-32, -128)
+attack_node = NodePath("../../Fase7 [34]/Enemy12/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase7 [34]/Enemy12/FSM/enemy_chase_state")
+bullet_interval = 0.8
+wait_for_deaths = 36
+unparriableChance = 20
+max_health = 14
+stationary = true
+entropy = 2
+sprite = NodePath("../../Fase7 [34]/Enemy12/AnimatedSprite2D")
+healthbar = NodePath("../../Fase7 [34]/Enemy12/ProgressBar")
+hit_particles = NodePath("../../Fase7 [34]/Enemy12/HitParticles")
 
-[node name="Enemy13" parent="Fase8" instance=ExtResource("4_optxt")]
-position = Vector2(-320, 240)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="Enemy9" parent="Fase8" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-16, 264)
+attack_node = NodePath("../../Fase7 [34]/Enemy8/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase7 [34]/Enemy8/FSM/enemy_chase_state")
+bullet_interval = 0.8
+wait_for_deaths = 36
+unparriableChance = 20
+max_health = 14
+stationary = true
+entropy = 2
+sprite = NodePath("../../Fase7 [34]/Enemy8/AnimatedSprite2D")
+healthbar = NodePath("../../Fase7 [34]/Enemy8/ProgressBar")
+hit_particles = NodePath("../../Fase7 [34]/Enemy8/HitParticles")
 
-[node name="Enemy14" parent="Fase8" instance=ExtResource("4_optxt")]
-position = Vector2(2, 269)
-bullet_interval = 1.5
-wait_for_deaths = 1000
-
-[node name="Enemy9" parent="Fase8" instance=ExtResource("4_optxt")]
-position = Vector2(279, 254)
-bullet_interval = 1.5
-wait_for_deaths = 1000
-
-[node name="Enemy12" parent="Fase8" instance=ExtResource("4_optxt")]
-position = Vector2(272, -114)
-bullet_interval = 1.5
-wait_for_deaths = 1000
-
-[node name="Enemy8" parent="Fase8" instance=ExtResource("4_optxt")]
-position = Vector2(-318, -123)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="Enemy11" parent="Fase8" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-256, 48)
+attack_node = NodePath("../../Fase2 [6]/Enemy11/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase2 [6]/Enemy11/FSM/enemy_chase_state")
+wait_for_deaths = 36
+stationary = true
+enemy_type = 1
+sprite = NodePath("../../Fase2 [6]/Enemy11/AnimatedSprite2D")
+healthbar = NodePath("../../Fase2 [6]/Enemy11/ProgressBar")
+hit_particles = NodePath("../../Fase2 [6]/Enemy11/HitParticles")
 
 [node name="Fase9" type="Node" parent="."]
 
 [node name="LifeRacket" parent="Fase9" instance=ExtResource("11_b2tm5")]
-position = Vector2(-12, 113)
-wait_for_deaths = 28
+position = Vector2(-32, 113)
+wait_for_deaths = 5
 
-[node name="Enemy11" parent="Fase9" instance=ExtResource("4_optxt")]
-position = Vector2(-6, -122)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="Enemy13" parent="Fase9" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-32, -128)
+attack_node = NodePath("../../Fase7 [34]/Enemy12/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase7 [34]/Enemy12/FSM/enemy_chase_state")
+bullet_interval = 1.2
+wait_for_deaths = 39
+stationary = true
+entropy = 2
+sprite = NodePath("../../Fase7 [34]/Enemy12/AnimatedSprite2D")
+healthbar = NodePath("../../Fase7 [34]/Enemy12/ProgressBar")
+hit_particles = NodePath("../../Fase7 [34]/Enemy12/HitParticles")
 
-[node name="Enemy13" parent="Fase9" instance=ExtResource("4_optxt")]
-position = Vector2(-320, 240)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="Enemy9" parent="Fase9" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-16, 264)
+attack_node = NodePath("../../Fase7 [34]/Enemy8/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase7 [34]/Enemy8/FSM/enemy_chase_state")
+bullet_interval = 1.2
+wait_for_deaths = 39
+stationary = true
+entropy = 2
+sprite = NodePath("../../Fase7 [34]/Enemy8/AnimatedSprite2D")
+healthbar = NodePath("../../Fase7 [34]/Enemy8/ProgressBar")
+hit_particles = NodePath("../../Fase7 [34]/Enemy8/HitParticles")
 
-[node name="Enemy14" parent="Fase9" instance=ExtResource("4_optxt")]
-position = Vector2(2, 269)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="Enemy14" parent="Fase9" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-256, 48)
+attack_node = NodePath("../../Fase7 [34]/Enemy12/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase7 [34]/Enemy12/FSM/enemy_chase_state")
+bullet_interval = 1.2
+wait_for_deaths = 39
+unparriableChance = 20
+stationary = true
+entropy = 2
+sprite = NodePath("../../Fase7 [34]/Enemy12/AnimatedSprite2D")
+healthbar = NodePath("../../Fase7 [34]/Enemy12/ProgressBar")
+hit_particles = NodePath("../../Fase7 [34]/Enemy12/HitParticles")
 
-[node name="Enemy9" parent="Fase9" instance=ExtResource("4_optxt")]
-position = Vector2(279, 254)
-bullet_interval = 1.5
-wait_for_deaths = 1000
-
-[node name="Enemy12" parent="Fase9" instance=ExtResource("4_optxt")]
-position = Vector2(272, -114)
-bullet_interval = 1.5
-wait_for_deaths = 1000
-
-[node name="Enemy8" parent="Fase9" instance=ExtResource("4_optxt")]
-position = Vector2(-318, -123)
-bullet_interval = 1.5
-wait_for_deaths = 1000
+[node name="Enemy10" parent="Fase9" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(192, 56)
+attack_node = NodePath("../../Fase7 [34]/Enemy8/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase7 [34]/Enemy8/FSM/enemy_chase_state")
+bullet_interval = 1.2
+wait_for_deaths = 39
+unparriableChance = 20
+stationary = true
+entropy = 2
+sprite = NodePath("../../Fase7 [34]/Enemy8/AnimatedSprite2D")
+healthbar = NodePath("../../Fase7 [34]/Enemy8/ProgressBar")
+hit_particles = NodePath("../../Fase7 [34]/Enemy8/HitParticles")
 
 [node name="Fase10" type="Node" parent="."]
 
 [node name="LifeRacket" parent="Fase10" instance=ExtResource("11_b2tm5")]
-position = Vector2(44, 113)
-wait_for_deaths = 28
+position = Vector2(24, 113)
+wait_for_deaths = 43
 
-[node name="Enemy11" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
-position = Vector2(-6, -122)
-attack_node = NodePath("../../Fase9/Enemy11/FSM/enemy_attack_state")
-chase_node = NodePath("../../Fase9/Enemy11/FSM/enemy_chase_state")
+[node name="Enemy15" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-320, -120)
+attack_node = NodePath("../../Fase1/Enemy11/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy11/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 1000
-sprite = NodePath("../../Fase9/Enemy11/AnimatedSprite2D")
-healthbar = NodePath("../../Fase9/Enemy11/ProgressBar")
-hit_particles = NodePath("../../Fase9/Enemy11/HitParticles")
+wait_for_deaths = 43
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy11/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy11/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy11/HitParticles")
 
-[node name="Enemy13" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
-position = Vector2(-320, 240)
-attack_node = NodePath("../../Fase9/Enemy13/FSM/enemy_attack_state")
-chase_node = NodePath("../../Fase9/Enemy13/FSM/enemy_chase_state")
+[node name="Enemy16" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(264, -120)
+attack_node = NodePath("../../Fase1/Enemy13/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy13/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 1000
-sprite = NodePath("../../Fase9/Enemy13/AnimatedSprite2D")
-healthbar = NodePath("../../Fase9/Enemy13/ProgressBar")
-hit_particles = NodePath("../../Fase9/Enemy13/HitParticles")
+wait_for_deaths = 43
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy13/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy13/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy13/HitParticles")
 
-[node name="Enemy14" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
-position = Vector2(2, 269)
-attack_node = NodePath("../../Fase9/Enemy14/FSM/enemy_attack_state")
-chase_node = NodePath("../../Fase9/Enemy14/FSM/enemy_chase_state")
+[node name="Enemy17" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-16, 264)
+attack_node = NodePath("../../Fase1/Enemy14/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy14/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 1000
-sprite = NodePath("../../Fase9/Enemy14/AnimatedSprite2D")
-healthbar = NodePath("../../Fase9/Enemy14/ProgressBar")
-hit_particles = NodePath("../../Fase9/Enemy14/HitParticles")
+wait_for_deaths = 43
+max_health = 4
+sprite = NodePath("../../Fase1/Enemy14/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy14/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy14/HitParticles")
 
-[node name="Enemy9" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
-position = Vector2(279, 254)
-attack_node = NodePath("../../Fase9/Enemy9/FSM/enemy_attack_state")
-chase_node = NodePath("../../Fase9/Enemy9/FSM/enemy_chase_state")
+[node name="Enemy18" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-320, 248)
+attack_node = NodePath("../../Fase1/Enemy14/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy14/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 1000
-sprite = NodePath("../../Fase9/Enemy9/AnimatedSprite2D")
-healthbar = NodePath("../../Fase9/Enemy9/ProgressBar")
-hit_particles = NodePath("../../Fase9/Enemy9/HitParticles")
+wait_for_deaths = 43
+max_health = 4
+enemy_type = 1
+sprite = NodePath("../../Fase1/Enemy14/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy14/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy14/HitParticles")
 
-[node name="Enemy12" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
-position = Vector2(272, -114)
-attack_node = NodePath("../../Fase9/Enemy12/FSM/enemy_attack_state")
-chase_node = NodePath("../../Fase9/Enemy12/FSM/enemy_chase_state")
+[node name="Enemy19" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(272, 256)
+attack_node = NodePath("../../Fase1/Enemy14/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy14/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 1000
-sprite = NodePath("../../Fase9/Enemy12/AnimatedSprite2D")
-healthbar = NodePath("../../Fase9/Enemy12/ProgressBar")
-hit_particles = NodePath("../../Fase9/Enemy12/HitParticles")
+wait_for_deaths = 43
+max_health = 4
+enemy_type = 1
+sprite = NodePath("../../Fase1/Enemy14/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy14/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy14/HitParticles")
 
-[node name="Enemy8" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
-position = Vector2(-318, -123)
-attack_node = NodePath("../../Fase9/Enemy8/FSM/enemy_attack_state")
-chase_node = NodePath("../../Fase9/Enemy8/FSM/enemy_chase_state")
+[node name="Enemy20" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-24, -128)
+attack_node = NodePath("../../Fase1/Enemy14/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy14/FSM/enemy_chase_state")
 bullet_interval = 1.5
-wait_for_deaths = 1000
-sprite = NodePath("../../Fase9/Enemy8/AnimatedSprite2D")
-healthbar = NodePath("../../Fase9/Enemy8/ProgressBar")
-hit_particles = NodePath("../../Fase9/Enemy8/HitParticles")
+wait_for_deaths = 43
+max_health = 4
+enemy_type = 1
+sprite = NodePath("../../Fase1/Enemy14/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy14/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy14/HitParticles")
+
+[node name="Enemy21" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(-336, 40)
+attack_node = NodePath("../../Fase1/Enemy14/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy14/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 43
+max_health = 4
+enemy_type = 3
+sprite = NodePath("../../Fase1/Enemy14/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy14/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy14/HitParticles")
+
+[node name="Enemy22" parent="Fase10" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_optxt")]
+position = Vector2(264, 48)
+attack_node = NodePath("../../Fase1/Enemy14/FSM/enemy_attack_state")
+chase_node = NodePath("../../Fase1/Enemy14/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 43
+max_health = 4
+enemy_type = 3
+sprite = NodePath("../../Fase1/Enemy14/AnimatedSprite2D")
+healthbar = NodePath("../../Fase1/Enemy14/ProgressBar")
+hit_particles = NodePath("../../Fase1/Enemy14/HitParticles")
 
 [node name="SceneSettings" parent="." instance=ExtResource("5_7ii72")]
 
@@ -609,11 +695,11 @@ volume_db = -12.0
 [connection signal="died" from="Fase1/Enemy9" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase1/Enemy12" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase1/Enemy8" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase2/Enemy12" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase2/Enemy13" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase2/Enemy11" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase2/Enemy14" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase2/Enemy15" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase2 [6]/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase2 [6]/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase2 [6]/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase2 [6]/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase2 [6]/Enemy15" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase3/Enemy12" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase3/Enemy11" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase3/Enemy13" to="." method="_on_enemy_died"]
@@ -625,34 +711,32 @@ volume_db = -12.0
 [connection signal="died" from="Fase4/Enemy12" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase4/Enemy8" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase4/Enemy10" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase5/Enemy13" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase5/Enemy9" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase5/Enemy12" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase5/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase5 [22]/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase5 [22]/Enemy9" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase5 [22]/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase5 [22]/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase5 [22]/Enemy10" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase5 [22]/Enemy11" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase6/Enemy14" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase6/Enemy10" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase6/Enemy15" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase7/Enemy11" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase7/Enemy13" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase7/Enemy14" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase7/Enemy9" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase7/Enemy12" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase7/Enemy8" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase8/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase6/Enemy3" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase6/Enemy4" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase6/Enemy" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase7 [34]/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase7 [34]/Enemy8" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase8/Enemy13" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase8/Enemy14" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase8/Enemy9" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase8/Enemy12" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase8/Enemy8" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase9/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase8/Enemy11" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase9/Enemy13" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase9/Enemy14" to="." method="_on_enemy_died"]
 [connection signal="died" from="Fase9/Enemy9" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase9/Enemy12" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase9/Enemy8" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase10/Enemy11" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase10/Enemy13" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase10/Enemy14" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase10/Enemy9" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase10/Enemy12" to="." method="_on_enemy_died"]
-[connection signal="died" from="Fase10/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase9/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase9/Enemy10" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy15" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy16" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy17" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy18" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy19" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy20" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy21" to="." method="_on_enemy_died"]
+[connection signal="died" from="Fase10/Enemy22" to="." method="_on_enemy_died"]
