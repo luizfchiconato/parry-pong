@@ -87,7 +87,10 @@ func _physics_process(delta):
 				converted = false
 				var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 				velocity = self.global_position.direction_to(player.global_position)
-				velocity = velocity * speed * 1.2
+				if (converted):
+					velocity = velocity * speed * 1.2
+				else:
+					velocity = velocity * speed
 				print("deflect")
 				print(speed)
 				#velocity = velocity.bounce(collision.get_normal())

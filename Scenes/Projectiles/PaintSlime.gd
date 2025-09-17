@@ -35,12 +35,13 @@ func isAvailable() -> bool:
 	return parent_death_number >= wait_for_deaths and (!disappear_after_deaths or parent_death_number < number_of_deaths_to_disappear)
 
 func _on_area_2d_body_entered(body):
+	print("isAvailable", parent_death_number, wait_for_deaths, disappear_after_deaths, isAvailable())
 	if body is PlayerMain and isAvailable():
 		body.entered_paint(self)
 
 
 func _on_area_2d_body_exited(body):
-	if body is PlayerMain:
+	if body is PlayerMain and isAvailable():
 		body.exited_paint(self)
 
 

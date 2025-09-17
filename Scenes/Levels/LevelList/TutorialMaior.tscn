@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5120ih20si15"]
+[gd_scene load_steps=13 format=3 uid="uid://5120ih20si15"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_7o7ep"]
 [ext_resource type="PackedScene" uid="uid://cwf71ikjswioq" path="res://Scenes/Levels/LevelList/TresBolasPilar.tscn" id="2_2dpeq"]
@@ -10,7 +10,6 @@
 [ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="8_iisu7"]
 [ext_resource type="Script" path="res://Scenes/Levels/TileMapScript.gd" id="9_wg6xi"]
 [ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/Light.png" id="10_p0xyf"]
-[ext_resource type="PackedScene" uid="uid://bjfli5f0rssv4" path="res://Scenes/Items/LifeRacket.tscn" id="11_mv5vm"]
 [ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="13_a8ekn"]
 [ext_resource type="AudioStream" uid="uid://duk65jhplli8h" path="res://Art/Audio/Music/TetrisNivel1.mp3" id="14_5pog0"]
 
@@ -148,8 +147,6 @@ position = Vector2(176, 10)
 energy = 0.8
 shadow_enabled = true
 texture = ExtResource("10_p0xyf")
-
-[node name="LifeRacket" parent="Scene" instance=ExtResource("11_mv5vm")]
 
 [node name="Score_UI" parent="." instance=ExtResource("13_a8ekn")]
 

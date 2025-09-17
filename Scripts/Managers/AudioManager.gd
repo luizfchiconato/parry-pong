@@ -19,6 +19,8 @@ const SMALL_EXPLOSION = preload("res://Art/Audio/Effects/SmallExplosion.ogg")
 const ENEMY_SPUN = preload("res://Art/Audio/Effects/EnemySpun.ogg")
 const WALL_SMASH_1 = preload("res://Art/Audio/Effects/Smash1.ogg")
 const WALL_SMASH_2 = preload("res://Art/Audio/Effects/Smash2.ogg")
+const BALLOON_SPLASH = preload("res://Art/Audio/Effects/BallonSplash.ogg")
+const BALLOON_HIT = preload("res://Art/Audio/Effects/BalloonHit.ogg")
 
 #endregion
 var audio_player : AudioStreamPlayer 
