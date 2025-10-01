@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- <link rel="stylesheet" href="quarta.css"> -->
+		<title>lfac16</title>
+		<link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400,400i,700,700i,900" rel="stylesheet">
+	</head>
+
+	<body>
+		<main class="main">
+			<div style="justify-content: center; align-items: center; text-align: center;">
+				<div>A usuária Claudia Mazzuco tem</div>
+				<div id="demo"></div>
+				<div>para se dirigir a Curitiba ou ela será</div>
+			</div>
+			<div style='font-family: "Lucida Console", "Courier New", monospace; font-size: 250px; color: red;'>
+				<p>SUMARIAMENTE EXECUTADA</p>
+			</div>
+		</main>
+	</body>
+</html>
+
+<script>
+	var countDownDate = new Date("January 11, 2026 00:00:00");
+	var now = new Date().getTime();
+	var distance = countDownDate.getTime() - now;
+	// verificaSemana();
+
+	var x = setInterval(maneira, 1000);
+
+	function maneira() {
+	now = new Date().getTime();
+	distance = countDownDate.getTime() - now;
+
+	var months = Math.floor(distance / (1000 * 60 * 60));
+	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+	document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+	+ minutes + "m " + seconds + "s ";
+	
+	if (distance < 0) 
+	{
+		clearInterval(x);
+		document.getElementById("demo").innerHTML = "meu bacano";
+		document.body.style.background = "#f3f3f3 url('https://i.redd.it/aal5ek3ftnlz.jpg') repeat center";
+	}
+	}
+</script>
+
+<style>
+	body {
+		font-size: 170px; 
+		color: white;
+		background-color: black;
+	}
+
+	main {
+		font-family: 'Lato', sans-serif;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		position: fixed;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#demo {
+		color: yellow;
+	}
+
+</style>
