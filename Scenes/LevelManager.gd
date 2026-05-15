@@ -20,7 +20,7 @@ const MARATONA = preload("res://Scenes/Levels/LevelList/Maratona.tscn")
 const BOSS = preload("res://Scenes/Levels/LevelList/Boss.tscn")
 
 const GINASIOS: Array = [
-	TUTORIAL_HOCKEY,
+	#TUTORIAL_HOCKEY,
 	TUTORIAL_MAIOR,
 	TUTORIAL,
 	APRESENTACAO_BOLICHE,
@@ -31,9 +31,9 @@ const GINASIOS: Array = [
 	APRESENTACAO_CHUMBO,
 	RODADA_SIMULTANEA_MENOR,
 	BOLICHE_MULTIPLO,
-	TIMING,
 	CHUMBO_MENOR,
 	BANDEIRA_TINTA,
+	TIMING,
 	MARATONA,
 	BOSS
 ]

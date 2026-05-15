@@ -39,7 +39,7 @@ func Move(input_dir):
 	#if(dash_direction != Vector2.ZERO and dash_direction != input_dir):
 		#dashspeed = 0
 		#endDash()
-
+	#player.velocity = input_dir + dash_direction * dashspeed 
 	player.velocity = input_dir * movespeed + dash_direction * dashspeed 
 	player.move_and_slide()
 	dashParticles.global_position = player.global_position

@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxmnx81vrl5v4"]
+[gd_scene load_steps=4 format=3 uid="uid://bxmnx81vrl5v4"]
 
 [ext_resource type="Script" path="res://Scenes/GameController.gd" id="1_excvq"]
 [ext_resource type="PackedScene" uid="uid://bo22hma5o31ig" path="res://Scenes/MainMenu/InitialMenu/MainMenu.tscn" id="2_otqvo"]
+[ext_resource type="AudioStream" uid="uid://duk65jhplli8h" path="res://Art/Audio/Music/TetrisNivel1.mp3" id="3_yxx3h"]
 
-[node name="GameController" type="Node2D" node_paths=PackedStringArray("world_2d", "gui")]
+[node name="GameController" type="Node2D" node_paths=PackedStringArray("world_2d", "gui", "music")]
 process_mode = 1
 position = Vector2(0, 1)
 script = ExtResource("1_excvq")
 world_2d = NodePath("World2D")
 gui = NodePath("GUI")
+music = NodePath("Music")
 first_gui_scene = ExtResource("2_otqvo")
 
 [node name="GUI" type="Control" parent="."]
@@ -18,3 +20,8 @@ offset_right = 1157.0
 offset_bottom = 642.0
 
 [node name="World2D" type="Node2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yxx3h")
+volume_db = -20.0
+autoplay = true

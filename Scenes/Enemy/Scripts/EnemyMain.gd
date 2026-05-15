@@ -40,6 +40,7 @@ var death_velocity : Vector2
 
 var disc_active = true
 var active_disc : HockeyDisc
+var original_modulate = self.modulate
 
 var BulletScene = load("res://Scenes/Projectiles/Bullet.tscn")
 var HockeyDiscScene = load("res://Scenes/Projectiles/HockeyDisc.tscn")
@@ -180,7 +181,11 @@ func deactivateEnemy():
 func _on_bullet_timer_timeout():
 	if (!isAvailable()):
 		return
+	var paint_tween = create_tween()
+	await paint_tween.tween_property(self, "modulate", Color.RED, 0.2).finished
 	createBullet()
+	var return_tween = create_tween()
+	return_tween.tween_property(self, "modulate", original_modulate, 0.1)
 
 func restartBulletTimer():
 	var my_random_number

@@ -2,6 +2,7 @@ class_name GameController extends Node2D
 
 @export var world_2d : Node2D
 @export var gui : Control
+@export var music : Node2D
 @export var first_gui_scene : PackedScene
 
 const PAUSE_SCREEN = preload("res://Scenes/UI/Pause.tscn")
@@ -12,10 +13,13 @@ var current_2d_scene : Node
 var current_2d_packed_scene
 
 func _ready():
+	music.playing = true
+	music.set_stream_paused(true)
 	Global.game_controller = self
 	change_gui_scene(first_gui_scene)
 
 func change_gui_scene(new_scene: PackedScene, delete: bool = true, keep_running: bool = false):
+	music.set_stream_paused(true)
 	if (current_gui_scene != null):
 		if delete: 
 			current_gui_scene.queue_free()
@@ -29,11 +33,13 @@ func change_gui_scene(new_scene: PackedScene, delete: bool = true, keep_running:
 	print(current_gui_scene)
 
 func deload_current_gui_scene():
+	music.set_stream_paused(false)
 	if (current_gui_scene != null):
 		current_gui_scene.queue_free()
 	current_gui_scene = null
 	
 func deload_current_2d_scene():
+	music.set_stream_paused(true)
 	if (current_2d_scene != null):
 		current_2d_scene.queue_free()
 	current_2d_scene = null
@@ -69,4 +75,5 @@ func isPaused() -> bool:
 	
 func load_main_menu():
 	deload_current_2d_scene()
+	music.set_stream_paused(true)
 	change_gui_scene(MAIN_MENU)

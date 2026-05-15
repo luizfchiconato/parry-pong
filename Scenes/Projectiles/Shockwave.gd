@@ -1,6 +1,6 @@
 class_name Shockwave extends Area2D
 
-var speed = 150
+var speed = 100
 var second_count = 0
 var frame_count = 0
 

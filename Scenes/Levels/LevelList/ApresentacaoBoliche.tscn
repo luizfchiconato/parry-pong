@@ -35,7 +35,7 @@ healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
 
 [node name="Enemy6" parent="Enemies" instance=ExtResource("4_wwcwj")]
-position = Vector2(159, 203)
+position = Vector2(152, 192)
 bullet_interval = 1.5
 wait_for_deaths = 1
 enemy_type = 1

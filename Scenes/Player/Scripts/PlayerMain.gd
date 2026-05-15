@@ -9,6 +9,7 @@ class_name PlayerMain
 #@onready var racketParticles = $AnimatedSprite2D/RacketPivot/Racket/Particles as CPUParticles2D
 @onready var hitbox = $AnimatedSprite2D/Hitboxes/Racket_Hitbox as Node2D
 @onready var hitboxShape = $AnimatedSprite2D/Hitboxes/Racket_Hitbox/hitboxShape as CollisionShape2D
+@onready var ultHitboxShape = $AnimatedSprite2D/Hitboxes/Racket_HitboxUlt/hitboxShape as CollisionShape2D
 @onready var racketAnimator = $AnimatedSprite2D/RacketPivot/Racket/Animation as AnimatedSprite2D
 @export var max_health : int = 8
 
@@ -20,7 +21,7 @@ const attackFrames = 10
 
 var hitInAttack = false
 var canAttack = true
-var reverted_attack = false
+var ult_attack = false
 
 var original_modulate
 var paint_tween
@@ -33,14 +34,15 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	turn()
 
-	if (attackFrame > attackFrames):
+	if (attackFrame > attack_frames()):
 		deactivateAttack()
-		attackFrame = 0
+		attackFrame = 0 
 		hitboxShape.disabled = true
+		ultHitboxShape.disabled = true
 	elif (attacking):
 		attackFrame += 1
 	elif (Input.is_action_just_pressed("MouseLeft") or Input.is_action_just_pressed("MouseRight")) and (canAttack or hitInAttack):
-		reverted_attack = Input.is_action_just_pressed("MouseRight")
+		ult_attack = Input.is_action_just_pressed("MouseRight")
 		attack()
 	
 	if attacking == true:
@@ -56,6 +58,11 @@ func _physics_process(delta: float) -> void:
 		#if racketParticles.amount != 30:
 		#	racketParticles.amount = 30
 		#	racketParticles.spread = 23
+
+func attack_frames():
+	if ult_attack:
+		return attackFrames * 2.5
+	return attackFrames 
 
 func turn():
 	#var direction = -1 if flipped_horizontal == true else 1
@@ -82,7 +89,7 @@ func getMousePos():
 	return mouse_pos
 
 func attackingReverted():
-	return reverted_attack
+	return ult_attack
 
 func getAngleDegrees():
 	return rad_to_deg(getAngle())
@@ -93,11 +100,14 @@ func getRacketAngle():
 	return -(getAngle() + 90)
 
 func attack():
-	#var rotation_subtract = 270 if reverted_attack else 90
+	#var rotation_subtract = 270 if ult_attack else 90
 	racketPivot.rotation = getRacketAngle() - 90
-	
 	hitbox.rotation = getRacketAngle() - 90
-	hitboxShape.disabled = false
+	
+	if ult_attack:
+		ultHitboxShape.disabled = false
+	else:
+		hitboxShape.disabled = false
 	
 	attacking = true
 	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, 1)
@@ -211,7 +221,7 @@ func activateAttack():
 	racketAnimator.play("Default")
 	
 func deactivateAttack():
-	reverted_attack = false
+	ult_attack = false
 	attacking = false
 	if (!hitInAttack):
 		canAttack = false

@@ -11,7 +11,9 @@ var angle = 0
 var medium = false
 var parryable = true
 
-var explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(10, 14)
+#var explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(10, 14)
+var explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(6, 10)
+
 
 @export_enum("Normal:0", "None:1", "Intermediary:2", "Extreme:3") var entropy: int
 
