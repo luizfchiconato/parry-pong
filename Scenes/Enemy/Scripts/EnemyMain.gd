@@ -223,7 +223,19 @@ func createBullet():
 		restartBulletTimer()
 
 func generateBasketBall():
-	pass
+	var bullet = createBasketBall()
+	Global.game_controller.add_2d_scene_child(bullet)
+
+func createBasketBall() -> BasketBall:
+	var basketBall := BasketBall.instantiate() as BasketBall
+	if (throw_balloon == true):
+		basketBall.type = 1
+	basketBall.global_position = global_position
+	# basketBall.ground_velocity = Vector2(100, 120)
+	basketBall.vertical_velocity = 10
+	basketBall.set_as_top_level(true)
+	basketBall.parent_enemy = self
+	return basketBall
 
 func generateBowlingBall():
 	var bullet = createBowlingBall()

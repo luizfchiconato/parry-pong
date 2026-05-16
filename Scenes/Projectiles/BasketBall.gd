@@ -1,6 +1,6 @@
 class_name BasketBall extends Area2D
 
-@export var speed = 150
+
 var velocity = Vector2.ZERO
 var target_pos = Vector2.ZERO
 
@@ -9,6 +9,8 @@ var previousConverted = false
 var explodable = true
 var can_deflect = false
 var parryable = true
+var timeEllapsed = 0
+var endlog = false
 
 var explodingBowlingBallsQuantity = 10
 
@@ -25,15 +27,16 @@ var Player = load("res://Scenes/Player/Player.tscn")
 @onready var radius_bomb_internal = $ExplosionRadius/InternalMesh
 @export var bomb_animator : AnimationPlayer
 
-var fake_gravity = 10
+var fake_gravity = 5
 @export var ground_velocity : Vector2
 @export var vertical_velocity : float
 
 @export var parent_enemy : EnemyMain
 @export_enum("Bowling:0", "Balloon:1") var type: int = 0
 
-var arcHeight = RandomNumberGenerator.new().randf_range(225, 225)
-var duration = RandomNumberGenerator.new().randf_range(1.00, 1.5)
+@export var speed = 200
+var arcHeight = RandomNumberGenerator.new().randf_range(90, 90)
+var duration = 1
 
 var t = 0.0
 
@@ -88,15 +91,10 @@ func _ready():
 		
 		initial_position = self.global_position
 		end_position = Vector2(target_pos.x + x_entropy, target_pos.y + y_entropy)
-		speed = initial_position.distance_to(end_position) / duration
-		
 		velocity = self.global_position.direction_to(end_position)
-		
+		print(velocity)
+		speed = initial_position.distance_to(Vector2(initial_position.x + velocity.x, initial_position.y + velocity.y)) * 150 / duration
 		explosion_radius.global_position = end_position
-
-func initialize(groundVelocity, verticalVelocity):
-	self.groundVelocity = groundVelocity
-	self.verticalVelocity = verticalVelocity
 
 func _physics_process(delta):
 	if !converted:
@@ -127,7 +125,7 @@ func convert_ball(delta):
 		var y_entropy = RandomNumberGenerator.new().randf_range(-30, 30)
 		
 		var end_position = Vector2(target_pos.x + x_entropy, target_pos.y + y_entropy)
-		velocity = self.global_position.direction_to(end_position) * 2
+		velocity = self.global_position.direction_to(end_position)
 	else:
 		queue_free()
 
@@ -135,21 +133,36 @@ func reflect_movement(delta):
 	self.global_position += velocity * 200 * delta
 
 func arch_movement(delta):
+	timeEllapsed = timeEllapsed + delta
 	explosion_radius.global_position = end_position
-	vertical_velocity += fake_gravity * delta
+	# vertical_velocity += fake_gravity * delta
 	self.global_position += velocity * speed * delta
 
 	t += delta / duration
-	arch_body.global_position = _quadratic_bezier(initial_position, Vector2(initial_position.x, initial_position.y - arcHeight), end_position, t)
+	#arch_body.global_position = _quadratic_bezier(initial_position, Vector2(initial_position.x, initial_position.y - arcHeight), end_position, t)
+	arch_body.global_position = _quadratic_bezier(
+		initial_position, 
+		Vector2(initial_position.x, (initial_position.y + initial_position.y + velocity.y * speed * duration) / 2  - arcHeight),
+		Vector2(initial_position.x + velocity.x * speed * duration,initial_position.y + velocity.y * speed * duration),
+		t)
 	
 	check_y_level()
 
 func check_y_level():
 	if (self.global_position.y < arch_body.global_position.y):
 		if (type == 0):
-			explode()
+			initial_position = self.global_position 
+			#vertical_velocity = 0
+			t = 0
+			if (!endlog):
+				#print("timeEllapsed", timeEllapsed)
+				endlog = true
+			timeEllapsed = 0
+			#explode()
+			pass
 		else:
-			explode_paint()
+			#explode_paint()
+			pass
 	elif (self.global_position.y - 70 < arch_body.global_position.y and self.global_position.distance_to(end_position) < 90):
 		can_deflect = true
 		$ExplosionRadius/InternalMesh.modulate = Color("00baba3f")

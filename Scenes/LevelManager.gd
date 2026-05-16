@@ -5,6 +5,7 @@ const TUTORIAL_HOCKEY = preload("res://Scenes/Levels/LevelList/TutorialHockey.ts
 const TUTORIAL_MAIOR = preload("res://Scenes/Levels/LevelList/TutorialMaior.tscn")
 const TUTORIAL = preload("res://Scenes/Levels/LevelList/Tutorial.tscn")
 const APRESENTACAO_BOLICHE = preload("res://Scenes/Levels/LevelList/ApresentacaoBoliche.tscn")
+const APRESENTACAO_BASQUETE = preload("res://Scenes/Levels/LevelList/ApresentacaoBasquete.tscn")
 const RODADA_SIMULTANEA = preload("res://Scenes/Levels/LevelList/RodadaSimultanea.tscn")
 const TRES_BOLAS = preload("res://Scenes/Levels/LevelList/TresBolas.tscn")
 const TRES_BOLAS_PILAR = preload("res://Scenes/Levels/LevelList/TresBolasPilar.tscn")
@@ -24,6 +25,7 @@ const GINASIOS: Array = [
 	TUTORIAL_MAIOR,
 	TUTORIAL,
 	APRESENTACAO_BOLICHE,
+	APRESENTACAO_BASQUETE,
 	RODADA_SIMULTANEA,
 	TRES_BOLAS,
 	TRES_BOLAS_PILAR,
