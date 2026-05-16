@@ -13,8 +13,8 @@ var current_2d_scene : Node
 var current_2d_packed_scene
 
 func _ready():
-	music.playing = true
-	music.set_stream_paused(true)
+	#music.playing = true
+	#music.set_stream_paused(true)
 	Global.game_controller = self
 	change_gui_scene(first_gui_scene)
 
@@ -45,6 +45,8 @@ func deload_current_2d_scene():
 	current_2d_scene = null
 
 func change_2d_scene(new_scene: PackedScene, delete: bool = true, keep_running: bool = false):
+	if (!music.playing):
+		music.playing = true
 	deload_current_gui_scene()
 	if (current_2d_scene != null):
 		if delete:
@@ -75,5 +77,5 @@ func isPaused() -> bool:
 	
 func load_main_menu():
 	deload_current_2d_scene()
-	music.set_stream_paused(true)
+	music.playing = false
 	change_gui_scene(MAIN_MENU)

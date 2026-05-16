@@ -9,6 +9,7 @@ var rng = RandomNumberGenerator.new()
 @export var chase_node : Node
 
 @export var bullet_interval: float = 2
+@export var wait_to_attack: float = 0
 
 @export var wait_for_deaths: int = 0
 @export var unparriableChance: int = 0
@@ -17,7 +18,7 @@ var rng = RandomNumberGenerator.new()
 
 #@onready var animator = $AnimationPlayer
 
-@export_enum("Normal:0", "Bowling:1", "Volley:2", "Hockey:3") var enemy_type: int
+@export_enum("Normal:0", "Bowling:1", "Volley:2", "Hockey:3", "Basket:4") var enemy_type: int
 @export_enum("Normal:0", "None:1", "Intermediary:2", "Extreme:3") var entropy: int
 
 @export_enum("1", "3", "5") var min_balls_per_shot: int
@@ -35,6 +36,7 @@ const TYPE_NORMAL = 0
 const TYPE_BOWLING = 1
 const TYPE_VOLLEY = 2
 const TYPE_HOCKEY = 3
+const TYPE_BASKET = 4
 const speed = 200
 var death_velocity : Vector2
 
@@ -45,6 +47,7 @@ var original_modulate = self.modulate
 var BulletScene = load("res://Scenes/Projectiles/Bullet.tscn")
 var HockeyDiscScene = load("res://Scenes/Projectiles/HockeyDisc.tscn")
 var BowlingBall = load("res://Scenes/Projectiles/BowlingBall.tscn")
+var BasketBall = load("res://Scenes/Projectiles/BasketBall.tscn")
 var Laser = load("res://Scenes/Projectiles/Laser.tscn")
 
 #func _physics_process(_delta):
@@ -101,6 +104,9 @@ func activateEnemy():
 	$AnimatedSprite2D.scale.y = 1
 	$HealthBar.visible = true
 	$BodyCollider.set_deferred("disabled", false)
+	# TODO: GAMBIARRA PRA TIRAR VARIANCIA QUE ANIMAÇAO DE ATIRAR TRAS
+	$BulletTimer.wait_time = bullet_interval - 0.2 + wait_to_attack
+	$BulletTimer.start()
 
 func die(newVelocity):
 	print("die")
@@ -161,13 +167,17 @@ func _ready():
 	$HealthBar.health = max_health
 	$HealthBar.setHealthBar()
 	health = max_health
+	
+	# TODO: GAMBIARRA PRA TIRAR VARIANCIA QUE ANIMAÇAO DE ATIRAR TRAS
+	$BulletTimer.wait_time = bullet_interval - 0.2 + wait_to_attack
 
 	if wait_for_deaths > 0:
 		self.z_index = 0
 		deactivateEnemy()
 	else:
 		self.z_index = 5
-	$BulletTimer.wait_time = bullet_interval
+		$BulletTimer.autostart = true
+		$BulletTimer.start()
 
 func deactivateEnemy():
 	$AnimatedSprite2D.play("Hidden")
@@ -188,9 +198,12 @@ func _on_bullet_timer_timeout():
 	return_tween.tween_property(self, "modulate", original_modulate, 0.1)
 
 func restartBulletTimer():
-	var my_random_number
-	my_random_number = rng.randf_range(bullet_interval - bullet_interval * 0.2, bullet_interval + bullet_interval * 0.2)
-	$BulletTimer.wait_time = my_random_number
+	#var my_random_number
+	#my_random_number = rng.randf_range(bullet_interval - bullet_interval * 0.2, bullet_interval + bullet_interval * 0.2)
+#	# $BulletTimer.wait_time = my_random_number
+	# TODO: GAMBIARRA PRA TIRAR VARIANCIA QUE ANIMAÇAO DE ATIRAR TRAS
+	$BulletTimer.wait_time = bullet_interval - 0.2
+	$BulletTimer.autostart = true
 	$BulletTimer.start()
 	return true
 
@@ -203,15 +216,14 @@ func createBullet():
 		restartBulletTimer()
 	elif (enemy_type == TYPE_HOCKEY):
 		generateDisc()
-	elif (enemy_type == TYPE_VOLLEY):
-		createLaser()
+	elif (enemy_type == TYPE_BASKET):
+		generateBasketBall()
 	else:
 		generateDefaultBall()
 		restartBulletTimer()
 
-func createLaser():
-	var laser := Laser.instantiate() as Laser
-	Global.game_controller.add_2d_scene_child(laser)
+func generateBasketBall():
+	pass
 
 func generateBowlingBall():
 	var bullet = createBowlingBall()
