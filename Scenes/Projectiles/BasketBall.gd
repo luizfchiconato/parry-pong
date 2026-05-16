@@ -58,6 +58,7 @@ var instantiated_paint
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	explosion_radius.visible = false
 	anim_sprite.play("default")
 	if (type == 0):
 		anim_sprite_2.play("default")
@@ -94,12 +95,11 @@ func _ready():
 		velocity = self.global_position.direction_to(end_position)
 		print(velocity)
 		speed = initial_position.distance_to(Vector2(initial_position.x + velocity.x, initial_position.y + velocity.y)) * 150 / duration
-		explosion_radius.global_position = end_position
+		
 
 func _physics_process(delta):
 	if !converted:
 		arch_movement(delta)
-	
 	if converted:
 		if !previousConverted:
 			convert_ball(delta)
@@ -134,7 +134,7 @@ func reflect_movement(delta):
 
 func arch_movement(delta):
 	timeEllapsed = timeEllapsed + delta
-	explosion_radius.global_position = end_position
+	#explosion_radius.global_position = end_position
 	# vertical_velocity += fake_gravity * delta
 	self.global_position += velocity * speed * delta
 
@@ -150,19 +150,9 @@ func arch_movement(delta):
 
 func check_y_level():
 	if (self.global_position.y < arch_body.global_position.y):
-		if (type == 0):
-			initial_position = self.global_position 
-			#vertical_velocity = 0
-			t = 0
-			if (!endlog):
-				#print("timeEllapsed", timeEllapsed)
-				endlog = true
-			timeEllapsed = 0
-			#explode()
-			pass
-		else:
-			#explode_paint()
-			pass
+		initial_position = self.global_position 
+		t = 0
+		explode()
 	elif (self.global_position.y - 70 < arch_body.global_position.y and self.global_position.distance_to(end_position) < 90):
 		can_deflect = true
 		$ExplosionRadius/InternalMesh.modulate = Color("00baba3f")
@@ -184,13 +174,16 @@ func explode_paint():
 	queue_free()
 
 func explode():
+	explosion_radius.visible = true
 	can_deflect = false
-	clearRadius()
+	#clearRadius()
 	#AudioManager.play_sound(AudioManager.BOWLING_FALL, 0, 0)
 	#AudioManager.play_sound(AudioManager.SMALL_EXPLOSION, 0, -5, 0.4)
 	bomb_animator.play("exploding")
 	await bomb_animator.animation_finished
-	queue_free()
+	explosion_radius.global_position = self.global_position
+	explosion_radius.visible = false
+	#queue_free()
 
 func clearRadius():
 	radius_bomb.visible = false

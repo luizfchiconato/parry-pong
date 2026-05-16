@@ -28,7 +28,6 @@ position = Vector2(-60, 53)
 position = Vector2(180, -41)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
-bullet_interval = 1.0
 enemy_type = 4
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")

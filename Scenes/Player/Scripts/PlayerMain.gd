@@ -131,6 +131,12 @@ func _on_hitbox_body_entered(body):
 		#$Camera2D.set_trauma(0.3)
 		hitInAttack = true
 		reflectBowlingBall(body)
+	
+	if body is BasketBall:
+		#$Camera2D.set_trauma(0.3)
+		hitInAttack = true
+		reflectBasketBall(body)
+	
 
 func set_trauma(amount):
 	$Camera2D.set_trauma(amount)
@@ -157,6 +163,12 @@ func reflectBowlingBall(body):
 		body.converted = true
 		#frameFeeze(0.05, 0.5)
 		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.4)
+		
+func reflectBasketBall(body):
+	if (!body.converted and body.can_deflect):
+		body.converted = true
+		#frameFeeze(0.05, 0.5)
+		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.6)
 
 	#if body.is_in_group("Enemy"):
 	#	#frameFeeze(0.05, 0.9)
