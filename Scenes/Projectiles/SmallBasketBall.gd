@@ -1,4 +1,5 @@
-class_name BasketBall extends Area2D
+class_name SmallBasketBall extends Area2D
+
 
 
 var velocity = Vector2.ZERO
@@ -17,16 +18,10 @@ var explodingBowlingBallsQuantity = 10
 var BasketBall = load("res://Scenes/Projectiles/BasketBall.tscn")
 var Player = load("res://Scenes/Player/Player.tscn")
 var Explosion = load("res://Scenes/Projectiles/Explosion.tscn")
-var SmallBasketBall = load("res://Scenes/Projectiles/SmallBasketBall.tscn")
 @onready var arch_body = $Body
 
 @onready var anim_sprite = $ShadowSprite
 @onready var anim_sprite_2 = $Body/BallSprite
-@onready var explosion_radius = $ExplosionRadius
-
-@onready var anim_bomb = $ExplosionRadius/AnimatedSprite2D
-@onready var radius_bomb = $ExplosionRadius/MeshInstance2D
-@onready var radius_bomb_internal = $ExplosionRadius/InternalMesh
 @export var bomb_animator : AnimationPlayer
 
 var fake_gravity = 5
@@ -37,8 +32,8 @@ var fake_gravity = 5
 @export_enum("Bowling:0", "Balloon:1") var type: int = 0
 
 @export var speed = 200
-var arcHeight = RandomNumberGenerator.new().randf_range(70, 70)
-var duration = 1
+var arcHeight = RandomNumberGenerator.new().randf_range(1200, 1200)
+var duration = 2
 
 var t = 0.0
 
@@ -49,44 +44,45 @@ var end_position
 
 const DAMAGE_BOWLING = 2
 
-var offset_from_player = false
+var offset_from_player = true
 var left = 0
 var up = 0
 
-var PaintSlime = load("res://Scenes/Projectiles/PaintSlimeCircle.tscn")
+
+var explosion : Explosion
 var instantiated_paint
 
 #@export var animator : AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	explosion_radius.visible = false
+	#explosion_radius.visible = false
 	anim_sprite.play("default")
 	if (type == 0):
 		anim_sprite_2.play("default")
 	else:
 		anim_sprite_2.play("balloon")
 		anim_sprite_2.scale = Vector2(0.85, 0.85)
-		radius_bomb.visible = false
-		#radius_bomb_internal.visible = false
 	#bomb_animator.play("default")
 	
 	var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 	
-	
 	if (velocity == Vector2.ZERO):
+		var x_player_entropy = RandomNumberGenerator.new().randf_range(0, 150)
+		var y_player_entropy = RandomNumberGenerator.new().randf_range(0, 150)
+		
 		var target_pos
 		if (!offset_from_player):
 			target_pos = player.global_position
 		else:
 			if (left == 1 and up == 1):
-				target_pos = Vector2(player.global_position.x - 70, player.global_position.y - 70)
+				target_pos = Vector2(player.global_position.x - x_player_entropy, player.global_position.y - y_player_entropy)
 			elif (left == 1 and up == 0):
-				target_pos = Vector2(player.global_position.x - 70, player.global_position.y + 70)
+				target_pos = Vector2(player.global_position.x - x_player_entropy, player.global_position.y + y_player_entropy)
 			elif (left == 0 and up == 1):
-				target_pos = Vector2(player.global_position.x + 70, player.global_position.y - 70)
+				target_pos = Vector2(player.global_position.x + x_player_entropy, player.global_position.y - y_player_entropy)
 			else:
-				target_pos = Vector2(player.global_position.x + 70, player.global_position.y + 70)
+				target_pos = Vector2(player.global_position.x + x_player_entropy, player.global_position.y + y_player_entropy)
 		self.rotation = target_pos.angle()
 		
 		var x_entropy = RandomNumberGenerator.new().randf_range(-50, 50)
@@ -95,9 +91,14 @@ func _ready():
 		initial_position = self.global_position
 		end_position = Vector2(target_pos.x + x_entropy, target_pos.y + y_entropy)
 		velocity = self.global_position.direction_to(end_position)
-		print(velocity)
-		speed = initial_position.distance_to(Vector2(initial_position.x + velocity.x, initial_position.y + velocity.y)) * 150 / duration
-		
+		speed = initial_position.distance_to(end_position) / duration
+		#speed = initial_position.distance_to(Vector2(initial_position.x + velocity.x, initial_position.y + velocity.y)) * 150 / duration
+
+	explosion = Explosion.instantiate() as Explosion
+	Global.game_controller.add_2d_scene_child(explosion)
+	explosion.global_position = end_position
+	explosion.showPaint()
+	explosion.scale = self.scale
 
 func _physics_process(delta):
 	if !converted:
@@ -108,8 +109,6 @@ func _physics_process(delta):
 		reflect_movement(delta)
 
 func convert_ball(delta):
-	radius_bomb.visible = false
-	radius_bomb_internal.visible = false
 	anim_sprite.visible = false
 
 	previousConverted = true
@@ -144,10 +143,10 @@ func arch_movement(delta):
 	#arch_body.global_position = _quadratic_bezier(initial_position, Vector2(initial_position.x, initial_position.y - arcHeight), end_position, t)
 	arch_body.global_position = _quadratic_bezier(
 		initial_position, 
-		Vector2(initial_position.x, (initial_position.y + initial_position.y + velocity.y * speed * duration) / 2  - arcHeight),
-		Vector2(initial_position.x + velocity.x * speed * duration,initial_position.y + velocity.y * speed * duration),
+		Vector2(initial_position.x, initial_position.y - arcHeight),
+		end_position,
 		t)
-	
+
 	check_y_level()
 
 func check_y_level():
@@ -155,32 +154,16 @@ func check_y_level():
 		initial_position = self.global_position 
 		t = 0
 		explode()
-	elif (self.global_position.y - 70 < arch_body.global_position.y and self.global_position.distance_to(end_position) < 90):
-		$ExplosionRadius/InternalMesh.modulate = Color("00baba3f")
-	else:
-		$ExplosionRadius/InternalMesh.modulate = Color("f82a2a11")
+		queue_free()
 
-func explode_paint():
-	instantiated_paint = PaintSlime.instantiate() as PaintSlime
-	instantiated_paint.start_timer()
-
-	instantiated_paint.scale = Vector2(4, 4)
-	var player = get_tree().get_first_node_in_group("Player") as PlayerMain
-
-	Global.game_controller.add_2d_scene_child(instantiated_paint)
-	instantiated_paint.global_position = anim_sprite.global_position
-	AudioManager.play_sound(AudioManager.BALLOON_SPLASH, -20, -10)
-	queue_free()
 
 func explode():
-	var explosion := Explosion.instantiate() as Explosion
-	Global.game_controller.add_2d_scene_child(explosion)
-	explosion.global_position = arch_body.global_position
+	# explosion.global_position = arch_body.global_position
+	
 	explosion.explode()
+	
 
 func clearRadius():
-	radius_bomb.visible = false
-	radius_bomb_internal.visible = false
 	anim_sprite.visible = false
 	anim_sprite_2.visible = false
 
@@ -190,17 +173,6 @@ func _quadratic_bezier(p0: Vector2, p1: Vector2, p2: Vector2, t: float):
 	var r = q0.lerp(q1, t)
 	return Vector2(self.global_position.x, r.y)
 
-#Connect and deal damage to the player
-func deal_damage_to_player(player : PlayerMain):
-	if !player.attacking:
-		player._take_damage(DAMAGE_BOWLING)
-
-func deal_damage_to_enemy(enemy : EnemyMain):
-	if (type == 1):
-		AudioManager.play_sound(AudioManager.BALLOON_HIT, 0, -3)
-	else:
-		AudioManager.play_sound(AudioManager.ENEMY_HIT_BOWLING, 0, -15)
-	enemy._take_damage(DAMAGE_BOWLING, velocity * 2)
 
 func createBowlingBalls():
 	for i in range(explodingBowlingBallsQuantity):
@@ -220,62 +192,4 @@ func createBowlingBall(angle: float):
 	basketBall.scale.y = 0.2
 	Global.game_controller.add_2d_scene_child(basketBall)
 
-#func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-#	if !(body is TileMap):
-#		return
 
-#	#if (explodable and !converted):
-#	#	createBowlingBalls()
-#	queue_free()
-
-
-func _on_explosion_radius_body_entered(body):
-	if body.is_in_group("Player") and !converted:
-		var player = get_tree().get_first_node_in_group("Player") as PlayerMain
-		if player.is_dashing():
-			return
-		deal_damage_to_player(body)
-	if body.is_in_group("Enemy") and converted:
-		deal_damage_to_enemy(body)
-
-
-func _on_body_entered(body):
-	if body.is_in_group("Enemy") and converted:
-		deal_damage_to_enemy(body)
-		queue_free()
-
-
-func _on_hitbox_area_2d_body_entered(body):
-	if (body is TileMap):
-		if (!converted):
-			explode_wall()
-		queue_free()
-
-	if body.is_in_group("Player") and !converted:
-		var player = get_tree().get_first_node_in_group("Player") as PlayerMain
-		if player.is_dashing():
-			return
-		deal_damage_to_player(body)
-
-
-func explode_wall():
-	createAngleBall(0, 0)
-	createAngleBall(1, 0)
-	createAngleBall(0, 1)
-	createAngleBall(1, 1)
-	createAngleBall(0, 0)
-	createAngleBall(1, 0)
-
-func createBasketBall() -> SmallBasketBall:
-	var smallBasketBall := SmallBasketBall.instantiate() as SmallBasketBall
-	smallBasketBall.global_position = global_position
-	smallBasketBall.vertical_velocity = 10
-	smallBasketBall.set_as_top_level(true)
-	return smallBasketBall
-
-func createAngleBall(left : int, up: int):
-	var basketBall = createBasketBall()
-	basketBall.left = left
-	basketBall.up = up
-	basketBall.offset_from_player = true
-	Global.game_controller.add_2d_scene_child(basketBall)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c2pjkm8qs76q"]
+[gd_scene load_steps=35 format=3 uid="uid://c2pjkm8qs76q"]
 
 [ext_resource type="Script" path="res://Scenes/Projectiles/BasketBall.gd" id="1_c6tlw"]
 [ext_resource type="Texture2D" uid="uid://iaqjd2o08qvv" path="res://Art/Sprites/BowlingBallConverted.png" id="2_7mqe4"]
@@ -222,6 +222,9 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qiekf"]
+radius = 22.3607
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_3fuda"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o3xnk"]
@@ -281,6 +284,12 @@ frame_progress = 0.860568
 scale = Vector2(1.94643, 1.94643)
 sprite_frames = SubResource("SpriteFrames_phncl")
 
+[node name="HitboxArea2D" type="Area2D" parent="Body/BallSprite"]
+scale = Vector2(0.523401, 0.485991)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/BallSprite/HitboxArea2D"]
+shape = SubResource("CircleShape2D_qiekf")
+
 [node name="BodyCollision" type="CollisionShape2D" parent="Body"]
 shape = SubResource("CircleShape2D_3fuda")
 
@@ -304,3 +313,4 @@ shape = SubResource("CircleShape2D_o3xnk")
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="body_entered" from="ExplosionRadius" to="." method="_on_explosion_radius_body_entered"]
 [connection signal="body_entered" from="Body" to="." method="_on_body_body_entered"]
+[connection signal="body_entered" from="Body/BallSprite/HitboxArea2D" to="." method="_on_hitbox_area_2d_body_entered"]
