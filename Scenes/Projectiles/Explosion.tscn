@@ -153,7 +153,7 @@ position = Vector2(2.84217e-14, 0.506305)
 scale = Vector2(0.370147, 0.382783)
 sprite_frames = SubResource("SpriteFrames_vh6vf")
 animation = &"exploding"
-frame_progress = 0.467195
+frame_progress = 0.41665
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ExplosionRadius"]
 libraries = {

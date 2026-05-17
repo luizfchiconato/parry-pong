@@ -3,6 +3,7 @@ class_name PaintSlime extends Node2D
 @export var wait_for_deaths : int = 0
 @export var disappear_after_deaths : bool = false
 @export var number_of_deaths_to_disappear : int = 0
+@export var disappear_after_timing : bool = true
 var DAMAGE_PAINT = 2
 var tween : Tween
 var original_modulate
@@ -49,7 +50,8 @@ func start_timer():
 	$ClearTimer.start(1)
 
 func _on_clear_timer_timeout():
-	destroy()
+	if (disappear_after_timing):
+		destroy()
 
 func destroy():
 	queue_free()

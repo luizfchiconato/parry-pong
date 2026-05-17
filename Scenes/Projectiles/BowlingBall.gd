@@ -167,7 +167,7 @@ func explode_paint():
 
 	Global.game_controller.add_2d_scene_child(instantiated_paint)
 	instantiated_paint.global_position = anim_sprite.global_position
-	AudioManager.play_sound(AudioManager.BALLOON_SPLASH, -20, -10)
+	AudioManager.play_sound(AudioManager.BALLOON_SPLASH, -40, -10)
 	queue_free()
 
 func explode():
@@ -198,7 +198,7 @@ func deal_damage_to_player(player : PlayerMain):
 
 func deal_damage_to_enemy(enemy : EnemyMain):
 	if (type == 1):
-		AudioManager.play_sound(AudioManager.BALLOON_HIT, 0, -3)
+		AudioManager.play_sound(AudioManager.BALLOON_HIT, -10, -3)
 	else:
 		AudioManager.play_sound(AudioManager.ENEMY_HIT_BOWLING, 0, -15)
 	enemy._take_damage(DAMAGE_BOWLING, velocity * 2)

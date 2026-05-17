@@ -41,7 +41,7 @@ const MENSAGENS: Array = [
 	"Mas bah tu é um baita dum chinelão mesmo",
 	"Você devia desistir. No geral",
 	"Liguei para sua mãe e ela disse que preferia não ter criado um filho. E que você é adotado",
-	"Viu, só te avisar que psicografamos uma carta do seu pai. Ele falou que o inferno é menos pior do que parece",
+	"Viu, só te avisar que psicografamos uma carta do seu pai. Ele falou que o inferno ainda é menor pior do que criar uma decepção como você",
 	"Você é menor que a bola e ela ainda consegue te acertar",
 	"Ah sei lá pensa você agora em uma ofensa aí. do jeito que você se odeia você vai pensar em uma rapidinho",
 	"Tá de corpo mole é?",
@@ -70,7 +70,7 @@ const MENSAGENS: Array = [
 	"🚨🚨 URGENTE!!!🚨🚨 🚨🚨FOI DETECTADO O PRIMEIRO CASO DA DOENÇA DO PASSARO 🦅🦅🦅 NA ESCOLA CAIXEIRO VIAJANTE 🚨🚨 PASSARO O PAU NO ALUNO PEDRO",
 	"Oi meu nome é Samara, tenho 14 anos (Teria se estivesse viva), morri aos 13 em Cascavel-PR. Eu andava de bicicleta Quando não pude desviar de um arame farpado. O pior foi que o dono do lote não quis me ajudar, riu bastante mim após agonizar por 2 horas enroscada no arame eu faleci, através dessa mensagem eu peço que façam com que eu possa descançar em paz. Envie isso para 20 comunidades e minha alma estara sendo salva por você e pelos outros 20 que receberão. Caso não repasse essa mensagem vou visitar-lhe hoje a noite assim vc poderá conhecer o tal arame bem de pertinho. Dia 15 de Julho Mariana resolveu rir dessa mensagem, uma noite depois ela sumiu sem deixar vestigios. O mesmo aconteceu com Kare dia 18 de Outubro. Não Quebre essa corrente por favor, a não ser que queira sentir a minha presença",
 	"O Naruto pode ser um pouco duro às vezes, talvez você não saiba disso, mas o Naruto também cresceu sem pai. Na verdade ele nunca conheceu nenhum de seus pais, e nunca teve nenhum amigo em nossa aldeia. Mesmo assim eu nunca vi ele chorar, ficar zangado ou se dar por vencido, ele está sempre disposto a melhorar, ele quer ser respeitado, é o sonho dele e o Naruto daria a vida por isso sem hesitar. Meu palpite é que ele se cansou de chorar e decidiu fazer alguma coisa a respeito!",
-	"Eu entendo, fica difícil mesmo ver a bola quando você tem que olhar pra cima pra enxergar. Pintorzinho de rodapé",
+	"Eu entendo, fica difícil mesmo ver a bola quando você tem que olhar pra cima pra enxergar. Pintor de rodapé",
 	"Cabeça de bolota cabeça de barril cabeça de abóbora cabeça de fuzil é o cabeção de plástico cabeça de Max Steel",
 	"Cu baixo",
 	"Tamburete",
@@ -97,7 +97,7 @@ const MENSAGENS_BOLICHE: Array = [
 const MENSAGENS_TINTA: Array = [
 	"fdsifuhsrBGDASUIGHADSGA ESCORREGOU QUE NEM UM MERDA",
 	"Pqp caiu de novo",
-	"É difícil mesmo manter o equilíbrio com essa cabeça de playamobil"
+	"É difícil manter o equilíbrio com essa cabeça de playmobil, né?"
 ]
 
 const SPEED = 12
