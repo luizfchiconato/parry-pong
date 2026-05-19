@@ -32,8 +32,8 @@ var fake_gravity = 5
 @export_enum("Bowling:0", "Balloon:1") var type: int = 0
 
 @export var speed = 200
-var arcHeight = RandomNumberGenerator.new().randf_range(1200, 1200)
-var duration = 2
+var arcHeight = RandomNumberGenerator.new().randf_range(1000, 1000)
+var duration = 1.2
 
 var t = 0.0
 
@@ -93,12 +93,15 @@ func _ready():
 		velocity = self.global_position.direction_to(end_position)
 		speed = initial_position.distance_to(end_position) / duration
 		#speed = initial_position.distance_to(Vector2(initial_position.x + velocity.x, initial_position.y + velocity.y)) * 150 / duration
+		$Timer.wait_time = duration / 2
+		$Timer.start()
 
+func showExplosion():
 	explosion = Explosion.instantiate() as Explosion
 	Global.game_controller.add_2d_scene_child(explosion)
 	explosion.global_position = end_position
 	explosion.showPaint()
-	explosion.scale = self.scale
+	explosion.scale = self.scale * 2
 
 func _physics_process(delta):
 	if !converted:
@@ -193,3 +196,7 @@ func createBowlingBall(angle: float):
 	Global.game_controller.add_2d_scene_child(basketBall)
 
 
+
+
+func _on_timer_timeout():
+	showExplosion()

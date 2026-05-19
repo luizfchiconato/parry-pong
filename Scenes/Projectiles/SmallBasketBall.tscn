@@ -143,8 +143,12 @@ color = Color(0.972549, 0.164706, 0.164706, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o3xnk")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="body_entered" from="Body" to="." method="_on_body_body_entered"]
 [connection signal="body_entered" from="Body/BallSprite/HitboxArea2D" to="." method="_on_hitbox_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

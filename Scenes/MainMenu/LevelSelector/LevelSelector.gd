@@ -16,9 +16,9 @@ func load_level_buttons():
 	for i in range(levels.size()):
 		add_level_button(levels[i], i)
 
-func add_level_button(level : PackedScene, level_index: int):
+func add_level_button(level : Dictionary, level_index: int):
 	var button = LevelSelect.instantiate() as LevelSelect
-	button.text = str("Ginásio ", level_index + 1)
+	button.text = str("Ginásio ", level_index + 1, " - ", level.name)
 	button.level_index = level_index
 	button.custom_minimum_size.y = 40
 	if (level_index <= 9):

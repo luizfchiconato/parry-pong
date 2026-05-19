@@ -762,7 +762,7 @@ max_health = 8
 health = 8
 
 [node name="PaintHitTimer" type="Timer" parent="."]
-wait_time = 0.7
+wait_time = 0.4
 
 [connection signal="area_entered" from="AnimatedSprite2D/Hitboxes/Racket_HitboxUlt" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Racket_HitboxUlt" to="." method="_on_hitbox_body_entered"]

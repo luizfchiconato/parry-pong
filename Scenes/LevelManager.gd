@@ -2,34 +2,86 @@ extends Node2D
 
 const TUTORIAL_HOCKEY = preload("res://Scenes/Levels/LevelList/TutorialHockey.tscn")
 
-const TUTORIAL_MAIOR = preload("res://Scenes/Levels/LevelList/TutorialMaior.tscn")
-const TUTORIAL = preload("res://Scenes/Levels/LevelList/Tutorial.tscn")
-const APRESENTACAO_BOLICHE = preload("res://Scenes/Levels/LevelList/ApresentacaoBoliche.tscn")
-const APRESENTACAO_BASQUETE = preload("res://Scenes/Levels/LevelList/ApresentacaoBasquete.tscn")
-const RODADA_SIMULTANEA = preload("res://Scenes/Levels/LevelList/RodadaSimultanea.tscn")
-const TRES_BOLAS = preload("res://Scenes/Levels/LevelList/TresBolas.tscn")
-const TRES_BOLAS_PILAR = preload("res://Scenes/Levels/LevelList/TresBolasPilar.tscn")
-const TRES_BOLAS_PILARES = preload("res://Scenes/Levels/LevelList/TresBolasPilares.tscn")
-const APRESENTACAO_BALAO = preload("res://Scenes/Levels/LevelList/ApresentacaoBalao.tscn")
-const APRESENTACAO_CHUMBO = preload("res://Scenes/Levels/LevelList/ApresentacaoChumbo.tscn")
-const RODADA_SIMULTANEA_MENOR = preload("res://Scenes/Levels/LevelList/RodadaSimultaneaMenor.tscn")
-const BOLICHE_MULTIPLO = preload("res://Scenes/Levels/LevelList/BolicheMultiplo.tscn")
-const TIMING = preload("res://Scenes/Levels/LevelList/Timing.tscn")
-const CHUMBO_MENOR = preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn")
-const BANDEIRA_TINTA = preload("res://Scenes/Levels/LevelList/BandeiraTinta.tscn")
-const MARATONA = preload("res://Scenes/Levels/LevelList/Maratona.tscn")
-const BOSS = preload("res://Scenes/Levels/LevelList/Boss.tscn")
+const TUTORIAL_MAIOR = {
+	"name": "Tutorial",
+	"scene": preload("res://Scenes/Levels/LevelList/TutorialMaior.tscn"),
+}
+const TUTORIAL = {
+	"name": "Tutorial só que menor",
+	"scene": preload("res://Scenes/Levels/LevelList/Tutorial.tscn"),
+}
+const APRESENTACAO_BOLICHE = {
+	"name": "Boliche",
+	"scene": preload("res://Scenes/Levels/LevelList/ApresentacaoBoliche.tscn"),
+}
+const RODADA_SIMULTANEA = {
+	"name": "Rodada simultânea",
+	"scene": preload("res://Scenes/Levels/LevelList/RodadaSimultanea.tscn"),
+}
+const TRES_BOLAS = {
+	"name": "Tribola",
+	"scene": preload("res://Scenes/Levels/LevelList/TresBolas.tscn"),
+}
+const TRES_BOLAS_PILAR = {
+	"name": "Tribola sujo",
+	"scene": preload("res://Scenes/Levels/LevelList/TresBolasPilar.tscn"),
+}
+const APRESENTACAO_BALAO = {
+	"name": "Balão",
+	"scene": preload("res://Scenes/Levels/LevelList/ApresentacaoBalao.tscn"),
+}
+const RODADA_SIMULTANEA_2 = {
+	"name": "Rodada Simultânea 2",
+	"scene": preload("res://Scenes/Levels/LevelList/RodadaSimultanea2.tscn"),
+}
+const APRESENTACAO_CHUMBO = {
+	"name": "Chumbo",
+	"scene": preload("res://Scenes/Levels/LevelList/ApresentacaoChumbo.tscn"),
+}
+const APRESENTACAO_BASQUETE = {
+	"name": "Basquete",
+	"scene": preload("res://Scenes/Levels/LevelList/ApresentacaoBasquete.tscn"),
+}
+const BOLICHE_MULTIPLO = {
+	"name": "Boliche mais perigoso",
+	"scene": preload("res://Scenes/Levels/LevelList/BolicheMultiplo.tscn"),
+}
+const RODADA_SIMULTANEA_MENOR = {
+	"name": "Rodada simultânea só que menor",
+	"scene": preload("res://Scenes/Levels/LevelList/RodadaSimultaneaMenor.tscn"),
+}
+const BANDEIRA_TINTA = {
+	"name": "Ginásio em obras",
+	"scene": preload("res://Scenes/Levels/LevelList/BandeiraTinta.tscn"),
+}
+const TIMING = {
+	"name": "Corredor",
+	"scene": preload("res://Scenes/Levels/LevelList/Timing.tscn"),
+}
+const CHUMBO_MENOR = {
+	"name": "Chumbo menor",
+	"scene": preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn"),
+}
+const MARATONA = {
+	"name": "Maratona",
+	"scene": preload("res://Scenes/Levels/LevelList/Maratona.tscn"),
+}
+const BOSS = {
+	"name": "Treinador Caldo",
+	"scene": preload("res://Scenes/Levels/LevelList/Boss.tscn")
+}
 
 const GINASIOS: Array = [
 	#TUTORIAL_HOCKEY,
 	TUTORIAL_MAIOR,
 	TUTORIAL,
 	APRESENTACAO_BOLICHE,
-	APRESENTACAO_BASQUETE,
 	RODADA_SIMULTANEA,
 	TRES_BOLAS,
 	TRES_BOLAS_PILAR,
 	APRESENTACAO_BALAO,
+	RODADA_SIMULTANEA_2,
+	APRESENTACAO_BASQUETE,
 	APRESENTACAO_CHUMBO,
 	RODADA_SIMULTANEA_MENOR,
 	BOLICHE_MULTIPLO,
@@ -65,7 +117,7 @@ func load_next_level():
 	load_level()
 	
 func load_level():
-	Global.game_controller.change_2d_scene(GINASIOS[current_level_index])
+	Global.game_controller.change_2d_scene(GINASIOS[current_level_index].scene)
 	
 func reload_level():
 	Global.game_controller.reload_current_2d_scene()

@@ -177,6 +177,8 @@ func explode():
 	Global.game_controller.add_2d_scene_child(explosion)
 	explosion.global_position = arch_body.global_position
 	explosion.explode()
+	explosion.scale.x = 1.2
+	explosion.scale.y = 1.2
 
 func clearRadius():
 	radius_bomb.visible = false
@@ -216,8 +218,8 @@ func createBowlingBall(angle: float):
 	basketBall.velocity = basketBall.velocity.rotated(angle)
 	basketBall.set_as_top_level(true)
 	basketBall.explodable = false
-	basketBall.scale.x = 0.2
-	basketBall.scale.y = 0.2
+	basketBall.scale.x = 0.15
+	basketBall.scale.y = 0.15
 	Global.game_controller.add_2d_scene_child(basketBall)
 
 #func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
@@ -265,6 +267,8 @@ func explode_wall():
 	createAngleBall(1, 1)
 	createAngleBall(0, 0)
 	createAngleBall(1, 0)
+	createAngleBall(0, 1)
+	createAngleBall(1, 1)
 
 func createBasketBall() -> SmallBasketBall:
 	var smallBasketBall := SmallBasketBall.instantiate() as SmallBasketBall

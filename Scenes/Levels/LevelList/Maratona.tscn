@@ -22,7 +22,7 @@ next_scene = ExtResource("2_qydxa")
 
 [node name="Player" parent="." instance=ExtResource("3_xq206")]
 z_index = 100
-position = Vector2(-5, 70)
+position = Vector2(-32, 56)
 
 [node name="Fase1" type="Node" parent="."]
 
