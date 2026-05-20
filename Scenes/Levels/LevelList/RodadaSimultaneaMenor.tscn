@@ -28,37 +28,38 @@ position = Vector2(-60, 53)
 position = Vector2(181, -57)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
-bullet_interval = 1.0
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
 
 [node name="Enemy6" parent="Enemies" instance=ExtResource("4_74hbs")]
 position = Vector2(166, 195)
-bullet_interval = 1.0
+wait_to_attack = 0.5
 entropy = 1
 
 [node name="Enemy10" parent="Enemies" instance=ExtResource("4_74hbs")]
 position = Vector2(-263, -79)
-bullet_interval = 1.0
+wait_to_attack = 1.0
 entropy = 2
 
 [node name="Enemy11" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_74hbs")]
 position = Vector2(-269, 123)
 attack_node = NodePath("../Enemy10/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy10/FSM/enemy_chase_state")
-bullet_interval = 1.0
-entropy = 3
+wait_to_attack = 1.5
+entropy = 2
 sprite = NodePath("../Enemy10/AnimatedSprite2D")
 healthbar = NodePath("../Enemy10/ProgressBar")
 hit_particles = NodePath("../Enemy10/HitParticles")
 
-[node name="Enemy9" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_74hbs")]
-position = Vector2(-47, 204)
+[node name="Enemy13" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_74hbs")]
+position = Vector2(-232, 200)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
-bullet_interval = 1.0
-wait_for_deaths = 2
+wait_for_deaths = 1
+enemy_type = 1
+min_balls_per_shot = 1
+max_balls_per_shot = 1
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
@@ -67,9 +68,19 @@ hit_particles = NodePath("../Enemy6/HitParticles")
 position = Vector2(83, -98)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
-bullet_interval = 1.5
+bullet_interval = 1.0
 wait_for_deaths = 2
-enemy_type = 1
+sprite = NodePath("../Enemy6/AnimatedSprite2D")
+healthbar = NodePath("../Enemy6/ProgressBar")
+hit_particles = NodePath("../Enemy6/HitParticles")
+
+[node name="Enemy9" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_74hbs")]
+position = Vector2(-47, 204)
+attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
+bullet_interval = 1.0
+wait_for_deaths = 3
+enemy_type = 4
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
@@ -78,8 +89,28 @@ hit_particles = NodePath("../Enemy6/HitParticles")
 position = Vector2(-232, 200)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
-bullet_interval = 0.5
-wait_for_deaths = 3
+bullet_interval = 1.0
+wait_for_deaths = 4
+sprite = NodePath("../Enemy6/AnimatedSprite2D")
+healthbar = NodePath("../Enemy6/ProgressBar")
+hit_particles = NodePath("../Enemy6/HitParticles")
+
+[node name="Enemy14" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_74hbs")]
+position = Vector2(-232, 200)
+attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
+bullet_interval = 1.0
+wait_for_deaths = 5
+sprite = NodePath("../Enemy6/AnimatedSprite2D")
+healthbar = NodePath("../Enemy6/ProgressBar")
+hit_particles = NodePath("../Enemy6/HitParticles")
+
+[node name="Enemy15" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_74hbs")]
+position = Vector2(-232, 200)
+attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
+bullet_interval = 1.0
+wait_for_deaths = 6
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
@@ -140,6 +171,9 @@ volume_db = -12.0
 [connection signal="died" from="Enemies/Enemy6" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy10" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy11" to="." method="_on_enemy_died"]
-[connection signal="died" from="Enemies/Enemy9" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy13" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy9" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy8" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy15" to="." method="_on_enemy_died"]

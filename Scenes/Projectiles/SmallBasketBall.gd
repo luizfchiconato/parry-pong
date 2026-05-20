@@ -94,7 +94,9 @@ func _ready():
 		speed = initial_position.distance_to(end_position) / duration
 		#speed = initial_position.distance_to(Vector2(initial_position.x + velocity.x, initial_position.y + velocity.y)) * 150 / duration
 		$Timer.wait_time = duration / 2
+		$Timer2.wait_time = duration
 		$Timer.start()
+		$Timer2.start()
 
 func showExplosion():
 	explosion = Explosion.instantiate() as Explosion
@@ -102,6 +104,7 @@ func showExplosion():
 	explosion.global_position = end_position
 	explosion.showPaint()
 	explosion.scale = self.scale * 2
+	$Timer.stop()
 
 func _physics_process(delta):
 	if !converted:
@@ -154,6 +157,7 @@ func arch_movement(delta):
 
 func check_y_level():
 	if (self.global_position.y < arch_body.global_position.y):
+		#pass
 		initial_position = self.global_position 
 		t = 0
 		explode()
@@ -162,8 +166,10 @@ func check_y_level():
 
 func explode():
 	# explosion.global_position = arch_body.global_position
-	
+	#initial_position = self.global_position 
+	#t = 0
 	explosion.explode()
+	#queue_free()
 	
 
 func clearRadius():
@@ -195,8 +201,11 @@ func createBowlingBall(angle: float):
 	basketBall.scale.y = 0.2
 	Global.game_controller.add_2d_scene_child(basketBall)
 
-
-
-
 func _on_timer_timeout():
 	showExplosion()
+
+
+func _on_timer_2_timeout():
+	print("testeee")
+	$Timer2.stop()
+	#explode()

@@ -50,6 +50,10 @@ const RODADA_SIMULTANEA_MENOR = {
 	"name": "Rodada simultânea só que menor",
 	"scene": preload("res://Scenes/Levels/LevelList/RodadaSimultaneaMenor.tscn"),
 }
+const BOLA_VERMELHA_COMPLEXO = {
+	"name": "Bola vermelha e tudo",
+	"scene": preload("res://Scenes/Levels/LevelList/BolaVermelhaComplexo.tscn"),
+}
 const BANDEIRA_TINTA = {
 	"name": "Ginásio em obras",
 	"scene": preload("res://Scenes/Levels/LevelList/BandeiraTinta.tscn"),
@@ -83,8 +87,9 @@ const GINASIOS: Array = [
 	RODADA_SIMULTANEA_2,
 	APRESENTACAO_BASQUETE,
 	APRESENTACAO_CHUMBO,
-	RODADA_SIMULTANEA_MENOR,
 	BOLICHE_MULTIPLO,
+	RODADA_SIMULTANEA_MENOR,
+	BOLA_VERMELHA_COMPLEXO,
 	CHUMBO_MENOR,
 	BANDEIRA_TINTA,
 	TIMING,

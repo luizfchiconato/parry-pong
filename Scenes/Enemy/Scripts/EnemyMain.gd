@@ -16,6 +16,8 @@ var rng = RandomNumberGenerator.new()
 @export var max_health: int = 6
 @export var stationary: bool = false
 
+@export var random: bool = false
+
 #@onready var animator = $AnimationPlayer
 
 @export_enum("Normal:0", "Bowling:1", "Volley:2", "Hockey:3", "Basket:4") var enemy_type: int
@@ -210,13 +212,51 @@ func restartBulletTimer():
 func createBullet():
 	if (!isAvailable()):
 		return
+		
+	if (random == true):
+		var randomResult = rng.randf_range(1,100)
+		if (randomResult >= 1 and randomResult < 50):
+			var isTriple = rng.randf_range(1,4) > 3
+			if (isTriple):
+				min_balls_per_shot = 3
+				max_balls_per_shot = 3
+			else:
+				min_balls_per_shot = 3
+				max_balls_per_shot = 3
+			generateBullet(TYPE_NORMAL)
+			return
+		if (randomResult >= 50 and randomResult < 70):
+			var isTriple = rng.randf_range(1,4) > 3
+			if (isTriple):
+				min_balls_per_shot = 3
+				max_balls_per_shot = 3
+			else:
+				min_balls_per_shot = 3
+				max_balls_per_shot = 3
+			generateBullet(TYPE_BASKET)
+			return
+		if (randomResult >= 70 and randomResult < 90):
+			throw_balloon = false
+			min_balls_per_shot = 3
+			max_balls_per_shot = 3
+			generateBullet(TYPE_BOWLING)
+			return
+		
+		throw_balloon = true
+		min_balls_per_shot = 3
+		max_balls_per_shot = 3
+		generateBullet(TYPE_BOWLING)
+	else:
+		generateBullet(enemy_type)
 	
-	if (enemy_type == TYPE_BOWLING):
+
+func generateBullet(enemy_type2):
+	if (enemy_type2 == TYPE_BOWLING):
 		generateBowlingBall()
 		restartBulletTimer()
-	elif (enemy_type == TYPE_HOCKEY):
+	elif (enemy_type2 == TYPE_HOCKEY):
 		generateDisc()
-	elif (enemy_type == TYPE_BASKET):
+	elif (enemy_type2 == TYPE_BASKET):
 		generateBasketBall()
 	else:
 		generateDefaultBall()

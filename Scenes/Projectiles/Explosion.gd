@@ -19,6 +19,7 @@ func showPaint():
 	$ExplosionRadius/CirclePaint.visible = true
 
 func explode():
+	print("EXPLODEEE")
 	$ExplosionRadius/CirclePaint.visible = false
 	explosion_radius.visible = true
 	bomb_animator.play("exploding")

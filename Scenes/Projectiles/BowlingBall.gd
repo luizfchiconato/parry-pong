@@ -33,7 +33,7 @@ var fake_gravity = 10
 @export_enum("Bowling:0", "Balloon:1") var type: int = 0
 
 var arcHeight = RandomNumberGenerator.new().randf_range(225, 225)
-var duration = RandomNumberGenerator.new().randf_range(1.00, 1.5)
+var duration = RandomNumberGenerator.new().randf_range(1.5, 1.5)
 
 var t = 0.0
 
@@ -74,13 +74,13 @@ func _ready():
 			target_pos = player.global_position
 		else:
 			if (left == 1 and up == 1):
-				target_pos = Vector2(player.global_position.x - 70, player.global_position.y - 70)
+				target_pos = Vector2(player.global_position.x - 110, player.global_position.y - 110)
 			elif (left == 1 and up == 0):
-				target_pos = Vector2(player.global_position.x - 70, player.global_position.y + 70)
+				target_pos = Vector2(player.global_position.x - 110, player.global_position.y + 110)
 			elif (left == 0 and up == 1):
-				target_pos = Vector2(player.global_position.x + 70, player.global_position.y - 70)
+				target_pos = Vector2(player.global_position.x + 110, player.global_position.y - 110)
 			else:
-				target_pos = Vector2(player.global_position.x + 70, player.global_position.y + 70)
+				target_pos = Vector2(player.global_position.x + 110, player.global_position.y + 110)
 		self.rotation = target_pos.angle()
 		
 		var x_entropy = RandomNumberGenerator.new().randf_range(-50, 50)
