@@ -215,36 +215,33 @@ func createBullet():
 		
 	if (random == true):
 		var randomResult = rng.randf_range(1,100)
-		if (randomResult >= 1 and randomResult < 50):
-			var isTriple = rng.randf_range(1,4) > 3
+		if (randomResult >= 1 and randomResult < 85):
+			throw_balloon = false
+			var isTriple = rng.randf_range(1,16) > 15
 			if (isTriple):
-				min_balls_per_shot = 3
-				max_balls_per_shot = 3
+				min_balls_per_shot = 1
+				max_balls_per_shot = 1
 			else:
-				min_balls_per_shot = 3
-				max_balls_per_shot = 3
+				min_balls_per_shot = 0
+				max_balls_per_shot = 0
 			generateBullet(TYPE_NORMAL)
 			return
-		if (randomResult >= 50 and randomResult < 70):
-			var isTriple = rng.randf_range(1,4) > 3
-			if (isTriple):
-				min_balls_per_shot = 3
-				max_balls_per_shot = 3
-			else:
-				min_balls_per_shot = 3
-				max_balls_per_shot = 3
+		if (randomResult >= 85 and randomResult < 90):
+			throw_balloon = false
+			min_balls_per_shot = 0
+			max_balls_per_shot = 0
 			generateBullet(TYPE_BASKET)
 			return
-		if (randomResult >= 70 and randomResult < 90):
+		if (randomResult >= 90 and randomResult < 95):
 			throw_balloon = false
-			min_balls_per_shot = 3
-			max_balls_per_shot = 3
+			min_balls_per_shot = 0
+			max_balls_per_shot = 0
 			generateBullet(TYPE_BOWLING)
 			return
 		
 		throw_balloon = true
-		min_balls_per_shot = 3
-		max_balls_per_shot = 3
+		min_balls_per_shot = 0
+		max_balls_per_shot = 0
 		generateBullet(TYPE_BOWLING)
 	else:
 		generateBullet(enemy_type)

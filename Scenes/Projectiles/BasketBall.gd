@@ -174,6 +174,7 @@ func explode_paint():
 
 func explode():
 	var explosion := Explosion.instantiate() as Explosion
+	explosion.uid = "EXPLOSAO NORMAL"
 	Global.game_controller.add_2d_scene_child(explosion)
 	explosion.global_position = arch_body.global_position
 	explosion.explode()
@@ -267,8 +268,8 @@ func explode_wall():
 	createAngleBall(1, 1)
 	createAngleBall(0, 0)
 	createAngleBall(1, 0)
-	createAngleBall(0, 1)
-	createAngleBall(1, 1)
+	#createAngleBall(0, 1)
+	#createAngleBall(1, 1)
 
 func createBasketBall() -> SmallBasketBall:
 	var smallBasketBall := SmallBasketBall.instantiate() as SmallBasketBall

@@ -53,12 +53,12 @@ wait_for_deaths = 2
 position = Vector2(265, -61)
 wait_for_deaths = 2
 enemy_type = 1
-min_balls_per_shot = 1
-max_balls_per_shot = 1
 
 [node name="Enemy8" parent="Enemies" instance=ExtResource("4_7dl1i")]
 position = Vector2(-338, 175)
 wait_for_deaths = 3
+min_balls_per_shot = 1
+max_balls_per_shot = 1
 
 [node name="PaintSlimeCircle" parent="Enemies" instance=ExtResource("5_t78sw")]
 position = Vector2(-22, 62)

@@ -157,3 +157,4 @@ wait_time = 0.5
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="tree_exiting" from="Timer2" to="." method="_on_timer_2_tree_exiting"]

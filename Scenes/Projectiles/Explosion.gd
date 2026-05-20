@@ -7,6 +7,7 @@ var Player = load("res://Scenes/Player/Player.tscn")
 @onready var radius_bomb = $ExplosionRadius/MeshInstance2D
 @onready var radius_bomb_internal = $ExplosionRadius/InternalMesh
 @export var bomb_animator : AnimationPlayer
+var uid = null
 
 const DAMAGE_BOWLING = 2
 
@@ -14,18 +15,20 @@ const DAMAGE_BOWLING = 2
 func _ready():
 	bomb_animator.stop()
 	$ExplosionRadius/CollisionShape2D.disabled = true
+	$Label.text = str(uid)
 
 func showPaint():
 	$ExplosionRadius/CirclePaint.visible = true
 
 func explode():
-	print("EXPLODEEE")
 	$ExplosionRadius/CirclePaint.visible = false
 	explosion_radius.visible = true
 	bomb_animator.play("exploding")
 	await bomb_animator.animation_finished
 	explosion_radius.visible = false
+	print("PRE QUEUE FREE ", uid)
 	queue_free()
+	print("POST QUEUE FREE ", uid)
 
 #Connect and deal damage to the player
 func deal_damage_to_player(player : PlayerMain):

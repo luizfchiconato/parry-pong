@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ds78gnu8oebuu"]
+[gd_scene load_steps=18 format=3 uid="uid://ds78gnu8oebuu"]
 
 [ext_resource type="Script" path="res://Scenes/Projectiles/Explosion.gd" id="1_it1pb"]
 [ext_resource type="Texture2D" uid="uid://dco05senpw6wm" path="res://Art/Sprites/Explosion.png" id="2_f8iy0"]
@@ -129,6 +129,9 @@ _data = {
 "exploding": SubResource("Animation_2mh74")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_detmt"]
+font_size = 8
+
 [node name="Explosion" type="Node2D" node_paths=PackedStringArray("bomb_animator")]
 script = ExtResource("1_it1pb")
 bomb_animator = NodePath("ExplosionRadius/AnimationPlayer")
@@ -159,5 +162,13 @@ frame_progress = 0.41665
 libraries = {
 "": SubResource("AnimationLibrary_36ihq")
 }
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -12.0
+offset_right = 20.0
+offset_bottom = 11.0
+label_settings = SubResource("LabelSettings_detmt")
 
 [connection signal="body_entered" from="ExplosionRadius" to="." method="_on_explosion_radius_body_entered"]

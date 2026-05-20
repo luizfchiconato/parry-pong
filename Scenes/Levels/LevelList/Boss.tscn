@@ -22,6 +22,7 @@ next_scene = ExtResource("2_ny1lj")
 [node name="Player" parent="." instance=ExtResource("3_vvgue")]
 z_index = 100
 position = Vector2(-9, 196)
+zoom = 1.2
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -31,7 +32,7 @@ scale = Vector2(0.7, 0.7)
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_aouo1")]
 position = Vector2(277, -116)
-bullet_interval = 1.2
+bullet_interval = 1.6
 unparriableChance = 10
 max_health = 20
 random = true
@@ -42,6 +43,7 @@ position = Vector2(0, -126)
 attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
 bullet_interval = 2.4
+unparriableChance = 10
 max_health = 20
 enemy_type = 1
 sprite = NodePath("../Enemy/AnimatedSprite2D")
@@ -52,8 +54,8 @@ hit_particles = NodePath("../Enemy/HitParticles")
 position = Vector2(290, 270)
 attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
-bullet_interval = 1.2
-wait_to_attack = 0.6
+bullet_interval = 1.6
+wait_to_attack = 1.2
 unparriableChance = 10
 max_health = 20
 random = true
@@ -65,8 +67,8 @@ hit_particles = NodePath("../Enemy/HitParticles")
 position = Vector2(-331, -123)
 attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
-bullet_interval = 1.2
-wait_to_attack = 0.9
+bullet_interval = 1.6
+wait_to_attack = 0.8
 unparriableChance = 10
 max_health = 20
 random = true
@@ -78,8 +80,8 @@ hit_particles = NodePath("../Enemy/HitParticles")
 position = Vector2(-322, 253)
 attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
-bullet_interval = 1.2
-wait_to_attack = 0.3
+bullet_interval = 1.6
+wait_to_attack = 0.4
 unparriableChance = 10
 max_health = 20
 random = true

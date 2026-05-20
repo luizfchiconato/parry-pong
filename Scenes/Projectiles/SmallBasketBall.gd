@@ -94,17 +94,20 @@ func _ready():
 		speed = initial_position.distance_to(end_position) / duration
 		#speed = initial_position.distance_to(Vector2(initial_position.x + velocity.x, initial_position.y + velocity.y)) * 150 / duration
 		$Timer.wait_time = duration / 2
-		$Timer2.wait_time = duration
+		$Timer2.wait_time = 5
 		$Timer.start()
 		$Timer2.start()
 
 func showExplosion():
 	explosion = Explosion.instantiate() as Explosion
+	explosion.uid = ResourceUID.create_id()
 	Global.game_controller.add_2d_scene_child(explosion)
 	explosion.global_position = end_position
 	explosion.showPaint()
 	explosion.scale = self.scale * 2
 	$Timer.stop()
+	# self.add_child(explosion)
+	print("COMEÇOU ", explosion.uid)
 
 func _physics_process(delta):
 	if !converted:
@@ -134,6 +137,7 @@ func convert_ball(delta):
 		var end_position = Vector2(target_pos.x + x_entropy, target_pos.y + y_entropy)
 		velocity = self.global_position.direction_to(end_position)
 	else:
+		print("QUEUE FREE 2", explosion.uid)
 		queue_free()
 
 func reflect_movement(delta):
@@ -160,14 +164,18 @@ func check_y_level():
 		#pass
 		initial_position = self.global_position 
 		t = 0
+		print("EXPLODE 1 ", explosion.uid)
 		explode()
+		print("EXPLODE 3", explosion.uid)
 		queue_free()
+		print("EXPLODE 4", explosion.uid)
 
 
 func explode():
 	# explosion.global_position = arch_body.global_position
 	#initial_position = self.global_position 
 	#t = 0
+	print("EXPLODE 2 ", explosion.uid)
 	explosion.explode()
 	#queue_free()
 	
@@ -206,6 +214,11 @@ func _on_timer_timeout():
 
 
 func _on_timer_2_timeout():
-	print("testeee")
+	print("AINDA EXISTE", explosion.uid)
 	$Timer2.stop()
 	#explode()
+
+
+func _on_timer_2_tree_exiting():
+	#print("QUEUE FREE EXTERNO ", explosion.uid)
+	pass

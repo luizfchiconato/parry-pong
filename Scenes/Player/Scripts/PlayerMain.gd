@@ -13,6 +13,8 @@ class_name PlayerMain
 @onready var racketAnimator = $AnimatedSprite2D/RacketPivot/Racket/Animation as AnimatedSprite2D
 @export var max_health : int = 8
 
+@export var zoom : float = 1.4
+
 const DEATH_SCREEN = preload("res://Scenes/UI/LevelFail.tscn")
 
 var attacking = false
@@ -29,6 +31,8 @@ var paint_tween
 var DAMAGE_PAINT = 2
 
 func _ready():
+	$Camera2D.zoom.x = zoom
+	$Camera2D.zoom.y = zoom
 	$HealthBar.setHealthBar()
 
 func _physics_process(delta: float) -> void:
