@@ -17,9 +17,9 @@ func _process(delta):
 	
 	if (frame_count >= 2):
 		$ShockwaveCollision.radius = $ShockwaveCollision.radius + speed * second_count
-		$GPUParticles2D.process_material.emission_ring_radius = round($ShockwaveCollision.radius + $ShockwaveCollision.width / 2)
-		$GPUParticles2D.process_material.emission_ring_inner_radius = round($ShockwaveCollision.radius - $ShockwaveCollision.width / 2)
-		$GPUParticles2D.amount = round($ShockwaveCollision.radius * 300)
+		adjust_particles($GPUParticles2D, 300)
+		adjust_particles($GPUParticles2DYellow, 40)
+		adjust_particles($GPUParticles2DBlack, 20)
 		second_count = 0
 		frame_count = 0
 	
@@ -29,6 +29,11 @@ func _process(delta):
 	
 	if ($ShockwaveCollision.radius > 500):
 		queue_free()
+
+func adjust_particles(particles_node, particles_amount_per_radius_size):
+	particles_node.process_material.emission_ring_radius = round($ShockwaveCollision.radius + $ShockwaveCollision.width / 2)
+	particles_node.process_material.emission_ring_inner_radius = round($ShockwaveCollision.radius - $ShockwaveCollision.width / 2)
+	particles_node.amount = round($ShockwaveCollision.radius * particles_amount_per_radius_size)
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):

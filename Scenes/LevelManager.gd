@@ -66,6 +66,10 @@ const CHUMBO_MENOR = {
 	"name": "Chumbo menor",
 	"scene": preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn"),
 }
+const RITMO = {
+	"name": "Ritmo",
+	"scene": preload("res://Scenes/Levels/LevelList/Ritmo.tscn"),
+}
 const MARATONA = {
 	"name": "Maratona",
 	"scene": preload("res://Scenes/Levels/LevelList/Maratona.tscn"),
@@ -93,6 +97,7 @@ const GINASIOS: Array = [
 	CHUMBO_MENOR,
 	BANDEIRA_TINTA,
 	TIMING,
+	# RITMO,
 	MARATONA,
 	BOSS
 ]

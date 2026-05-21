@@ -1,0 +1,183 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcjncltuwlnf1"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_3sdgs"]
+[ext_resource type="PackedScene" uid="uid://boa85milwpgfh" path="res://Scenes/Levels/LevelList/ApresentacaoBoliche.tscn" id="2_tk5cy"]
+[ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="3_bdep1"]
+[ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="4_yy7on"]
+[ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="5_myyfh"]
+[ext_resource type="PackedScene" uid="uid://ckp2r52hlcfxn" path="res://Scenes/Npc_OfficeWorker/npc_officeworker_scene.tscn" id="6_bhamd"]
+[ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="7_1o42k"]
+[ext_resource type="Script" path="res://Scenes/Levels/TileMapScript.gd" id="8_kfkr5"]
+[ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/Light.png" id="9_tccrc"]
+[ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="10_8qqsh"]
+[ext_resource type="AudioStream" uid="uid://duk65jhplli8h" path="res://Art/Audio/Music/TetrisNivel1.mp3" id="11_ooyil"]
+
+[node name="Scene_Root3" type="Node2D"]
+process_mode = 1
+texture_filter = 1
+position = Vector2(0, 1)
+scale = Vector2(2, 2)
+script = ExtResource("1_3sdgs")
+next_scene = ExtResource("2_tk5cy")
+
+[node name="Player" parent="." instance=ExtResource("3_bdep1")]
+z_index = 100
+position = Vector2(257, 230)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy10" parent="Enemies" instance=ExtResource("4_yy7on")]
+position = Vector2(277, 64)
+bullet_interval = 1.0
+max_health = 20
+stationary = true
+entropy = 1
+
+[node name="Enemy6" parent="Enemies" instance=ExtResource("4_yy7on")]
+position = Vector2(277, 371)
+bullet_interval = 1.0
+wait_to_attack = 0.5
+max_health = 20
+stationary = true
+entropy = 1
+
+[node name="Enemy14" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_yy7on")]
+position = Vector2(277, 63)
+attack_node = NodePath("../Enemy10/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy10/FSM/enemy_chase_state")
+bullet_interval = 0.5
+wait_for_deaths = 2
+max_health = 10
+stationary = true
+entropy = 1
+sprite = NodePath("../Enemy10/AnimatedSprite2D")
+healthbar = NodePath("../Enemy10/ProgressBar")
+hit_particles = NodePath("../Enemy10/HitParticles")
+
+[node name="Enemy7" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_yy7on")]
+position = Vector2(278, 371)
+attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
+bullet_interval = 1.5
+wait_for_deaths = 2
+stationary = true
+enemy_type = 1
+entropy = 1
+sprite = NodePath("../Enemy6/AnimatedSprite2D")
+healthbar = NodePath("../Enemy6/ProgressBar")
+hit_particles = NodePath("../Enemy6/HitParticles")
+
+[node name="Enemy11" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_yy7on")]
+position = Vector2(277, 62)
+attack_node = NodePath("../Enemy10/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy10/FSM/enemy_chase_state")
+bullet_interval = 1.0
+wait_for_deaths = 4
+max_health = 10
+stationary = true
+entropy = 1
+sprite = NodePath("../Enemy10/AnimatedSprite2D")
+healthbar = NodePath("../Enemy10/ProgressBar")
+hit_particles = NodePath("../Enemy10/HitParticles")
+
+[node name="Enemy12" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_yy7on")]
+position = Vector2(277, 372)
+attack_node = NodePath("../Enemy10/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy10/FSM/enemy_chase_state")
+bullet_interval = 1.0
+wait_for_deaths = 4
+max_health = 10
+stationary = true
+entropy = 1
+sprite = NodePath("../Enemy10/AnimatedSprite2D")
+healthbar = NodePath("../Enemy10/ProgressBar")
+hit_particles = NodePath("../Enemy10/HitParticles")
+
+[node name="Enemy13" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_yy7on")]
+position = Vector2(277, 63)
+attack_node = NodePath("../Enemy10/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy10/FSM/enemy_chase_state")
+bullet_interval = 1.0
+wait_for_deaths = 6
+unparriableChance = 15
+max_health = 10
+stationary = true
+entropy = 1
+sprite = NodePath("../Enemy10/AnimatedSprite2D")
+healthbar = NodePath("../Enemy10/ProgressBar")
+hit_particles = NodePath("../Enemy10/HitParticles")
+
+[node name="Enemy8" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("4_yy7on")]
+position = Vector2(277, 372)
+attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
+bullet_interval = 1.0
+wait_for_deaths = 6
+unparriableChance = 15
+max_health = 10
+stationary = true
+entropy = 1
+sprite = NodePath("../Enemy6/AnimatedSprite2D")
+healthbar = NodePath("../Enemy6/ProgressBar")
+hit_particles = NodePath("../Enemy6/HitParticles")
+
+[node name="SceneSettings" parent="." instance=ExtResource("5_myyfh")]
+
+[node name="Scene" type="Node" parent="."]
+
+[node name="NPC" parent="Scene" instance=ExtResource("6_bhamd")]
+visible = false
+position = Vector2(-242, -43)
+
+[node name="TileMap" type="TileMap" parent="Scene"]
+z_index = -2
+texture_filter = 1
+position = Vector2(334, 164)
+tile_set = ExtResource("7_1o42k")
+format = 2
+script = ExtResource("8_kfkr5")
+
+[node name="WindowLights2" type="Node" parent="Scene"]
+
+[node name="PointLight2D" type="PointLight2D" parent="Scene/WindowLights2"]
+visible = false
+position = Vector2(-176, 8)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("9_tccrc")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Scene/WindowLights2"]
+visible = false
+position = Vector2(-16, 8)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("9_tccrc")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Scene/WindowLights2"]
+visible = false
+position = Vector2(49, 9)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("9_tccrc")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Scene/WindowLights2"]
+visible = false
+position = Vector2(176, 10)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("9_tccrc")
+
+[node name="Score_UI" parent="." instance=ExtResource("10_8qqsh")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ooyil")
+volume_db = -12.0
+
+[connection signal="died" from="Enemies/Enemy10" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy6" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy14" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy7" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy13" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy8" to="." method="_on_enemy_died"]
