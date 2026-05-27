@@ -71,7 +71,7 @@ func _on_body_entered(body):
 			return
 		deal_damage_to_player(body, !parryable)
 		queue_free()		
-	if body.is_in_group("Enemy") or body.is_in_group("Treinador") and converted:
+	if (body.is_in_group("Enemy") or body is Treinador) and converted:
 		deal_damage_to_enemy(body)
 		queue_free()
 
@@ -81,7 +81,7 @@ func deal_damage_to_player(player : PlayerMain, forceDamage : bool = false):
 	var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
 	player._take_damage(damage)
 
-func deal_damage_to_enemy(enemy : EnemyMain):
+func deal_damage_to_enemy(enemy):
 	AudioManager.play_sound(AudioManager.ENEMY_HIT_DEFAULT, 0, 0)
 	var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
 	enemy._take_damage(damage, velocity)

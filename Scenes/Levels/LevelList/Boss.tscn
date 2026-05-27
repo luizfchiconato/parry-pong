@@ -26,13 +26,14 @@ next_scene = ExtResource("2_ny1lj")
 [node name="Player" parent="." instance=ExtResource("3_vvgue")]
 z_index = 100
 position = Vector2(-9, 196)
+max_health = 40
 zoom = 1.2
+health = 40
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Treinador" parent="Enemies" instance=ExtResource("4_yag2f")]
 position = Vector2(-8, 33)
-max_health = 120
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_aouo1")]
 position = Vector2(277, -116)
@@ -122,7 +123,7 @@ text = "TREINADOR CALDO"
 label_settings = SubResource("LabelSettings_gxuln")
 
 [node name="HealthBarBoss" parent="Scene/CanvasLayer/Control" instance=ExtResource("7_0uhxa")]
-position = Vector2(485, 51)
+position = Vector2(553, 56)
 
 [node name="Score_UI" parent="Scene" instance=ExtResource("11_ikwtc")]
 visible = false
