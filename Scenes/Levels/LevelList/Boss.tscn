@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://pt8fak3t22od"]
+[gd_scene load_steps=14 format=3 uid="uid://pt8fak3t22od"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_yt0oc"]
 [ext_resource type="PackedScene" uid="uid://cwf71ikjswioq" path="res://Scenes/Levels/LevelList/TresBolasPilar.tscn" id="2_ny1lj"]
@@ -7,11 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="5_8sdrf"]
 [ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="5_aouo1"]
 [ext_resource type="PackedScene" uid="uid://ckp2r52hlcfxn" path="res://Scenes/Npc_OfficeWorker/npc_officeworker_scene.tscn" id="6_a82ex"]
+[ext_resource type="PackedScene" uid="uid://bfpqtgstdafsp" path="res://Scenes/UI/HealthBarBoss.tscn" id="7_0uhxa"]
 [ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="8_bn872"]
 [ext_resource type="Script" path="res://Scenes/Levels/TileMapScript.gd" id="9_ru7h3"]
-[ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/Light.png" id="10_ee5ov"]
 [ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="11_ikwtc"]
-[ext_resource type="AudioStream" uid="uid://duk65jhplli8h" path="res://Art/Audio/Music/TetrisNivel1.mp3" id="12_wbamp"]
+
+[sub_resource type="SystemFont" id="SystemFont_lgewe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gxuln"]
+font = SubResource("SystemFont_lgewe")
 
 [node name="Scene_Root" type="Node2D"]
 texture_filter = 1
@@ -28,7 +32,7 @@ zoom = 1.2
 
 [node name="Treinador" parent="Enemies" instance=ExtResource("4_yag2f")]
 position = Vector2(-8, 33)
-scale = Vector2(0.7, 0.7)
+max_health = 120
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_aouo1")]
 position = Vector2(277, -116)
@@ -93,6 +97,36 @@ hit_particles = NodePath("../Enemy/HitParticles")
 
 [node name="Scene" type="Node" parent="."]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Scene"]
+layer = 2
+
+[node name="Control" type="Control" parent="Scene/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -2.0
+offset_right = 6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Scene/CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 17.0
+offset_right = 632.0
+offset_bottom = 40.0
+text = "TREINADOR CALDO"
+label_settings = SubResource("LabelSettings_gxuln")
+
+[node name="HealthBarBoss" parent="Scene/CanvasLayer/Control" instance=ExtResource("7_0uhxa")]
+position = Vector2(485, 51)
+
+[node name="Score_UI" parent="Scene" instance=ExtResource("11_ikwtc")]
+visible = false
+
 [node name="NPC" parent="Scene" instance=ExtResource("6_a82ex")]
 visible = false
 position = Vector2(-242, -43)
@@ -112,31 +146,26 @@ visible = false
 position = Vector2(-176, 8)
 energy = 0.8
 shadow_enabled = true
-texture = ExtResource("10_ee5ov")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Scene/WindowLights2"]
 visible = false
 position = Vector2(-16, 8)
 energy = 0.8
 shadow_enabled = true
-texture = ExtResource("10_ee5ov")
 
 [node name="PointLight2D3" type="PointLight2D" parent="Scene/WindowLights2"]
 visible = false
 position = Vector2(49, 9)
 energy = 0.8
 shadow_enabled = true
-texture = ExtResource("10_ee5ov")
 
 [node name="PointLight2D4" type="PointLight2D" parent="Scene/WindowLights2"]
 visible = false
 position = Vector2(176, 10)
 energy = 0.8
 shadow_enabled = true
-texture = ExtResource("10_ee5ov")
-
-[node name="Score_UI" parent="." instance=ExtResource("11_ikwtc")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_wbamp")
 volume_db = -12.0
+
+[connection signal="damage" from="Enemies/Treinador" to="." method="_on_treinador_damage"]

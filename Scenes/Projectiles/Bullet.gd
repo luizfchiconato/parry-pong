@@ -71,7 +71,7 @@ func _on_body_entered(body):
 			return
 		deal_damage_to_player(body, !parryable)
 		queue_free()		
-	if body.is_in_group("Enemy") and converted:
+	if body.is_in_group("Enemy") or body.is_in_group("Treinador") and converted:
 		deal_damage_to_enemy(body)
 		queue_free()
 

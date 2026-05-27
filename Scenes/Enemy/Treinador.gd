@@ -1,6 +1,7 @@
-extends Node2D
+class_name Treinador extends EnemyMain
 
 var ShockwaveScene = load("res://Scenes/Projectiles/Shockwave.tscn")
+# @export var health = 120
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

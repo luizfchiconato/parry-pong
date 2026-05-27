@@ -33,6 +33,7 @@ var dying = false
 
 
 signal died
+signal damage
 
 const TYPE_NORMAL = 0
 const TYPE_BOWLING = 1
@@ -160,7 +161,7 @@ func _take_damage(amount, deathVelocity : Vector2):
 	
 	var player = get_tree().get_first_node_in_group("Player") as PlayerMain
 	player.set_trauma(amount * 0.12)
-	
+	emit_signal("damage", health)
 	if(health <= 0):
 		die(deathVelocity)
 	

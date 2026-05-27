@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfpqtgstdafsp"]
+
+[ext_resource type="Script" path="res://Scenes/UI/health_bar_boss.gd" id="1_htxci"]
+
+[node name="HealthBarBoss" type="Node2D"]
+script = ExtResource("1_htxci")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 84.0
+use_top_left = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 28
