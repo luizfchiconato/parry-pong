@@ -5,6 +5,7 @@ class_name enemy_chase_state
 @export var move_speed := float(40)
 
 @export var animator : AnimationPlayer
+@export var boss_arm = true
 @onready var body = $"../.."
 @onready var enemy = $"../.."
 @onready var sprite = $"../../AnimatedSprite2D"
@@ -13,7 +14,9 @@ const TYPE_BOWLING = 1
 
 func Enter():
 	#sanimator.play("Chasing")
-	if enemy.enemy_type == TYPE_BOWLING:
+	if boss_arm:
+		sprite.play("Arm")
+	elif enemy.enemy_type == TYPE_BOWLING:
 		sprite.play("WalkBowling")
 		#sprite.play("BossTest")
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://pt8fak3t22od"]
+[gd_scene load_steps=15 format=3 uid="uid://pt8fak3t22od"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_yt0oc"]
 [ext_resource type="PackedScene" uid="uid://cwf71ikjswioq" path="res://Scenes/Levels/LevelList/TresBolasPilar.tscn" id="2_ny1lj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cx8kkqawojm0m" path="res://Scenes/SceneSettings.tscn" id="5_8sdrf"]
 [ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="5_aouo1"]
 [ext_resource type="PackedScene" uid="uid://ckp2r52hlcfxn" path="res://Scenes/Npc_OfficeWorker/npc_officeworker_scene.tscn" id="6_a82ex"]
+[ext_resource type="PackedScene" uid="uid://bjfli5f0rssv4" path="res://Scenes/Items/LifeRacket.tscn" id="6_b1tfb"]
 [ext_resource type="PackedScene" uid="uid://bfpqtgstdafsp" path="res://Scenes/UI/HealthBarBoss.tscn" id="7_0uhxa"]
 [ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="8_bn872"]
 [ext_resource type="Script" path="res://Scenes/Levels/TileMapScript.gd" id="9_ru7h3"]
@@ -26,9 +27,7 @@ next_scene = ExtResource("2_ny1lj")
 [node name="Player" parent="." instance=ExtResource("3_vvgue")]
 z_index = 100
 position = Vector2(-9, 196)
-max_health = 40
 zoom = 1.2
-health = 40
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -41,48 +40,10 @@ bullet_interval = 1.6
 unparriableChance = 10
 max_health = 20
 random = true
-
-[node name="Enemy5" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("5_aouo1")]
-visible = false
-position = Vector2(0, -126)
-attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
-chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
-bullet_interval = 2.4
-unparriableChance = 10
-max_health = 20
-enemy_type = 1
-sprite = NodePath("../Enemy/AnimatedSprite2D")
-healthbar = NodePath("../Enemy/ProgressBar")
-hit_particles = NodePath("../Enemy/HitParticles")
+boss_arm = true
 
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("5_aouo1")]
-position = Vector2(290, 270)
-attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
-chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
-bullet_interval = 1.6
-wait_to_attack = 1.2
-unparriableChance = 10
-max_health = 20
-random = true
-sprite = NodePath("../Enemy/AnimatedSprite2D")
-healthbar = NodePath("../Enemy/ProgressBar")
-hit_particles = NodePath("../Enemy/HitParticles")
-
-[node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("5_aouo1")]
-position = Vector2(-331, -123)
-attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
-chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
-bullet_interval = 1.6
-wait_to_attack = 0.8
-unparriableChance = 10
-max_health = 20
-random = true
-sprite = NodePath("../Enemy/AnimatedSprite2D")
-healthbar = NodePath("../Enemy/ProgressBar")
-hit_particles = NodePath("../Enemy/HitParticles")
-
-[node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("5_aouo1")]
-position = Vector2(-322, 253)
+position = Vector2(269, 271)
 attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
 bullet_interval = 1.6
@@ -90,9 +51,63 @@ wait_to_attack = 0.4
 unparriableChance = 10
 max_health = 20
 random = true
+boss_arm = true
 sprite = NodePath("../Enemy/AnimatedSprite2D")
 healthbar = NodePath("../Enemy/ProgressBar")
 hit_particles = NodePath("../Enemy/HitParticles")
+
+[node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("5_aouo1")]
+position = Vector2(-343, 263)
+attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
+bullet_interval = 1.6
+wait_to_attack = 0.8
+unparriableChance = 10
+max_health = 20
+random = true
+boss_arm = true
+sprite = NodePath("../Enemy/AnimatedSprite2D")
+healthbar = NodePath("../Enemy/ProgressBar")
+hit_particles = NodePath("../Enemy/HitParticles")
+
+[node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("5_aouo1")]
+position = Vector2(-338, -120)
+attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
+bullet_interval = 1.6
+wait_to_attack = 1.2
+unparriableChance = 10
+max_health = 20
+random = true
+boss_arm = true
+sprite = NodePath("../Enemy/AnimatedSprite2D")
+healthbar = NodePath("../Enemy/ProgressBar")
+hit_particles = NodePath("../Enemy/HitParticles")
+
+[node name="LifeRacket" parent="Enemies" instance=ExtResource("6_b1tfb")]
+position = Vector2(-143, -65)
+wait_for_deaths = 6
+wait_for_boss_health = 100
+
+[node name="LifeRacket2" parent="Enemies" instance=ExtResource("6_b1tfb")]
+position = Vector2(112, -64)
+wait_for_deaths = 6
+wait_for_boss_health = 80
+
+[node name="LifeRacket3" parent="Enemies" instance=ExtResource("6_b1tfb")]
+position = Vector2(-144, 168)
+wait_for_deaths = 6
+wait_for_boss_health = 60
+
+[node name="LifeRacket4" parent="Enemies" instance=ExtResource("6_b1tfb")]
+position = Vector2(112, 168)
+wait_for_deaths = 6
+wait_for_boss_health = 40
+
+[node name="LifeRacket5" parent="Enemies" instance=ExtResource("6_b1tfb")]
+position = Vector2(-8, -120)
+wait_for_deaths = 6
+wait_for_boss_health = 20
 
 [node name="SceneSettings" parent="." instance=ExtResource("5_8sdrf")]
 
@@ -170,3 +185,8 @@ shadow_enabled = true
 volume_db = -12.0
 
 [connection signal="damage" from="Enemies/Treinador" to="." method="_on_treinador_damage"]
+[connection signal="damage" from="Enemies/Treinador" to="." method="_on_boss_damage"]
+[connection signal="damage" from="Enemies/Enemy" to="Enemies/Treinador" method="_take_damage"]
+[connection signal="damage" from="Enemies/Enemy2" to="Enemies/Treinador" method="_take_damage"]
+[connection signal="damage" from="Enemies/Enemy3" to="Enemies/Treinador" method="_take_damage"]
+[connection signal="damage" from="Enemies/Enemy4" to="Enemies/Treinador" method="_take_damage"]

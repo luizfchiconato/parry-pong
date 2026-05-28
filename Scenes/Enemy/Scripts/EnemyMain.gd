@@ -17,6 +17,7 @@ var rng = RandomNumberGenerator.new()
 @export var stationary: bool = false
 
 @export var random: bool = false
+@export var boss_arm: bool = false
 
 #@onready var animator = $AnimationPlayer
 
@@ -96,7 +97,9 @@ func increment_death_number():
 		activateEnemy()
 
 func activateEnemy():
-	if enemy_type == TYPE_BOWLING:
+	if boss_arm:
+		$AnimatedSprite2D.play("Arm")
+	elif enemy_type == TYPE_BOWLING:
 		$AnimatedSprite2D.play("IdleBowling")
 	else:
 		$AnimatedSprite2D.play("Idle")
@@ -151,7 +154,7 @@ func _take_damage(amount, deathVelocity : Vector2):
 		
 	if(invincible == true || is_dead == true):
 		return
-		
+	
 	health -= amount
 	#healthbar.value = health;
 	
@@ -161,11 +164,18 @@ func _take_damage(amount, deathVelocity : Vector2):
 	
 	var player = get_tree().get_first_node_in_group("Player") as PlayerMain
 	player.set_trauma(amount * 0.12)
-	emit_signal("damage", health)
-	if(health <= 0):
+	emit_signal("damage", amount, Vector2(0, 0))
+	if(health <= 0 and !boss_arm):
 		die(deathVelocity)
 	
 func _ready():
+	if boss_arm:
+		$AnimatedSprite2D.play("Arm")
+	$FSM/enemy_idle_state.boss_arm = boss_arm
+	$FSM/enemy_chase_state.boss_arm = boss_arm
+	if (boss_arm):
+		$HealthBar.visible = false
+
 	$HealthBar.max_health = max_health
 	$HealthBar.health = max_health
 	$HealthBar.setHealthBar()

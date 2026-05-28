@@ -17,7 +17,7 @@ func setHealthBar():
 	health = clamp(health, 0, max_health)
 	
 	for x in hearts_number:
-		print('teste', x)
+		#print('teste', x)
 		var heart := HeartRacketBoss.instantiate() as HeartRacketBoss
 		#heart.global_position.x = self.global_position.x + 30 * x
 		#heart.global_position.y = self.global_position.y
@@ -38,21 +38,21 @@ func addHealth(amount):
 	updateHearts()
 	
 func setHealth(health):
-	print("setHealth", health)
+	#print("setHealth", health)
 	self.health = health
 	updateHearts()
 
 func updateHearts():
 	var hearts_number = ceil(max_health / health_parts)
-	print("setHealth", hearts_number)
+	#print("setHealth", hearts_number)
 	
 	for x in hearts_number:
 		var heart = heartsArray[x]
 		var containerNumber = x + 1
-		print("updateHearts", hearts_number, " ", health, " ", health_parts, " ", max_health / health_parts, " ", containerNumber)
+		#print("updateHearts", hearts_number, " ", health, " ", health_parts, " ", max_health / health_parts, " ", containerNumber)
 		
 		var healthContainer = health - health_parts * (hearts_number - containerNumber)
-		print("heart ", containerNumber, " is ", healthContainer, " and frame ", 20 - healthContainer)
+		#print("heart ", containerNumber, " is ", healthContainer, " and frame ", 20 - healthContainer)
 		heart.change_sprite(20 - healthContainer)
 		
 		#if ceil(health / 2.0) <= (containerNumber - 1):

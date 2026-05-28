@@ -2,6 +2,7 @@ extends Sprite2D
 class_name LifeRacket
 
 var parent_death_number: int = 0
+var boss_health: int = 0
 @export var value = 5
 
 #Movement
@@ -10,11 +11,12 @@ var initial_position := Vector2.ZERO
 @export var amplitude := 3.0
 @export var frequency := 4.0
 @export var wait_for_deaths := 0
+@export var wait_for_boss_health := 0
 var activated = true
 
 func _ready():
 	initial_position = position
-	if (wait_for_deaths > 0):
+	if (wait_for_deaths > 0 or wait_for_boss_health > 0):
 		deactivateRacket()
 
 func _process(_delta):
@@ -34,6 +36,12 @@ func _on_area_2d_body_entered(body):
 			AudioManager.play_sound(AudioManager.COIN_PICK, 0, -10)
 			queue_free()
 
+func boss_damage(health):
+	boss_health = health
+	print(boss_health, wait_for_boss_health)
+	if (isAvailableBoss()):
+		activateRacket()
+
 func increment_death_number():
 	parent_death_number = parent_death_number + 1
 	if (isAvailable()):
@@ -52,6 +60,9 @@ func activateRacket():
 	self.modulate.a = 1
 	$PointLight2D.visible = true
 	$GPUParticles2D.visible = true
+
+func isAvailableBoss():
+	return boss_health <= wait_for_boss_health
 
 func isAvailable():
 	return parent_death_number >= wait_for_deaths

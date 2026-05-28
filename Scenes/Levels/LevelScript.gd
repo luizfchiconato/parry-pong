@@ -34,7 +34,12 @@ func _on_enemy_died():
 		LevelManager.load_next_level()
 		# Global.game_controller.change_2d_scene(next_scene)
 		
-
+		
+func _on_boss_damage(health):
+	for child in get_children():
+		for grandson in child.get_children():
+			if grandson is LifeRacket:
+				grandson.boss_damage(health)
 
 func _on_treinador_damage(health):
 	$Scene/CanvasLayer/Control/HealthBarBoss.setHealth(health)

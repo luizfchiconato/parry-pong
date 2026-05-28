@@ -27,7 +27,7 @@ func _process(delta):
 	#particles.emission_points = points
 	#particles.emitting = true
 	
-	if ($ShockwaveCollision.radius > 500):
+	if ($ShockwaveCollision.radius > 600):
 		queue_free()
 
 func adjust_particles(particles_node, particles_amount_per_radius_size):

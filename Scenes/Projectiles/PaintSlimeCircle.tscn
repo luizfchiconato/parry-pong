@@ -7,6 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_57v1y"]
 
 [node name="PaintSlimeCircle" type="Node2D"]
+z_index = -1
 script = ExtResource("1_uechy")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
