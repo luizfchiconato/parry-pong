@@ -44,7 +44,6 @@ autowrap_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 400
-alignment = 1
 
 [node name="VBoxContainer1" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

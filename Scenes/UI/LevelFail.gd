@@ -41,7 +41,7 @@ const MENSAGENS: Array = [
 	"Mas bah tu é um baita dum chinelão mesmo",
 	"Você devia desistir. No geral",
 	"Liguei para sua mãe e ela disse que preferia não ter criado um filho. E que você é adotado",
-	"Viu, só te avisar que psicografamos uma carta do seu pai. Ele falou que o inferno ainda é menor pior do que criar uma decepção como você",
+	"Viu, só te avisar que psicografamos uma carta do seu pai. Ele falou que o inferno ainda é melhor do que criar uma decepção como você",
 	"Você é menor que a bola e ela ainda consegue te acertar",
 	"Ah sei lá pensa você agora em uma ofensa aí. do jeito que você se odeia você vai pensar em uma rapidinho",
 	"Tá de corpo mole é?",

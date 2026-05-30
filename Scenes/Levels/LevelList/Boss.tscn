@@ -13,10 +13,10 @@
 [ext_resource type="Script" path="res://Scenes/Levels/TileMapScript.gd" id="9_ru7h3"]
 [ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="11_ikwtc"]
 
-[sub_resource type="SystemFont" id="SystemFont_lgewe"]
+[sub_resource type="SystemFont" id="SystemFont_138yp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gxuln"]
-font = SubResource("SystemFont_lgewe")
+font = SubResource("SystemFont_138yp")
 
 [node name="Scene_Root" type="Node2D"]
 texture_filter = 1

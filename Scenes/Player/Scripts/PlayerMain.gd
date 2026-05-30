@@ -15,6 +15,8 @@ class_name PlayerMain
 
 @export var zoom : float = 1.4
 
+@export var remove_racket : bool = false
+
 const DEATH_SCREEN = preload("res://Scenes/UI/LevelFail.tscn")
 
 var attacking = false
@@ -34,6 +36,9 @@ func _ready():
 	$Camera2D.zoom.x = zoom
 	$Camera2D.zoom.y = zoom
 	$HealthBar.setHealthBar()
+	
+	if (remove_racket):
+		racketPivot.visible = false
 
 func _physics_process(delta: float) -> void:
 	turn()
@@ -45,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		ultHitboxShape.disabled = true
 	elif (attacking):
 		attackFrame += 1
-	elif (Input.is_action_just_pressed("MouseLeft") or Input.is_action_just_pressed("MouseRight")) and (canAttack or hitInAttack):
+	elif (Input.is_action_just_pressed("MouseLeft") or Input.is_action_just_pressed("MouseRight")) and (canAttack or hitInAttack) and !remove_racket:
 		ult_attack = Input.is_action_just_pressed("MouseRight")
 		attack()
 	

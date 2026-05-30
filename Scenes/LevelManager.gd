@@ -62,6 +62,14 @@ const TIMING = {
 	"name": "Corredor",
 	"scene": preload("res://Scenes/Levels/LevelList/Timing.tscn"),
 }
+const SURVIVAL_FACIL = {
+	"name": "Survival",
+	"scene": preload("res://Scenes/Levels/LevelList/SurvivalFacil.tscn"),
+}
+const SURVIVAL = {
+	"name": "Survival+",
+	"scene": preload("res://Scenes/Levels/LevelList/Survival.tscn"),
+}
 const CHUMBO_MENOR = {
 	"name": "Chumbo menor",
 	"scene": preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn"),
@@ -85,6 +93,7 @@ const GINASIOS: Array = [
 	TUTORIAL,
 	APRESENTACAO_BOLICHE,
 	RODADA_SIMULTANEA,
+	SURVIVAL_FACIL,
 	TRES_BOLAS,
 	TRES_BOLAS_PILAR,
 	APRESENTACAO_BALAO,
@@ -95,6 +104,7 @@ const GINASIOS: Array = [
 	RODADA_SIMULTANEA_MENOR,
 	BOLA_VERMELHA_COMPLEXO,
 	CHUMBO_MENOR,
+	SURVIVAL,
 	BANDEIRA_TINTA,
 	TIMING,
 	# RITMO,

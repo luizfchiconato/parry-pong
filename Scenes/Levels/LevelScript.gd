@@ -31,10 +31,12 @@ func _on_enemy_died():
 					allDied = false
 	
 	if (allDied == true):
-		LevelManager.load_next_level()
+		finish_level()
 		# Global.game_controller.change_2d_scene(next_scene)
-		
-		
+
+func finish_level():
+	LevelManager.load_next_level()
+
 func _on_boss_damage(health):
 	for child in get_children():
 		for grandson in child.get_children():

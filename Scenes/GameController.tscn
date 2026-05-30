@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/GameController.gd" id="1_excvq"]
 [ext_resource type="PackedScene" uid="uid://bo22hma5o31ig" path="res://Scenes/MainMenu/InitialMenu/MainMenu.tscn" id="2_otqvo"]
-[ext_resource type="AudioStream" uid="uid://ers8t11mdn" path="res://Art/Audio/Music/breakbeat-bosta.mp3" id="3_lr0k0"]
+[ext_resource type="AudioStream" uid="uid://cw556flbpgqxi" path="res://Art/Audio/Music/120bpm.mp3" id="3_ibcy3"]
 
 [node name="GameController" type="Node2D" node_paths=PackedStringArray("world_2d", "gui", "music")]
 process_mode = 1
@@ -22,5 +22,5 @@ offset_bottom = 642.0
 [node name="World2D" type="Node2D" parent="."]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_lr0k0")
+stream = ExtResource("3_ibcy3")
 volume_db = -20.0
