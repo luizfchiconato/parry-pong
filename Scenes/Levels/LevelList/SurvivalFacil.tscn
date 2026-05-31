@@ -23,9 +23,7 @@ script = ExtResource("1_lujp4")
 [node name="Player" parent="." instance=ExtResource("2_ihrq3")]
 z_index = 100
 position = Vector2(-14, 65)
-max_health = 6
 remove_racket = true
-health = 6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
