@@ -2,13 +2,14 @@ extends State
 class_name PlayerIdle
 
 @export var animator : AnimationPlayer
+@export var remove_movement = false
 
 func Enter():
 	animator.play("Idle")
 	pass
 
 func Update(_delta : float):
-	if(Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown").normalized()):
+	if(Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown").normalized() and !remove_movement):
 		state_transition.emit(self, "Moving")
 
 	# if Input.is_action_just_pressed("Punch")  or Input.is_action_just_pressed("Kick"):

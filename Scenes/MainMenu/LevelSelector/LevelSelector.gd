@@ -21,7 +21,7 @@ func add_level_button(level : Dictionary, level_index: int):
 	button.text = str("Ginásio ", level_index + 1, " - ", level.name)
 	button.level_index = level_index
 	button.custom_minimum_size.y = 40
-	if (level_index <= 9):
+	if (level_index <= 10):
 		$CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer1.add_child(button)
 	else:
 		$CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2.add_child(button)		

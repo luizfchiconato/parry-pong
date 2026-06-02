@@ -11,11 +11,11 @@ class_name PlayerMain
 @onready var hitboxShape = $AnimatedSprite2D/Hitboxes/Racket_Hitbox/hitboxShape as CollisionShape2D
 @onready var ultHitboxShape = $AnimatedSprite2D/Hitboxes/Racket_HitboxUlt/hitboxShape as CollisionShape2D
 @onready var racketAnimator = $AnimatedSprite2D/RacketPivot/Racket/Animation as AnimatedSprite2D
+
 @export var max_health : int = 8
-
 @export var zoom : float = 1.4
-
 @export var remove_racket : bool = false
+@export var remove_movement : bool = false
 
 const DEATH_SCREEN = preload("res://Scenes/UI/LevelFail.tscn")
 
@@ -33,6 +33,7 @@ var paint_tween
 var DAMAGE_PAINT = 2
 
 func _ready():
+	$FSM/Idle.remove_movement = remove_movement
 	$Camera2D.zoom.x = zoom
 	$Camera2D.zoom.y = zoom
 	$HealthBar.setHealthBar()

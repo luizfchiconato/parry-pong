@@ -63,11 +63,11 @@ const TIMING = {
 	"scene": preload("res://Scenes/Levels/LevelList/Timing.tscn"),
 }
 const SURVIVAL_FACIL = {
-	"name": "Survival",
+	"name": "Queimada",
 	"scene": preload("res://Scenes/Levels/LevelList/SurvivalFacil.tscn"),
 }
 const SURVIVAL = {
-	"name": "Survival+",
+	"name": "Queimada+",
 	"scene": preload("res://Scenes/Levels/LevelList/Survival.tscn"),
 }
 const CHUMBO_MENOR = {
@@ -75,8 +75,12 @@ const CHUMBO_MENOR = {
 	"scene": preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn"),
 }
 const RITMO = {
-	"name": "Ritmo",
+	"name": "Pong",
 	"scene": preload("res://Scenes/Levels/LevelList/Ritmo.tscn"),
+}
+const RITMO_2 = {
+	"name": "Amarrado+",
+	"scene": preload("res://Scenes/Levels/LevelList/Ritmo2.tscn"),
 }
 const MARATONA = {
 	"name": "Maratona",
@@ -89,6 +93,7 @@ const BOSS = {
 
 const GINASIOS: Array = [
 	#TUTORIAL_HOCKEY,
+	RITMO,
 	TUTORIAL_MAIOR,
 	TUTORIAL,
 	APRESENTACAO_BOLICHE,
@@ -104,10 +109,10 @@ const GINASIOS: Array = [
 	RODADA_SIMULTANEA_MENOR,
 	BOLA_VERMELHA_COMPLEXO,
 	CHUMBO_MENOR,
-	SURVIVAL,
 	BANDEIRA_TINTA,
 	TIMING,
-	# RITMO,
+	SURVIVAL,
+	#RITMO_2,
 	MARATONA,
 	BOSS
 ]
