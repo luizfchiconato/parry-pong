@@ -25,7 +25,7 @@ const attackFrames = 10
 
 var hitInAttack = false
 var canAttack = true
-var ult_attack = false
+var reverted_attack = false
 
 var original_modulate
 var paint_tween
@@ -47,11 +47,11 @@ func _physics_process(delta: float) -> void:
 		deactivateAttack()
 		attackFrame = 0 
 		hitboxShape.disabled = true
-		ultHitboxShape.disabled = true
+		#ultHitboxShape.disabled = true
 	elif (attacking):
 		attackFrame += 1
 	elif (Input.is_action_just_pressed("MouseLeft") or Input.is_action_just_pressed("MouseRight")) and (canAttack or hitInAttack) and !remove_racket:
-		ult_attack = Input.is_action_just_pressed("MouseRight")
+		reverted_attack = Input.is_action_just_pressed("MouseRight")
 		attack()
 	
 	if attacking == true:
@@ -69,8 +69,8 @@ func _physics_process(delta: float) -> void:
 		#	racketParticles.spread = 23
 
 func attack_frames():
-	if ult_attack:
-		return attackFrames * 2.5
+	#if reverted_attack:
+	#	return attackFrames * 2.5
 	return attackFrames 
 
 func turn():
@@ -98,7 +98,7 @@ func getMousePos():
 	return mouse_pos
 
 func attackingReverted():
-	return ult_attack
+	return reverted_attack
 
 func getAngleDegrees():
 	return rad_to_deg(getAngle())
@@ -109,14 +109,15 @@ func getRacketAngle():
 	return -(getAngle() + 90)
 
 func attack():
-	#var rotation_subtract = 270 if ult_attack else 90
+	#var rotation_subtract = 270 if reverted_attack else 90
 	racketPivot.rotation = getRacketAngle() - 90
 	hitbox.rotation = getRacketAngle() - 90
+	hitboxShape.disabled = false
 	
-	if ult_attack:
-		ultHitboxShape.disabled = false
-	else:
-		hitboxShape.disabled = false
+	#if reverted_attack:
+	#	ultHitboxShape.disabled = false
+	#else:
+	#	hitboxShape.disabled = false
 	
 	attacking = true
 	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, 1)
@@ -242,7 +243,7 @@ func activateAttack():
 	racketAnimator.play("Default")
 	
 func deactivateAttack():
-	ult_attack = false
+	reverted_attack = false
 	attacking = false
 	if (!hitInAttack):
 		canAttack = false
