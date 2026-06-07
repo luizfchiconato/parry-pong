@@ -1,6 +1,6 @@
 class_name GiantBullet extends Area2D
 
-@export var speed = 250
+@export var speed = 310
 #@export var speed = 200000
 var velocity := Vector2.ZERO
 var target_pos = Vector2.ZERO
@@ -15,7 +15,7 @@ var parryable = true
 
 var acceleration = Vector2.ZERO
 
-var steer_force = 100.0
+var steer_force = 120.0
 
 #var explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(10, 14)
 var explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(6, 10)

@@ -141,7 +141,7 @@ scale = Vector2(0.496677, 0.496677)
 
 [node name="CirclePaint" type="MeshInstance2D" parent="ExplosionRadius"]
 visible = false
-modulate = Color(0.94902, 0.145098, 0.14902, 0.215686)
+modulate = Color(0.835294, 0.309804, 0.137255, 0.215686)
 z_as_relative = false
 position = Vector2(-2.84217e-14, 8.10623e-06)
 scale = Vector2(68.3297, 68.4549)

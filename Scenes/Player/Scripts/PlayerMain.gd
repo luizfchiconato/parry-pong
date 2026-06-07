@@ -155,7 +155,10 @@ func set_trauma(amount):
 func reflectBullet(body):
 	if (!body.converted):
 		var mouseVelocity = body.global_position.direction_to(getMousePos())
-		body.velocity = (3 * mouseVelocity + (-body.velocity))
+		if (body is GiantBullet):
+			body.velocity = (50 * mouseVelocity + (-body.velocity))
+		else:
+			body.velocity = (3 * mouseVelocity + (-3 * body.velocity))
 		#body.velocity = (4 * mouseVelocity)
 		body.converted = true
 		#frameFeeze(0.05, 0.5)

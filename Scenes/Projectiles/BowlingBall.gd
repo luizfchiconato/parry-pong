@@ -61,9 +61,12 @@ func _ready():
 	else:
 		anim_sprite_2.play("balloon")
 		anim_sprite_2.scale = Vector2(0.85, 0.85)
-		radius_bomb.visible = false
+		radius_bomb.modulate = Color("66f4c820")
+		#radius_bomb.visible = false
 		#radius_bomb_internal.visible = false
 	#bomb_animator.play("default")
+	
+	
 	
 	var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 	
@@ -152,10 +155,10 @@ func check_y_level():
 			explode_paint()
 	elif (self.global_position.y - 70 < arch_body.global_position.y and self.global_position.distance_to(end_position) < 90):
 		can_deflect = true
-		$ExplosionRadius/InternalMesh.modulate = Color("00baba3f")
+		$ExplosionRadius/InternalMesh.modulate = Color("00baba5f")
 	else:
 		can_deflect = false
-		$ExplosionRadius/InternalMesh.modulate = Color("f82a2a11")
+		$ExplosionRadius/InternalMesh.modulate = Color("f82a2a33")
 
 func explode_paint():
 	can_deflect = false
