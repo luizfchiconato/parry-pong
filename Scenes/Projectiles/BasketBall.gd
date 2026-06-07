@@ -95,7 +95,7 @@ func _ready():
 		initial_position = self.global_position
 		end_position = Vector2(target_pos.x + x_entropy, target_pos.y + y_entropy)
 		velocity = self.global_position.direction_to(end_position)
-		print(velocity)
+		#print(velocity)
 		speed = initial_position.distance_to(Vector2(initial_position.x + velocity.x, initial_position.y + velocity.y)) * 150 / duration
 		
 

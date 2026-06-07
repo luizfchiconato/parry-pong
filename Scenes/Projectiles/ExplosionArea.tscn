@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnrqvbkp07pay"]
+
+[ext_resource type="Script" path="res://ExplosionArea.gd" id="1_43blc"]
+
+[node name="ExplosionArea" type="Node2D"]
+scale = Vector2(0.878907, 0.774405)
+script = ExtResource("1_43blc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -986.452
+offset_top = -77.4788
+offset_right = -946.452
+offset_bottom = -37.4785
+scale = Vector2(55.4526, 2.28022)
+color = Color(0.866667, 0.027451, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

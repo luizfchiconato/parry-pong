@@ -126,7 +126,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"no_arm",
-"speed": 10.0
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5o034"]
@@ -151,4 +151,12 @@ shape = SubResource("RectangleShape2D_5o034")
 [node name="ShockwaveLocation" type="Node2D" parent="."]
 position = Vector2(15, 87)
 
+[node name="BulletLocation" type="Node2D" parent="."]
+position = Vector2(-9, -59)
+
+[node name="GiantBulletTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="ShockwaveTimer" to="." method="_on_shockwave_timer_timeout"]
+[connection signal="timeout" from="GiantBulletTimer" to="." method="_on_giant_bullet_timer_timeout"]

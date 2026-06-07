@@ -131,7 +131,7 @@ func _on_hitbox_body_entered(body):
 		hitInAttack = true
 		reflectDisk(body)
 	
-	if body is Bullet:
+	if body is Bullet or body is GiantBullet:
 		if (!body.parryable):
 			return
 		#$Camera2D.set_trauma(0.2)

@@ -1,14 +1,21 @@
 class_name Shockwave extends Area2D
 
 var speed = 100
+var max_radius = 600
 var second_count = 0
 var frame_count = 0
-
+var ShockwaveTres = load('res://Scenes/Projectiles/Shockwave.tres')
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var points : PackedVector2Array = $ShockwaveCollision.polygon
+	create_particles_node($GPUParticles2DBlack)
+	create_particles_node($GPUParticles2DYellow)
+	create_particles_node($GPUParticles2D)
 	#particles.emission_points = points
 	#particles.emitting = true
+
+func create_particles_node(particles_node):
+	particles_node.process_material = ShockwaveTres.duplicate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -17,9 +24,10 @@ func _process(delta):
 	
 	if (frame_count >= 2):
 		$ShockwaveCollision.radius = $ShockwaveCollision.radius + speed * second_count
-		adjust_particles($GPUParticles2D, 300)
-		adjust_particles($GPUParticles2DYellow, 40)
 		adjust_particles($GPUParticles2DBlack, 20)
+		adjust_particles($GPUParticles2DYellow, 40)
+		adjust_particles($GPUParticles2D, 300)
+		
 		second_count = 0
 		frame_count = 0
 	
@@ -27,7 +35,7 @@ func _process(delta):
 	#particles.emission_points = points
 	#particles.emitting = true
 	
-	if ($ShockwaveCollision.radius > 600):
+	if ($ShockwaveCollision.radius > max_radius):
 		queue_free()
 
 func adjust_particles(particles_node, particles_amount_per_radius_size):

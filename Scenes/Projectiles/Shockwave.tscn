@@ -2,18 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/donut_collision_polygon2D/donut_collision_polygon2D.gd" id="1_gblbe"]
 [ext_resource type="Script" path="res://Scenes/Projectiles/Shockwave.gd" id="1_rlkcq"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dg37w"]
-particle_flag_disable_z = true
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 45.0
-emission_ring_inner_radius = 15.0
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-scale_max = 6.0
-color = Color(0.850757, 0.176757, 0.21107, 1)
+[ext_resource type="Material" uid="uid://cihvb7fdt3swd" path="res://Scenes/Projectiles/Shockwave.tres" id="3_xffnh"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hsib1"]
 particle_flag_disable_z = true
@@ -51,7 +40,7 @@ quality = 50
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = -1
 amount = 15000
-process_material = SubResource("ParticleProcessMaterial_dg37w")
+process_material = ExtResource("3_xffnh")
 lifetime = 0.03
 
 [node name="GPUParticles2DYellow" type="GPUParticles2D" parent="."]

@@ -26,9 +26,9 @@ func explode():
 	bomb_animator.play("exploding")
 	await bomb_animator.animation_finished
 	explosion_radius.visible = false
-	print("PRE QUEUE FREE ", uid)
+	#print("PRE QUEUE FREE ", uid)
 	queue_free()
-	print("POST QUEUE FREE ", uid)
+	#print("POST QUEUE FREE ", uid)
 
 #Connect and deal damage to the player
 func deal_damage_to_player(player : PlayerMain):
