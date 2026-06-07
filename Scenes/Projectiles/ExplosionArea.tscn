@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://cgp5ke0gdwes3" path="res://Scenes/Projectiles/ExplosionArea.tres" id="2_xvrko"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4i81j"]
-size = Vector2(20.24, 183.367)
+size = Vector2(31.858, 29.386)
 
 [node name="ExplosionArea" type="Node2D"]
 scale = Vector2(0.878907, 0.774405)
@@ -44,9 +44,10 @@ wait_time = 0.6
 scale = Vector2(1.13778, 1.29131)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.105465, 1.37091e-06)
-scale = Vector2(0.878907, 0.774405)
+position = Vector2(0.999999, -24.5)
+scale = Vector2(2.589, 2.28)
 shape = SubResource("RectangleShape2D_4i81j")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ExplodingTimer" to="." method="_on_exploding_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

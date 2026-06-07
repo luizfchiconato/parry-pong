@@ -43,7 +43,9 @@ func _process(delta):
 
 func adjust_particles(particles_node : GPUParticles2D, particles_amount_per_radius_size, scale):
 	particles_node.amount = round(scale * particles_amount_per_radius_size)
-	particles_node.process_material.emission_shape_scale.x = scale
+	#particles_node.process_material.emission_shape_scale.x = scale
+	particles_node.scale.x = scale
+	$Area2D/CollisionShape2D.scale.x = particles_node.scale.x * 2.28
 	# particles_node.process_material.emission_shape_scale = round($ShockwaveCollision.radius + $ShockwaveCollision.width / 2)
 
 func _on_timer_timeout():
@@ -52,3 +54,14 @@ func _on_timer_timeout():
 
 func _on_exploding_timer_timeout():
 	queue_free()
+	
+func _on_body_entered(body):
+	if body.is_in_group("Player") and exploding:
+		var player = get_tree().get_first_node_in_group("Player") as PlayerMain
+		if player.is_dashing():
+			return
+		deal_damage_to_player(body)
+
+#Connect and deal damage to the player
+func deal_damage_to_player(player : PlayerMain):
+	player._take_damage(2)
