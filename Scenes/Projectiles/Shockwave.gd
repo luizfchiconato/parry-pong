@@ -9,8 +9,11 @@ var ShockwaveTres = load('res://Scenes/Projectiles/Shockwave.tres')
 func _ready():
 	var points : PackedVector2Array = $ShockwaveCollision.polygon
 	create_particles_node($GPUParticles2DBlack)
+	$GPUParticles2DBlack.process_material.color = Color('#141101')
 	create_particles_node($GPUParticles2DYellow)
+	$GPUParticles2DYellow.process_material.color = Color('#e5d143')
 	create_particles_node($GPUParticles2D)
+	
 	#particles.emission_points = points
 	#particles.emitting = true
 
@@ -24,9 +27,9 @@ func _process(delta):
 	
 	if (frame_count >= 2):
 		$ShockwaveCollision.radius = $ShockwaveCollision.radius + speed * second_count
-		adjust_particles($GPUParticles2DBlack, 20)
-		adjust_particles($GPUParticles2DYellow, 40)
-		adjust_particles($GPUParticles2D, 300)
+		adjust_particles($GPUParticles2DBlack, 10)
+		adjust_particles($GPUParticles2DYellow, 30)
+		adjust_particles($GPUParticles2D, 200)
 		
 		second_count = 0
 		frame_count = 0

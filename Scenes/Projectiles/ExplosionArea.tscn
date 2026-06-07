@@ -1,10 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnrqvbkp07pay"]
+[gd_scene load_steps=4 format=3 uid="uid://bnrqvbkp07pay"]
 
 [ext_resource type="Script" path="res://ExplosionArea.gd" id="1_43blc"]
+[ext_resource type="Material" uid="uid://cgp5ke0gdwes3" path="res://Scenes/Projectiles/ExplosionArea.tres" id="2_xvrko"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4i81j"]
+size = Vector2(20.24, 183.367)
 
 [node name="ExplosionArea" type="Node2D"]
 scale = Vector2(0.878907, 0.774405)
 script = ExtResource("1_43blc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 1
+position = Vector2(2.27555, -30.9915)
+scale = Vector2(1.60732, 0.453045)
+amount = 5000
+process_material = ExtResource("2_xvrko")
+lifetime = 0.03
+
+[node name="GPUParticles2DBlack" type="GPUParticles2D" parent="."]
+z_index = 1
+position = Vector2(2.27555, -30.9915)
+scale = Vector2(1.60732, 0.453045)
+amount = 5000
+process_material = ExtResource("2_xvrko")
+lifetime = 0.03
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -986.452
@@ -17,4 +37,16 @@ color = Color(0.866667, 0.027451, 0, 1)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.2
 
+[node name="ExplodingTimer" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1.13778, 1.29131)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.105465, 1.37091e-06)
+scale = Vector2(0.878907, 0.774405)
+shape = SubResource("RectangleShape2D_4i81j")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ExplodingTimer" to="." method="_on_exploding_timer_timeout"]

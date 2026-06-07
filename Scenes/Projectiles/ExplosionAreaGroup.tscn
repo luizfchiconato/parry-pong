@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://yglovtdtvwwb"]
+
+[ext_resource type="Script" path="res://Scenes/Projectiles/ExplosionAreaGroup.gd" id="1_uqsj6"]
+
+[node name="ExplosionArea" type="Node2D"]
+scale = Vector2(0.878907, 0.774405)
+script = ExtResource("1_uqsj6")

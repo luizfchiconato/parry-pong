@@ -4,7 +4,7 @@ class_name GiantBullet extends Area2D
 #@export var speed = 200000
 var velocity := Vector2.ZERO
 var target_pos = Vector2.ZERO
-var ExplosionAreaScene = load("res://Scenes/Projectiles/ExplosionArea.tscn")
+var ExplosionAreaGroupScene = load("res://Scenes/Projectiles/ExplosionAreaGroup.tscn")
 
 var converted = false
 var previousConverted = false
@@ -99,34 +99,9 @@ func deal_damage_to_enemy(enemy):
 	enemy._take_damage(damage, velocity)
 
 func createExplosion(coords, invert):
-	var canvasgroup = CanvasGroup.new()
-	canvasgroup.self_modulate.a = 0.5
-	Global.game_controller.add_2d_scene_child(canvasgroup)
-	
-	var defaultRotate = 180 if invert else 0
-	
-	var explosionArea = ExplosionAreaScene.instantiate() as ExplosionArea
-	explosionArea.rotate(deg_to_rad(defaultRotate))
-	
-	var explosionArea2 = ExplosionAreaScene.instantiate() as ExplosionArea
-	explosionArea2.rotate(deg_to_rad(defaultRotate + 45.0))
-	
-	var explosionArea3 = ExplosionAreaScene.instantiate() as ExplosionArea
-	explosionArea3.rotate(deg_to_rad(defaultRotate + 90.0))
-	
-	var explosionArea4 = ExplosionAreaScene.instantiate() as ExplosionArea
-	explosionArea4.rotate(deg_to_rad(defaultRotate + 135.0))
-	
-	canvasgroup.add_child(explosionArea)
-	canvasgroup.add_child(explosionArea2)
-	canvasgroup.add_child(explosionArea3)
-	canvasgroup.add_child(explosionArea4)
-	
-	explosionArea.global_position = coords
-	explosionArea2.global_position = coords
-	explosionArea3.global_position = coords
-	explosionArea4.global_position = coords
-
+	var explosionAreaGroup = ExplosionAreaGroupScene.instantiate() as ExplosionAreaGroup
+	Global.game_controller.add_2d_scene_child(explosionAreaGroup)
+	explosionAreaGroup.createExplosion(coords, invert)
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if !(body is TileMap):
