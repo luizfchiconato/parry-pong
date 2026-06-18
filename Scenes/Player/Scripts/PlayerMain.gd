@@ -288,3 +288,10 @@ func _on_hit_timeout_timeout():
 	_take_damage(DAMAGE_PAINT)
 	stopHitTimeout()
 	startHitTimeout()
+
+func change_zoom(zoom):
+	var zoom_tween_x = create_tween()
+	zoom_tween_x.tween_property($Camera2D, "zoom:x", zoom, 0.3)
+	
+	var zoom_tween_y = create_tween()
+	zoom_tween_y.tween_property($Camera2D, "zoom:y", zoom, 0.3)

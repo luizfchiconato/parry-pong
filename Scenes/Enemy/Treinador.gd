@@ -3,6 +3,7 @@ class_name Treinador extends CharacterBody2D
 var ShockwaveScene = load("res://Scenes/Projectiles/Shockwave.tscn")
 var GiantBulletScene = load("res://Scenes/Projectiles/GiantBullet.tscn")
 @export var health = 120
+@export var allow_giant_ball = false
 signal damage
 
 @export var move_speed := float(18)
@@ -34,11 +35,17 @@ func _on_shockwave_timer_timeout():
 	Global.game_controller.add_2d_scene_child(shockwave)
 
 func _on_giant_bullet_timer_timeout():
-	var ball = createBall()
-	Global.game_controller.add_2d_scene_child(ball)
+	if allow_giant_ball:
+		var ball = createBall()
+		Global.game_controller.add_2d_scene_child(ball)
 
 func createBall() -> GiantBullet:
 	var bullet := GiantBulletScene.instantiate() as GiantBullet
 	bullet.global_position = $BulletLocation.global_position
 	bullet.set_as_top_level(true)
 	return bullet
+
+func allow_giant_balls():
+	$GiantBulletTimer.autostart = true
+	$GiantBulletTimer.start()
+	allow_giant_ball = true

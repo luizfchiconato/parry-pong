@@ -109,10 +109,14 @@ func activateEnemy():
 	$AnimatedSprite2D.scale.x = 1
 	$AnimatedSprite2D.scale.y = 1
 	$HealthBar.visible = true
-	$BodyCollider.set_deferred("disabled", false)
+	
 	# TODO: GAMBIARRA PRA TIRAR VARIANCIA QUE ANIMAÇAO DE ATIRAR TRAS
-	$BulletTimer.wait_time = bullet_interval - 0.2 + wait_to_attack
-	$BulletTimer.start()
+	if($BodyCollider.disabled == true):
+		$BodyCollider.set_deferred("disabled", false)
+		$BulletTimer.wait_time = bullet_interval - 0.2 + wait_to_attack
+		$BulletTimer.start()
+	
+	
 
 func die(newVelocity):
 	print("die")

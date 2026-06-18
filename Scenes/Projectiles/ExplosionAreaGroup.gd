@@ -23,23 +23,28 @@ func createExplosion(coords, invert):
 	explosionArea.rotate(deg_to_rad(defaultRotate))
 	
 	var explosionArea2 = ExplosionAreaScene.instantiate() as ExplosionArea
-	explosionArea2.rotate(deg_to_rad(defaultRotate + 45.0))
+	explosionArea2.rotate(deg_to_rad(defaultRotate + 36.0))
 	
 	var explosionArea3 = ExplosionAreaScene.instantiate() as ExplosionArea
-	explosionArea3.rotate(deg_to_rad(defaultRotate + 90.0))
+	explosionArea3.rotate(deg_to_rad(defaultRotate + 72.0))
 	
 	var explosionArea4 = ExplosionAreaScene.instantiate() as ExplosionArea
-	explosionArea4.rotate(deg_to_rad(defaultRotate + 135.0))
+	explosionArea4.rotate(deg_to_rad(defaultRotate + 108.0))
+	
+	var explosionArea5 = ExplosionAreaScene.instantiate() as ExplosionArea
+	explosionArea5.rotate(deg_to_rad(defaultRotate + 144.0))
 	
 	canvasgroup.add_child(explosionArea)
 	canvasgroup.add_child(explosionArea2)
 	canvasgroup.add_child(explosionArea3)
 	canvasgroup.add_child(explosionArea4)
+	canvasgroup.add_child(explosionArea5)
 	
 	explosionArea.global_position = coords
 	explosionArea2.global_position = coords
 	explosionArea3.global_position = coords
 	explosionArea4.global_position = coords
+	explosionArea5.global_position = coords
 	
 	canvasgroup.self_modulate.a = 0.0
 	var paint_tween = create_tween()
