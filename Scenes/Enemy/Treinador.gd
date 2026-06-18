@@ -8,10 +8,14 @@ signal damage
 
 @export var move_speed := float(18)
 
+var bullet_interval = 1
+
+var is_phase_1 = true
+var original_modulate = self.modulate
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimatedSprite2D.play("no_arm")
-	pass # Replace with function body.
+	$AnimatedSprite2D.play("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,6 +27,10 @@ func _process(delta):
 
 		self.velocity = chase_direction.normalized() * move_speed
 		self.move_and_slide()
+		
+func change_to_phase_2():
+	is_phase_1 = false
+	$AnimatedSprite2D.play("no_arm")
 
 func _take_damage(amount, deathVelocity : Vector2):
 	health -= amount
@@ -49,3 +57,26 @@ func allow_giant_balls():
 	$GiantBulletTimer.autostart = true
 	$GiantBulletTimer.start()
 	allow_giant_ball = true
+
+func _on_bullet_timer_timeout():
+	if (!is_phase_1):
+		return
+	var EnemyAttack = $AnimatedSprite2D/EnemyAttack
+	EnemyAttack.start_sprite()
+	var paint_tween = create_tween()
+	await paint_tween.tween_property(self, "modulate", Color.RED, 0.2).finished
+	EnemyAttack.create_bullet()
+	EnemyAttack.stop_sprite()
+	var return_tween = create_tween()
+	return_tween.tween_property(self, "modulate", original_modulate, 0.1)
+	restartBulletTimer()
+
+func restartBulletTimer():
+	#var my_random_number
+	#my_random_number = rng.randf_range(bullet_interval - bullet_interval * 0.2, bullet_interval + bullet_interval * 0.2)
+#	# $BulletTimer.wait_time = my_random_number
+	# TODO: GAMBIARRA PRA TIRAR VARIANCIA QUE ANIMAÇAO DE ATIRAR TRAS
+	$BulletTimer.wait_time = bullet_interval - 0.2
+	$BulletTimer.autostart = true
+	$BulletTimer.start()
+	return true

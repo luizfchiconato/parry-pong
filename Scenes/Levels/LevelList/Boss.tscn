@@ -237,16 +237,17 @@ next_scene = ExtResource("2_ny1lj")
 
 [node name="Player" parent="." instance=ExtResource("3_vvgue")]
 z_index = 100
-position = Vector2(0, -152)
+position = Vector2(-16, 280)
 zoom = 1.2
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Treinador" parent="Enemies" instance=ExtResource("4_yag2f")]
-position = Vector2(-8, 48)
+position = Vector2(-8, 72)
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_aouo1")]
 position = Vector2(320, -168)
+wait_for_deaths = 1
 unparriableChance = 10
 max_health = 20
 random = true
@@ -257,6 +258,7 @@ position = Vector2(320, 320)
 attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
 wait_to_attack = 0.5
+wait_for_deaths = 1
 unparriableChance = 10
 max_health = 20
 random = true
@@ -270,6 +272,7 @@ position = Vector2(-384, 320)
 attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
 wait_to_attack = 1.0
+wait_for_deaths = 1
 unparriableChance = 10
 max_health = 20
 random = true
@@ -283,6 +286,7 @@ position = Vector2(-384, -168)
 attack_node = NodePath("../Enemy/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy/FSM/enemy_chase_state")
 wait_to_attack = 1.5
+wait_for_deaths = 1
 unparriableChance = 10
 max_health = 20
 random = true

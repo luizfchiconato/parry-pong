@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://cb6w1urujrjg4"]
+
+[ext_resource type="Script" path="res://EnemyAttack.gd" id="1_np0r4"]
+[ext_resource type="Texture2D" uid="uid://8acp50cyx5uh" path="res://Art/Sprites/ball.png" id="2_slevj"]
+[ext_resource type="Texture2D" uid="uid://be6ukmkfrh34h" path="res://Art/Sprites/balloon.png" id="3_qoj3o"]
+[ext_resource type="Texture2D" uid="uid://du135wccnojp0" path="res://Art/Sprites/BasketBall.png" id="4_oy2uu"]
+[ext_resource type="Texture2D" uid="uid://vdxgbskmudf6" path="res://Art/Sprites/BowlingBall.png" id="5_8l234"]
+[ext_resource type="Texture2D" uid="uid://d2jjfvs0ej5u" path="res://Art/Sprites/ball_black.png" id="6_yyfue"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyl0m"]
+atlas = ExtResource("2_slevj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naxeh"]
+atlas = ExtResource("3_qoj3o")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c0n2"]
+atlas = ExtResource("4_oy2uu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtgkp"]
+atlas = ExtResource("5_8l234")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhicr"]
+atlas = ExtResource("6_yyfue")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_screh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyl0m")
+}],
+"loop": true,
+"name": &"ball",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naxeh")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c0n2")
+}],
+"loop": true,
+"name": &"basket",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtgkp")
+}],
+"loop": true,
+"name": &"bowling",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhicr")
+}],
+"loop": true,
+"name": &"unparry",
+"speed": 5.0
+}]
+
+[node name="EnemyAttack" type="Node2D"]
+script = ExtResource("1_np0r4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_screh")

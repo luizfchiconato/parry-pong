@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://68asdmjpuyue"]
+[gd_scene load_steps=23 format=3 uid="uid://68asdmjpuyue"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Treinador.gd" id="1_7hw4v"]
 [ext_resource type="Texture2D" uid="uid://b3j6dtdy0fpwv" path="res://Art/Sprites/TreinadorFullPlus.png" id="1_oyq62"]
 [ext_resource type="Texture2D" uid="uid://0e15xp07cd3d" path="res://Art/Sprites/TreinadorFullPlusSemBraco.png" id="3_1vhfa"]
+[ext_resource type="PackedScene" uid="uid://cb6w1urujrjg4" path="res://Scenes/Projectiles/enemy_attack.tscn" id="4_5vvog"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8b5m5"]
 atlas = ExtResource("1_oyq62")
@@ -138,7 +139,18 @@ script = ExtResource("1_7hw4v")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_qwhbv")
-animation = &"no_arm"
+
+[node name="EnemyAttack" parent="AnimatedSprite2D" instance=ExtResource("4_5vvog")]
+position = Vector2(-95, -143.333)
+
+[node name="EnemyAttack2" parent="AnimatedSprite2D" instance=ExtResource("4_5vvog")]
+position = Vector2(76.6667, -141.667)
+
+[node name="EnemyAttack3" parent="AnimatedSprite2D" instance=ExtResource("4_5vvog")]
+position = Vector2(-91.6667, 6.66667)
+
+[node name="EnemyAttack4" parent="AnimatedSprite2D" instance=ExtResource("4_5vvog")]
+position = Vector2(80, 5)
 
 [node name="ShockwaveTimer" type="Timer" parent="."]
 wait_time = 4.0
@@ -157,5 +169,9 @@ position = Vector2(-9, -59)
 [node name="GiantBulletTimer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="BulletTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="ShockwaveTimer" to="." method="_on_shockwave_timer_timeout"]
 [connection signal="timeout" from="GiantBulletTimer" to="." method="_on_giant_bullet_timer_timeout"]
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

@@ -38,7 +38,6 @@ func _on_area_2d_body_entered(body):
 
 func boss_damage(health):
 	boss_health = health
-	print(boss_health, wait_for_boss_health)
 	if (isAvailableBoss()):
 		activateRacket()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bvt7e871e6jeg"]
+[gd_scene load_steps=69 format=3 uid="uid://bvt7e871e6jeg"]
 
 [ext_resource type="Texture2D" uid="uid://d3u5e5gpffpwe" path="res://Scenes/Enemy/Sprites/Enemy09.png" id="1_chwbu"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_db41y"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_d5isq"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_mb2dn"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyIdleState.gd" id="21_mks5l"]
+[ext_resource type="PackedScene" uid="uid://cb6w1urujrjg4" path="res://Scenes/Projectiles/enemy_attack.tscn" id="22_mwx3m"]
 [ext_resource type="PackedScene" uid="uid://njrsehilwxvn" path="res://Scenes/UI/HealthBar.tscn" id="24_kud8h"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyChaseState.gd" id="24_pg8mu"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyAttackState.gd" id="25_osvb1"]
@@ -384,7 +385,7 @@ hit_particles = NodePath("HitParticles")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_toimg")
-animation = &"Arm"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="HitParticles" parent="AnimatedSprite2D" instance=ExtResource("21_d5isq")]
@@ -404,6 +405,9 @@ gravity = Vector2(0, 0)
 position = Vector2(-2, 1)
 rotation = 0.0
 amount = 1000
+
+[node name="EnemyAttack" parent="AnimatedSprite2D" instance=ExtResource("22_mwx3m")]
+position = Vector2(-18, 8)
 
 [node name="BodyCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 3)

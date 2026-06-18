@@ -12,12 +12,15 @@ var rng = RandomNumberGenerator.new()
 @export var wait_to_attack: float = 0
 
 @export var wait_for_deaths: int = 0
+
 @export var unparriableChance: int = 0
 @export var max_health: int = 6
 @export var stationary: bool = false
 
 @export var random: bool = false
 @export var boss_arm: bool = false
+
+var original_modulate = self.modulate
 
 #@onready var animator = $AnimationPlayer
 
@@ -32,27 +35,20 @@ var rng = RandomNumberGenerator.new()
 var parent_death_number: int = 0
 var dying = false
 
-
-signal died
-signal damage
-
 const TYPE_NORMAL = 0
 const TYPE_BOWLING = 1
 const TYPE_VOLLEY = 2
 const TYPE_HOCKEY = 3
 const TYPE_BASKET = 4
+
+signal died
+signal damage
+
 const speed = 200
 var death_velocity : Vector2
 
-var disc_active = true
-var active_disc : HockeyDisc
-var original_modulate = self.modulate
+@onready var EnemyAttack = $AnimatedSprite2D/EnemyAttack
 
-var BulletScene = load("res://Scenes/Projectiles/Bullet.tscn")
-var HockeyDiscScene = load("res://Scenes/Projectiles/HockeyDisc.tscn")
-var BowlingBall = load("res://Scenes/Projectiles/BowlingBall.tscn")
-var BasketBall = load("res://Scenes/Projectiles/BasketBall.tscn")
-var Laser = load("res://Scenes/Projectiles/Laser.tscn")
 
 #func _physics_process(_delta):
 	#if (dying):
@@ -79,6 +75,28 @@ func _on_detection_area_body_entered(body):
 		if fsm.current_state.name == "enemy_idle_state" and !stationary: 
 			fsm.force_change_state("enemy_chase_state")
 
+func _on_bullet_timer_timeout():
+	if (!isAvailable()):
+		return
+	EnemyAttack.start_sprite()
+	var paint_tween = create_tween()
+	await paint_tween.tween_property(self, "modulate", Color.RED, 0.2).finished
+	EnemyAttack.create_bullet()
+	EnemyAttack.stop_sprite()
+	var return_tween = create_tween()
+	return_tween.tween_property(self, "modulate", original_modulate, 0.1)
+	restartBulletTimer()
+
+func restartBulletTimer():
+	#var my_random_number
+	#my_random_number = rng.randf_range(bullet_interval - bullet_interval * 0.2, bullet_interval + bullet_interval * 0.2)
+#	# $BulletTimer.wait_time = my_random_number
+	# TODO: GAMBIARRA PRA TIRAR VARIANCIA QUE ANIMAÇAO DE ATIRAR TRAS
+	$BulletTimer.wait_time = bullet_interval - 0.2
+	$BulletTimer.autostart = true
+	$BulletTimer.start()
+	return true
+
 #Return to idle when player leaves our proximity
 func _on_detection_area_body_exited(body):
 	if (!isAvailable()):
@@ -91,7 +109,6 @@ func _on_detection_area_body_exited(body):
 		
 
 func increment_death_number():
-	print(parent_death_number)
 	parent_death_number = parent_death_number + 1
 	if (isAvailable()):
 		activateEnemy()
@@ -110,47 +127,28 @@ func activateEnemy():
 	$AnimatedSprite2D.scale.y = 1
 	$HealthBar.visible = true
 	
-	# TODO: GAMBIARRA PRA TIRAR VARIANCIA QUE ANIMAÇAO DE ATIRAR TRAS
 	if($BodyCollider.disabled == true):
 		$BodyCollider.set_deferred("disabled", false)
+		# TODO: VERIFICAR
 		$BulletTimer.wait_time = bullet_interval - 0.2 + wait_to_attack
 		$BulletTimer.start()
 	
 	
 
 func die(newVelocity):
-	print("die")
 	AudioManager.play_sound(AudioManager.ENEMY_SPUN, 0, -5)
 	fsm.force_change_state("enemy_death_state")
 	death_velocity = newVelocity
 	$BodyCollider.set_deferred("disabled", true)
 	$AnimatedSprite2D.play("Thrown")
 	
-	if (active_disc != null):
-		active_disc.destroy()
-		active_disc = null
-	
-	print("dying", dying)
 	if (!dying):
-		print("signal")
 		emit_signal("died")
 	dying = true
-	
-	#super()
-	#dying = true
-	#self.velocity = velocity
 
 func kill():
 	queue_free()
 
-#func _die():
-	#dying = true
-	#self.velocity = velocity
-	#super()
-	#super() #calls _die() on base-class CharacterBase
-	#fsm.force_change_state("enemy_death_state")
-	#emit_signal("died")
-#	pass
 
 func _take_damage(amount, deathVelocity : Vector2):
 	if (!isAvailable()):
@@ -173,6 +171,17 @@ func _take_damage(amount, deathVelocity : Vector2):
 		die(deathVelocity)
 	
 func _ready():
+	# TODO: isso é um lixo mas provavelmente nunca vou mudar
+	EnemyAttack.enemy_type = enemy_type
+	EnemyAttack.entropy = entropy
+	EnemyAttack.min_balls_per_shot = min_balls_per_shot
+	EnemyAttack.max_balls_per_shot = max_balls_per_shot
+	EnemyAttack.throw_balloon = throw_balloon
+	EnemyAttack.random = random
+	EnemyAttack.unparriableChance = unparriableChance
+	EnemyAttack.bullet_interval = bullet_interval
+	EnemyAttack.parent = self
+	
 	if boss_arm:
 		$AnimatedSprite2D.play("Arm")
 	$FSM/enemy_idle_state.boss_arm = boss_arm
@@ -195,6 +204,10 @@ func _ready():
 		self.z_index = 5
 		$BulletTimer.autostart = true
 		$BulletTimer.start()
+		#EnemyAttack.activateAttack()
+
+
+
 
 func deactivateEnemy():
 	$AnimatedSprite2D.play("Hidden")
@@ -204,172 +217,6 @@ func deactivateEnemy():
 	$AnimatedSprite2D.scale.y = 0.7
 	$HealthBar.visible = false
 	$BodyCollider.set_deferred("disabled", true)
-	
-func _on_bullet_timer_timeout():
-	if (!isAvailable()):
-		return
-	var paint_tween = create_tween()
-	await paint_tween.tween_property(self, "modulate", Color.RED, 0.2).finished
-	createBullet()
-	var return_tween = create_tween()
-	return_tween.tween_property(self, "modulate", original_modulate, 0.1)
-
-func restartBulletTimer():
-	#var my_random_number
-	#my_random_number = rng.randf_range(bullet_interval - bullet_interval * 0.2, bullet_interval + bullet_interval * 0.2)
-#	# $BulletTimer.wait_time = my_random_number
-	# TODO: GAMBIARRA PRA TIRAR VARIANCIA QUE ANIMAÇAO DE ATIRAR TRAS
-	$BulletTimer.wait_time = bullet_interval - 0.2
-	$BulletTimer.autostart = true
-	$BulletTimer.start()
-	return true
-
-func createBullet():
-	if (!isAvailable()):
-		return
-		
-	if (random == true):
-		var randomResult = rng.randf_range(1,100)
-		if (randomResult >= 1 and randomResult < 85):
-			throw_balloon = false
-			var isTriple = rng.randf_range(1,16) > 15
-			if (isTriple):
-				min_balls_per_shot = 1
-				max_balls_per_shot = 1
-			else:
-				min_balls_per_shot = 0
-				max_balls_per_shot = 0
-			generateBullet(TYPE_NORMAL)
-			return
-		if (randomResult >= 85 and randomResult < 90):
-			throw_balloon = false
-			min_balls_per_shot = 0
-			max_balls_per_shot = 0
-			generateBullet(TYPE_BASKET)
-			return
-		if (randomResult >= 90 and randomResult < 95):
-			throw_balloon = false
-			min_balls_per_shot = 0
-			max_balls_per_shot = 0
-			generateBullet(TYPE_BOWLING)
-			return
-		
-		throw_balloon = true
-		min_balls_per_shot = 0
-		max_balls_per_shot = 0
-		generateBullet(TYPE_BOWLING)
-	else:
-		generateBullet(enemy_type)
-	
-
-func generateBullet(enemy_type2):
-	if (enemy_type2 == TYPE_BOWLING):
-		generateBowlingBall()
-		restartBulletTimer()
-	elif (enemy_type2 == TYPE_HOCKEY):
-		generateDisc()
-	elif (enemy_type2 == TYPE_BASKET):
-		generateBasketBall()
-	else:
-		generateDefaultBall()
-		restartBulletTimer()
-
-func generateBasketBall():
-	var bullet = createBasketBall()
-	Global.game_controller.add_2d_scene_child(bullet)
-
-func createBasketBall() -> BasketBall:
-	var basketBall := BasketBall.instantiate() as BasketBall
-	if (throw_balloon == true):
-		basketBall.type = 1
-	basketBall.global_position = global_position
-	# basketBall.ground_velocity = Vector2(100, 120)
-	basketBall.vertical_velocity = 10
-	basketBall.set_as_top_level(true)
-	basketBall.parent_enemy = self
-	return basketBall
-
-func generateBowlingBall():
-	var bullet = createBowlingBall()
-	Global.game_controller.add_2d_scene_child(bullet)
-	
-	if (min_balls_per_shot == 1):
-		createAngleBowling(0, 1)
-		createAngleBowling(1, 1)
-		
-	if (min_balls_per_shot == 2):
-		createAngleBowling(0, 0)
-		createAngleBowling(1, 0)
-		createAngleBowling(0, 1)
-		createAngleBowling(1, 1)
-
-func createBowlingBall() -> BowlingBall:
-	var bowlingBall := BowlingBall.instantiate() as BowlingBall
-	if (throw_balloon == true):
-		bowlingBall.type = 1
-	bowlingBall.global_position = global_position
-	# bowlingBall.ground_velocity = Vector2(100, 120)
-	bowlingBall.vertical_velocity = 10
-	bowlingBall.set_as_top_level(true)
-	bowlingBall.parent_enemy = self
-	return bowlingBall
-
-func createAngleBowling(left : int, up: int):
-	var bowlingBall = createBowlingBall()
-	bowlingBall.left = left
-	bowlingBall.up = up
-	bowlingBall.offset_from_player = true
-	Global.game_controller.add_2d_scene_child(bowlingBall)
-
-func generateDefaultBall():
-	var bullet = createBall()
-	bullet.entropy = entropy
-	Global.game_controller.add_2d_scene_child(bullet)
-	
-	if (min_balls_per_shot == 1):
-		createAngleBullet(0.5)
-		createAngleBullet(-0.5)
-		
-	if (min_balls_per_shot == 2):
-		createAngleBullet(0.5)
-		createAngleBullet(-0.5)
-		createAngleBullet(1)
-		createAngleBullet(-1)
-		
-func generateDisc():
-	if (disc_active):
-		disc_active = false
-		var disc = createDisc()
-		disc.entropy = entropy
-		Global.game_controller.add_2d_scene_child(disc)
-		active_disc = disc
-
-func createBall() -> Bullet:
-	var bullet := BulletScene.instantiate() as Bullet
-	bullet.parryable = rng.randf_range(1,100) > unparriableChance
-	bullet.global_position = global_position
-	bullet.set_as_top_level(true)
-	return bullet
-
-func createDefaultDisc():
-	var disc = createBall()
-	disc.entropy = entropy
-	Global.game_controller.add_2d_scene_child(disc)
-
-func createDisc() -> HockeyDisc:
-	var hockeyDisc := HockeyDiscScene.instantiate() as HockeyDisc
-	hockeyDisc.parryable = rng.randf_range(1,100) > unparriableChance
-	hockeyDisc.global_position = global_position
-	hockeyDisc.set_as_top_level(true)
-	return hockeyDisc
-
-func createAngleBullet(angle: float):
-	var bullet = createBall()
-	bullet.angle = angle
-	bullet.explodingBulletsQuantity = 3
-	bullet.scale.x = 0.3
-	bullet.scale.y = 0.3
-	Global.game_controller.add_2d_scene_child(bullet)
 
 func isAvailable():
 	return parent_death_number >= wait_for_deaths

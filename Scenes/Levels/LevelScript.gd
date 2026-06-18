@@ -51,6 +51,7 @@ func _on_boss_damage(health):
 				grandson.boss_damage(health)
 
 func change_to_phase_2():
+	$Enemies/Treinador.change_to_phase_2()
 	#$Scene/TileMapSmall.process_mode = Node.PROCESS_MODE_DISABLED
 	$Scene/TileMapSmall.visible = false
 	$Scene/TileMapSmall.tile_set.set_physics_layer_collision_layer(0, 0)
@@ -59,6 +60,13 @@ func change_to_phase_2():
 	#$Scene/TileMapBig.process_mode = Node.PROCESS_MODE_INHERIT
 	$Scene/TileMapBig.visible = true
 	$Player.change_zoom(1.0)
+	
+	#TODO: GAMBIARRAAAAAA
+	for child in get_children():
+		for grandson in child.get_children():
+			# feio, eu sei. lógica criada antes do GameManager e preguiça de resolver
+			if grandson is EnemyMain:
+				grandson.increment_death_number()
 
 func change_to_phase_3():
 	$Enemies/Treinador.allow_giant_balls()
