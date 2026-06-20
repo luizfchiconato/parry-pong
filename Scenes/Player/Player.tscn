@@ -755,14 +755,24 @@ uppercase = true
 [node name="AttackTimeout" type="Timer" parent="."]
 wait_time = 0.8
 
-[node name="HealthBar" parent="." instance=ExtResource("37_c8lyp")]
-position = Vector2(-453.333, 298.333)
+[node name="PaintHitTimer" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 656.0
+offset_top = 254.0
+offset_right = 696.0
+offset_bottom = 294.0
+
+[node name="HealthBar" parent="CanvasLayer/Control" instance=ExtResource("37_c8lyp")]
+position = Vector2(-466, 326)
 scale = Vector2(2.5, 2.5)
 max_health = 8
 health = 8
-
-[node name="PaintHitTimer" type="Timer" parent="."]
-wait_time = 0.4
 
 [connection signal="area_entered" from="AnimatedSprite2D/Hitboxes/Racket_HitboxUlt" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Racket_HitboxUlt" to="." method="_on_hitbox_body_entered"]

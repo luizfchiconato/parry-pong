@@ -1,6 +1,6 @@
 class_name GiantBullet extends Area2D
 
-@export var speed = 310
+@export var speed = 360
 #@export var speed = 200000
 var velocity := Vector2.ZERO
 var target_pos = Vector2.ZERO

@@ -36,7 +36,7 @@ func _ready():
 	$FSM/Idle.remove_movement = remove_movement
 	$Camera2D.zoom.x = zoom
 	$Camera2D.zoom.y = zoom
-	$HealthBar.setHealthBar()
+	$CanvasLayer/Control/HealthBar.setHealthBar()
 	
 	if (remove_racket):
 		racketPivot.visible = false
@@ -197,7 +197,7 @@ func _regenerate(amount):
 	healthbar.value = health;
 	#damage_effects()
 	
-	$HealthBar.addHealth(amount)
+	$CanvasLayer/Control/HealthBar.addHealth(amount)
 	
 	#AudioManager.play_sound(AudioManager.PLAYER_HURT, 0, 0)
 	
@@ -212,7 +212,7 @@ func _take_damage(amount):
 	healthbar.value = health;
 	damage_effects()
 	
-	$HealthBar.removeHealth(amount)
+	$CanvasLayer/Control/HealthBar.removeHealth(amount)
 	
 	AudioManager.play_sound(AudioManager.PLAYER_HURT, 0, 0)
 	

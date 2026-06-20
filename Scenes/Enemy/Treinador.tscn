@@ -153,7 +153,7 @@ position = Vector2(-91.6667, 6.66667)
 position = Vector2(80, 5)
 
 [node name="ShockwaveTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 3.0
 autostart = true
 
 [node name="Body" type="CollisionShape2D" parent="."]
@@ -170,7 +170,6 @@ position = Vector2(-9, -59)
 wait_time = 5.0
 
 [node name="BulletTimer" type="Timer" parent="."]
-autostart = true
 
 [connection signal="timeout" from="ShockwaveTimer" to="." method="_on_shockwave_timer_timeout"]
 [connection signal="timeout" from="GiantBulletTimer" to="." method="_on_giant_bullet_timer_timeout"]

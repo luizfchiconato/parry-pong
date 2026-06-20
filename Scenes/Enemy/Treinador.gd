@@ -13,9 +13,19 @@ var bullet_interval = 1
 var is_phase_1 = true
 var original_modulate = self.modulate
 
+var initial_shockwaves = 0
+
+const SHOCKWAVE_TIMER = 3
+const INITIAL_SHOCKWAVE_TIMER = 1
+const GIANT_BULLET_TIMER = 4.5
+const FINAL_GIANT_BULLET_TIMER = 2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite2D.play("default")
+	
+	$ShockwaveTimer.autostart = true
+	$ShockwaveTimer.wait_time = INITIAL_SHOCKWAVE_TIMER
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,15 +47,30 @@ func _take_damage(amount, deathVelocity : Vector2):
 	emit_signal("damage", health)
 
 func _on_shockwave_timer_timeout():
+	var paint_tween = create_tween()
+	await paint_tween.tween_property(self, "modulate", Color.RED, 0.2).finished
 	var shockwave = ShockwaveScene.instantiate() as Shockwave
 	shockwave.set_as_top_level(true)
 	shockwave.global_position = $ShockwaveLocation.global_position
 	Global.game_controller.add_2d_scene_child(shockwave)
+	var return_tween = create_tween()
+	return_tween.tween_property(self, "modulate", original_modulate, 0.1)
+	
+	initial_shockwaves = initial_shockwaves + 1
+	print(initial_shockwaves)
+	if (initial_shockwaves == 3):
+		$BulletTimer.autostart = true
+		$BulletTimer.start()
+		$ShockwaveTimer.wait_time = SHOCKWAVE_TIMER
 
 func _on_giant_bullet_timer_timeout():
 	if allow_giant_ball:
+		var paint_tween = create_tween()
+		await paint_tween.tween_property(self, "modulate", Color.RED, 0.4).finished
 		var ball = createBall()
 		Global.game_controller.add_2d_scene_child(ball)
+		var return_tween = create_tween()
+		return_tween.tween_property(self, "modulate", original_modulate, 0.1)
 
 func createBall() -> GiantBullet:
 	var bullet := GiantBulletScene.instantiate() as GiantBullet

@@ -8,6 +8,8 @@ var death_number = 0
 func _ready():
 	if ($Scene/TileMapBig != null):
 		$Scene/TileMapBig.visible = false
+		$Scene/TileMapSmall.tile_set.set_physics_layer_collision_layer(1, 1)
+		$Scene/TileMapSmall.tile_set.set_physics_layer_collision_mask(1, 1)
 	
 	Input.set_default_cursor_shape(Input.CURSOR_CROSS)
 

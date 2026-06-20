@@ -139,7 +139,7 @@ stream = ExtResource("11_tkdiq")
 volume_db = -12.0
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 90.0
+wait_time = 75.0
 
 [connection signal="died" from="Enemies/Enemy7" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy6" to="." method="_on_enemy_died"]

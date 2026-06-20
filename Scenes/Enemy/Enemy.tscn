@@ -328,8 +328,8 @@ cull_mode = 2
 polygon = PackedVector2Array(3, -8, 6.5, -4, 7.5, 3.5, 4.5, 10, -1.5, 10.5, -6, 4, -4.5, -6, -1, -8.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4mbmt"]
-radius = 18.0
-height = 64.0
+radius = 27.0
+height = 60.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_imcar"]
 radius = 130.0
