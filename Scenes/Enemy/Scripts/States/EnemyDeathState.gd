@@ -55,6 +55,9 @@ func die():
 		AudioManager.play_sound(AudioManager.WALL_SMASH_1, 0, -15)
 	else:
 		AudioManager.play_sound(AudioManager.WALL_SMASH_2, 0, -3)
+	print("die 0")
 	await get_tree().create_timer(0.3).timeout
+	print("die 1")
 	if is_instance_valid(self):
+		print("die 2")
 		body.kill()

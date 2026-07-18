@@ -2,7 +2,7 @@ class_name GameController extends Node2D
 
 @export var world_2d : Node2D
 @export var gui : Control
-@export var music : Node2D
+@export var music : Node2D 
 @export var first_gui_scene : PackedScene
 
 const PAUSE_SCREEN = preload("res://Scenes/UI/Pause.tscn")

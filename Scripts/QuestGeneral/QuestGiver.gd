@@ -16,7 +16,7 @@ func _on_body_entered(body):
 		2: update_quest()
 		3: complete_quest()
 
-	AudioManager.play_sound(AudioManager.QUEST_SOUND, 0, -10)
+	#AudioManager.play_sound(AudioManager.QUEST_SOUND, 0, -10)
 	queue_free()
 
 func give_quest():

@@ -11,6 +11,7 @@ class_name EnemyAttack extends Node2D
 @export var unparriableChance: int = 0
 @export var bullet_interval: float = 2
 @export var wait_to_attack: float = 0
+@export var uid: float = 0
 
 var parent : EnemyMain
 
@@ -100,6 +101,7 @@ func createBullet():
 		
 
 func generateBullet(enemy_type2):
+	print("ATTACK ", uid)
 	if (enemy_type2 == TYPE_BOWLING):
 		generateBowlingBall()
 	elif (enemy_type2 == TYPE_HOCKEY):

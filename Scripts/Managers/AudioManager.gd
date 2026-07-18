@@ -3,24 +3,48 @@ extends Node
 #This class preloads all of our sound effects so that they can be played at a momets notice
 #region New Code Region
 
-const PLAYER_ATTACK_HIT = preload("res://Art/Audio/Effects/PongHit.ogg")
-const PLAYER_ATTACK_SWING = preload("res://Art/Audio/Effects/AttackSwing.ogg")
-const ENEMY_HIT = preload("res://Art/Audio/Effects/VolleyHit.ogg")
-const BLOODY_HIT = preload("res://Art/Audio/Effects/bloody_hit.ogg")
-const COIN_PICK = preload("res://Art/Audio/Effects/coin_pick.ogg")
-const QUEST_SOUND = preload("res://Art/Audio/Effects/QuestSound.ogg")
-const BALL_HIT = preload("res://Art/Audio/Effects/BallHit.ogg")
-const BOWLING_FALL = preload("res://Art/Audio/Effects/BowlingFall.ogg")
-const ENEMY_HIT_DEFAULT = preload("res://Art/Audio/Effects/VolleyHit.ogg")
-const ENEMY_HIT_BOWLING = preload("res://Art/Audio/Effects/EnemyHitBowling.ogg")
-const PLAYER_HURT = preload("res://Art/Audio/Effects/PlayerHurt.ogg")
 const DASH = preload("res://Art/Audio/Effects/Dash.ogg")
+
+const PLAYER_ATTACK_SWING = preload("res://Art/Audio/Effects/AttackSwing.ogg")
+const PLAYER_HURT = preload("res://Art/Audio/Effects/PlayerHurt.ogg")
+
+const COIN_PICK = preload("res://Art/Audio/Effects/coin_pick.ogg")
+
 const SMALL_EXPLOSION = preload("res://Art/Audio/Effects/SmallExplosion.ogg")
 const ENEMY_SPUN = preload("res://Art/Audio/Effects/EnemySpun.ogg")
 const WALL_SMASH_1 = preload("res://Art/Audio/Effects/Smash1.ogg")
 const WALL_SMASH_2 = preload("res://Art/Audio/Effects/Smash2.ogg")
-const BALLOON_SPLASH = preload("res://Art/Audio/Effects/BallonSplash.ogg")
+
+const PLAYER_ATTACK_HIT = preload("res://Art/Audio/Effects/PongHit.ogg")
+const PLAYER_ATTACK_HIT_BALLOON = null
+const PLAYER_ATTACK_HIT_BOWLING = null # verificar se vai continuar sendo pitch grave
+const PLAYER_ATTACK_HIT_BASKET = null # talvez mesmo de quicar, mas mais forte
+
+const BOWLING_FALL = preload("res://Art/Audio/Effects/BowlingFall.ogg")
 const BALLOON_HIT = preload("res://Art/Audio/Effects/BalloonHit.ogg")
+
+const BALL_EXPLODE = null
+const BOWLING_EXPLODE = null
+const BALLOON_SPLASH = preload("res://Art/Audio/Effects/BallonSplash.ogg")
+const BASKET_BOUNCE = null
+const BASKET_EXPLODE = null
+
+const ENEMY_HIT = preload("res://Art/Audio/Effects/VolleyHit.ogg")
+# const ENEMY_ATTACK = preload("res://Art/Audio/Effects/VolleyHit.ogg")
+
+const ENEMY_HIT_DEFAULT = preload("res://Art/Audio/Effects/VolleyHit.ogg")
+const ENEMY_HIT_BOWLING = preload("res://Art/Audio/Effects/EnemyHitBowling.ogg")
+
+const BOSS_SWOOSH = null
+const BOSS_SPIT = null
+const BOSS_STOMP = null
+const BOSS_EXPLODE = null
+const BOSS_TALK = null
+
+const SELECT_UI = null
+const CLICK_UI = null
+
+# const QUEST_SOUND = preload("res://Art/Audio/Effects/QuestSound.ogg")
 
 #endregion
 var audio_player : AudioStreamPlayer 

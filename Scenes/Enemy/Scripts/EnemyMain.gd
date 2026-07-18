@@ -48,7 +48,7 @@ const speed = 200
 var death_velocity : Vector2
 
 @onready var EnemyAttack = $AnimatedSprite2D/EnemyAttack
-
+#var EnemyAttack = load("res://Scenes/MainMenu/LevelSelector/LevelSelect.tscn")
 
 #func _physics_process(_delta):
 	#if (dying):
@@ -145,8 +145,12 @@ func die(newVelocity):
 	if (!dying):
 		emit_signal("died")
 	dying = true
+	# TODO: VERIFICAR O QUE
+	kill()
 
 func kill():
+	print("die ", EnemyAttack.uid)
+	EnemyAttack.queue_free()
 	queue_free()
 
 
@@ -181,6 +185,7 @@ func _ready():
 	EnemyAttack.unparriableChance = unparriableChance
 	EnemyAttack.bullet_interval = bullet_interval
 	EnemyAttack.parent = self
+	EnemyAttack.uid = RandomNumberGenerator.new().randf_range(0, 1000000000)
 	
 	if boss_arm:
 		$AnimatedSprite2D.play("Arm")
