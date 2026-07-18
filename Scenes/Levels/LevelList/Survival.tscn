@@ -14,6 +14,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_423pw"]
 font = SubResource("SystemFont_lgewe")
+font_size = 26
 
 [node name="Scene_Root3" type="Node2D"]
 texture_filter = 1
@@ -23,9 +24,7 @@ script = ExtResource("1_k1ioc")
 [node name="Player" parent="." instance=ExtResource("3_a4cwh")]
 z_index = 100
 position = Vector2(-14, 65)
-max_health = 6
 remove_racket = true
-health = 6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -139,7 +138,7 @@ stream = ExtResource("11_tkdiq")
 volume_db = -12.0
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 75.0
+wait_time = 60.0
 
 [connection signal="died" from="Enemies/Enemy7" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy6" to="." method="_on_enemy_died"]

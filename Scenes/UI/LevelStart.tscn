@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgunyplxqxpxt"]
+
+[ext_resource type="Script" path="res://Scenes/UI/LevelStart.gd" id="1_h8dft"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rw3b5"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_ntmj6"]
+font_size = 25
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h8dft")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelName" type="Label" parent="CanvasLayer"]
+offset_left = 202.0
+offset_top = 279.0
+offset_right = 949.0
+offset_bottom = 362.0
+text = "LEVEL NAME"
+label_settings = SubResource("LabelSettings_rw3b5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelDescription" type="Label" parent="CanvasLayer"]
+offset_left = 257.0
+offset_top = 358.0
+offset_right = 874.0
+offset_bottom = 515.0
+label_settings = SubResource("LabelSettings_ntmj6")
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="Timer" to="." method="load_level"]

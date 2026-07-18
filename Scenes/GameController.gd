@@ -19,7 +19,7 @@ func _ready():
 	change_gui_scene(first_gui_scene)
 
 func change_gui_scene(new_scene: PackedScene, delete: bool = true, keep_running: bool = false):
-	music.set_stream_paused(true)
+	# music.set_stream_paused(true)
 	if (current_gui_scene != null):
 		if delete: 
 			current_gui_scene.queue_free()
@@ -30,7 +30,7 @@ func change_gui_scene(new_scene: PackedScene, delete: bool = true, keep_running:
 	var new = new_scene.instantiate()
 	gui.add_child(new)
 	current_gui_scene = new
-	print(current_gui_scene)
+	return current_gui_scene
 
 func deload_current_gui_scene():
 	music.set_stream_paused(false)
@@ -39,7 +39,7 @@ func deload_current_gui_scene():
 	current_gui_scene = null
 	
 func deload_current_2d_scene():
-	music.set_stream_paused(true)
+	# music.set_stream_paused(true)
 	if (current_2d_scene != null):
 		current_2d_scene.queue_free()
 	current_2d_scene = null
@@ -59,6 +59,7 @@ func change_2d_scene(new_scene: PackedScene, delete: bool = true, keep_running: 
 	world_2d.add_child(new)
 	current_2d_scene = new
 	current_2d_packed_scene = new_scene
+	return current_2d_scene
 
 func reload_current_2d_scene():
 	change_2d_scene(current_2d_packed_scene)

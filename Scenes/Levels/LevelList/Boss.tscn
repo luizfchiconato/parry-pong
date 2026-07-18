@@ -439,8 +439,8 @@ color = Color(0, 0, 0, 1)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -12.0
 
-[connection signal="damage" from="Enemies/Treinador" to="." method="_on_treinador_damage"]
 [connection signal="damage" from="Enemies/Treinador" to="." method="_on_boss_damage"]
+[connection signal="damage" from="Enemies/Treinador" to="." method="_on_treinador_damage"]
 [connection signal="damage" from="Enemies/Enemy" to="Enemies/Treinador" method="_take_damage"]
 [connection signal="damage" from="Enemies/Enemy2" to="Enemies/Treinador" method="_take_damage"]
 [connection signal="damage" from="Enemies/Enemy3" to="Enemies/Treinador" method="_take_damage"]

@@ -17,7 +17,7 @@ scale = Vector2(21.2524, 21.0029)
 mesh = SubResource("SphereMesh_p2kqp")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-modulate = Color(0.972549, 0.164706, 0.164706, 1)
+modulate = Color(0.815686, 0.164706, 0.164706, 1)
 position = Vector2(0.143793, 0.0224431)
 scale = Vector2(21.2524, 21.0029)
 amount = 100

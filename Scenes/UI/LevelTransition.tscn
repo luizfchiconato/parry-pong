@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cn5umyyfvveya"]
+[gd_scene load_steps=12 format=3 uid="uid://cn5umyyfvveya"]
 
 [ext_resource type="Texture2D" uid="uid://bnjlqjgbi68la" path="res://Art/Sprites/TreinadorIcon.png" id="1_nvmdw"]
 [ext_resource type="Script" path="res://Scenes/UI/LevelFail.gd" id="1_un4q4"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelector/LevelSelect.gd" id="2_vwqfb"]
-[ext_resource type="PackedScene" uid="uid://bo22hma5o31ig" path="res://Scenes/MainMenu/InitialMenu/MainMenu.tscn" id="3_nojkw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jyekg"]
 atlas = ExtResource("1_nvmdw")
@@ -116,12 +115,9 @@ layout_mode = 2
 
 [node name="Menu principal" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "[ESC] Menu principal"
 script = ExtResource("2_vwqfb")
-level_scene = ExtResource("3_nojkw")
 
 [node name="Tentar novamente" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "[R] Tentar novamente"
 script = ExtResource("2_vwqfb")
 reload_scene = true

@@ -20,6 +20,8 @@ var rng = RandomNumberGenerator.new()
 @export var random: bool = false
 @export var boss_arm: bool = false
 
+var can_attack = true
+
 var original_modulate = self.modulate
 
 #@onready var animator = $AnimationPlayer
@@ -76,7 +78,7 @@ func _on_detection_area_body_entered(body):
 			fsm.force_change_state("enemy_chase_state")
 
 func _on_bullet_timer_timeout():
-	if (!isAvailable()):
+	if (!isAvailable() or !can_attack):
 		return
 	EnemyAttack.start_sprite()
 	var paint_tween = create_tween()
@@ -114,6 +116,10 @@ func increment_death_number():
 		activateEnemy()
 
 func activateEnemy():
+	# TODO: GAMBI
+	can_attack = false
+	await get_tree().create_timer(1).timeout
+	can_attack = true
 	if boss_arm:
 		$AnimatedSprite2D.play("Arm")
 	elif enemy_type == TYPE_BOWLING:

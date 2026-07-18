@@ -14,6 +14,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_423pw"]
 font = SubResource("SystemFont_lgewe")
+font_size = 26
 
 [node name="Scene_Root3" type="Node2D"]
 texture_filter = 1
@@ -45,6 +46,7 @@ offset_left = 526.0
 offset_top = 2.0
 offset_right = 675.0
 offset_bottom = 25.0
+scale = Vector2(1.0011, 1)
 label_settings = SubResource("LabelSettings_423pw")
 
 [node name="Enemies" type="Node" parent="."]

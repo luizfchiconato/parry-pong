@@ -2,21 +2,37 @@ extends Node2D
 
 const TUTORIAL_HOCKEY = preload("res://Scenes/Levels/LevelList/TutorialHockey.tscn")
 
+const LEVEL_START = preload("res://Scenes/UI/LevelStart.tscn")
+
+const RITMO = {
+	"name": "Pong",
+	"scene": preload("res://Scenes/Levels/LevelList/Ritmo.tscn"),
+	"description": "Tá preso é :'((((",
+}
 const TUTORIAL_MAIOR = {
 	"name": "Tutorial",
 	"scene": preload("res://Scenes/Levels/LevelList/TutorialMaior.tscn"),
+	"description": "Conseguiu se soltar, tampinha? Seu inferno só está começando",
 }
 const TUTORIAL = {
 	"name": "Tutorial só que menor",
 	"scene": preload("res://Scenes/Levels/LevelList/Tutorial.tscn"),
+	"description": "Acho que você está com espaço demais. Vamos ver agora",
 }
 const APRESENTACAO_BOLICHE = {
 	"name": "Boliche",
 	"scene": preload("res://Scenes/Levels/LevelList/ApresentacaoBoliche.tscn"),
+	"description": "Peguem as bolas de boliche porque hoje faremos desse piá de bosta um pino",
+}
+const SURVIVAL_FACIL = {
+	"name": "Queimada",
+	"scene": preload("res://Scenes/Levels/LevelList/SurvivalFacil.tscn"),
+	"description": "roubei sua raquete roubei sua raquete kkkkkk :^)",
 }
 const RODADA_SIMULTANEA = {
 	"name": "Rodada simultânea",
 	"scene": preload("res://Scenes/Levels/LevelList/RodadaSimultanea.tscn"),
+	"description": "Sem respiro dessa vez",
 }
 const TRES_BOLAS = {
 	"name": "Tribola",
@@ -62,10 +78,7 @@ const TIMING = {
 	"name": "Corredor",
 	"scene": preload("res://Scenes/Levels/LevelList/Timing.tscn"),
 }
-const SURVIVAL_FACIL = {
-	"name": "Queimada",
-	"scene": preload("res://Scenes/Levels/LevelList/SurvivalFacil.tscn"),
-}
+
 const SURVIVAL = {
 	"name": "Queimada+",
 	"scene": preload("res://Scenes/Levels/LevelList/Survival.tscn"),
@@ -74,10 +87,7 @@ const CHUMBO_MENOR = {
 	"name": "Chumbo menor",
 	"scene": preload("res://Scenes/Levels/LevelList/ChumboMenor.tscn"),
 }
-const RITMO = {
-	"name": "Pong",
-	"scene": preload("res://Scenes/Levels/LevelList/Ritmo.tscn"),
-}
+
 const RITMO_2 = {
 	"name": "Amarrado+",
 	"scene": preload("res://Scenes/Levels/LevelList/Ritmo2.tscn"),
@@ -142,7 +152,10 @@ func load_next_level():
 	load_level()
 	
 func load_level():
-	Global.game_controller.change_2d_scene(GINASIOS[current_level_index].scene)
+	Global.game_controller.deload_current_2d_scene()
+	var level_start_scene = Global.game_controller.change_gui_scene(LEVEL_START)
+	level_start_scene.set_level(GINASIOS[current_level_index])
+	#Global.game_controller.change_2d_scene(GINASIOS[current_level_index].scene)
 	
 func reload_level():
 	Global.game_controller.reload_current_2d_scene()
