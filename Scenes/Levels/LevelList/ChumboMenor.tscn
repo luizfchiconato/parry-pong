@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8i3b05o1r0fk"]
+[gd_scene load_steps=10 format=3 uid="uid://c8i3b05o1r0fk"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelScript.gd" id="1_46yv8"]
 [ext_resource type="PackedScene" uid="uid://cqkeswm8ml2vs" path="res://Scenes/Levels/LevelList/BandeiraTinta.tscn" id="2_qwqry"]
@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ckp2r52hlcfxn" path="res://Scenes/Npc_OfficeWorker/npc_officeworker_scene.tscn" id="6_s15mf"]
 [ext_resource type="TileSet" uid="uid://b3n0bklwwny1b" path="res://Scenes/Levels/TileMap.tres" id="8_fwdxy"]
 [ext_resource type="Script" path="res://Scenes/Levels/TileMapScript.gd" id="9_4a0uk"]
-[ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/Light.png" id="10_oq5sd"]
 [ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="13_44e08"]
-[ext_resource type="AudioStream" uid="uid://duk65jhplli8h" path="res://Art/Audio/Music/TetrisNivel1.mp3" id="14_f6jam"]
 
 [node name="Scene_Root2" type="Node2D"]
 texture_filter = 1
@@ -29,7 +27,7 @@ position = Vector2(198, -48)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
 bullet_interval = 0.5
-unparriableChance = 80
+unparriableChance = 75
 sprite = NodePath("../Enemy6/AnimatedSprite2D")
 healthbar = NodePath("../Enemy6/ProgressBar")
 hit_particles = NodePath("../Enemy6/HitParticles")
@@ -127,33 +125,28 @@ visible = false
 position = Vector2(-176, 8)
 energy = 0.8
 shadow_enabled = true
-texture = ExtResource("10_oq5sd")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Scene/WindowLights2"]
 visible = false
 position = Vector2(-16, 8)
 energy = 0.8
 shadow_enabled = true
-texture = ExtResource("10_oq5sd")
 
 [node name="PointLight2D3" type="PointLight2D" parent="Scene/WindowLights2"]
 visible = false
 position = Vector2(49, 9)
 energy = 0.8
 shadow_enabled = true
-texture = ExtResource("10_oq5sd")
 
 [node name="PointLight2D4" type="PointLight2D" parent="Scene/WindowLights2"]
 visible = false
 position = Vector2(176, 10)
 energy = 0.8
 shadow_enabled = true
-texture = ExtResource("10_oq5sd")
 
 [node name="Score_UI" parent="." instance=ExtResource("13_44e08")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_f6jam")
 volume_db = -12.0
 
 [connection signal="died" from="Enemies/Enemy7" to="." method="_on_enemy_died"]

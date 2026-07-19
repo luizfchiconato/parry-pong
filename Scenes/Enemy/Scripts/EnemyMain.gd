@@ -14,6 +14,10 @@ var rng = RandomNumberGenerator.new()
 @export var wait_for_deaths: int = 0
 
 @export var unparriableChance: int = 0
+
+var parriable_sequence: int = 1
+var unparriable_sequence: int = 1
+
 @export var max_health: int = 6
 @export var stationary: bool = false
 
@@ -80,6 +84,23 @@ func _on_detection_area_body_entered(body):
 func _on_bullet_timer_timeout():
 	if (!isAvailable() or !can_attack):
 		return
+	
+	var unparriable = false
+	if (unparriableChance > 50):
+		unparriable = unparriable_sequence < 100 / (100 - unparriableChance)
+		if (unparriable):
+			unparriable_sequence = unparriable_sequence + 1
+		else:
+			unparriable_sequence = 1
+	elif (unparriableChance > 0):
+		print(parriable_sequence, " ", 100 / unparriableChance, " ", unparriableChance)
+		unparriable = parriable_sequence >= 100 / unparriableChance
+		if (!unparriable):
+			parriable_sequence = parriable_sequence + 1
+		else:
+			parriable_sequence = 1
+			
+	EnemyAttack.unparriable = unparriable
 	EnemyAttack.start_sprite()
 	var paint_tween = create_tween()
 	await paint_tween.tween_property(self, "modulate", Color.RED, 0.2).finished

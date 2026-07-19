@@ -9,6 +9,7 @@ class_name EnemyAttack extends Node2D
 @export var throw_balloon: bool = false
 @export var random: bool = false
 @export var unparriableChance: int = 0
+@export var unparriable: bool = false
 @export var bullet_interval: float = 2
 @export var wait_to_attack: float = 0
 @export var uid: float = 0
@@ -48,7 +49,10 @@ func start_sprite():
 		TYPE_NORMAL:
 			$AnimatedSprite2D.scale.x = 0.35
 			$AnimatedSprite2D.scale.y = 0.35
-			$AnimatedSprite2D.play("ball")
+			if (unparriable):
+				$AnimatedSprite2D.play("unparry")
+			else:
+				$AnimatedSprite2D.play("ball")
 		TYPE_BOWLING:
 			$AnimatedSprite2D.scale.x = 0.35
 			$AnimatedSprite2D.scale.y = 0.35
@@ -183,7 +187,7 @@ func generateDisc():
 
 func createBall() -> Bullet:
 	var bullet := BulletScene.instantiate() as Bullet
-	bullet.parryable = rng.randf_range(1,100) > unparriableChance
+	bullet.parryable = !unparriable
 	bullet.global_position = global_position
 	bullet.set_as_top_level(true)
 	return bullet
@@ -195,7 +199,6 @@ func createDefaultDisc():
 
 func createDisc() -> HockeyDisc:
 	var hockeyDisc := HockeyDiscScene.instantiate() as HockeyDisc
-	hockeyDisc.parryable = rng.randf_range(1,100) > unparriableChance
 	hockeyDisc.global_position = global_position
 	hockeyDisc.set_as_top_level(true)
 	return hockeyDisc

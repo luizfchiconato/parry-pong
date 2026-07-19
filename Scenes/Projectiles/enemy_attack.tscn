@@ -1,37 +1,37 @@
 [gd_scene load_steps=13 format=3 uid="uid://cb6w1urujrjg4"]
 
 [ext_resource type="Script" path="res://EnemyAttack.gd" id="1_np0r4"]
-[ext_resource type="Texture2D" uid="uid://8acp50cyx5uh" path="res://Art/Sprites/ball.png" id="2_slevj"]
-[ext_resource type="Texture2D" uid="uid://be6ukmkfrh34h" path="res://Art/Sprites/balloon.png" id="3_qoj3o"]
-[ext_resource type="Texture2D" uid="uid://du135wccnojp0" path="res://Art/Sprites/BasketBall.png" id="4_oy2uu"]
-[ext_resource type="Texture2D" uid="uid://vdxgbskmudf6" path="res://Art/Sprites/BowlingBall.png" id="5_8l234"]
-[ext_resource type="Texture2D" uid="uid://d2jjfvs0ej5u" path="res://Art/Sprites/ball_black.png" id="6_yyfue"]
+[ext_resource type="Texture2D" uid="uid://8acp50cyx5uh" path="res://Art/Sprites/ball.png" id="2_3tudb"]
+[ext_resource type="Texture2D" uid="uid://d2jjfvs0ej5u" path="res://Art/Sprites/ball_black.png" id="2_p3wkv"]
+[ext_resource type="Texture2D" uid="uid://be6ukmkfrh34h" path="res://Art/Sprites/balloon.png" id="3_g4ytp"]
+[ext_resource type="Texture2D" uid="uid://du135wccnojp0" path="res://Art/Sprites/BasketBall.png" id="4_3n52v"]
+[ext_resource type="Texture2D" uid="uid://vdxgbskmudf6" path="res://Art/Sprites/BowlingBall.png" id="5_gy3tw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eyl0m"]
-atlas = ExtResource("2_slevj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tvfq"]
+atlas = ExtResource("2_3tudb")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_naxeh"]
-atlas = ExtResource("3_qoj3o")
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx1xj"]
+atlas = ExtResource("3_g4ytp")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6c0n2"]
-atlas = ExtResource("4_oy2uu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_64vej"]
+atlas = ExtResource("4_3n52v")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mtgkp"]
-atlas = ExtResource("5_8l234")
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4llb"]
+atlas = ExtResource("5_gy3tw")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jhicr"]
-atlas = ExtResource("6_yyfue")
+[sub_resource type="AtlasTexture" id="AtlasTexture_yymjo"]
+atlas = ExtResource("2_p3wkv")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_screh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eyl0m")
+"texture": SubResource("AtlasTexture_1tvfq")
 }],
 "loop": true,
 "name": &"ball",
@@ -39,7 +39,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_naxeh")
+"texture": SubResource("AtlasTexture_cx1xj")
 }],
 "loop": true,
 "name": &"balloon",
@@ -47,7 +47,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6c0n2")
+"texture": SubResource("AtlasTexture_64vej")
 }],
 "loop": true,
 "name": &"basket",
@@ -55,7 +55,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mtgkp")
+"texture": SubResource("AtlasTexture_d4llb")
 }],
 "loop": true,
 "name": &"bowling",
@@ -68,7 +68,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jhicr")
+"texture": SubResource("AtlasTexture_yymjo")
 }],
 "loop": true,
 "name": &"unparry",
@@ -81,3 +81,4 @@ script = ExtResource("1_np0r4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_screh")
+animation = &"ball"
