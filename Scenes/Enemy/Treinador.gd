@@ -2,7 +2,7 @@ class_name Treinador extends CharacterBody2D
 
 var ShockwaveScene = load("res://Scenes/Projectiles/Shockwave.tscn")
 var GiantBulletScene = load("res://Scenes/Projectiles/GiantBullet.tscn")
-@export var health = 120
+@export var health = 96
 @export var allow_giant_ball = false
 signal damage
 

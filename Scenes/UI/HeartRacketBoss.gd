@@ -16,7 +16,7 @@ func change_sprite(index):
 	elif (index < 0):
 		frame = 0
 	else:
-		frame = index
+		frame = index - 4
 	var tween = create_tween()
 	tween.tween_property(anim_sprite, "frame", frame, anim_frame_duration * abs(frame - anim_sprite.frame))
 	#anim_sprite.frame = frame

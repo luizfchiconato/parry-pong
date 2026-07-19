@@ -43,9 +43,9 @@ func finish_level():
 	LevelManager.load_next_level()
 
 func _on_boss_damage(health):
-	if (health <= 100):
+	if (health <= 80):
 		change_to_phase_2()
-	if (health <= 60):
+	if (health <= 48):
 		change_to_phase_3()
 	for child in get_children():
 		for grandson in child.get_children():

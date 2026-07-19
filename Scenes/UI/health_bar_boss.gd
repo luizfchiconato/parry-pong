@@ -1,8 +1,8 @@
 class_name HealthBarBoss extends Node2D
 
-@export var max_health = 120
-@export var health = 120
-var health_parts = 20
+@export var max_health = 96
+@export var health = 96
+var health_parts = 16
 
 var HeartRacketBoss = load("res://Scenes/UI/HeartRacketBoss.tscn")
 

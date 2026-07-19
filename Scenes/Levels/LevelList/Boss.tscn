@@ -298,27 +298,27 @@ hit_particles = NodePath("../Enemy/HitParticles")
 [node name="LifeRacket" parent="Enemies" instance=ExtResource("6_b1tfb")]
 position = Vector2(-143, -65)
 wait_for_deaths = 6
-wait_for_boss_health = 100
+wait_for_boss_health = 80
 
 [node name="LifeRacket2" parent="Enemies" instance=ExtResource("6_b1tfb")]
 position = Vector2(112, -64)
 wait_for_deaths = 6
-wait_for_boss_health = 80
+wait_for_boss_health = 64
 
 [node name="LifeRacket3" parent="Enemies" instance=ExtResource("6_b1tfb")]
 position = Vector2(-144, 168)
 wait_for_deaths = 6
-wait_for_boss_health = 60
+wait_for_boss_health = 48
 
 [node name="LifeRacket4" parent="Enemies" instance=ExtResource("6_b1tfb")]
 position = Vector2(112, 168)
 wait_for_deaths = 6
-wait_for_boss_health = 40
+wait_for_boss_health = 32
 
 [node name="LifeRacket5" parent="Enemies" instance=ExtResource("6_b1tfb")]
 position = Vector2(-8, -120)
 wait_for_deaths = 6
-wait_for_boss_health = 20
+wait_for_boss_health = 16
 
 [node name="SceneSettings" parent="." instance=ExtResource("5_8sdrf")]
 
