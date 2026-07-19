@@ -73,6 +73,11 @@ process_mode = 3
 layout_mode = 2
 text = "[ENTER] Voltar ao jogo"
 
+[node name="Resetar" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "[R] Restart"
+
 [node name="Opções" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
@@ -84,4 +89,5 @@ layout_mode = 2
 text = "[Q] Menu principal"
 
 [connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer/Voltar ao jogo" to="." method="unpause"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer/Resetar" to="." method="_restart"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer2/VBoxContainer/Menu principal" to="." method="_load_main_menu"]

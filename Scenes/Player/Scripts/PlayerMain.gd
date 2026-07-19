@@ -215,6 +215,7 @@ func _take_damage(amount):
 	$CanvasLayer/Control/HealthBar.removeHealth(amount)
 	
 	AudioManager.play_sound(AudioManager.PLAYER_HURT, 0, 0)
+	activateAttack()
 	
 	if(health <= 0):
 		_die()

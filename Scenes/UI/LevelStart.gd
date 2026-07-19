@@ -8,6 +8,7 @@ func _ready():
 
 func set_level(level):
 	self.level = level
+	$CanvasLayer/LevelNumber.text = "Ginásio " + str(level.index)
 	$CanvasLayer/LevelName.text = level.name
 	if (level.get("description") != null):
 		$CanvasLayer/LevelDescription.text = level.get("description")

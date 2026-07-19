@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgunyplxqxpxt"]
+[gd_scene load_steps=5 format=3 uid="uid://dgunyplxqxpxt"]
 
 [ext_resource type="Script" path="res://Scenes/UI/LevelStart.gd" id="1_h8dft"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_onha2"]
+font_size = 15
 
 [sub_resource type="LabelSettings" id="LabelSettings_rw3b5"]
 font_size = 50
@@ -23,11 +26,21 @@ script = ExtResource("1_h8dft")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="LevelNumber" type="Label" parent="CanvasLayer"]
+offset_left = 201.0
+offset_top = 175.0
+offset_right = 948.0
+offset_bottom = 258.0
+text = "LEVEL NAME"
+label_settings = SubResource("LabelSettings_onha2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LevelName" type="Label" parent="CanvasLayer"]
 offset_left = 202.0
-offset_top = 279.0
+offset_top = 208.0
 offset_right = 949.0
-offset_bottom = 362.0
+offset_bottom = 291.0
 text = "LEVEL NAME"
 label_settings = SubResource("LabelSettings_rw3b5")
 horizontal_alignment = 1
@@ -35,13 +48,14 @@ vertical_alignment = 1
 
 [node name="LevelDescription" type="Label" parent="CanvasLayer"]
 offset_left = 257.0
-offset_top = 358.0
+offset_top = 308.0
 offset_right = 874.0
-offset_bottom = 515.0
+offset_bottom = 465.0
 label_settings = SubResource("LabelSettings_ntmj6")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.0
 
 [connection signal="timeout" from="Timer" to="." method="load_level"]
