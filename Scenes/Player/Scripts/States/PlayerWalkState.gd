@@ -89,8 +89,21 @@ func endDash():
 		await animator.animation_finished
 		animator.play("Walk")
 
+func deactivateCapColor():
+	set_shader_color("original_color_1", Color("4ed4c2"))
+	set_shader_color("replace_color_1", Color("6c6c6c"))
+	
+func activateCapColor():
+	set_shader_color("original_color_1", Color("6c6c6c"))
+	set_shader_color("replace_color_1", Color("4ed4c2"))
+
+# Helper function to clean up uniform updates
+func set_shader_color(uniform_name: String, color: Color) -> void:
+	if $"../../AnimatedSprite2D".material is ShaderMaterial:
+		$"../../AnimatedSprite2D".material.set_shader_parameter(uniform_name, color)
 
 func _on_dash_timeout_timeout():
 	$DashTimeout.stop()
+	activateCapColor()
 	sprite.set_modulate(modulate)
 	can_dash = true

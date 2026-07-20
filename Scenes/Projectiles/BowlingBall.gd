@@ -156,8 +156,10 @@ func check_y_level():
 	elif (self.global_position.y - 70 < arch_body.global_position.y and self.global_position.distance_to(end_position) < 90):
 		can_deflect = true
 		$ExplosionRadius/InternalMesh.modulate = Color("00baba5f")
+		anim_sprite_2.modulate = Color("ffffffff")
 	else:
 		can_deflect = false
+		anim_sprite_2.modulate = Color("9a9a9a86")
 		$ExplosionRadius/InternalMesh.modulate = Color("f82a2a33")
 
 func explode_paint():

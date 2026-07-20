@@ -278,6 +278,7 @@ frame_progress = 0.860568
 [node name="Body" type="Area2D" parent="."]
 
 [node name="BallSprite" type="AnimatedSprite2D" parent="Body"]
+modulate = Color(0.605274, 0.605274, 0.605274, 0.52549)
 scale = Vector2(1.94643, 1.94643)
 sprite_frames = SubResource("SpriteFrames_phncl")
 

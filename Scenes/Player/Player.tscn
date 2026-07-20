@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cgwb0bq0pw036" path="res://Scenes/Player/Sprite/Player_attack1.png" id="1_8w3ed"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
+[ext_resource type="Shader" path="res://Scenes/Player/Player.gdshader" id="2_v7xsc"]
 [ext_resource type="Texture2D" uid="uid://rxt0tqq0by7h" path="res://Scenes/Player/Sprite/Player_attack2.png" id="2_2bwr0"]
 [ext_resource type="Texture2D" uid="uid://dqeqwyttq2847" path="res://Scenes/Player/Sprite/Player_attack3.png" id="3_651u7"]
 [ext_resource type="Texture2D" uid="uid://cvenyq15dbqse" path="res://Scenes/Player/Sprite/Player_attack4.png" id="4_uudrv"]
@@ -36,6 +37,14 @@
 [ext_resource type="Texture2D" uid="uid://ddp2jhboy02p6" path="res://Art/Sprites/HeartFullNew.png" id="34_r8jio"]
 [ext_resource type="Texture2D" uid="uid://pkquuleeol6d" path="res://Racket2.png" id="35_83ura"]
 [ext_resource type="PackedScene" uid="uid://njrsehilwxvn" path="res://Scenes/UI/HealthBar.tscn" id="37_c8lyp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7a5aw"]
+shader = ExtResource("2_v7xsc")
+shader_parameter/original_color_1 = null
+shader_parameter/original_color_2 = null
+shader_parameter/replace_color_1 = null
+shader_parameter/replace_color_2 = null
+shader_parameter/precision = 0.01
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uky13"]
 polygon = PackedVector2Array(-2, -13, -8, -13, -10, -11, -10, -2, -4, 2, -4, 10, 5, 10, 5, 2, 10, -1, 10, -10, 8, -13)
@@ -550,6 +559,7 @@ occluder = SubResource("OccluderPolygon2D_uky13")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vax36")
+material = SubResource("ShaderMaterial_7a5aw")
 animation = &"Idle"
 
 [node name="HitParticlesCopy" parent="AnimatedSprite2D" instance=ExtResource("21_gooki")]
