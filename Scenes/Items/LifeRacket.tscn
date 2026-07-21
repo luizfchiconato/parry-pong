@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjfli5f0rssv4"]
+[gd_scene format=3 uid="uid://bjfli5f0rssv4"]
 
 [ext_resource type="Texture2D" uid="uid://veyq6k7y361e" path="res://Art/Sprites/LifeHeart.png" id="1_nkk47"]
-[ext_resource type="Script" path="res://Scenes/Items/LifeRacket.gd" id="2_cfnwd"]
+[ext_resource type="Script" uid="uid://c4lj26j5sodam" path="res://Scenes/Items/LifeRacket.gd" id="2_cfnwd"]
 [ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/Light.png" id="2_d2ht7"]
 [ext_resource type="Texture2D" uid="uid://bw36ig60cpuaq" path="res://Art/Sprites/Square.png" id="3_ld0d1"]
 
@@ -46,26 +46,25 @@ turbulence_influence_min = 0.05
 turbulence_influence_max = 0.15
 turbulence_initial_displacement_max = 1.5
 
-[node name="LifeRacket" type="Sprite2D"]
+[node name="LifeRacket" type="Sprite2D" unique_id=1574201998]
 texture = ExtResource("1_nkk47")
 script = ExtResource("2_cfnwd")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1875444803]
 color = Color(0, 1, 0.470588, 1)
 energy = 0.3
 texture = ExtResource("2_d2ht7")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=2073979981]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1701744270]
 position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_yv67e")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=696869665]
 modulate = Color(0, 1, 0.470588, 1)
 z_index = -1
 amount = 40
-process_material = SubResource("ParticleProcessMaterial_uyi6e")
 texture = ExtResource("3_ld0d1")
 lifetime = 0.8
 preprocess = 0.8
@@ -74,5 +73,6 @@ randomness = 0.2
 trail_enabled = true
 trail_lifetime = 0.4
 trail_sections = 3
+process_material = SubResource("ParticleProcessMaterial_uyi6e")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

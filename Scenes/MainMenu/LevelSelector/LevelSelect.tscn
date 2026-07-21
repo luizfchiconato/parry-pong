@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqgjc2co2hjs2"]
+[gd_scene format=3 uid="uid://cqgjc2co2hjs2"]
 
-[ext_resource type="Script" path="res://Scenes/MainMenu/LevelSelector/LevelSelect.gd" id="1_ieuci"]
+[ext_resource type="Script" uid="uid://b6f4e8ebmo25d" path="res://Scenes/MainMenu/LevelSelector/LevelSelect.gd" id="1_ieuci"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=951951673]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ieuci")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1383196783]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0

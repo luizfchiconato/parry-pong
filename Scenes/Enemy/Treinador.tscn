@@ -1,6 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://68asdmjpuyue"]
+[gd_scene format=3 uid="uid://68asdmjpuyue"]
 
-[ext_resource type="Script" path="res://Scenes/Enemy/Treinador.gd" id="1_7hw4v"]
+[ext_resource type="Script" uid="uid://r6didmvvalhg" path="res://Scenes/Enemy/Treinador.gd" id="1_7hw4v"]
 [ext_resource type="Texture2D" uid="uid://b3j6dtdy0fpwv" path="res://Art/Sprites/TreinadorFullPlus.png" id="1_oyq62"]
 [ext_resource type="Texture2D" uid="uid://0e15xp07cd3d" path="res://Art/Sprites/TreinadorFullPlusSemBraco.png" id="3_1vhfa"]
 [ext_resource type="PackedScene" uid="uid://cb6w1urujrjg4" path="res://Scenes/Projectiles/enemy_attack.tscn" id="4_5vvog"]
@@ -96,7 +96,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ar6lg")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 10.0
 }, {
@@ -125,7 +125,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qi171")
 }],
-"loop": true,
+"loop": 1,
 "name": &"no_arm",
 "speed": 6.0
 }]
@@ -133,43 +133,43 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5o034"]
 size = Vector2(52, 161)
 
-[node name="Treinador" type="CharacterBody2D"]
+[node name="Treinador" type="CharacterBody2D" unique_id=930575811]
 script = ExtResource("1_7hw4v")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=996069363]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_qwhbv")
 
-[node name="EnemyAttack" parent="AnimatedSprite2D" instance=ExtResource("4_5vvog")]
+[node name="EnemyAttack" parent="AnimatedSprite2D" unique_id=137541323 instance=ExtResource("4_5vvog")]
 position = Vector2(-95, -143.333)
 
-[node name="EnemyAttack2" parent="AnimatedSprite2D" instance=ExtResource("4_5vvog")]
+[node name="EnemyAttack2" parent="AnimatedSprite2D" unique_id=1813347866 instance=ExtResource("4_5vvog")]
 position = Vector2(76.6667, -141.667)
 
-[node name="EnemyAttack3" parent="AnimatedSprite2D" instance=ExtResource("4_5vvog")]
+[node name="EnemyAttack3" parent="AnimatedSprite2D" unique_id=1727302502 instance=ExtResource("4_5vvog")]
 position = Vector2(-91.6667, 6.66667)
 
-[node name="EnemyAttack4" parent="AnimatedSprite2D" instance=ExtResource("4_5vvog")]
+[node name="EnemyAttack4" parent="AnimatedSprite2D" unique_id=1925621639 instance=ExtResource("4_5vvog")]
 position = Vector2(80, 5)
 
-[node name="ShockwaveTimer" type="Timer" parent="."]
+[node name="ShockwaveTimer" type="Timer" parent="." unique_id=1679290279]
 wait_time = 3.0
 autostart = true
 
-[node name="Body" type="CollisionShape2D" parent="."]
+[node name="Body" type="CollisionShape2D" parent="." unique_id=1996330078]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_5o034")
 
-[node name="ShockwaveLocation" type="Node2D" parent="."]
+[node name="ShockwaveLocation" type="Node2D" parent="." unique_id=1952784273]
 position = Vector2(15, 87)
 
-[node name="BulletLocation" type="Node2D" parent="."]
+[node name="BulletLocation" type="Node2D" parent="." unique_id=639094887]
 position = Vector2(-9, -59)
 
-[node name="GiantBulletTimer" type="Timer" parent="."]
+[node name="GiantBulletTimer" type="Timer" parent="." unique_id=1911771273]
 wait_time = 5.0
 
-[node name="BulletTimer" type="Timer" parent="."]
+[node name="BulletTimer" type="Timer" parent="." unique_id=708017597]
 
 [connection signal="timeout" from="ShockwaveTimer" to="." method="_on_shockwave_timer_timeout"]
 [connection signal="timeout" from="GiantBulletTimer" to="." method="_on_giant_bullet_timer_timeout"]

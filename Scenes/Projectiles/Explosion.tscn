@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://ds78gnu8oebuu"]
+[gd_scene format=3 uid="uid://ds78gnu8oebuu"]
 
-[ext_resource type="Script" path="res://Scenes/Projectiles/Explosion.gd" id="1_it1pb"]
+[ext_resource type="Script" uid="uid://i5awr6xqwqtj" path="res://Scenes/Projectiles/Explosion.gd" id="1_it1pb"]
 [ext_resource type="Texture2D" uid="uid://dco05senpw6wm" path="res://Art/Sprites/Explosion.png" id="2_f8iy0"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_v3oxj"]
@@ -50,7 +50,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ngrvn")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -79,7 +79,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1ntoi")
 }],
-"loop": true,
+"loop": 1,
 "name": &"exploding",
 "speed": 10.0
 }]
@@ -126,20 +126,20 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_36ihq"]
 _data = {
-"exploding": SubResource("Animation_2mh74")
+&"exploding": SubResource("Animation_2mh74")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_detmt"]
 font_size = 8
 
-[node name="Explosion" type="Node2D" node_paths=PackedStringArray("bomb_animator")]
+[node name="Explosion" type="Node2D" unique_id=336004527 node_paths=PackedStringArray("bomb_animator")]
 script = ExtResource("1_it1pb")
 bomb_animator = NodePath("ExplosionRadius/AnimationPlayer")
 
-[node name="ExplosionRadius" type="Area2D" parent="."]
+[node name="ExplosionRadius" type="Area2D" parent="." unique_id=1806083815]
 scale = Vector2(0.496677, 0.496677)
 
-[node name="CirclePaint" type="MeshInstance2D" parent="ExplosionRadius"]
+[node name="CirclePaint" type="MeshInstance2D" parent="ExplosionRadius" unique_id=686639671]
 visible = false
 modulate = Color(0.835294, 0.309804, 0.137255, 0.215686)
 z_as_relative = false
@@ -147,23 +147,21 @@ position = Vector2(-2.84217e-14, 8.10623e-06)
 scale = Vector2(68.3297, 68.4549)
 mesh = SubResource("SphereMesh_v3oxj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionRadius"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionRadius" unique_id=1027584281]
 position = Vector2(-7.62939e-06, 0)
 shape = SubResource("CircleShape2D_xd5ve")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ExplosionRadius"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ExplosionRadius" unique_id=2001817846]
 position = Vector2(2.84217e-14, 0.506305)
 scale = Vector2(0.370147, 0.382783)
 sprite_frames = SubResource("SpriteFrames_vh6vf")
 animation = &"exploding"
 frame_progress = 0.41665
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ExplosionRadius"]
-libraries = {
-"": SubResource("AnimationLibrary_36ihq")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ExplosionRadius" unique_id=1050462334]
+libraries/ = SubResource("AnimationLibrary_36ihq")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=310644445]
 visible = false
 offset_left = -20.0
 offset_top = -12.0

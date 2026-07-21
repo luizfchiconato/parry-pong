@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://h61y6jpdtysp"]
+[gd_scene format=3 uid="uid://h61y6jpdtysp"]
 
-[ext_resource type="Script" path="res://Scripts/DeathScreen.gd" id="1_werga"]
+[ext_resource type="Script" uid="uid://chbu52fagpeor" path="res://Scripts/DeathScreen.gd" id="1_werga"]
 [ext_resource type="LabelSettings" uid="uid://1cnb4418rr7" path="res://Art/Fonts/pixelized_label_large.tres" id="2_a1bfr"]
 
-[node name="DeathScreen" type="CanvasLayer"]
+[node name="DeathScreen" type="CanvasLayer" unique_id=1705329445]
 layer = 2
 script = ExtResource("1_werga")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=2033543277]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="Control" unique_id=1538082268]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

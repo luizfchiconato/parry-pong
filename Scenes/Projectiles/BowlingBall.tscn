@@ -1,7 +1,7 @@
-[gd_scene load_steps=39 format=3 uid="uid://d2nthv7le704p"]
+[gd_scene format=3 uid="uid://d2nthv7le704p"]
 
 [ext_resource type="Texture2D" uid="uid://vdxgbskmudf6" path="res://Art/Sprites/BowlingBall.png" id="1_10r8i"]
-[ext_resource type="Script" path="res://Scenes/Projectiles/BowlingBall.gd" id="1_73p8w"]
+[ext_resource type="Script" uid="uid://cw8jqrnwo3tiq" path="res://Scenes/Projectiles/BowlingBall.gd" id="1_73p8w"]
 [ext_resource type="Texture2D" uid="uid://iaqjd2o08qvv" path="res://Art/Sprites/BowlingBallConverted.png" id="2_7mqe4"]
 [ext_resource type="Texture2D" uid="uid://be6ukmkfrh34h" path="res://Art/Sprites/balloon.png" id="2_8s006"]
 [ext_resource type="Texture2D" uid="uid://683s0e63atrp" path="res://Art/Sprites/balloon_converted.png" id="3_7nwr1"]
@@ -70,7 +70,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t64h2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"balloon",
 "speed": 15.0
 }, {
@@ -78,7 +78,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kw34n")
 }],
-"loop": true,
+"loop": 1,
 "name": &"balloon_converted",
 "speed": 5.0
 }, {
@@ -101,7 +101,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uaflr")
 }],
-"loop": true,
+"loop": 1,
 "name": &"converted",
 "speed": 15.0
 }, {
@@ -124,7 +124,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jgoqc")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 15.0
 }]
@@ -181,7 +181,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ngrvn")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -210,7 +210,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1ntoi")
 }],
-"loop": true,
+"loop": 1,
 "name": &"exploding",
 "speed": 10.0
 }]
@@ -257,35 +257,35 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_36ihq"]
 _data = {
-"exploding": SubResource("Animation_2mh74")
+&"exploding": SubResource("Animation_2mh74")
 }
 
 [sub_resource type="SphereMesh" id="SphereMesh_pk1d4"]
 
-[node name="BowlingBall" type="Area2D" node_paths=PackedStringArray("bomb_animator")]
+[node name="BowlingBall" type="Area2D" unique_id=564411776 node_paths=PackedStringArray("bomb_animator")]
 z_index = 20
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_73p8w")
 bomb_animator = NodePath("ExplosionRadius/AnimationPlayer")
 
-[node name="ShadowSprite" type="AnimatedSprite2D" parent="."]
+[node name="ShadowSprite" type="AnimatedSprite2D" parent="." unique_id=597217762]
 modulate = Color(0, 0, 0, 0.827451)
 z_index = -20
 scale = Vector2(1.946, 1.5)
 sprite_frames = SubResource("SpriteFrames_phncl")
 frame_progress = 0.860568
 
-[node name="Body" type="Area2D" parent="."]
+[node name="Body" type="Area2D" parent="." unique_id=2096719300]
 
-[node name="BallSprite" type="AnimatedSprite2D" parent="Body"]
+[node name="BallSprite" type="AnimatedSprite2D" parent="Body" unique_id=757315893]
 modulate = Color(0.605274, 0.605274, 0.605274, 0.52549)
 scale = Vector2(1.94643, 1.94643)
 sprite_frames = SubResource("SpriteFrames_phncl")
 
-[node name="BodyCollision" type="CollisionShape2D" parent="Body"]
+[node name="BodyCollision" type="CollisionShape2D" parent="Body" unique_id=345178796]
 shape = SubResource("CircleShape2D_3fuda")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Body"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Body" unique_id=561584364]
 amount = 20
 emission_shape = 1
 emission_sphere_radius = 19.3
@@ -297,34 +297,32 @@ angular_velocity_max = 444.72
 scale_amount_max = 2.0
 color = Color(0.972549, 0.164706, 0.164706, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=658169320]
 shape = SubResource("CircleShape2D_o3xnk")
 
-[node name="ExplosionRadius" type="Area2D" parent="."]
+[node name="ExplosionRadius" type="Area2D" parent="." unique_id=2012800570]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="ExplosionRadius"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="ExplosionRadius" unique_id=99269125]
 modulate = Color(0.501961, 0.203922, 0.74902, 0.133333)
 z_index = -3
 position = Vector2(-4, -4)
 scale = Vector2(332.376, 332.507)
 mesh = SubResource("SphereMesh_rk0r4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionRadius"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionRadius" unique_id=1162741038]
 position = Vector2(-7.62939e-06, 0)
 shape = SubResource("CircleShape2D_64qek")
 disabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ExplosionRadius"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ExplosionRadius" unique_id=845149981]
 position = Vector2(3.00001, 3.00004)
 scale = Vector2(1.65625, 1.65625)
 sprite_frames = SubResource("SpriteFrames_sbtgc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ExplosionRadius"]
-libraries = {
-"": SubResource("AnimationLibrary_36ihq")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ExplosionRadius" unique_id=1444173697]
+libraries/ = SubResource("AnimationLibrary_36ihq")
 
-[node name="InternalMesh" type="MeshInstance2D" parent="ExplosionRadius"]
+[node name="InternalMesh" type="MeshInstance2D" parent="ExplosionRadius" unique_id=2143428305]
 modulate = Color(0, 0.729412, 0.729412, 0.717647)
 z_index = -2
 scale = Vector2(141.764, 141.764)

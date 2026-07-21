@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cb6w1urujrjg4"]
+[gd_scene format=3 uid="uid://cb6w1urujrjg4"]
 
-[ext_resource type="Script" path="res://EnemyAttack.gd" id="1_np0r4"]
+[ext_resource type="Script" uid="uid://bpwu6c14cdjfn" path="res://EnemyAttack.gd" id="1_np0r4"]
 [ext_resource type="Texture2D" uid="uid://8acp50cyx5uh" path="res://Art/Sprites/ball.png" id="2_3tudb"]
 [ext_resource type="Texture2D" uid="uid://d2jjfvs0ej5u" path="res://Art/Sprites/ball_black.png" id="2_p3wkv"]
 [ext_resource type="Texture2D" uid="uid://be6ukmkfrh34h" path="res://Art/Sprites/balloon.png" id="3_g4ytp"]
@@ -33,7 +33,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1tvfq")
 }],
-"loop": true,
+"loop": 1,
 "name": &"ball",
 "speed": 5.0
 }, {
@@ -41,7 +41,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cx1xj")
 }],
-"loop": true,
+"loop": 1,
 "name": &"balloon",
 "speed": 5.0
 }, {
@@ -49,7 +49,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_64vej")
 }],
-"loop": true,
+"loop": 1,
 "name": &"basket",
 "speed": 5.0
 }, {
@@ -57,12 +57,12 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d4llb")
 }],
-"loop": true,
+"loop": 1,
 "name": &"bowling",
 "speed": 5.0
 }, {
 "frames": [],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -70,15 +70,15 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yymjo")
 }],
-"loop": true,
+"loop": 1,
 "name": &"unparry",
 "speed": 5.0
 }]
 
-[node name="EnemyAttack" type="Node2D"]
+[node name="EnemyAttack" type="Node2D" unique_id=164065521]
 script = ExtResource("1_np0r4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1038058014]
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_screh")
 animation = &"ball"

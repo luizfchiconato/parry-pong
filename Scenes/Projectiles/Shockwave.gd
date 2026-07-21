@@ -58,4 +58,3 @@ func _on_body_entered(body):
 func deal_damage_to_player(player : PlayerMain):
 	#var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
 	player._take_damage(2)
-

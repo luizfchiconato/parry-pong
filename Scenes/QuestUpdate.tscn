@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://48vtm5vekhaq"]
+[gd_scene format=3 uid="uid://48vtm5vekhaq"]
 
-[ext_resource type="Script" path="res://Scripts/QuestGeneral/QuestGiver.gd" id="1_5k0jl"]
+[ext_resource type="Script" uid="uid://yjjvj7lh4ey0" path="res://Scripts/QuestGeneral/QuestGiver.gd" id="1_5k0jl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1rge"]
 size = Vector2(103, 90)
 
-[node name="QuestUpdate" type="Area2D"]
+[node name="QuestUpdate" type="Area2D" unique_id=763252532]
 z_index = 1
 script = ExtResource("1_5k0jl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=129335671]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_n1rge")
 

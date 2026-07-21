@@ -1,26 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://1e80xgndimdn"]
+[gd_scene format=3 uid="uid://1e80xgndimdn"]
 
-[ext_resource type="Script" path="res://Scenes/Projectiles/Laser.gd" id="1_cjcoo"]
+[ext_resource type="Script" uid="uid://bcemp6okvedu2" path="res://Scenes/Projectiles/Laser.gd" id="1_cjcoo"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_tlbva"]
 b = Vector2(77, 0)
 
-[node name="Laser" type="Node2D"]
+[node name="Laser" type="Node2D" unique_id=885019989]
 script = ExtResource("1_cjcoo")
 
-[node name="Reference" type="Sprite2D" parent="."]
+[node name="Reference" type="Sprite2D" parent="." unique_id=2041849711]
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1233067875]
 target_position = Vector2(107, 0)
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="." unique_id=1621521812]
 position = Vector2(1.08434, 0)
 scale = Vector2(1.36145, 1)
 points = PackedVector2Array(0, 0, 77, 0)
 width = 3.0
 default_color = Color(0.972549, 0.164706, 0.164706, 1)
 
-[node name="DamageArea" type="Area2D" parent="Line2D"]
+[node name="DamageArea" type="Area2D" parent="Line2D" unique_id=568643764]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/DamageArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/DamageArea" unique_id=1877736053]
 shape = SubResource("SegmentShape2D_tlbva")

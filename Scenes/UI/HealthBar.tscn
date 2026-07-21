@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://njrsehilwxvn"]
+[gd_scene format=3 uid="uid://njrsehilwxvn"]
 
-[ext_resource type="Script" path="res://Scenes/UI/health_bar.gd" id="1_8dpov"]
+[ext_resource type="Script" uid="uid://c0u0v8ba5sxxq" path="res://Scenes/UI/health_bar.gd" id="1_8dpov"]
 
-[node name="HealthBar" type="Node2D"]
+[node name="HealthBar" type="Node2D" unique_id=437421539]
 script = ExtResource("1_8dpov")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=750628615]
 offset_right = 84.0
 use_top_left = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=1583961338]
 layout_mode = 2
 theme_override_constants/separation = 28

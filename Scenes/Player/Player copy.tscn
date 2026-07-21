@@ -1,19 +1,19 @@
-[gd_scene load_steps=49 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene format=3 uid="uid://bvg5dny32iw0x"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
-[ext_resource type="Shader" path="res://Scenes/Player/Player.gdshader" id="2_v7xsc"]
-[ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_54cjv"]
+[ext_resource type="Script" uid="uid://bgucxx8kdyjt0" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
+[ext_resource type="Shader" uid="uid://ogy6ndaybds" path="res://Scenes/Player/Player.gdshader" id="2_v7xsc"]
+[ext_resource type="Script" uid="uid://dkdinopuotxto" path="res://Scripts/FiniteStateMachine.gd" id="21_54cjv"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_gooki"]
-[ext_resource type="Script" path="res://Scenes/Player/Racket.gd" id="25_3uwa4"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerIdleState.gd" id="26_28u22"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerAttackState.gd" id="27_j1lrx"]
+[ext_resource type="Script" uid="uid://b1do111xqcp76" path="res://Scenes/Player/Racket.gd" id="25_3uwa4"]
+[ext_resource type="Script" uid="uid://8op353xkpl6b" path="res://Scenes/Player/Scripts/States/PlayerIdleState.gd" id="26_28u22"]
+[ext_resource type="Script" uid="uid://dshqkectakyf4" path="res://Scenes/Player/Scripts/States/PlayerAttackState.gd" id="27_j1lrx"]
 [ext_resource type="LabelSettings" uid="uid://da8inon5cmt2r" path="res://Art/Fonts/pixelized_label.tres" id="28_5mc6f"]
-[ext_resource type="Script" path="res://Scripts/AttackData.gd" id="28_wb7jg"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerWalkState.gd" id="29_bdbrv"]
-[ext_resource type="Script" path="res://Plugins/trail_2d.gd" id="29_lse7d"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerDeathState.gd" id="30_ecf44"]
-[ext_resource type="Script" path="res://Scripts/QuestGeneral/QuestTracker.gd" id="33_2eisr"]
-[ext_resource type="Script" path="res://Scenes/Player/Camera2D.gd" id="33_d26hy"]
+[ext_resource type="Script" uid="uid://ds040t4m753n" path="res://Scripts/AttackData.gd" id="28_wb7jg"]
+[ext_resource type="Script" uid="uid://chwgrqr1xpse6" path="res://Scenes/Player/Scripts/States/PlayerWalkState.gd" id="29_bdbrv"]
+[ext_resource type="Script" uid="uid://ucogkmqt4xf6" path="res://Plugins/trail_2d.gd" id="29_lse7d"]
+[ext_resource type="Script" uid="uid://cdon2cro1lh3k" path="res://Scenes/Player/Scripts/States/PlayerDeathState.gd" id="30_ecf44"]
+[ext_resource type="Script" uid="uid://dxa26b4dwowuk" path="res://Scripts/QuestGeneral/QuestTracker.gd" id="33_2eisr"]
+[ext_resource type="Script" uid="uid://6hl34yapm2bm" path="res://Scenes/Player/Camera2D.gd" id="33_d26hy"]
 [ext_resource type="LabelSettings" uid="uid://1cnb4418rr7" path="res://Art/Fonts/pixelized_label_large.tres" id="34_aqkdi"]
 [ext_resource type="PackedScene" uid="uid://njrsehilwxvn" path="res://Scenes/UI/HealthBar.tscn" id="37_c8lyp"]
 
@@ -22,10 +22,10 @@ polygon = PackedVector2Array(-2, -13, -8, -13, -10, -11, -10, -2, -4, 2, -4, 10,
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7a5aw"]
 shader = ExtResource("2_v7xsc")
-shader_parameter/original_color_1 = null
-shader_parameter/original_color_2 = null
-shader_parameter/replace_color_1 = null
-shader_parameter/replace_color_2 = null
+shader_parameter/original_color_1 = Color(0, 0, 0, 1)
+shader_parameter/original_color_2 = Color(0, 0, 0, 1)
+shader_parameter/replace_color_1 = Color(0, 0, 0, 1)
+shader_parameter/replace_color_2 = Color(0, 0, 0, 1)
 shader_parameter/precision = 0.01
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bn237"]
@@ -79,7 +79,7 @@ animations = [{
 "duration": 0.8,
 "texture": null
 }],
-"loop": false,
+"loop": 0,
 "name": &"Attack",
 "speed": 8.0
 }, {
@@ -87,7 +87,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bn237")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Dash",
 "speed": 8.0
 }, {
@@ -98,7 +98,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0h71a")
 }],
-"loop": false,
+"loop": 0,
 "name": &"DashEnter",
 "speed": 8.0
 }, {
@@ -109,7 +109,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6q4y0")
 }],
-"loop": true,
+"loop": 1,
 "name": &"DashFinish",
 "speed": 8.0
 }, {
@@ -126,7 +126,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": false,
+"loop": 0,
 "name": &"Death",
 "speed": 8.0
 }, {
@@ -134,7 +134,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8aa33")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -148,7 +148,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": false,
+"loop": 0,
 "name": &"MoonKick",
 "speed": 6.0
 }, {
@@ -165,7 +165,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b4md5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk",
 "speed": 5.0
 }]
@@ -186,7 +186,7 @@ animations = [{
 "duration": 10.0,
 "texture": null
 }],
-"loop": true,
+"loop": 1,
 "name": &"Attack",
 "speed": 5.0
 }, {
@@ -197,7 +197,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": true,
+"loop": 1,
 "name": &"Deactivated",
 "speed": 5.0
 }, {
@@ -208,7 +208,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": true,
+"loop": 1,
 "name": &"Default",
 "speed": 5.0
 }]
@@ -486,17 +486,17 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gtuut"]
 _data = {
-"Attack": SubResource("Animation_jtcnw"),
-"Dash": SubResource("Animation_a1dma"),
-"DashEnter": SubResource("Animation_6toxp"),
-"DashFinish": SubResource("Animation_3ytlc"),
-"Death": SubResource("Animation_fkgk5"),
-"Idle": SubResource("Animation_1i780"),
-"MoonKick": SubResource("Animation_7c1ec"),
-"Walk": SubResource("Animation_wo7cn")
+&"Attack": SubResource("Animation_jtcnw"),
+&"Dash": SubResource("Animation_a1dma"),
+&"DashEnter": SubResource("Animation_6toxp"),
+&"DashFinish": SubResource("Animation_3ytlc"),
+&"Death": SubResource("Animation_fkgk5"),
+&"Idle": SubResource("Animation_1i780"),
+&"MoonKick": SubResource("Animation_7c1ec"),
+&"Walk": SubResource("Animation_wo7cn")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar", "hit_particles") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1436213215 node_paths=PackedStringArray("sprite", "healthbar", "hit_particles") groups=["Player"]]
 top_level = true
 z_index = 10
 texture_filter = 1
@@ -510,7 +510,7 @@ health = 8
 hit_particles = NodePath("hit_particle_blood")
 block_turn = true
 
-[node name="HitParticles" type="CPUParticles2D" parent="."]
+[node name="HitParticles" type="CPUParticles2D" parent="." unique_id=617421354]
 position = Vector2(8, -21)
 emitting = false
 amount = 800
@@ -522,64 +522,64 @@ initial_velocity_min = 8.37
 initial_velocity_max = 35.77
 color = Color(0.1743, 0.83, 0.742573, 1)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=798157818]
 occluder = SubResource("OccluderPolygon2D_uky13")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1123656738]
 texture_filter = 1
 material = SubResource("ShaderMaterial_7a5aw")
 sprite_frames = SubResource("SpriteFrames_vax36")
 animation = &"DashFinish"
 
-[node name="HitParticlesCopy" parent="AnimatedSprite2D" instance=ExtResource("21_gooki")]
+[node name="HitParticlesCopy" parent="AnimatedSprite2D" unique_id=225709901 instance=ExtResource("21_gooki")]
 position = Vector2(30, 10)
 rotation = 0.0
 
-[node name="Hitboxes" type="Node2D" parent="AnimatedSprite2D"]
+[node name="Hitboxes" type="Node2D" parent="AnimatedSprite2D" unique_id=1073794207]
 position = Vector2(19.6667, 8.6667)
 scale = Vector2(0.666667, 0.666667)
 
-[node name="Racket_HitboxUlt" type="Area2D" parent="AnimatedSprite2D/Hitboxes"]
+[node name="Racket_HitboxUlt" type="Area2D" parent="AnimatedSprite2D/Hitboxes" unique_id=615980068]
 position = Vector2(-35.9735, -12.4674)
 scale = Vector2(0.997054, 1.16187)
 
-[node name="hitboxShape" type="CollisionShape2D" parent="AnimatedSprite2D/Hitboxes/Racket_HitboxUlt"]
+[node name="hitboxShape" type="CollisionShape2D" parent="AnimatedSprite2D/Hitboxes/Racket_HitboxUlt" unique_id=51379446]
 position = Vector2(6.49256, 5.99668)
 scale = Vector2(8.73682, 6.96237)
 shape = SubResource("CircleShape2D_q0mpo")
 disabled = true
 debug_color = Color(0, 0.6, 0.701961, 1)
 
-[node name="Racket_Hitbox" type="Area2D" parent="AnimatedSprite2D/Hitboxes"]
+[node name="Racket_Hitbox" type="Area2D" parent="AnimatedSprite2D/Hitboxes" unique_id=922664953]
 position = Vector2(-18, -6)
 scale = Vector2(0.998526, 1.0779)
 
-[node name="hitboxShape" type="CollisionShape2D" parent="AnimatedSprite2D/Hitboxes/Racket_Hitbox"]
+[node name="hitboxShape" type="CollisionShape2D" parent="AnimatedSprite2D/Hitboxes/Racket_Hitbox" unique_id=119033163]
 position = Vector2(44.1126, 10.6688)
 shape = SubResource("CapsuleShape2D_51img")
 disabled = true
 debug_color = Color(0, 0.6, 0.701961, 1)
 
-[node name="RacketPivot" type="Node2D" parent="AnimatedSprite2D"]
+[node name="RacketPivot" type="Node2D" parent="AnimatedSprite2D" unique_id=1958996234]
 position = Vector2(16, 16)
 rotation = 1.56381
 
-[node name="Racket" type="Node2D" parent="AnimatedSprite2D/RacketPivot"]
+[node name="Racket" type="Node2D" parent="AnimatedSprite2D/RacketPivot" unique_id=762464023]
 position = Vector2(-0.953426, -18.6665)
 scale = Vector2(1.25, 1.25)
 script = ExtResource("25_3uwa4")
 
-[node name="Animation" type="AnimatedSprite2D" parent="AnimatedSprite2D/RacketPivot/Racket"]
+[node name="Animation" type="AnimatedSprite2D" parent="AnimatedSprite2D/RacketPivot/Racket" unique_id=1506225928]
 z_index = 100
 position = Vector2(0.0279465, -3.9999)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_va11c")
 animation = &"Deactivated"
 
-[node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D/RacketPivot/Racket"]
+[node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D/RacketPivot/Racket" unique_id=260879681]
 position = Vector2(0.333333, -9.66667)
 
-[node name="Trail2D" type="Line2D" parent="AnimatedSprite2D/RacketPivot/Racket/Marker2D"]
+[node name="Trail2D" type="Line2D" parent="AnimatedSprite2D/RacketPivot/Racket/Marker2D" unique_id=2058044553]
 unique_name_in_owner = true
 z_index = 10
 position = Vector2(-0.199175, 0.0615474)
@@ -590,44 +590,44 @@ default_color = Color(0.305882, 0.831373, 0.760784, 1)
 script = ExtResource("29_lse7d")
 length = 15
 
-[node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
+[node name="BodyCollisionShape" type="CollisionShape2D" parent="." unique_id=1976058624]
 position = Vector2(-1.66667, 6.66667)
 shape = SubResource("CircleShape2D_7m131")
 
-[node name="Sprite2D" type="Sprite2D" parent="BodyCollisionShape"]
+[node name="Sprite2D" type="Sprite2D" parent="BodyCollisionShape" unique_id=453831215]
 scale = Vector2(0.288331, 0.288331)
 
-[node name="FSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="FSM" type="Node" parent="." unique_id=1456131227 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("21_54cjv")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="FSM" node_paths=PackedStringArray("animator")]
+[node name="Idle" type="Node" parent="FSM" unique_id=844591561 node_paths=PackedStringArray("animator")]
 script = ExtResource("26_28u22")
 animator = NodePath("../../AnimationPlayer")
 
-[node name="Attacking" type="Node" parent="FSM" node_paths=PackedStringArray("animator", "attacks")]
+[node name="Attacking" type="Node" parent="FSM" unique_id=595843330 node_paths=PackedStringArray("animator", "attacks")]
 script = ExtResource("27_j1lrx")
 animator = NodePath("../../AnimationPlayer")
 attacks = [NodePath("PunchAttack"), NodePath("KickAttack")]
 
-[node name="PunchAttack" type="Node" parent="FSM/Attacking"]
+[node name="PunchAttack" type="Node" parent="FSM/Attacking" unique_id=1122260768]
 script = ExtResource("28_wb7jg")
 anim = "Attack"
 damage = 55
 
-[node name="KickAttack" type="Node" parent="FSM/Attacking"]
+[node name="KickAttack" type="Node" parent="FSM/Attacking" unique_id=1389294133]
 script = ExtResource("28_wb7jg")
 anim = "MoonKick"
 damage = 25
 
-[node name="Moving" type="Node" parent="FSM" node_paths=PackedStringArray("sprite", "animator")]
+[node name="Moving" type="Node" parent="FSM" unique_id=349072590 node_paths=PackedStringArray("sprite", "animator")]
 script = ExtResource("29_bdbrv")
 sprite = NodePath("../../AnimatedSprite2D")
 movespeed = 180
 dash_max = 280
 animator = NodePath("../../AnimationPlayer")
 
-[node name="DashParticles" type="CPUParticles2D" parent="FSM/Moving"]
+[node name="DashParticles" type="CPUParticles2D" parent="FSM/Moving" unique_id=1646777993]
 z_index = -1
 z_as_relative = false
 position = Vector2(0, 19)
@@ -640,24 +640,24 @@ initial_velocity_min = 4.57
 initial_velocity_max = 13.7
 color = Color(0.305882, 0.831373, 0.760784, 1)
 
-[node name="DashTimeout" type="Timer" parent="FSM/Moving"]
+[node name="DashTimeout" type="Timer" parent="FSM/Moving" unique_id=274829869]
 wait_time = 0.3
 
-[node name="DashTimer" type="Timer" parent="FSM/Moving"]
+[node name="DashTimer" type="Timer" parent="FSM/Moving" unique_id=183812669]
 wait_time = 0.2
 
-[node name="Die" type="Node" parent="FSM" node_paths=PackedStringArray("animator")]
+[node name="Die" type="Node" parent="FSM" unique_id=229799762 node_paths=PackedStringArray("animator")]
 script = ExtResource("30_ecf44")
 animator = NodePath("../../AnimationPlayer")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1198866877]
 scale = Vector2(2, 2)
 zoom = Vector2(1.4, 1.4)
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 script = ExtResource("33_d26hy")
 
-[node name="ProgressBar" type="ProgressBar" parent="Camera2D"]
+[node name="ProgressBar" type="ProgressBar" parent="Camera2D" unique_id=552359330]
 visible = false
 light_mask = 2
 visibility_layer = 2
@@ -674,7 +674,7 @@ value = 10.0
 fill_mode = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="Camera2D"]
+[node name="Label" type="Label" parent="Camera2D" unique_id=1428660029]
 visible = false
 offset_left = -285.0
 offset_top = 131.667
@@ -683,39 +683,37 @@ offset_bottom = 144.667
 text = "Health"
 label_settings = ExtResource("28_5mc6f")
 
-[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+[node name="TextureRect" type="TextureRect" parent="Camera2D" unique_id=671146171]
 visible = false
 offset_left = -290.0
 offset_top = 130.833
 offset_right = -256.0
 offset_bottom = 157.833
 
-[node name="hit_particle_blood" type="GPUParticles2D" parent="."]
+[node name="hit_particle_blood" type="GPUParticles2D" parent="." unique_id=1042777431]
 emitting = false
 amount = 200
-process_material = SubResource("ParticleProcessMaterial_wrxbo")
 lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wrxbo")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_gtuut")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1492328115]
+libraries/ = SubResource("AnimationLibrary_gtuut")
 
-[node name="QuestTracker" type="Node2D" parent="." node_paths=PackedStringArray("quest_info", "quest_announcement")]
+[node name="QuestTracker" type="Node2D" parent="." unique_id=92241523 node_paths=PackedStringArray("quest_info", "quest_announcement")]
 script = ExtResource("33_2eisr")
 quest_info = NodePath("QuestText")
 quest_announcement = NodePath("QuestAnnounceText")
 
-[node name="QuestText" type="Label" parent="QuestTracker"]
+[node name="QuestText" type="Label" parent="QuestTracker" unique_id=640125282]
 offset_left = -282.0
 offset_top = -151.0
 offset_right = -130.0
 offset_bottom = -122.0
 label_settings = ExtResource("28_5mc6f")
 
-[node name="QuestAnnounceText" type="Label" parent="QuestTracker"]
+[node name="QuestAnnounceText" type="Label" parent="QuestTracker" unique_id=331388440]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -729,15 +727,15 @@ label_settings = ExtResource("34_aqkdi")
 horizontal_alignment = 1
 uppercase = true
 
-[node name="AttackTimeout" type="Timer" parent="."]
+[node name="AttackTimeout" type="Timer" parent="." unique_id=390113947]
 wait_time = 0.8
 
-[node name="PaintHitTimer" type="Timer" parent="."]
+[node name="PaintHitTimer" type="Timer" parent="." unique_id=793594862]
 wait_time = 0.4
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1488807740]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1334362356]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 656.0
@@ -745,7 +743,7 @@ offset_top = 254.0
 offset_right = 696.0
 offset_bottom = 294.0
 
-[node name="HealthBar" parent="CanvasLayer/Control" instance=ExtResource("37_c8lyp")]
+[node name="HealthBar" parent="CanvasLayer/Control" unique_id=2137378083 instance=ExtResource("37_c8lyp")]
 position = Vector2(-466, 326)
 scale = Vector2(2.5, 2.5)
 max_health = 8

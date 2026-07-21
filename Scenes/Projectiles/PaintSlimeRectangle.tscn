@@ -1,28 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvqlxbgu68i5p"]
+[gd_scene format=3 uid="uid://bvqlxbgu68i5p"]
 
-[ext_resource type="Script" path="res://Scenes/Projectiles/PaintSlime.gd" id="1_ca3sx"]
+[ext_resource type="Script" uid="uid://dwesqxmanqxtw" path="res://Scenes/Projectiles/PaintSlime.gd" id="1_ca3sx"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7r02h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8lp8"]
 
-[node name="PaintSlimeCircle" type="Node2D"]
+[node name="PaintSlimeCircle" type="Node2D" unique_id=1264139497]
 script = ExtResource("1_ca3sx")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1244862551]
 modulate = Color(0.815686, 0.164706, 0.164706, 1)
 position = Vector2(0.143793, 0.0224431)
 scale = Vector2(21.2524, 21.0029)
 mesh = SubResource("QuadMesh_7r02h")
 
-[node name="Area2D" type="Area2D" parent="MeshInstance2D"]
+[node name="Area2D" type="Area2D" parent="MeshInstance2D" unique_id=694251710]
 position = Vector2(-0.00676597, -0.00106857)
 scale = Vector2(0.0470535, 0.0476125)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D/Area2D" unique_id=1707528310]
 shape = SubResource("RectangleShape2D_h8lp8")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1614822098]
 modulate = Color(0.972549, 0.164706, 0.164706, 1)
 position = Vector2(0.143793, 0.0224431)
 scale = Vector2(21.2524, 21.0029)
@@ -31,10 +31,10 @@ emission_shape = 1
 emission_sphere_radius = 0.7
 gravity = Vector2(0, 0)
 
-[node name="HitTimeout" type="Timer" parent="."]
+[node name="HitTimeout" type="Timer" parent="." unique_id=1217781758]
 wait_time = 0.7
 
-[node name="ClearTimer" type="Timer" parent="."]
+[node name="ClearTimer" type="Timer" parent="." unique_id=200090801]
 
 [connection signal="body_entered" from="MeshInstance2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="MeshInstance2D/Area2D" to="." method="_on_area_2d_body_exited"]

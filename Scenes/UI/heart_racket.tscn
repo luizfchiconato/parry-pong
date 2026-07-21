@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://qvuwjqhp27vd"]
+[gd_scene format=3 uid="uid://qvuwjqhp27vd"]
 
 [ext_resource type="Texture2D" uid="uid://ddp2jhboy02p6" path="res://Art/Sprites/HeartFullNew.png" id="1_avgbl"]
-[ext_resource type="Script" path="res://Scenes/UI/HeartRacket.gd" id="1_cenrx"]
+[ext_resource type="Script" uid="uid://dhn2lsmweiqi" path="res://Scenes/UI/HeartRacket.gd" id="1_cenrx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tliwc"]
 atlas = ExtResource("1_avgbl")
@@ -21,7 +21,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tliwc")
 }],
-"loop": true,
+"loop": 1,
 "name": &"empty",
 "speed": 5.0
 }, {
@@ -29,7 +29,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xk5fb")
 }],
-"loop": true,
+"loop": 1,
 "name": &"full",
 "speed": 5.0
 }, {
@@ -37,14 +37,14 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sijic")
 }],
-"loop": true,
+"loop": 1,
 "name": &"half",
 "speed": 5.0
 }]
 
-[node name="HeartRacket" type="Node2D"]
+[node name="HeartRacket" type="Node2D" unique_id=1583965844]
 script = ExtResource("1_cenrx")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1517681558]
 sprite_frames = SubResource("SpriteFrames_mg7dw")
 animation = &"half"

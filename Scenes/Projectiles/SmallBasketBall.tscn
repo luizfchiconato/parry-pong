@@ -1,6 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://c2a0stkhtpl28"]
+[gd_scene format=3 uid="uid://c2a0stkhtpl28"]
 
-[ext_resource type="Script" path="res://Scenes/Projectiles/SmallBasketBall.gd" id="1_yt0ro"]
+[ext_resource type="Script" uid="uid://c7ttflxi5mfab" path="res://Scenes/Projectiles/SmallBasketBall.gd" id="1_yt0ro"]
 [ext_resource type="Texture2D" uid="uid://be6ukmkfrh34h" path="res://Art/Sprites/balloon.png" id="3_1myif"]
 [ext_resource type="Texture2D" uid="uid://683s0e63atrp" path="res://Art/Sprites/balloon_converted.png" id="4_vqn33"]
 [ext_resource type="Texture2D" uid="uid://iaqjd2o08qvv" path="res://Art/Sprites/BowlingBallConverted.png" id="5_ex8ri"]
@@ -49,7 +49,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t64h2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"balloon",
 "speed": 15.0
 }, {
@@ -57,7 +57,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kw34n")
 }],
-"loop": true,
+"loop": 1,
 "name": &"balloon_converted",
 "speed": 5.0
 }, {
@@ -80,7 +80,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uaflr")
 }],
-"loop": true,
+"loop": 1,
 "name": &"converted",
 "speed": 15.0
 }, {
@@ -88,7 +88,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hlgvx")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 15.0
 }]
@@ -101,35 +101,35 @@ radius = 22.3607
 [sub_resource type="CircleShape2D" id="CircleShape2D_o3xnk"]
 radius = 32.0
 
-[node name="SmallBasketBall" type="Area2D"]
+[node name="SmallBasketBall" type="Area2D" unique_id=1072446410]
 z_index = 20
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_yt0ro")
 
-[node name="ShadowSprite" type="AnimatedSprite2D" parent="."]
+[node name="ShadowSprite" type="AnimatedSprite2D" parent="." unique_id=1824428478]
 modulate = Color(0, 0, 0, 0)
 z_index = -20
 scale = Vector2(1.946, 1.5)
 sprite_frames = SubResource("SpriteFrames_phncl")
 frame_progress = 0.860568
 
-[node name="Body" type="Area2D" parent="."]
+[node name="Body" type="Area2D" parent="." unique_id=559309926]
 
-[node name="BallSprite" type="AnimatedSprite2D" parent="Body"]
+[node name="BallSprite" type="AnimatedSprite2D" parent="Body" unique_id=2143567712]
 modulate = Color(0.603922, 0.603922, 0.603922, 0.52549)
 scale = Vector2(1.94643, 1.94643)
 sprite_frames = SubResource("SpriteFrames_phncl")
 
-[node name="HitboxArea2D" type="Area2D" parent="Body/BallSprite"]
+[node name="HitboxArea2D" type="Area2D" parent="Body/BallSprite" unique_id=978514493]
 scale = Vector2(0.523401, 0.485991)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/BallSprite/HitboxArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/BallSprite/HitboxArea2D" unique_id=2131437318]
 shape = SubResource("CircleShape2D_qiekf")
 
-[node name="BodyCollision" type="CollisionShape2D" parent="Body"]
+[node name="BodyCollision" type="CollisionShape2D" parent="Body" unique_id=385019791]
 shape = SubResource("CircleShape2D_3fuda")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Body"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Body" unique_id=915032944]
 amount = 20
 emission_shape = 1
 emission_sphere_radius = 19.3
@@ -141,13 +141,13 @@ angular_velocity_max = 444.72
 scale_amount_max = 2.0
 color = Color(0.972549, 0.164706, 0.164706, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=858472530]
 shape = SubResource("CircleShape2D_o3xnk")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=2123184861]
 wait_time = 0.5
 
-[node name="Timer2" type="Timer" parent="."]
+[node name="Timer2" type="Timer" parent="." unique_id=842656947]
 wait_time = 0.5
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
@@ -156,6 +156,6 @@ wait_time = 0.5
 [connection signal="body_entered" from="Body" to="." method="_on_body_body_entered"]
 [connection signal="body_entered" from="Body/BallSprite/HitboxArea2D" to="." method="_on_hitbox_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_timeout"]
 [connection signal="tree_exiting" from="Timer2" to="." method="_on_timer_2_tree_exiting"]

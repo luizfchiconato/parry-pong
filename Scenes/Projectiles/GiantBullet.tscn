@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://0tliosmk0xwb"]
+[gd_scene format=3 uid="uid://0tliosmk0xwb"]
 
-[ext_resource type="Script" path="res://Scenes/Projectiles/GiantBullet.gd" id="1_f688f"]
+[ext_resource type="Script" uid="uid://dc4uu71mpy3ki" path="res://Scenes/Projectiles/GiantBullet.gd" id="1_f688f"]
 [ext_resource type="Texture2D" uid="uid://8acp50cyx5uh" path="res://Art/Sprites/ball.png" id="2_xhixi"]
 [ext_resource type="Texture2D" uid="uid://dualwutj51ik4" path="res://Art/Sprites/Lightttt.png" id="3_4yhqd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o3xnk"]
 radius = 27.0
 
-[node name="GiantBullet" type="Area2D"]
+[node name="GiantBullet" type="Area2D" unique_id=1948171627]
 z_index = 20
 scale = Vector2(0.35, 0.35)
 script = ExtResource("1_f688f")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1529410665]
 amount = 40
 emission_shape = 1
 emission_sphere_radius = 19.3
@@ -24,15 +24,15 @@ angular_velocity_max = 444.72
 scale_amount_max = 2.0
 color = Color(0.972549, 0.164706, 0.164706, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=741395464]
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_xhixi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=248539886]
 scale = Vector2(2.5, 2.5)
 shape = SubResource("CircleShape2D_o3xnk")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1804614810]
 visible = false
 position = Vector2(1.90735e-06, -4.76837e-07)
 color = Color(0.972549, 0.164706, 0.164706, 1)

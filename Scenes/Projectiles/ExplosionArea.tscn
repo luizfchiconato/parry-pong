@@ -1,32 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnrqvbkp07pay"]
+[gd_scene format=3 uid="uid://bnrqvbkp07pay"]
 
-[ext_resource type="Script" path="res://ExplosionArea.gd" id="1_43blc"]
+[ext_resource type="Script" uid="uid://demhnu8seejyw" path="res://ExplosionArea.gd" id="1_43blc"]
 [ext_resource type="Material" uid="uid://cgp5ke0gdwes3" path="res://Scenes/Projectiles/ExplosionArea.tres" id="2_xvrko"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4i81j"]
 size = Vector2(31.858, 29.386)
 
-[node name="ExplosionArea" type="Node2D"]
+[node name="ExplosionArea" type="Node2D" unique_id=899032351]
 scale = Vector2(0.878907, 0.774405)
 script = ExtResource("1_43blc")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=827976799]
 z_index = 1
 position = Vector2(2.27555, -30.9915)
 scale = Vector2(1.60732, 0.453045)
 amount = 5000
-process_material = ExtResource("2_xvrko")
 lifetime = 0.03
+process_material = ExtResource("2_xvrko")
 
-[node name="GPUParticles2DBlack" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2DBlack" type="GPUParticles2D" parent="." unique_id=1623699561]
 z_index = 1
 position = Vector2(2.27555, -30.9915)
 scale = Vector2(1.60732, 0.453045)
 amount = 5000
-process_material = ExtResource("2_xvrko")
 lifetime = 0.03
+process_material = ExtResource("2_xvrko")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1178622151]
 offset_left = -986.452
 offset_top = -77.4788
 offset_right = -946.452
@@ -34,16 +34,16 @@ offset_bottom = -37.4785
 scale = Vector2(55.4526, 2.28022)
 color = Color(0.866667, 0.027451, 0, 1)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=580051549]
 wait_time = 1.2
 
-[node name="ExplodingTimer" type="Timer" parent="."]
+[node name="ExplodingTimer" type="Timer" parent="." unique_id=284681682]
 wait_time = 0.6
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=2143444432]
 scale = Vector2(1.13778, 1.29131)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1761814538]
 position = Vector2(0.999999, -24.5)
 scale = Vector2(2.589, 2.28)
 shape = SubResource("RectangleShape2D_4i81j")

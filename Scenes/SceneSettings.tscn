@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx8kkqawojm0m"]
+[gd_scene format=3 uid="uid://cx8kkqawojm0m"]
 
 [sub_resource type="Environment" id="Environment_8bd8l"]
 background_mode = 3
@@ -7,10 +7,10 @@ glow_normalized = true
 glow_intensity = 1.0
 glow_bloom = 0.5
 
-[node name="SceneSettings" type="Node"]
+[node name="SceneSettings" type="Node" unique_id=1091739074]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1694847220]
 environment = SubResource("Environment_8bd8l")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=458517427]
 color = Color(0.619608, 0.596078, 0.498039, 1)

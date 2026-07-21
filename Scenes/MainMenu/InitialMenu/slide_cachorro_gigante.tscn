@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4n6q82xkiwtn"]
+[gd_scene format=3 uid="uid://b4n6q82xkiwtn"]
 
-[ext_resource type="Script" path="res://Scenes/MainMenu/InitialMenu/slide_cachorro_gigante.gd" id="1_q864l"]
+[ext_resource type="Script" uid="uid://cle5v4s3bkrfh" path="res://Scenes/MainMenu/InitialMenu/slide_cachorro_gigante.gd" id="1_q864l"]
 [ext_resource type="Texture2D" uid="uid://w5jk7nbsy0xy" path="res://Art/Sprites/CachorroGiganteDay.png" id="2_xksom"]
 [ext_resource type="Texture2D" uid="uid://cmxetbp327d0n" path="res://Art/Sprites/CachorroGiganteNight.png" id="3_arg8n"]
 
-[node name="SlideCachorroGigante" type="Control"]
+[node name="SlideCachorroGigante" type="Control" unique_id=1473846108]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,14 +17,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q864l")
 
-[node name="DayTime" type="TextureRect" parent="."]
+[node name="DayTime" type="TextureRect" parent="." unique_id=1659558655]
 layout_mode = 0
 offset_right = 374.0
 offset_bottom = 441.0
 texture = ExtResource("2_xksom")
 expand_mode = 1
 
-[node name="NightTime" type="TextureRect" parent="."]
+[node name="NightTime" type="TextureRect" parent="." unique_id=1102829610]
 layout_mode = 0
 offset_right = 374.0
 offset_bottom = 441.0

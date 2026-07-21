@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://brkkcdmjbkvok"]
+[gd_scene format=3 uid="uid://brkkcdmjbkvok"]
 
-[ext_resource type="Script" path="res://Plugins/trail_2d.gd" id="1_slk8b"]
+[ext_resource type="Script" uid="uid://ucogkmqt4xf6" path="res://Plugins/trail_2d.gd" id="1_slk8b"]
 
 [sub_resource type="GDScript" id="GDScript_62opy"]
 resource_name = "Test scene"
@@ -19,12 +19,12 @@ func _physics_process(delta: float) -> void:
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0766667, 1), 0.0, -1.08303, 0, 1, Vector2(1, 0), -1.08303, 0.0, 1, 0]
 point_count = 3
 
-[node name="Test" type="Node2D"]
+[node name="Test" type="Node2D" unique_id=542234433]
 script = SubResource("GDScript_62opy")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=751028757]
 
-[node name="Trail2D" type="Line2D" parent="Marker2D"]
+[node name="Trail2D" type="Line2D" parent="Marker2D" unique_id=603325260]
 unique_name_in_owner = true
 points = PackedVector2Array(229, 23)
 width = 32.0

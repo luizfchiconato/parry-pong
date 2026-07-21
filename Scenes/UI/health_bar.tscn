@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcm1d7a1jv8bf"]
+[gd_scene format=3 uid="uid://dcm1d7a1jv8bf"]
 
-[ext_resource type="Script" path="res://Scenes/UI/health_bar.gd" id="1_na28c"]
+[ext_resource type="Script" uid="uid://c0u0v8ba5sxxq" path="res://Scenes/UI/health_bar.gd" id="1_na28c"]
 
-[node name="HealthBar" type="Node2D"]
+[node name="HealthBar" type="Node2D" unique_id=1635593364]
 script = ExtResource("1_na28c")
 max_health = null

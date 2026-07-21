@@ -1,9 +1,7 @@
-[gd_resource type="Resource" script_class="SlideTransitionFade" load_steps=2 format=3 uid="uid://bt2wxjwarvrol"]
+[gd_resource type="Resource" script_class="SlideTransitionFade" format=3 uid="uid://bt2wxjwarvrol"]
 
-[ext_resource type="Script" path="res://Scenes/MainMenu/addons/splash_screen_wizard/transitions/slide_transition_fade.gd" id="1_p0y3g"]
+[ext_resource type="Script" uid="uid://dr3hucclhenbe" path="res://Scenes/MainMenu/addons/splash_screen_wizard/transitions/slide_transition_fade.gd" id="1_p0y3g"]
 
 [resource]
 script = ExtResource("1_p0y3g")
 fade_type = 1
-duration = 0.5
-transition_type = 0

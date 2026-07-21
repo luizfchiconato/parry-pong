@@ -1,15 +1,15 @@
-[gd_scene load_steps=66 format=3 uid="uid://bo22hma5o31ig"]
+[gd_scene format=3 uid="uid://bo22hma5o31ig"]
 
-[ext_resource type="Script" path="res://Scenes/MainMenu/InitialMenu/MainMenu.gd" id="1_a3j34"]
+[ext_resource type="Script" uid="uid://ctp1qept4tyh2" path="res://Scenes/MainMenu/InitialMenu/MainMenu.gd" id="1_a3j34"]
 [ext_resource type="PackedScene" uid="uid://0mod4ybbrgo1" path="res://Scenes/Levels/LevelList/Tutorial.tscn" id="2_u7umv"]
 [ext_resource type="PackedScene" uid="uid://bt50eqfhbqt1w" path="res://Scenes/MainMenu/LevelSelector/LevelSelector.tscn" id="3_drlva"]
 [ext_resource type="AudioStream" uid="uid://l4ps16jwyewh" path="res://Art/Audio/Music/TetrisTitle.mp3" id="3_jvsig"]
 [ext_resource type="Texture2D" uid="uid://bbesu3dytgmpi" path="res://Art/Sprites/MainMenu.png" id="4_5q51a"]
-[ext_resource type="Script" path="res://Scenes/MainMenu/addons/splash_screen_wizard/splash_screen.gd" id="5_pntln"]
+[ext_resource type="Script" uid="uid://ddm0nkduluem5" path="res://Scenes/MainMenu/addons/splash_screen_wizard/splash_screen.gd" id="5_pntln"]
 [ext_resource type="PackedScene" uid="uid://ckqiyl367tw67" path="res://Scenes/MainMenu/InitialMenu/slides/slide_disclaimer.tscn" id="6_hvge1"]
 [ext_resource type="PackedScene" uid="uid://cxqpgg8ax8bqv" path="res://Scenes/MainMenu/InitialMenu/slides/slide_godot.tscn" id="7_qjbut"]
-[ext_resource type="Script" path="res://Scenes/MainMenu/InitialMenu/slides/slide_godot.gd" id="8_jaxlu"]
-[ext_resource type="Script" path="res://Scenes/MainMenu/addons/splash_screen_wizard/transitions/slide_transition_fade.gd" id="9_u68ve"]
+[ext_resource type="Script" uid="uid://btjqta7rkxi0m" path="res://Scenes/MainMenu/InitialMenu/slides/slide_godot.gd" id="8_jaxlu"]
+[ext_resource type="Script" uid="uid://dr3hucclhenbe" path="res://Scenes/MainMenu/addons/splash_screen_wizard/transitions/slide_transition_fade.gd" id="9_u68ve"]
 [ext_resource type="PackedScene" uid="uid://b4n6q82xkiwtn" path="res://Scenes/MainMenu/InitialMenu/slide_cachorro_gigante.tscn" id="10_s3j0k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8xhda"]
@@ -354,28 +354,23 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_heaq7")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 36.0
 }]
 
 [sub_resource type="Resource" id="Resource_skv6c"]
 script = ExtResource("9_u68ve")
-fade_type = 0
 duration = 0.75
-transition_type = 0
 
 [sub_resource type="Resource" id="Resource_js15x"]
 script = ExtResource("9_u68ve")
 fade_type = 1
 duration = 0.75
-transition_type = 0
 
 [sub_resource type="Resource" id="Resource_fgivj"]
 script = ExtResource("9_u68ve")
-fade_type = 0
 duration = 0.75
-transition_type = 0
 
 [sub_resource type="Resource" id="Resource_40phl"]
 script = ExtResource("9_u68ve")
@@ -383,7 +378,7 @@ fade_type = 1
 duration = 0.75
 transition_type = 5
 
-[node name="DemoSplashScreenWizard" type="Control"]
+[node name="DemoSplashScreenWizard" type="Control" unique_id=1600869524]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -395,7 +390,7 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainMenu" type="Control" parent="."]
+[node name="MainMenu" type="Control" parent="." unique_id=1492990188]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -407,11 +402,11 @@ script = ExtResource("1_a3j34")
 first_scene = ExtResource("2_u7umv")
 selector_scene = ExtResource("3_drlva")
 
-[node name="MusicTitleScreen" type="AudioStreamPlayer" parent="MainMenu"]
+[node name="MusicTitleScreen" type="AudioStreamPlayer" parent="MainMenu" unique_id=1168960725]
 stream = ExtResource("3_jvsig")
 volume_db = -20.0
 
-[node name="CenterContainer" type="BoxContainer" parent="MainMenu"]
+[node name="CenterContainer" type="BoxContainer" parent="MainMenu" unique_id=1200504698]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -421,10 +416,10 @@ offset_right = -64.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/CenterContainer" unique_id=537315470]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenu/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MainMenu/CenterContainer/VBoxContainer" unique_id=301209169]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 text = "Parry Pong"
@@ -432,24 +427,24 @@ label_settings = SubResource("LabelSettings_8xhda")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="NewGame" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
+[node name="NewGame" type="Button" parent="MainMenu/CenterContainer/VBoxContainer" unique_id=1643290354]
 layout_mode = 2
 text = "Novo jogo"
 
-[node name="LevelSelector" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
+[node name="LevelSelector" type="Button" parent="MainMenu/CenterContainer/VBoxContainer" unique_id=1389958454]
 layout_mode = 2
 text = "Seletor de níveis"
 
-[node name="Quit" type="Button" parent="MainMenu/CenterContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="MainMenu/CenterContainer/VBoxContainer" unique_id=990835323]
 layout_mode = 2
 text = "Morrer de imediato"
 
-[node name="Skeleton" type="AnimatedSprite2D" parent="MainMenu/CenterContainer/VBoxContainer"]
+[node name="Skeleton" type="AnimatedSprite2D" parent="MainMenu/CenterContainer/VBoxContainer" unique_id=1265244866]
 position = Vector2(497, 330)
 sprite_frames = SubResource("SpriteFrames_dm60y")
 frame_progress = 0.631363
 
-[node name="SplashScreen" type="Control" parent="."]
+[node name="SplashScreen" type="Control" parent="." unique_id=782200374]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -460,7 +455,7 @@ script = ExtResource("5_pntln")
 delay_between_slides = 0.5
 skip_input_action = &"ui_accept"
 
-[node name="Background" type="ColorRect" parent="SplashScreen"]
+[node name="Background" type="ColorRect" parent="SplashScreen" unique_id=1101621235]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -469,12 +464,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="SlideDisclaimer" parent="SplashScreen" instance=ExtResource("6_hvge1")]
+[node name="SlideDisclaimer" parent="SplashScreen" unique_id=717754359 instance=ExtResource("6_hvge1")]
 layout_mode = 1
 duration = 2.0
 skippable = true
 
-[node name="SlideGodot" parent="SplashScreen" instance=ExtResource("7_qjbut")]
+[node name="SlideGodot" parent="SplashScreen" unique_id=1826422793 instance=ExtResource("7_qjbut")]
 layout_mode = 1
 script = ExtResource("8_jaxlu")
 transition_in = SubResource("Resource_skv6c")
@@ -482,7 +477,7 @@ transition_out = SubResource("Resource_js15x")
 duration = 1.75
 skippable = true
 
-[node name="SlideCachorroGigante" parent="SplashScreen" instance=ExtResource("10_s3j0k")]
+[node name="SlideCachorroGigante" parent="SplashScreen" unique_id=1934929129 instance=ExtResource("10_s3j0k")]
 layout_mode = 1
 offset_left = 377.0
 offset_top = 86.0

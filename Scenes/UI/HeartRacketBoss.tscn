@@ -1,6 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://bkxdrw7mx3m0k"]
+[gd_scene format=3 uid="uid://bkxdrw7mx3m0k"]
 
-[ext_resource type="Script" path="res://Scenes/UI/HeartRacketBoss.gd" id="1_btwx1"]
+[ext_resource type="Script" uid="uid://bcq0p0yxikg7" path="res://Scenes/UI/HeartRacketBoss.gd" id="1_btwx1"]
 [ext_resource type="Texture2D" uid="uid://c3crb00fy55w2" path="res://Art/Sprites/HeartFullSteps.png" id="2_k7oci"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2wy4x"]
@@ -188,16 +188,16 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sl1ph")
 }],
-"loop": true,
+"loop": 1,
 "name": &"racket",
 "speed": 5.0
 }]
 
-[node name="HeartRacketBoss" type="Control"]
+[node name="HeartRacketBoss" type="Control" unique_id=1737519936]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_btwx1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1138989900]
 sprite_frames = SubResource("SpriteFrames_mg7dw")
 animation = &"racket"

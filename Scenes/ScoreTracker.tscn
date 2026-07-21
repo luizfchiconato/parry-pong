@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6xb8nhlqtuhf"]
+[gd_scene format=3 uid="uid://b6xb8nhlqtuhf"]
 
-[ext_resource type="Script" path="res://Scenes/Levels/GameUI.gd" id="1_3k7kl"]
+[ext_resource type="Script" uid="uid://cskfnibrtwx03" path="res://Scenes/Levels/GameUI.gd" id="1_3k7kl"]
 [ext_resource type="LabelSettings" uid="uid://1cnb4418rr7" path="res://Art/Fonts/pixelized_label_large.tres" id="2_ygwdu"]
 
-[node name="Score_tracker_layer" type="CanvasLayer"]
+[node name="Score_tracker_layer" type="CanvasLayer" unique_id=1822094984]
 layer = 2
 
-[node name="GameUI" type="Control" parent="." node_paths=PackedStringArray("money_label")]
+[node name="GameUI" type="Control" parent="." unique_id=1699141008 node_paths=PackedStringArray("money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_3k7kl")
 money_label = NodePath("MoneyLabel")
 
-[node name="MoneyLabel" type="Label" parent="GameUI"]
+[node name="MoneyLabel" type="Label" parent="GameUI" unique_id=1274870077]
 z_index = 1
 layout_mode = 0
 offset_left = 533.0
