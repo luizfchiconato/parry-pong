@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Parry Pong"
 config/description="Hora da raquete"
-config/version="1.4"
+config/version="0.5"
 config/tags=PackedStringArray("starterkit")
 run/main_scene="res://Scenes/GameController.tscn"
 config/features=PackedStringArray("4.8", "Forward Plus")

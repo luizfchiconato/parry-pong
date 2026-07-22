@@ -36,7 +36,6 @@ max_balls_per_shot = 1
 position = Vector2(233, 262)
 bullet_interval = 1.5
 wait_to_attack = 0.5
-enemy_type = 1
 
 [node name="Enemy10" parent="Enemies" unique_id=115634579 instance=ExtResource("4_bxx4o")]
 position = Vector2(-344, -93)
@@ -45,7 +44,7 @@ wait_to_attack = 1.0
 
 [node name="Enemy11" parent="Enemies" unique_id=693062035 instance=ExtResource("4_bxx4o")]
 position = Vector2(220, -119)
-bullet_interval = 1.0
+bullet_interval = 1.5
 wait_to_attack = 0.5
 enemy_type = 4
 min_balls_per_shot = 1
@@ -60,8 +59,6 @@ wait_for_deaths = 2
 position = Vector2(281, -54)
 wait_for_deaths = 2
 enemy_type = 1
-min_balls_per_shot = 1
-max_balls_per_shot = 1
 
 [node name="Enemy8" parent="Enemies" unique_id=1248613681 instance=ExtResource("4_bxx4o")]
 position = Vector2(-347, 196)
@@ -75,6 +72,7 @@ attack_node = NodePath("../Enemy8/FSM/enemy_attack_state")
 chase_node = NodePath("../Enemy8/FSM/enemy_chase_state")
 bullet_interval = 1.5
 wait_for_deaths = 4
+enemy_type = 4
 sprite = NodePath("../Enemy8/AnimatedSprite2D")
 healthbar = NodePath("../Enemy8/ProgressBar")
 hit_particles = NodePath("../Enemy8/HitParticles")
