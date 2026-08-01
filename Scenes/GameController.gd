@@ -17,6 +17,9 @@ func _ready():
 	#music.set_stream_paused(true)
 	Global.game_controller = self
 	change_gui_scene(first_gui_scene)
+	
+	music.connect("finished", Callable(self,"_on_loop_sound").bind(music))
+	# music.play()
 
 func change_gui_scene(new_scene: PackedScene, delete: bool = true, keep_running: bool = false):
 	# music.set_stream_paused(true)
@@ -80,3 +83,9 @@ func load_main_menu():
 	deload_current_2d_scene()
 	music.playing = false
 	change_gui_scene(MAIN_MENU)
+
+
+
+func _on_loop_sound(player):
+	music.set_stream_paused(false)
+	music.play()

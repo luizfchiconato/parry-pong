@@ -370,30 +370,30 @@ stationary = true
 [node name="PaintSlimeCircle" parent="Fase7 [34]" unique_id=1997810417 instance=ExtResource("6_hm8up")]
 position = Vector2(-248, -64)
 scale = Vector2(12.2973, 17.6971)
-wait_for_deaths = 33
+wait_for_deaths = 31
 disappear_after_deaths = true
-number_of_deaths_to_disappear = 42
+number_of_deaths_to_disappear = 40
 
 [node name="PaintSlimeCircle2" parent="Fase7 [34]" unique_id=140242486 instance=ExtResource("6_hm8up")]
 position = Vector2(-248, 216)
 scale = Vector2(12.2973, 9.11435)
-wait_for_deaths = 33
+wait_for_deaths = 31
 disappear_after_deaths = true
-number_of_deaths_to_disappear = 42
+number_of_deaths_to_disappear = 40
 
 [node name="PaintSlimeCircle3" parent="Fase7 [34]" unique_id=473909910 instance=ExtResource("6_hm8up")]
 position = Vector2(184, 216)
 scale = Vector2(12.2973, 9.11435)
-wait_for_deaths = 33
+wait_for_deaths = 31
 disappear_after_deaths = true
-number_of_deaths_to_disappear = 42
+number_of_deaths_to_disappear = 40
 
 [node name="PaintSlimeCircle4" parent="Fase7 [34]" unique_id=2116351908 instance=ExtResource("6_hm8up")]
 position = Vector2(184, -64)
 scale = Vector2(12.2973, 17.777)
-wait_for_deaths = 33
+wait_for_deaths = 31
 disappear_after_deaths = true
-number_of_deaths_to_disappear = 42
+number_of_deaths_to_disappear = 40
 
 [node name="Fase8" type="Node" parent="." unique_id=993429673]
 
