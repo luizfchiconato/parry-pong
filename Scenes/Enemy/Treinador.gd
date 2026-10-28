@@ -17,7 +17,7 @@ var initial_shockwaves = 0
 
 const SHOCKWAVE_TIMER = 5
 const INITIAL_SHOCKWAVE_TIMER = 1.5
-const GIANT_BULLET_TIMER = 8
+const GIANT_BULLET_TIMER = 10
 const FINAL_GIANT_BULLET_TIMER = 2
 
 # Called when the node enters the scene tree for the first time.
@@ -49,6 +49,7 @@ func _take_damage(amount, deathVelocity : Vector2):
 func _on_shockwave_timer_timeout():
 	var paint_tween = create_tween()
 	await paint_tween.tween_property(self, "modulate", Color.RED, 0.2).finished
+	AudioManager.play_sound(AudioManager.BOSS_STOMP, 0)
 	var shockwave = ShockwaveScene.instantiate() as Shockwave
 	shockwave.set_as_top_level(true)
 	shockwave.global_position = $ShockwaveLocation.global_position
@@ -57,31 +58,33 @@ func _on_shockwave_timer_timeout():
 	return_tween.tween_property(self, "modulate", original_modulate, 0.1)
 	
 	initial_shockwaves = initial_shockwaves + 1
-	print(initial_shockwaves)
 	if (initial_shockwaves == 3):
 		$BulletTimer.autostart = true
 		$BulletTimer.start()
 		$ShockwaveTimer.wait_time = SHOCKWAVE_TIMER
 
 func _on_giant_bullet_timer_timeout():
-	if allow_giant_ball:
-		var paint_tween = create_tween()
-		await paint_tween.tween_property(self, "modulate", Color.RED, 0.4).finished
-		var ball = createBall()
-		Global.game_controller.add_2d_scene_child(ball)
-		var return_tween = create_tween()
-		return_tween.tween_property(self, "modulate", original_modulate, 0.1)
+	print("TIMEOUT")
+	var paint_tween = create_tween()
+	var player = AudioManager.play_sound(AudioManager.BOSS_SWOOSH, 0)
+	await paint_tween.tween_property(self, "modulate", Color.RED, player.stream.get_length()).finished
+	var ball = createBall()
+	Global.game_controller.add_2d_scene_child(ball)
+	var return_tween = create_tween()
+	return_tween.tween_property(self, "modulate", original_modulate, 0.1)
+	
 
 func createBall() -> GiantBullet:
+	AudioManager.play_sound(AudioManager.BOSS_SPIT, 0)
 	var bullet := GiantBulletScene.instantiate() as GiantBullet
 	bullet.global_position = $BulletLocation.global_position
 	bullet.set_as_top_level(true)
 	return bullet
 
 func allow_giant_balls():
+	_on_giant_bullet_timer_timeout()
 	$GiantBulletTimer.autostart = true
 	$GiantBulletTimer.start()
-	allow_giant_ball = true
 
 func _on_bullet_timer_timeout():
 	if (!is_phase_1):

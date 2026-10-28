@@ -167,7 +167,7 @@ position = Vector2(15, 87)
 position = Vector2(-9, -59)
 
 [node name="GiantBulletTimer" type="Timer" parent="." unique_id=1911771273]
-wait_time = 5.0
+wait_time = 10.0
 
 [node name="BulletTimer" type="Timer" parent="." unique_id=708017597]
 

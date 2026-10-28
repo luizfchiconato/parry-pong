@@ -159,10 +159,12 @@ func reflectBullet(body):
 			body.velocity = (50 * mouseVelocity + (-body.velocity))
 		else:
 			body.velocity = (3 * mouseVelocity + (-3 * body.velocity))
-		#body.velocity = (4 * mouseVelocity)
 		body.converted = true
-		#frameFeeze(0.05, 0.5)
-		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, -25)
+		
+		if (body is Bullet):
+			AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, -25)
+		if (body is GiantBullet):
+			AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT_GIANT_BALL, 4, -25)
 
 func reflectDisk(body):
 	var mouseVelocity = body.global_position.direction_to(getMousePos())
@@ -176,13 +178,16 @@ func reflectBowlingBall(body):
 	if (!body.converted and body.can_deflect):
 		body.converted = true
 		#frameFeeze(0.05, 0.5)
-		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, -25, 0.4)
+		if (body.type == body.BOWLING_TYPE):
+			AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT_BOWLING, 4, -25)
+		else:
+			AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT_BALLOON, 4, -25)
 		
 func reflectBasketBall(body):
 	if (!body.converted and body.can_deflect):
 		body.converted = true
 		#frameFeeze(0.05, 0.5)
-		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, -25, 0.8)
+		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT_BASKET, 4, -25)
 
 	#if body.is_in_group("Enemy"):
 	#	#frameFeeze(0.05, 0.9)

@@ -32,6 +32,7 @@ GameManager="*res://Scripts/Managers/GameManager.gd"
 AudioManager="*res://Scripts/Managers/AudioManager.gd"
 Global="*res://Global.gd"
 LevelManager="*res://Scenes/LevelManager.gd"
+GlobalSound="*uid://cyvg0nw75o14b"
 
 [display]
 

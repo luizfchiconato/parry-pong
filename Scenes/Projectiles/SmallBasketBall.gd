@@ -107,7 +107,6 @@ func showExplosion():
 	explosion.scale = self.scale * 2
 	$Timer.stop()
 	# self.add_child(explosion)
-	print("COMEÇOU ", explosion.uid)
 
 func _physics_process(delta):
 	if !converted:
@@ -138,7 +137,6 @@ func convert_ball(delta):
 		velocity = self.global_position.direction_to(end_position)
 	else:
 		print("QUEUE FREE 2", explosion.uid)
-		queue_free()
 
 func reflect_movement(delta):
 	self.global_position += velocity * 200 * delta
@@ -164,18 +162,14 @@ func check_y_level():
 		#pass
 		initial_position = self.global_position 
 		t = 0
-		print("EXPLODE 1 ", explosion.uid)
 		explode()
-		print("EXPLODE 3", explosion.uid)
 		queue_free()
-		print("EXPLODE 4", explosion.uid)
 
 
 func explode():
 	# explosion.global_position = arch_body.global_position
 	#initial_position = self.global_position 
 	#t = 0
-	print("EXPLODE 2 ", explosion.uid)
 	explosion.explode()
 	#queue_free()
 	
@@ -214,7 +208,6 @@ func _on_timer_timeout():
 
 
 func _on_timer_2_timeout():
-	print("AINDA EXISTE", explosion.uid)
 	$Timer2.stop()
 	#explode()
 

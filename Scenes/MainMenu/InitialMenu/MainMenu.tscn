@@ -409,15 +409,12 @@ selector_scene = ExtResource("3_drlva")
 
 [node name="MusicSplashScreen" type="AudioStreamPlayer" parent="MainMenu" unique_id=453548685]
 stream = ExtResource("4_hhyvc")
-volume_db = -20.0
 
 [node name="MusicTitleScreen2" type="AudioStreamPlayer" parent="MainMenu" unique_id=321829225]
 stream = ExtResource("5_hhyvc")
-volume_db = -20.0
 
 [node name="MusicTitleScreen" type="AudioStreamPlayer" parent="MainMenu" unique_id=1168960725]
 stream = ExtResource("6_hhyvc")
-volume_db = -20.0
 
 [node name="CenterContainer" type="BoxContainer" parent="MainMenu" unique_id=1200504698]
 layout_mode = 1

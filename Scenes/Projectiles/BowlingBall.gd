@@ -48,6 +48,9 @@ var offset_from_player = false
 var left = 0
 var up = 0
 
+var BOWLING_TYPE = 0
+var BALLOON_TYPE = 1
+
 var PaintSlime = load("res://Scenes/Projectiles/PaintSlimeCircle.tscn")
 var instantiated_paint
 

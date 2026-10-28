@@ -105,7 +105,7 @@ func createBullet():
 		
 
 func generateBullet(enemy_type2):
-	print("ATTACK ", uid)
+	#print("ATTACK ", uid)
 	if (enemy_type2 == TYPE_BOWLING):
 		generateBowlingBall()
 	elif (enemy_type2 == TYPE_HOCKEY):

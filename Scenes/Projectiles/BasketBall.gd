@@ -180,6 +180,7 @@ func explode():
 	explosion.explode()
 	explosion.scale.x = 1.2
 	explosion.scale.y = 1.2
+	AudioManager.play_sound(AudioManager.BASKET_BOUNCE, 0, -15)
 
 func clearRadius():
 	radius_bomb.visible = false
@@ -202,7 +203,7 @@ func deal_damage_to_enemy(enemy : EnemyMain):
 	if (type == 1):
 		AudioManager.play_sound(AudioManager.BALLOON_HIT, 0, -3)
 	else:
-		AudioManager.play_sound(AudioManager.ENEMY_HIT_BOWLING, 0, -15)
+		AudioManager.play_sound(AudioManager.ENEMY_HIT, 0, -15)
 	enemy._take_damage(DAMAGE_BOWLING, velocity * 2)
 
 func createBowlingBalls():

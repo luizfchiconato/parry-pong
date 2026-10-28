@@ -35,7 +35,7 @@ scale = Vector2(55.4526, 2.28022)
 color = Color(0.866667, 0.027451, 0, 1)
 
 [node name="Timer" type="Timer" parent="." unique_id=580051549]
-wait_time = 1.2
+wait_time = 1.5
 
 [node name="ExplodingTimer" type="Timer" parent="." unique_id=284681682]
 wait_time = 0.6

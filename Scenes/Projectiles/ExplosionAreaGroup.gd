@@ -48,7 +48,7 @@ func createExplosion(coords, invert):
 	
 	canvasgroup.self_modulate.a = 0.0
 	var paint_tween = create_tween()
-	await paint_tween.tween_property(canvasgroup, "self_modulate:a", 0.6, 1.2).finished
+	await paint_tween.tween_property(canvasgroup, "self_modulate:a", 0.6, 1.5).finished
 	
 	var player = get_tree().get_first_node_in_group("Player") as PlayerMain
-	player.set_trauma(0.36)
+	player.set_trauma(0.46)

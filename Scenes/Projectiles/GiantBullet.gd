@@ -99,6 +99,7 @@ func deal_damage_to_enemy(enemy):
 	enemy._take_damage(damage, velocity)
 
 func createExplosion(coords, invert):
+	var player = AudioManager.play_sound(AudioManager.BOSS_EXPLODE, 0)
 	var explosionAreaGroup = ExplosionAreaGroupScene.instantiate() as ExplosionAreaGroup
 	Global.game_controller.add_2d_scene_child(explosionAreaGroup)
 	explosionAreaGroup.createExplosion(coords, invert)

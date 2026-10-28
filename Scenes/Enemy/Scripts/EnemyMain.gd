@@ -93,7 +93,6 @@ func _on_bullet_timer_timeout():
 		else:
 			unparriable_sequence = 1
 	elif (unparriableChance > 0):
-		print(parriable_sequence, " ", 100 / unparriableChance, " ", unparriableChance)
 		unparriable = parriable_sequence >= 100 / unparriableChance
 		if (!unparriable):
 			parriable_sequence = parriable_sequence + 1
