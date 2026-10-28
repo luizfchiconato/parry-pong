@@ -121,7 +121,7 @@ func attack():
 	#	hitboxShape.disabled = false
 	
 	attacking = true
-	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, 1)
+	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0, -10)
 	
 func _on_hitbox_body_entered(body):
 	if (!attacking):
@@ -162,7 +162,7 @@ func reflectBullet(body):
 		#body.velocity = (4 * mouseVelocity)
 		body.converted = true
 		#frameFeeze(0.05, 0.5)
-		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.7)
+		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, -25)
 
 func reflectDisk(body):
 	var mouseVelocity = body.global_position.direction_to(getMousePos())
@@ -170,19 +170,19 @@ func reflectDisk(body):
 	#body.velocity = 2 * mouseVelocity	
 	body.converted = true
 	#frameFeeze(0.05, 0.5)
-	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.7)
+	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, -25)
 
 func reflectBowlingBall(body):
 	if (!body.converted and body.can_deflect):
 		body.converted = true
 		#frameFeeze(0.05, 0.5)
-		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.4)
+		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, -25, 0.4)
 		
 func reflectBasketBall(body):
 	if (!body.converted and body.can_deflect):
 		body.converted = true
 		#frameFeeze(0.05, 0.5)
-		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.6)
+		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, -25, 0.8)
 
 	#if body.is_in_group("Enemy"):
 	#	#frameFeeze(0.05, 0.9)

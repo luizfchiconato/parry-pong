@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://4k5wo8jl8pw8"
+path="res://.godot/imported/pickup de vida.ogg-fbcd0629aa09a9f09769643d10da5297.oggvorbisstr"
+
+[deps]
+
+source_file="res://Art/Audio/Effects/lunn2/pickup de vida.ogg"
+dest_files=["res://.godot/imported/pickup de vida.ogg-fbcd0629aa09a9f09769643d10da5297.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -28,6 +28,17 @@ func _on_quit_pressed():
 	pass # Replace with function body.
 
 func _on_splash_screen_finished():
+	$MusicSplashScreen.playing = false
+	$MusicSplashScreen.autoplay = false
 	$MusicTitleScreen.playing = true
+	$MusicTitleScreen.autoplay = true
 	anim_sprite.play("default")
 	pass # Replace with function body.
+
+
+func _on_music_title_screen_finished():
+	$MusicTitleScreen2.playing = true
+
+func _on_slide_disclaimer_finished():
+	$MusicSplashScreen.playing = true
+	$MusicSplashScreen.autoplay = true

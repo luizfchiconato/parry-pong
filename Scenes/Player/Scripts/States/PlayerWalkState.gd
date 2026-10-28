@@ -29,7 +29,7 @@ func Update(delta : float):
 
 	if(Input.is_action_just_pressed("Dash") && can_dash):
 		start_dash(input_dir)
-		AudioManager.play_sound(AudioManager.DASH, 0, -20)
+		AudioManager.play_sound(AudioManager.DASH, -2, -15, 0.8)
 
 	#if Input.is_action_just_pressed("Punch") or Input.is_action_just_pressed("Kick"):
 	#	Transition("Attacking")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://btpi6gljl4wp5"
+path="res://.godot/imported/ppong 150 ueunnnn.ogg-99b792b4714f1ae00adfc7a4f9e089e0.oggvorbisstr"
+
+[deps]
+
+source_file="res://Art/Audio/Music/Music 1/ppong 150 ueunnnn.ogg"
+dest_files=["res://.godot/imported/ppong 150 ueunnnn.ogg-99b792b4714f1ae00adfc7a4f9e089e0.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -58,14 +58,14 @@ func after_damage_iframes():
 		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
 	elif is_instance_valid(self):
 		invincible = true
-		tween.tween_property(self, "modulate", Color.DARK_RED, 0.1)
-		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-		tween.tween_property(self, "modulate", Color.RED, 0.1)
-		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-		tween.tween_property(self, "modulate", Color.DARK_RED, 0.1)
-		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-		tween.tween_property(self, "modulate", Color.RED, 0.1)
-		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+		tween.tween_property(self, "modulate", Color.DARK_RED, 0.15)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.15)
+		tween.tween_property(self, "modulate", Color.RED, 0.15)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.15)
+		tween.tween_property(self, "modulate", Color.DARK_RED, 0.15)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.15)
+		tween.tween_property(self, "modulate", Color.RED, 0.15)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.15)
 		await tween.finished
 		invincible = false
 	
@@ -91,4 +91,3 @@ func _die():
 		queue_free()
 
 #endregion
-

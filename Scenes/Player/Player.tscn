@@ -43,11 +43,6 @@ polygon = PackedVector2Array(-2, -13, -8, -13, -10, -11, -10, -2, -4, 2, -4, 10,
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7a5aw"]
 shader = ExtResource("2_v7xsc")
-shader_parameter/original_color_1 = Color(0, 0, 0, 1)
-shader_parameter/original_color_2 = Color(0, 0, 0, 1)
-shader_parameter/replace_color_1 = Color(0, 0, 0, 1)
-shader_parameter/replace_color_2 = Color(0, 0, 0, 1)
-shader_parameter/precision = 0.01
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bn237"]
 atlas = ExtResource("8_dcwka")

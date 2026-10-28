@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://ctp1qept4tyh2" path="res://Scenes/MainMenu/InitialMenu/MainMenu.gd" id="1_a3j34"]
 [ext_resource type="PackedScene" uid="uid://0mod4ybbrgo1" path="res://Scenes/Levels/LevelList/Tutorial.tscn" id="2_u7umv"]
 [ext_resource type="PackedScene" uid="uid://bt50eqfhbqt1w" path="res://Scenes/MainMenu/LevelSelector/LevelSelector.tscn" id="3_drlva"]
-[ext_resource type="AudioStream" uid="uid://l4ps16jwyewh" path="res://Art/Audio/Music/TetrisTitle.mp3" id="3_jvsig"]
 [ext_resource type="Texture2D" uid="uid://bbesu3dytgmpi" path="res://Art/Sprites/MainMenu.png" id="4_5q51a"]
+[ext_resource type="AudioStream" uid="uid://chpuib8rgpngb" path="res://Art/Audio/Effects/lunn2/fullintro.ogg" id="4_hhyvc"]
+[ext_resource type="AudioStream" uid="uid://bkxh08hpf2osv" path="res://Art/Audio/Music/Menu/menudrumnbass.ogg" id="5_hhyvc"]
 [ext_resource type="Script" uid="uid://ddm0nkduluem5" path="res://Scenes/MainMenu/addons/splash_screen_wizard/splash_screen.gd" id="5_pntln"]
+[ext_resource type="AudioStream" uid="uid://bkso1tfq5uigx" path="res://Art/Audio/Music/Menu/menubassonly.ogg" id="6_hhyvc"]
 [ext_resource type="PackedScene" uid="uid://ckqiyl367tw67" path="res://Scenes/MainMenu/InitialMenu/slides/slide_disclaimer.tscn" id="6_hvge1"]
 [ext_resource type="PackedScene" uid="uid://cxqpgg8ax8bqv" path="res://Scenes/MainMenu/InitialMenu/slides/slide_godot.tscn" id="7_qjbut"]
 [ext_resource type="Script" uid="uid://btjqta7rkxi0m" path="res://Scenes/MainMenu/InitialMenu/slides/slide_godot.gd" id="8_jaxlu"]
@@ -362,15 +364,18 @@ animations = [{
 [sub_resource type="Resource" id="Resource_skv6c"]
 script = ExtResource("9_u68ve")
 duration = 0.75
+transition_type = 8
 
 [sub_resource type="Resource" id="Resource_js15x"]
 script = ExtResource("9_u68ve")
 fade_type = 1
 duration = 0.75
+transition_type = 7
 
 [sub_resource type="Resource" id="Resource_fgivj"]
 script = ExtResource("9_u68ve")
 duration = 0.75
+transition_type = 8
 
 [sub_resource type="Resource" id="Resource_40phl"]
 script = ExtResource("9_u68ve")
@@ -402,8 +407,16 @@ script = ExtResource("1_a3j34")
 first_scene = ExtResource("2_u7umv")
 selector_scene = ExtResource("3_drlva")
 
+[node name="MusicSplashScreen" type="AudioStreamPlayer" parent="MainMenu" unique_id=453548685]
+stream = ExtResource("4_hhyvc")
+volume_db = -20.0
+
+[node name="MusicTitleScreen2" type="AudioStreamPlayer" parent="MainMenu" unique_id=321829225]
+stream = ExtResource("5_hhyvc")
+volume_db = -20.0
+
 [node name="MusicTitleScreen" type="AudioStreamPlayer" parent="MainMenu" unique_id=1168960725]
-stream = ExtResource("3_jvsig")
+stream = ExtResource("6_hhyvc")
 volume_db = -20.0
 
 [node name="CenterContainer" type="BoxContainer" parent="MainMenu" unique_id=1200504698]
@@ -474,7 +487,7 @@ layout_mode = 1
 script = ExtResource("8_jaxlu")
 transition_in = SubResource("Resource_skv6c")
 transition_out = SubResource("Resource_js15x")
-duration = 1.75
+duration = 2.0
 skippable = true
 
 [node name="SlideCachorroGigante" parent="SplashScreen" unique_id=1934929129 instance=ExtResource("10_s3j0k")]
@@ -488,7 +501,11 @@ transition_out = SubResource("Resource_40phl")
 duration = 1.75
 skippable = true
 
+[connection signal="finished" from="MainMenu/MusicSplashScreen" to="MainMenu" method="_on_music_splash_screen_finished"]
+[connection signal="finished" from="MainMenu/MusicTitleScreen2" to="MainMenu" method="_on_music_title_screen_finished"]
+[connection signal="finished" from="MainMenu/MusicTitleScreen" to="MainMenu" method="_on_music_title_screen_finished"]
 [connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/NewGame" to="MainMenu" method="_on_new_game_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/LevelSelector" to="MainMenu" method="_on_load_game_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/VBoxContainer/Quit" to="MainMenu" method="_on_quit_pressed"]
 [connection signal="finished" from="SplashScreen" to="MainMenu" method="_on_splash_screen_finished"]
+[connection signal="finished" from="SplashScreen/SlideDisclaimer" to="MainMenu" method="_on_slide_disclaimer_finished"]

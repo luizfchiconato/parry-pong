@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cpdov2r0bwxw"
+path="res://.godot/imported/ppong 150 8-Batida #5 - 130 BPM.ogg-ef16d8eeb6fbf513f2ff126619de8553.oggvorbisstr"
+
+[deps]
+
+source_file="res://Art/Audio/Music/Music 1/ppong 150 8-Batida #5 - 130 BPM.ogg"
+dest_files=["res://.godot/imported/ppong 150 8-Batida #5 - 130 BPM.ogg-ef16d8eeb6fbf513f2ff126619de8553.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

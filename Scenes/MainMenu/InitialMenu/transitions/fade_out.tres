@@ -5,3 +5,5 @@
 [resource]
 script = ExtResource("1_p0y3g")
 fade_type = 1
+duration = 0.75
+transition_type = 7

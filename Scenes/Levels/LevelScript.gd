@@ -1,4 +1,4 @@
-extends Node2D
+class_name Stage extends Node2D
 
 @export var next_scene : PackedScene
 

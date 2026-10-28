@@ -1,0 +1,20 @@
+[00:25] T1
+[00:38] T2
+[00:44] G1
+[00:51] T3
+[00:57] G2
+[01:04] T4
+[01:10] G3
+[01:16] T5
+[01:23] G4
+[01:29] T6
+[01:36] G5
+
+
+
+
+T= teclado
+G= guitarra
+
+Acima tão descritos todos os momentos em que eles ocorrem. Se precisar de algo mais preciso que minuto e segundo me fala
+que dou um jeito de procurar mais afundo <3 

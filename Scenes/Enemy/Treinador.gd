@@ -15,9 +15,9 @@ var original_modulate = self.modulate
 
 var initial_shockwaves = 0
 
-const SHOCKWAVE_TIMER = 3
+const SHOCKWAVE_TIMER = 5
 const INITIAL_SHOCKWAVE_TIMER = 1.5
-const GIANT_BULLET_TIMER = 4.5
+const GIANT_BULLET_TIMER = 8
 const FINAL_GIANT_BULLET_TIMER = 2
 
 # Called when the node enters the scene tree for the first time.

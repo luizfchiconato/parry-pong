@@ -130,6 +130,12 @@ const MARATONA = {
 	"scene": preload("res://Scenes/Levels/LevelList/Maratona.tscn"),
 	"description": "TODO MUNDO NO GINÁSIO 20, AGORA. ELE TÁ NA PORTA DA SAÍDA",
 }
+const MINIBOSS = {
+	"index": 0,
+	"name": "Monitor Jones",
+	"scene": preload("res://Scenes/Levels/LevelList/Miniboss.tscn"),
+	"description": "...",
+}
 const BOSS = {
 	"index": 0,
 	"name": "Treinador Caldo",
@@ -149,6 +155,7 @@ const GINASIOS: Array = [
 	TRES_BOLAS_PILAR,
 	APRESENTACAO_BALAO,
 	RODADA_SIMULTANEA_2,
+	MINIBOSS,
 	APRESENTACAO_CHUMBO,
 	APRESENTACAO_BASQUETE,
 	BOLICHE_MULTIPLO,

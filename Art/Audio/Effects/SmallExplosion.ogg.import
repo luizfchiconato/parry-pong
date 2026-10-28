@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/SmallExplosion.ogg-7775237d44d17ff4d0b682a9f1
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

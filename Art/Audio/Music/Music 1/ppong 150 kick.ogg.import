@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://wup7cmm7gjk2"
+path="res://.godot/imported/ppong 150 kick.ogg-ecfd8a7b8768534588d5d5594113cbae.oggvorbisstr"
+
+[deps]
+
+source_file="res://Art/Audio/Music/Music 1/ppong 150 kick.ogg"
+dest_files=["res://.godot/imported/ppong 150 kick.ogg-ecfd8a7b8768534588d5d5594113cbae.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

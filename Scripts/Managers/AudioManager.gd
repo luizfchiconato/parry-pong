@@ -3,36 +3,51 @@ extends Node
 #This class preloads all of our sound effects so that they can be played at a momets notice
 #region New Code Region
 
-const DASH = preload("res://Art/Audio/Effects/Dash.ogg")
+# const DASH = preload("res://Art/Audio/Effects/Dash.ogg")
+const DASH = preload("res://Art/Audio/Effects/lunn2/dashfinal.ogg")
 
-const PLAYER_ATTACK_SWING = preload("res://Art/Audio/Effects/AttackSwing.ogg")
+# const PLAYER_ATTACK_SWING = preload("res://Art/Audio/Effects/AttackSwing.ogg")
+const PLAYER_ATTACK_SWING = preload("res://Art/Audio/Effects/lunn2/swing.ogg")
 const PLAYER_HURT = preload("res://Art/Audio/Effects/PlayerHurt.ogg")
 
-const COIN_PICK = preload("res://Art/Audio/Effects/coin_pick.ogg")
+# const COIN_PICK = preload("res://Art/Audio/Effects/coin_pick.ogg")
+const COIN_PICK = preload("res://Art/Audio/Effects/lunn2/pickup de vida.ogg")
 
 const SMALL_EXPLOSION = preload("res://Art/Audio/Effects/SmallExplosion.ogg")
 const ENEMY_SPUN = preload("res://Art/Audio/Effects/EnemySpun.ogg")
-const WALL_SMASH_1 = preload("res://Art/Audio/Effects/Smash1.ogg")
-const WALL_SMASH_2 = preload("res://Art/Audio/Effects/Smash2.ogg")
 
-const PLAYER_ATTACK_HIT = preload("res://Art/Audio/Effects/PongHit.ogg")
-const PLAYER_ATTACK_HIT_BALLOON = null
+#const WALL_SMASH_1 = preload("res://Art/Audio/Effects/Smash1.ogg")
+#const WALL_SMASH_2 = preload("res://Art/Audio/Effects/Smash2.ogg")
+const WALL_SMASH_1 = preload("res://Art/Audio/Effects/lunn2/impacto parede morte.ogg")
+const WALL_SMASH_2 = preload("res://Art/Audio/Effects/lunn2/impacto parede morte.ogg")
+
+
+# const PLAYER_ATTACK_HIT = preload("res://Art/Audio/Effects/PongHit.ogg")
+const PLAYER_ATTACK_HIT = [
+	preload("res://Art/Audio/Effects/lunn2/hitrefeito.ogg"),
+	preload("res://Art/Audio/Effects/lunn2/hitrefeitovar1.ogg"),
+	preload("res://Art/Audio/Effects/lunn2/hitrefeitovar2.ogg")
+]
+const PLAYER_ATTACK_HIT_2 = preload("res://Art/Audio/Effects/lunn2/hitrefeitovar1.ogg")
+const PLAYER_ATTACK_HIT_3 = preload("res://Art/Audio/Effects/lunn2/hitrefeitovar2.ogg")
+const PLAYER_ATTACK_HIT_BALLOON = preload("res://Art/Audio/Effects/lunn2/raquetexbalão.ogg")
 const PLAYER_ATTACK_HIT_BOWLING = null # verificar se vai continuar sendo pitch grave
 const PLAYER_ATTACK_HIT_BASKET = null # talvez mesmo de quicar, mas mais forte
 
 const BOWLING_FALL = preload("res://Art/Audio/Effects/BowlingFall.ogg")
-const BALLOON_HIT = preload("res://Art/Audio/Effects/BalloonHit.ogg")
+const BALLOON_HIT = preload("res://Art/Audio/Effects/lunn2/raquetexbalão.ogg")
 
 const BALL_EXPLODE = null
 const BOWLING_EXPLODE = null
-const BALLOON_SPLASH = preload("res://Art/Audio/Effects/BallonSplash.ogg")
+const BALLOON_SPLASH = preload("res://Art/Audio/Effects/lunn2/raquetexbalão.ogg")
 const BASKET_BOUNCE = null
 const BASKET_EXPLODE = null
 
-const ENEMY_HIT = preload("res://Art/Audio/Effects/VolleyHit.ogg")
+const ENEMY_HIT = preload("res://Art/Audio/Effects/lunn/enemy_hit.ogg")
 # const ENEMY_ATTACK = preload("res://Art/Audio/Effects/VolleyHit.ogg")
 
-const ENEMY_HIT_DEFAULT = preload("res://Art/Audio/Effects/VolleyHit.ogg")
+#const ENEMY_HIT_DEFAULT = preload("res://Art/Audio/Effects/VolleyHit.ogg")
+const ENEMY_HIT_DEFAULT = preload("res://Art/Audio/Effects/lunn/enemy_hit.ogg")
 const ENEMY_HIT_BOWLING = preload("res://Art/Audio/Effects/EnemyHitBowling.ogg")
 
 const BOSS_SWOOSH = null
@@ -43,6 +58,13 @@ const BOSS_TALK = null
 
 const SELECT_UI = null
 const CLICK_UI = null
+
+const WALL_BOUNCE = [
+	preload("res://Art/Audio/Effects/lunn2/wallbounce 1.ogg"),
+	preload("res://Art/Audio/Effects/lunn2/wallbounce 2 .ogg"),
+	preload("res://Art/Audio/Effects/lunn2/wallbounce 3.ogg"),
+	preload("res://Art/Audio/Effects/lunn2/wallbounce 4.ogg")
+]
 
 # const QUEST_SOUND = preload("res://Art/Audio/Effects/QuestSound.ogg")
 
@@ -61,7 +83,14 @@ var NUM_AUDIO_STREAMS = 5
 #Arguments(audio_clip, offset, volume)
 #Example when calling this function:
 #AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.25, 1)
-func play_sound(audiostream : AudioStreamOggVorbis, offset : float, volume : float, pitch: float = randf_range(0.9, 1.1)):
+func play_sound(audiostream, offset : float, volume : float = -10, pitch: float = randf_range(0.9, 1.1)):
+	var stream
+	if (audiostream is AudioStreamOggVorbis):
+		stream = audiostream
+	if (audiostream is Array):
+		var rng = RandomNumberGenerator.new()
+		stream = audiostream[rng.randf_range(0, audiostream.size() - 1)]
+	
 	if(audioStreams.size() == 0):
 		initiate_audio_stream()
 	
@@ -73,7 +102,7 @@ func play_sound(audiostream : AudioStreamOggVorbis, offset : float, volume : flo
 	if (player == null):
 		player = audioStreams[0]
 
-	player.stream = audiostream
+	player.stream = stream
 	player.pitch_scale = pitch
 	player.volume_db = volume
 	player.play(offset)

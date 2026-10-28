@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://xmqf7pl3lyd2"
+path="res://.godot/imported/ppong 150 tecladin.ogg-bf9b28f67fe926f066e4c5796997967e.oggvorbisstr"
+
+[deps]
+
+source_file="res://Art/Audio/Music/Music 1/ppong 150 tecladin.ogg"
+dest_files=["res://.godot/imported/ppong 150 tecladin.ogg-bf9b28f67fe926f066e4c5796997967e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
